@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+
+<!--EJS has 2 syntaxes for rendering stuff.
+    Use the = unless it's a for loop (not going to be turned to HTML). -->
+<% for(i = 0; i < user.length; i++) {  %>
+    <h1><%=user[i].name%></h1>
+
+    <p>Email: <%=user[i].email%></p>
+    <p>Title: <%=user[i].title%></p>
+<% } %>
+
+</body>
+</html>
+
+<!--
+Create a file user_template.ejs in the views directory
+• In your get handler, use res.render() and pass the template and
+the data to be rendered
+• Check the documentation to see how to loop through the users
+array and render each user
+-->

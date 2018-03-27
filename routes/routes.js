@@ -5,6 +5,8 @@ const controller = require('../controllers/usersController');
 // do NOT use the brackets which come with the auto-fill (sayHello() does not work)
 router.get('/', controller.sayHello);
 
+//router.get('/', controller.loadIndex);
+
 // How to bring up user databased
 router.get('/user', controller.fetchAllUsers);
 

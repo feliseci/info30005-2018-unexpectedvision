@@ -1,4 +1,5 @@
-var faker = require('faker');
+/* LECTURE / WORKSHOP CODE - FOR REFERENCE*/
+const faker = require('faker');
 
 const users = [
     {

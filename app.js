@@ -8,6 +8,7 @@ app.set('view engine', 'ejs');
 const router = require('./routes/routes');
 
 app.use(router);
+app.use(express.static('./views')); // Needed for CSS to work, there may be a better way
 
 // Starts the server.
 app.listen(PORT, function() {

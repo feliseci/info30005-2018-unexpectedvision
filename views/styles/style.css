@@ -1,5 +1,6 @@
 html {
   background: lightskyblue;
+  box-sizing: border-box;
 }
 
 body {
@@ -24,5 +25,39 @@ h3 {
   font-family: "Segoe UI Black";
 }
 
+/* Homepage */
+#search {
+  margin-bottom: 50px;
+}
 
+#search input {
+  margin: 0;
+  padding: 0 10px 0 10px;
+  border: none;
+  height: 50px;
+}
 
+#search button {
+  margin: -4px;
+  padding: 10px;
+  border: none;
+  height: 50px;
+}
+
+#suggested_issues {
+  width: 50%;
+  display: inline-grid;
+  grid-template-areas: "article article";
+  grid-column-gap: 50px;
+}
+
+#suggested_issues article {
+  height: 200px;
+  background-color: burlywood;
+}
+
+#suggested_issues figcaption {
+  font-weight: bold;
+  position: relative;
+  top: 180px;
+}

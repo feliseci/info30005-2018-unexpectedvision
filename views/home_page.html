@@ -9,7 +9,7 @@
 
 <!--Site title-->
 <header>
-<h1>MultiView</h1>
+    <h1>MultiView</h1>
 </header>
 
 <!--Nav bar-->
@@ -19,15 +19,16 @@
 <!--Search button-->
 <section id = "search">
     <h2> Topic Search </h2>
+    <div>
     <form action = "search_results.html" method = "get">
         <input type="text" placeholder="Enter an issue!" />
-        <input type="submit" value="Submit" />
+        <button type="submit">Hey</button>
     </form>
+    </div>
 </section>
 
 <!--Issue suggestions-->
-<section>
-    <!--TODO: Articles necessary? -->
+<section id = "suggested_issues">
     <article>
         <!--TODO: Refactor as EJS file, fetch most recent & popular issues from DB.-->
         <figure>
@@ -37,7 +38,9 @@
     </article>
     <article>
         <figure>
+            <a href="">
             <img src = "" alt= "Popular issue - issue name">
+            </a>
             <figcaption>Popular</figcaption>
         </figure>
     </article>

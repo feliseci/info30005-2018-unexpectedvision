@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> MultiView - Home </title>
+    <link href="styles/style.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+
+<!--Site title-->
+<header>
+<h1>MultiView</h1>
+</header>
+
+<!--Nav bar-->
+<!--TODO: Jenny? Login button? -->
+<nav></nav>
+
+<!--Search button-->
+<section id = "search">
+    <h2> Topic Search </h2>
+    <form action = "search_results.html" method = "get">
+        <input type="text" placeholder="Enter an issue!" />
+        <input type="submit" value="Submit" />
+    </form>
+</section>
+
+<!--Issue suggestions-->
+<section>
+    <!--TODO: Articles necessary? -->
+    <article>
+        <!--TODO: Refactor as EJS file, fetch most recent & popular issues from DB.-->
+        <figure>
+            <img src = "" alt = "Recent issue - issue name">
+            <figcaption>Recent</figcaption>
+        </figure>
+    </article>
+    <article>
+        <figure>
+            <img src = "" alt= "Popular issue - issue name">
+            <figcaption>Popular</figcaption>
+        </figure>
+    </article>
+</section>
+
+</body>
+</html>

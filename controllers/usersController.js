@@ -6,6 +6,14 @@ module.exports.loadIndex = function (req, res) {
     res.sendFile(resolve('./views/index.html'));
 };
 
+/* TODO: PAGES */
+module.exports.home = function (req, res) {
+    const resolve = require('path').resolve;
+    res.sendFile(resolve('./views/home_page.html'));
+    //res.render('home_page', {user: users});
+};
+
+
 /* LECTURE / WORKSHOP CODE - FOR REFERENCE*/
 //Only the controller should have access to the data in the models.
 const users = require('../models/usersArray');

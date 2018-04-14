@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> <%= contribution.name %> - Contributions </title>
+    <link href="/styles/style.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <h1><%= contribution.name %></h1>
+    <h2><%= contribution.creator %></h2>
+</header>
+
+<!-- Advanced search options -->
+<section id = "sidebar_page">
+<nav id = "search_options">
+    <h4>Sort By:</h4>
+    <ul>
+        <li><a href="">Alphabetical</a></li>
+        <li><a href="">Most recent</a></li>
+        <li><a href="">Most popular</a></li>
+    </ul>
+</nav>
+
+<!--Contributions list-->
+<section id = "contributions_grid">
+    <!--Individual contribution-->
+    <% const comments = contribution.comments;
+    for(i = 0; i < comments.length-1; i++) { %>
+    <article>
+        <!--User info - links to user profile-->
+        <p class = "comment_username"><a href=""><%=comments[i].username%></a></p>
+        <p><%=comments[i].description%></p>
+        <!--Article preview-->
+        <p class = "preview"><a href="<%=comments[i].article_url%>">Preview</a></p>
+    </article>
+    <% } if(comments.length%2==0) {%>
+    <article id = "invisible"></article>
+    <%}
+    %>
+<!-- PLAIN HTML FOR REFERENCE; USE CTRL+/ TO UNCOMMENT
+    <article>
+        &lt;!&ndash;User info - links to user profile&ndash;&gt;
+        <p class = "comment_username"><a href="">Username</a></p>
+        <p>Why the article is good</p>
+        &lt;!&ndash;Article preview&ndash;&gt;
+        <p class = "preview"><a href="https://www.theage.com.au/national/mark-zuckerberg-and-how-to-get-away-without-really-saying-sorry-20180412-p4z98w.html">Preview</a></p>
+    </article>
+    <article>
+        &lt;!&ndash;User info - links to user profile&ndash;&gt;
+        <p class = "comment_username"><a href="">Username</a></p>
+        <p>Why the article is good</p>
+        &lt;!&ndash;Article preview&ndash;&gt;
+        <p><a href="https://www.theage.com.au/national/mark-zuckerberg-and-how-to-get-away-without-really-saying-sorry-20180412-p4z98w.html">Preview</a></p>
+    </article>
+    <article>
+        &lt;!&ndash;User info - links to user profile&ndash;&gt;
+        <p class = "comment_username"><a href="">Username</a></p>
+        <p>Why the article is good</p>
+        &lt;!&ndash;Article preview&ndash;&gt;
+        <p><a href="https://www.theage.com.au/national/mark-zuckerberg-and-how-to-get-away-without-really-saying-sorry-20180412-p4z98w.html">Preview</a></p>
+    </article>
+    <article>
+        &lt;!&ndash;User info - links to user profile&ndash;&gt;
+        <p class = "comment_username"><a href="">Username</a></p>
+        <p>Why the article is good</p>
+        &lt;!&ndash;Article preview&ndash;&gt;
+        <p><a href="https://www.theage.com.au/national/mark-zuckerberg-and-how-to-get-away-without-really-saying-sorry-20180412-p4z98w.html">Preview</a></p>
+    </article>-->
+</section>
+</section>
+
+</body>
+</html>

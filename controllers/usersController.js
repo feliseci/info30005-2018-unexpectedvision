@@ -7,10 +7,26 @@ module.exports.loadIndex = function (req, res) {
 };
 
 /* TODO: PAGES */
+const issues = require('../models/dummyIssues');
+
 module.exports.home = function (req, res) {
-    const resolve = require('path').resolve;
-    res.sendFile(resolve('./views/home_page.html'));
-    //res.render('home_page', {user: users});
+    res.render('home_page', {issues: issues});
+};
+
+module.exports.search = function (req,res) {
+    const query = req.params.query;
+    res.render('search_results', {results: issues});
+};
+
+module.exports.search_all = function (req,res) {
+    res.render('search_results', {results: issues});
+};
+
+const contributions = require('../models/dummyContribution');
+
+module.exports.contribution = function (req,res) {
+    const contribution = contributions[req.params.id];
+    res.render('contributions_template', {contribution: contribution});
 };
 
 

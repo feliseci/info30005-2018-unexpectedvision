@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> MultiView - Home </title>
+    <link href="styles/style.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+
+<!--Site title-->
+<header>
+    <h1>MultiView</h1>
+</header>
+
+<!--Nav bar-->
+<!--TODO: Jenny? Login button? -->
+<nav></nav>
+
+<!--Search button-->
+<section id = "search">
+    <h2> Topic Search </h2>
+    <form action = "../search/" method = "get">
+        <input type="text" placeholder="Enter an issue!" name="query" />
+        <button type="submit">Search</button>
+    </form>
+</section>
+
+<!--Issue suggestions-->
+<section id = "suggested_issues">
+    <article>
+        <figure> <!--TODO pass as arguments instead?-->
+            <% var recent_issue = issues[0];
+            for(i = 0; i < issues.length; i++) {
+                if(issues[i].date > recent_issue.date) {
+                    recent_issue = issues[i];
+                }
+            }%>
+            <a href="<%="../" + recent_issue.type + "/" + recent_issue.url%>">
+            <img src = "<%= recent_issue.image%>" alt = "Recent issue - <%= recent_issue.name%>">
+            <p><%= recent_issue.description%></p>
+            </a>
+            <figcaption>Recent</figcaption>
+        </figure>
+    </article>
+    <article>
+        <figure>
+            <% var popular_issue = issues[0];
+            for(i = 0; i < issues.length; i++) {
+                if(issues[i].popularity > popular_issue.popularity) {
+                    popular_issue = issues[i];
+                }
+            }%>
+            <a href= "<%="../" + popular_issue.type + "/" + popular_issue.url%>">
+                <img src = "<%= popular_issue.image%>" alt = "Popular issue - <%= popular_issue.name%>">
+                <%= popular_issue.description%>
+            </a>
+            <figcaption>Popular</figcaption>
+        </figure>
+    </article>
+</section>
+
+</body>
+</html>

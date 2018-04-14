@@ -3,12 +3,16 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/usersController');
 
-router.get('/', controller.loadIndex); // do NOT use the brackets which come with the auto-fill (sayHello() does not work)
+router.get('/comingsoon', controller.loadIndex); // do NOT use the brackets which come with the auto-fill (sayHello() does not work)
 
 
 /* TODO: PAGES */
 router.get('/home', controller.home);
 
+router.get('/search/', controller.search_all);
+router.get('/search/?query=', controller.search_all);
+router.get('/search/?query=:id', controller.search);
+router.get('/contributor/:id', controller.contribution);
 
 /* LECTURE / WORKSHOP CODE - FOR REFERENCE*/
 router.get('/hello', controller.sayHello);

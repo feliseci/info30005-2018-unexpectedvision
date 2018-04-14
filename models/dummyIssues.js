@@ -7,21 +7,30 @@ const issues = [
         type: "editor",
         date: "12/2",
         popularity: 1,
-        categories: ["privacy", "internet"]
+        categories: ["privacy", "internet"],
+        image: "https://source.unsplash.com/random/800x600",
+        url: "",  // URL constructed from (site)/(type)/url (url = id) //TODO: URL for test editor page
+        description: "Facebook records users' metadata and sells it to other companies."
     },
     {
         name: "Horse racing",
         type: "contributor",
         date: "12/3",
         popularity: 2,
-        categories: ["animal welfare"]
+        categories: ["animal welfare"],
+        image: "https://source.unsplash.com/p5EiqkBYIEE/800x600",
+        url: "0",
+        description: "Is horse racing animal abuse?"
     },
     {
-        name: "Facebook stuff",
+        name: "Global warming",
         type: "editor",
         date: "12/2",
         popularity: 3,
-        categories: ["privacy", "internet"]
+        categories: ["environment"],
+        image: "https://source.unsplash.com/eXdKs9d37Sc/800x600",
+        url: "",
+        description: "Global warming dummy text"
     }
 ];
 

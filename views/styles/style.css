@@ -10,6 +10,8 @@ body {
   color: white;
 }
 
+
+
 h3 {
   font-family: "Staccato222 BT";
   font-size: x-large;
@@ -23,6 +25,17 @@ h3 {
 #appName {
   font-size: 70px;
   font-family: "Segoe UI Black";
+}
+
+a {
+  text-decoration: none;
+  color: purple;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: beige;
 }
 
 /* Homepage */
@@ -60,4 +73,96 @@ h3 {
   font-weight: bold;
   position: relative;
   top: 180px;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Search results */
+#sidebar_page {
+  display: grid;
+  grid-gap: 10px;
+  background-color: burlywood;
+  grid-template-columns: 1fr 4fr;
+  grid-template-areas: 'nav section';
+}
+
+#search_options {
+  text-align: start;
+  padding-left: 10%;
+}
+
+#search_options ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+#search_results {
+  display: grid;
+  grid-template-areas: "article" "article";
+  background-color: aqua;
+}
+
+#search_bar_small {
+  text-align: start;
+  height: 50px;
+}
+
+#search_bar_small form {height: 100%;}
+#search_bar_small input {height:100%; padding-left: 10px;}
+#search_bar_small button {
+  /*TODO: Remove*/
+  margin-left: -4px;
+  border: none;
+  height: 100%;
+}
+
+#search_results article {
+  border: 5px black solid;
+  text-align: start;
+  padding-left: 10%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.editor {
+  background-color: cornflowerblue; /*Editor & contributor have different colours*/
+  /*TODO better colour implementation - doubles with "#results_list"  */
+}
+
+.contributor {
+  background-color: aliceblue;
+}
+
+.issue_category {
+  display: inline;
+}
+
+/*Contributions page*/
+#contributions_grid {
+  background-color: aqua;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-areas: "article article" "article article";
+  grid-gap: 10px;
+  padding: 10px;
+}
+
+#contributions_grid article {
+  background-color: forestgreen;
+}
+
+.comment_username {
+  text-align: start;
+  padding-left: 20px;
+  font-weight: bold;
+}
+
+.preview {
+  background-color: beige;
+  width: 80%;
+  margin-left: 10%;
+
 }

@@ -192,3 +192,7 @@ img {
   display: inline-block;
   font-size: 16px;
 }
+
+#submit {
+  margin-top: 30px;
+}

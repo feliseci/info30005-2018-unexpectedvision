@@ -23,7 +23,6 @@ module.exports.search_all = function (req,res) {
 };
 
 const contributions = require('../models/dummyContribution');
-const editors = require('../models/dummyEditors');
 
 module.exports.contribution = function (req,res) {
     const contribution = contributions[req.params.id];
@@ -31,7 +30,9 @@ module.exports.contribution = function (req,res) {
 };
 
 
-/* Jenny testing how editor_template works */
+/* Editor Page - Jenny testing how editor_template works */
+const editors = require('../models/dummyEditors');
+
 module.exports.editor = function(req,res){
     const editor = editors[req.params.id];
     res.render('editor_template', {editor: editor})

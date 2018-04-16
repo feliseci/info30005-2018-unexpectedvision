@@ -1,5 +1,6 @@
 html {
-  background: lightskyblue;
+  background: #0a68b4;
+  background-image: linear-gradient(left, #999999 0%, #ffffff 100%);
   box-sizing: border-box;
 }
 

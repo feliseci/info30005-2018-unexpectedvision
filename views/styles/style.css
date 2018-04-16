@@ -38,6 +38,10 @@ a:hover {
   color: beige;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 /* Homepage */
 #search {
   margin-bottom: 50px;
@@ -165,4 +169,26 @@ img {
   width: 80%;
   margin-left: 10%;
 
+}
+
+.centered h1 {
+  font-size: 90px;
+}
+
+.centered {
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.button {
+  border: black;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }

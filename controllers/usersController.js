@@ -7,15 +7,52 @@ module.exports.loadIndex = function (req, res) {
 };
 
 /* TODO: PAGES */
+module.exports.landing = function (req, res) {
+    const resolve = require('path').resolve;
+    res.sendFile(resolve('./views/landing_page.html'));
+};
+
 const issues = require('../models/dummyIssues');
 
 module.exports.home = function (req, res) {
     res.render('home_page', {issues: issues});
 };
 
+// TODO Clean
 module.exports.search = function (req,res) {
-    const query = req.params.query;
-    res.render('search_results', {results: issues});
+    const query = req.query.query;
+
+    //
+    if(query.isEmptyObject) {
+        this.search_all();
+    }
+
+    let results = [];
+/*    console.log("Query is " + query);*/
+
+    /*Search issues for the term. */
+    for(i = 0; i < issues.length; i++) {
+        // Check presence of the query in name, description & category
+        const in_name = issues[i].name.search(query); // /query/i? TODO
+        const in_description = issues[i].description.search(query);
+        let in_category = -1;
+        for(j = 0; j < issues[i].categories.length; j++) {
+            if(issues[i].categories[j].search(query) > -1) {
+                in_category = 0;
+            }
+        }
+
+/*        console.log("Search initiated: issue " + i + " was at name " + in_name + " , in description " + in_description + " and in categories " + in_category);*/
+
+        // Add the issue to the search results if the query was in one of the fields
+        if((in_name + in_description + in_category + in_category) > -3) {
+/*            console.log("Result: " + (in_name+in_description));*/
+           results.push(issues[i]);
+        }
+
+    }
+
+    res.render('search_results', {results: results});
 };
 
 module.exports.search_all = function (req,res) {

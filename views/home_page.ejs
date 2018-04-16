@@ -35,6 +35,7 @@
                     recent_issue = issues[i];
                 }
             }%>
+
             <a href="<%="../" + recent_issue.type + "/" + recent_issue.url%>">
             <img src = "<%= recent_issue.image%>" alt = "Recent issue - <%= recent_issue.name%>">
             <p><%= recent_issue.description%></p>

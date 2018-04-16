@@ -7,11 +7,10 @@ router.get('/comingsoon', controller.loadIndex); // do NOT use the brackets whic
 
 
 /* TODO: PAGES */
+router.get('/', controller.landing);
 router.get('/home', controller.home);
 
-router.get('/search/', controller.search_all);
-router.get('/search/?query=', controller.search_all);
-router.get('/search/?query=:id', controller.search);
+router.get('/search/', controller.search);
 router.get('/contributor/:id', controller.contribution);
 
 /* Editor page route - Jenny test*/

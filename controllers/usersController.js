@@ -23,12 +23,19 @@ module.exports.search_all = function (req,res) {
 };
 
 const contributions = require('../models/dummyContribution');
+const editors = require('../models/dummyEditors');
 
 module.exports.contribution = function (req,res) {
     const contribution = contributions[req.params.id];
     res.render('contributions_template', {contribution: contribution});
 };
 
+
+/* Jenny testing how editor_template works */
+module.exports.editor = function(req,res){
+    const editor = editors[req.params.id];
+    res.render('editor_template', {editor: editor})
+};
 
 /* LECTURE / WORKSHOP CODE - FOR REFERENCE*/
 //Only the controller should have access to the data in the models.

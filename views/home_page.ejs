@@ -24,6 +24,12 @@
         <button type="submit">Search</button>
     </form>
 </section>
+<!--
+maybe have a script that runs instead of using a form
+https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_filter_list
+to dynamically create the URL after submit INSTEAD of this
+so /search/:id instead of /search/?query:id
+-->
 
 <!--Issue suggestions-->
 <section id = "suggested_issues">
@@ -35,6 +41,7 @@
                     recent_issue = issues[i];
                 }
             }%>
+
             <a href="<%="../" + recent_issue.type + "/" + recent_issue.url%>">
             <img src = "<%= recent_issue.image%>" alt = "Recent issue - <%= recent_issue.name%>">
             <p><%= recent_issue.description%></p>

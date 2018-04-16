@@ -33,7 +33,6 @@
         </form>
     </section>
 
-
     <% for(i = 0; i < results.length; i++) { %>
         <article class = "<%=results[i].type%>">
             <a href="<%="../" + results[i].type + "/" + results[i].url%>">
@@ -49,6 +48,7 @@
             <% } %>
         </article>
     <% } %>
+
 <!-- PLAIN HTML FOR REFERENCE, USE CTRL+/ TO UNCOMMENT    &lt;!&ndash;Editor style&ndash;&gt;
     <article class = "editor">
         <a href="">

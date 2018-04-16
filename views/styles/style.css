@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Black+Han+Sans');
+/*Font imports must be first line. Then you can just use font-family: 'Black Han Sans', sans-serif;
+ */
+
 html {
   background: lightskyblue;
   box-sizing: border-box;
@@ -9,8 +13,6 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: white;
 }
-
-
 
 h3 {
   font-family: "Staccato222 BT";
@@ -24,7 +26,8 @@ h3 {
 
 #appName {
   font-size: 70px;
-  font-family: "Segoe UI Black";
+/*  font-family: "Segoe UI Black";*/
+  font-family: 'Black Han Sans', sans-serif;
 }
 
 a {
@@ -38,9 +41,6 @@ a:hover {
   color: beige;
 }
 
-button:hover {
-  cursor: pointer;
-}
 
 /* Homepage */
 #search {
@@ -124,11 +124,13 @@ img {
 }
 
 #search_results article {
-  border: 5px black solid;
   text-align: start;
-  padding-left: 10%;
+  padding-left: 5%;
   padding-top: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 50px;
+  margin-left: 100px;
+  margin-bottom: 10px;
+  margin-top: 6px;
 }
 
 .editor {
@@ -140,8 +142,11 @@ img {
   background-color: aliceblue;
 }
 
+#search_results article h4 {
+  display: inline-block; /*All items intended to be inline must have this tag*/
+}
 .issue_category {
-  display: inline;
+  display: inline-block;
 }
 
 /*Contributions page*/
@@ -168,7 +173,6 @@ img {
   background-color: beige;
   width: 80%;
   margin-left: 10%;
-
 }
 
 .centered h1 {
@@ -191,4 +195,8 @@ img {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+}
+
+.button:hover {
+  cursor: pointer;
 }

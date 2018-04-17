@@ -1,6 +1,7 @@
 const issues = require('../models/dummyIssues');
 const contributions = require('../models/dummyContribution');
 const editors = require('../models/dummyEditors');
+const opportunities = require('../models/dummyOpportunities');
 
 module.exports.landing = function (req, res) {
     const resolve = require('path').resolve;
@@ -141,6 +142,11 @@ module.exports.editor = function(req,res){
 
     console.log("EDITOR NAME: " + editor.name);
     res.render('editor_template', {editor: editor})
+};
+
+module.exports.opportunity = function (req, res) {
+    const opportunity = opportunities[req.params.id];
+    res.render('opportunity_template', {opportunity: opportunity})
 };
 
 

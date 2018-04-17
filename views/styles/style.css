@@ -9,7 +9,6 @@ html {
 }
 
 body {
-  padding-top: 100px;
   text-align: center;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: white;
@@ -18,6 +17,10 @@ body {
 
 header {
   font-size: xx-large;
+}
+
+.centered_header {
+  padding-top: 100px;
 }
 
 h3 {

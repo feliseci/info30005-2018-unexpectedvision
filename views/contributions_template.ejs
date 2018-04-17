@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title> <%= contribution.name %> - Contributions </title>
     <link href="/styles/style.css" type="text/css" rel="stylesheet">
-
+<!--    <link href = "/styles/top_navigation.css" type = "text/css" rel="stylesheet">-->
 </head>
 <body>
 
@@ -35,41 +35,13 @@
         <p class = "comment_username"><a href=""><%=comments[i].username%></a></p>
         <p><%=comments[i].description%></p>
         <!--Article preview-->
-        <p class = "preview"><a href="<%=comments[i].article_url%>">Preview</a></p>
+        <p class = "preview"><a href="<%=comments[i].article_url%>">Preview (TBD)</a></p>
     </article>
     <% } if(comments.length%2==0) {%>
     <article id = "invisible"></article>
     <%}
     %>
-<!-- PLAIN HTML FOR REFERENCE; USE CTRL+/ TO UNCOMMENT
-    <article>
-        &lt;!&ndash;User info - links to user profile&ndash;&gt;
-        <p class = "comment_username"><a href="">Username</a></p>
-        <p>Why the article is good</p>
-        &lt;!&ndash;Article preview&ndash;&gt;
-        <p class = "preview"><a href="https://www.theage.com.au/national/mark-zuckerberg-and-how-to-get-away-without-really-saying-sorry-20180412-p4z98w.html">Preview</a></p>
-    </article>
-    <article>
-        &lt;!&ndash;User info - links to user profile&ndash;&gt;
-        <p class = "comment_username"><a href="">Username</a></p>
-        <p>Why the article is good</p>
-        &lt;!&ndash;Article preview&ndash;&gt;
-        <p><a href="https://www.theage.com.au/national/mark-zuckerberg-and-how-to-get-away-without-really-saying-sorry-20180412-p4z98w.html">Preview</a></p>
-    </article>
-    <article>
-        &lt;!&ndash;User info - links to user profile&ndash;&gt;
-        <p class = "comment_username"><a href="">Username</a></p>
-        <p>Why the article is good</p>
-        &lt;!&ndash;Article preview&ndash;&gt;
-        <p><a href="https://www.theage.com.au/national/mark-zuckerberg-and-how-to-get-away-without-really-saying-sorry-20180412-p4z98w.html">Preview</a></p>
-    </article>
-    <article>
-        &lt;!&ndash;User info - links to user profile&ndash;&gt;
-        <p class = "comment_username"><a href="">Username</a></p>
-        <p>Why the article is good</p>
-        &lt;!&ndash;Article preview&ndash;&gt;
-        <p><a href="https://www.theage.com.au/national/mark-zuckerberg-and-how-to-get-away-without-really-saying-sorry-20180412-p4z98w.html">Preview</a></p>
-    </article>-->
+
 </section>
 
 </body>

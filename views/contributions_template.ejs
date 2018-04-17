@@ -4,9 +4,25 @@
     <meta charset="UTF-8">
     <title> <%= contribution.name %> - Contributions </title>
     <link href="/styles/style.css" type="text/css" rel="stylesheet">
-<!--    <link href = "/styles/top_navigation.css" type = "text/css" rel="stylesheet">-->
+    <link href = "/styles/top_navigation.css" type = "text/css" rel="stylesheet">
 </head>
 <body>
+
+<!--Nav bar-->
+<section id = "top_navigation">
+    <nav>
+        <ul>
+            <li><a href = "../home">Home</a></li>
+            <li> <a href = "../about"> About </a></li>
+            <li><a href = "../contributions"> Contributions </a></li>
+            <li><a href="../editors"> Editor Articles </a></li>
+            <li><a href="../opportunities"> Opportunities </a></li>
+            <li><a href = ""> Profile</a></li>
+            <!--TODO: Login button-->
+        </ul>
+    </nav>
+</section>
+
 
 <header>
     <h1><%= contribution.name %></h1>
@@ -23,7 +39,6 @@
         <li><a href="">Most popular</a></li>
     </ul>
 </nav>
-</section>
 
 <!--Contributions list-->
 <section id = "contributions_grid">
@@ -33,7 +48,7 @@
     <article>
         <!--User info - links to user profile-->
         <p class = "comment_username"><a href=""><%=comments[i].username%></a></p>
-        <p><%=comments[i].description%></p>
+        <p class = "comment_description"><%=comments[i].description%></p>
         <!--Article preview-->
         <p class = "preview"><a href="<%=comments[i].article_url%>">Preview (TBD)</a></p>
     </article>

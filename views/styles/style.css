@@ -46,7 +46,7 @@ h4 {
 
 a {
   text-decoration: none;
-  color: purple;
+  color: #639678;
   font-weight: bold;
 }
 
@@ -158,19 +158,17 @@ button:hover {
   text-align: start;
   padding-left: 10%;
   width: 100%;
-/*  position: fixed; !*TODO*!*/
-
+  /*Would have to change page layout or work with animations to have
+  good-looking "sticky search".*/
 }
 
 #search_options h4 {
-  position: sticky; /*TODO*/
   top: 10px;
 }
 
 #search_options ul {
   list-style: none;
   padding-left: 0;
-/*  position: fixed; !*TODO*!*/
 }
 
 #search_results {
@@ -245,29 +243,44 @@ button:hover {
 
 /*Contributions page*/
 #contributions_grid {
-  background-color: aqua;
+  background-color: #3e5b4a;
   display: grid;
   grid-template-columns: 50% 50%;
+  grid-auto-rows: 1fr;
   grid-template-areas: "article article" "article article";
   grid-gap: 10px;
-  padding: 10px;
+  padding: 1%;
 }
 
 #contributions_grid article {
-  background-color: forestgreen;
+  background-color: #e6f7e8; /*3e5b4a for dark bg*/
+  padding: 20px;
 }
 
 .comment_username {
   text-align: start;
-  padding-left: 20px;
   font-weight: bold;
 }
 
 .preview {
-  background-color: beige;
+  background-color: #ace5b3;
   width: 80%;
-  margin-left: 10%;
+  margin-left: 10%; /* container = 10% margin + 80% preview (+ 10% margin)*/
+  padding: 10px;
+  height: 10%;
+}
 
+.comment_description {
+  text-align: start;
+  padding: 20px;
+  height: 50%;
+  background-color: white;
+  color: grey;
+  border-radius: 10px;
+}
+
+#invisible {
+  visibility: hidden;
 }
 
 .centered h1 {

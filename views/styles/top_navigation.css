@@ -1,13 +1,16 @@
 #top_navigation ul{
     list-style-type: none;
+    display: inline-block;
     margin: 0;
+    width: 100%;
+    /*margin-left:10%;*/
     padding: 10px;
     overflow: hidden;
-    background-color: #1b3249;
+    background-color: #91d7ee ;
 }
 
 #top_navigation li {
-    float: left;
+    float: left ;
 }
 
 #top_navigation li a {
@@ -20,5 +23,5 @@
 
 /* Change the link color to #111 (black) on hover */
 #top_navigation li a:hover {
-    background-color: #1c1c1c;
+    background-color: #4ab9db;
 }

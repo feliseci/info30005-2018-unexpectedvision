@@ -1,5 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Black+Han+Sans');
-/*Font imports must be first line. Then you can just use font-family: 'Black Han Sans', sans-serif;
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans');
+/*Font imports must be first line. Then you can just use font-family: '...', sans-serif;
  */
 
 html {
@@ -15,6 +16,16 @@ body {
   margin: 0;
 }
 
+body, html {
+    height: 100%;
+}
+#landing {
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 header {
   font-size: xx-large;
 }
@@ -24,33 +35,34 @@ header {
 }
 
 h1 {
+  font-family: "Abril Fatface", sans-serif;
   color: #000000;
 }
 
 h2 {
+  font-family: "IBM Plex Sans", sans-serif;
   color: #000000;
 }
 
 h3 {
-/*  font-family: "Staccato222 BT";*/
+  font-family: "IBM Plex Sans", sans-serif;
   color: #000000;
   font-size: x-large;
 }
 
 h4 {
+  font-family: "IBM Plex Sans", sans-serif;
   color: #000000;
   font-weight: bold;
 }
 
 #teamName {
-  font-family: "Segoe UI Black";
   font-size: xx-large;
 }
 
 #appName {
   font-size: 70px;
-  /*  font-family: "Segoe UI Black";*/
-  font-family: 'Black Han Sans', sans-serif;
+  font-family: 'Abril Fatface', sans-serif;
 }
 
 a {
@@ -292,11 +304,17 @@ button:hover {
   visibility: hidden;
 }
 
-.centered h1 {
-  font-size: 55px;
+#centered h1 {
+  font-family: "Abril Fatface", sans-serif;
+  font-size: 75px;
+  color: white;
 }
 
-.centered {
+#centered h2 {
+  color: white;
+}
+
+#centered {
   position: absolute;
   top: 40%;
   left: 50%;
@@ -310,6 +328,7 @@ button:hover {
   text-align: center;
   text-decoration: none;
   display: inline-block;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 16px;
 }
 

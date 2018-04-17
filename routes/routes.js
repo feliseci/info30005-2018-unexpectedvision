@@ -14,7 +14,7 @@ router.get('/search/', controller.search);
 router.get('/contributor/:id', controller.contribution);
 
 /* Editor page route - Jenny test*/
-router.get('/editor/', controller.editor);
+router.get('/editor/:id', controller.editor);
 
 /* LECTURE / WORKSHOP CODE - FOR REFERENCE*/
 router.get('/hello', controller.sayHello);

@@ -72,6 +72,8 @@ const editors = require('../models/dummyEditors');
 
 module.exports.editor = function(req,res){
     const editor = editors[req.params.id];
+
+    console.log("EDITOR NAME: " + editor.name);
     res.render('editor_template', {editor: editor})
 };
 

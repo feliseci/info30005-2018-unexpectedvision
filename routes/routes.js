@@ -19,6 +19,7 @@ router.get('/editor/:id', controller.editor);
 router.get('/opportunities', controller.loadOpportunities);
 router.get('/contributions', controller.loadContributions);
 router.get('/editors',controller.loadEditors);
+router.get('/about', controller.loadAbout);
 
 
 

@@ -100,6 +100,13 @@ module.exports.loadEditors = function (req, res) {
     res.sendFile(resolve('./views/editors_landing.html'));
 };
 
+module.exports.loadAbout = function (req, res) {
+    // Resolve converts to absolute path required for sendFile
+    // See https://nodejs.org/api/path.html#path_path_resolve_paths
+    const resolve = require('path').resolve;
+    res.sendFile(resolve('./views/about.html'));
+};
+
 /* LECTURE / WORKSHOP CODE - FOR REFERENCE*/
 //Only the controller should have access to the data in the models.
 const users = require('../models/usersArray');

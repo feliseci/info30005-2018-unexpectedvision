@@ -2,9 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> <%=  %> - Opportunities </title>
+    <title> <%= opportunity.name %> - opportunity </title>
     <link href="/styles/style.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+
+<header id = "event_header">
+    <h1> <%= opportunity.name %> </h1>
+    <img src = "<%= opportunity.image %>" alt = "event banner">
+</header>
+
+<section id = "event_information">
+    <table>
+        <tr>
+            <th> Date </th>
+            <th> Time </th>
+            <th> Location </th>
+            <th> Description </th>
+            <th> Contact </th>
+            <th> Attendees </th>
+        </tr>
+        <tr>
+            <td> <%= opportunity.event_date %> </td>
+            <td> <%= opportunity.event_time %> </td>
+            <td> <%= opportunity.location %> </td>
+            <td> <%= opportunity.description %></td>
+            <td> <%= opportunity.organiser %> </td>
+            <td> TD </td>
+        </tr>
+
+    </table>
+    <div id = "date_posted">
+        <h3> Date Posted: <%= opportunity.date_post %></h3>
+    </div>
+
+
+</section>
+
 </body>
 </html>

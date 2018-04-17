@@ -11,10 +11,15 @@
 
 <header>
     <h1><%= editor.name %></h1>
-    <h2><%= editor.creator %> </h2>
+    <h2><%= editor.creator %> </h2> <!-- Follow creator option; see draft -->
+    <h3> Rating </h3> <!-- Possible JS to render stars -->
+    <h3> Tags: <% for(i = 0; i < editor.categories.length; i++) { %>
+        <%= "#" + editor.categories[i] %> <%}%>
+    </h3>
 </header>
 
 <!-- Advanced search options -->
+<!--
 <section id = "sidebar_page">
     <nav id = "search_options">
         <h4>Sort By:</h4>
@@ -25,6 +30,59 @@
         </ul>
     </nav>
 
+    <section>
+-->
+    <section>
+        <section id = "article_description">
+            <p><%= editor.description %></p>
+        </section>
+
+    </section>
+
+<section id = "article_repository">
+    <table>
+        <tr>
+            <th> High Level </th>
+            <th> Reports </th>
+            <th> Opinions </th>
+        </tr>
+        <tr>
+            <td>
+                <!--High level-->
+                <ul>
+                    <% for(i = 0; i < editor.hl_source.length; i++) { %>
+                    <li> <a href = "<%=editor.hl_source[i]%>" target="_blank"> Link <%=i+1%> </a> </li>
+                    <% } %>
+                </ul>
+            </td>
+            <td>
+                <!--Reports-->
+                <ul>
+                    <% for(i = 0; i < editor.r_source.length; i++) { %>
+                    <li> <a href = "<%=editor.r_source[i]%>" target="_blank"> Link <%=i+1%> </a> </li>
+                    <% } %>
+                </ul>
+            </td>
+            <td>
+                <!--Opinions-->
+                <ul>
+                    <% for(i = 0; i < editor.o_source.length; i++) { %>
+                    <li> <a href = "<%=editor.o_source[i]%>" target="_blank"> Link <%=i+1%> </a> </li>
+                    <% } %>
+                </ul>
+            </td>
+        </tr>
+
+    </table>
 </section>
+
+<section id = "related_opportunities">
+    <h2> Related Opportunities </h2>
+</section>
+<!--    </section>
+</section>-->
+
+
+
 </body>
 </html>

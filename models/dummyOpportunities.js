@@ -11,8 +11,8 @@ const opportunities = [
        event_time: "12:00",
        location: "Holmesglen",
        description: "hello world",
-       image: "",
-       urL: "http://google.com",
+       image: "https://source.unsplash.com/p5EiqkBYIEE/800x600",
+       url: "http://google.com",
     },
     {
         name: "International Women's Day Fun Run",
@@ -23,8 +23,8 @@ const opportunities = [
         event_time: "08:00",
         location: "Cabin in the Woods",
         description: "run run run",
-        image: "",
-        urL: "http://youtube.com",
+        image: "https://source.unsplash.com/p5EiqkBYIEE/800x600",
+        url: "http://youtube.com",
     }
 
     ];

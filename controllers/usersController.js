@@ -1,6 +1,7 @@
 const issues = require('../models/dummyIssues');
 const contributions = require('../models/dummyContribution');
 const editors = require('../models/dummyEditors');
+const opportunities = require('../models/dummyOpportunities');
 
 module.exports.landing = function (req, res) {
     const resolve = require('path').resolve;
@@ -16,6 +17,7 @@ module.exports.create_account = function (req, res) {
     const resolve = require('path').resolve;
     res.sendFile(resolve('./views/create_account.html'));
 };
+
 module.exports.home = function (req, res) {
     // Pass the issues to be displayed on the home page & load.
     let popular_issue = issues[0];
@@ -45,7 +47,6 @@ module.exports.home = function (req, res) {
     res.render('home_page', {popular_issue: popular_issue, recent_issue: recent_issue});
 };
 
-
 module.exports.search = function (req,res) {
     // req.query.var accesses the "stuff" in /URLend?var=stuff
     // See http://expressjs.com/en/api.html#req.query
@@ -53,7 +54,7 @@ module.exports.search = function (req,res) {
 
     // If no query was entered, display all objects.
     if(query.isEmptyObject) {
-        this.search_all();
+        res.render('search_results', {results: issues});
         return;
     }
 
@@ -128,11 +129,6 @@ module.exports.search = function (req,res) {
     res.render('search_results', {results: results});
 };
 
-search_all = function (req,res) {
-    // TODO put in search()?
-    res.render('search_results', {results: issues});
-};
-
 module.exports.contribution = function (req,res) {
     const contribution = contributions[req.params.id];
     res.render('contributions_template', {contribution: contribution});
@@ -146,6 +142,11 @@ module.exports.editor = function(req,res){
 
     console.log("EDITOR NAME: " + editor.name);
     res.render('editor_template', {editor: editor})
+};
+
+module.exports.opportunity = function (req, res) {
+    const opportunity = opportunities[req.params.id];
+    res.render('opportunity_template', {opportunity: opportunity})
 };
 
 

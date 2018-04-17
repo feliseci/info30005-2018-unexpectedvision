@@ -88,7 +88,6 @@ button:hover {
 #suggested_issues {
   width: 50%;
   display: inline-grid;
-/*  grid-template-columns: 50% 50%;*/
   grid-template-areas: "article article";
   grid-column-gap: 50px;
 }

@@ -83,21 +83,21 @@ module.exports.loadOpportunities = function (req, res) {
     // Resolve converts to absolute path required for sendFile
     // See https://nodejs.org/api/path.html#path_path_resolve_paths
     const resolve = require('path').resolve;
-    res.sendFile(resolve('./views/opportunity_landing.html'));
+    res.sendFile(resolve('./views/opportunities_landing.html'));
 };
 
 module.exports.loadContributions = function (req, res) {
     // Resolve converts to absolute path required for sendFile
     // See https://nodejs.org/api/path.html#path_path_resolve_paths
     const resolve = require('path').resolve;
-    res.sendFile(resolve('./views/contributions_landing'));
+    res.sendFile(resolve('./views/contributions_landing.html'));
 };
 
 module.exports.loadEditors = function (req, res) {
     // Resolve converts to absolute path required for sendFile
     // See https://nodejs.org/api/path.html#path_path_resolve_paths
     const resolve = require('path').resolve;
-    res.sendFile(resolve('./views/opportunity_landing'));
+    res.sendFile(resolve('./views/editors_landing.html'));
 };
 
 /* LECTURE / WORKSHOP CODE - FOR REFERENCE*/

@@ -3,7 +3,7 @@
  */
 
 html {
-  background: #0a68b4;
+  background: #EEEEEE;
   background-image: linear-gradient(left, #999999 0%, #ffffff 100%);
   box-sizing: border-box;
 }
@@ -20,16 +20,25 @@ header {
 }
 
 .centered_header {
-  padding-top: 100px;
+  padding-top: 20px;
+}
+
+h1 {
+  color: #000000;
+}
+
+h2 {
+  color: #000000;
 }
 
 h3 {
 /*  font-family: "Staccato222 BT";*/
+  color: #000000;
   font-size: x-large;
 }
 
 h4 {
-  color: white;
+  color: #000000;
   font-weight: bold;
 }
 
@@ -284,13 +293,12 @@ button:hover {
 }
 
 .centered h1 {
-  font-size: 90px;
+  font-size: 55px;
 }
 
 .centered {
-  font-size: 20px;
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -312,4 +320,20 @@ button:hover {
   margin-left: 47.5%;
   width: 5%;
   height: 40px;
+}
+
+.banner_image {
+  width: 100%;
+  height: 190px;
+
+}
+
+#wrapper {
+  width: 100%;
+  overflow: hidden;
+}
+
+#container {
+  width: 100%;
+  margin: 0 auto;
 }

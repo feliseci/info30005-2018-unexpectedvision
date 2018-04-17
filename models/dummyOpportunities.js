@@ -9,7 +9,9 @@ const opportunities = [
        date_post: "14/3",
        event_date: "20/4",
        event_time: "12:00",
+       location: "Holmesglen",
        description: "hello world",
+       image: "",
        urL: "http://google.com",
     },
     {
@@ -19,7 +21,9 @@ const opportunities = [
         date_post: "14/3",
         event_date: "15/4",
         event_time: "08:00",
+        location: "Cabin in the Woods",
         description: "run run run",
+        image: "",
         urL: "http://youtube.com",
     }
 

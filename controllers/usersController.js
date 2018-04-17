@@ -77,6 +77,29 @@ module.exports.editor = function(req,res){
     res.render('editor_template', {editor: editor})
 };
 
+
+
+module.exports.loadOpportunities = function (req, res) {
+    // Resolve converts to absolute path required for sendFile
+    // See https://nodejs.org/api/path.html#path_path_resolve_paths
+    const resolve = require('path').resolve;
+    res.sendFile(resolve('./views/opportunity_landing.html'));
+};
+
+module.exports.loadContributions = function (req, res) {
+    // Resolve converts to absolute path required for sendFile
+    // See https://nodejs.org/api/path.html#path_path_resolve_paths
+    const resolve = require('path').resolve;
+    res.sendFile(resolve('./views/contributions_landing'));
+};
+
+module.exports.loadEditors = function (req, res) {
+    // Resolve converts to absolute path required for sendFile
+    // See https://nodejs.org/api/path.html#path_path_resolve_paths
+    const resolve = require('path').resolve;
+    res.sendFile(resolve('./views/opportunity_landing'));
+};
+
 /* LECTURE / WORKSHOP CODE - FOR REFERENCE*/
 //Only the controller should have access to the data in the models.
 const users = require('../models/usersArray');

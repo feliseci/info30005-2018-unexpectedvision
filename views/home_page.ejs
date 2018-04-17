@@ -21,43 +21,39 @@
     <h2> Topic Search </h2>
     <form action = "../search/" method = "get">
         <input type="text" placeholder="Enter an issue!" name="query" />
+        <!--<input type="hidden" name="sort" value="date"/>-->
         <button type="submit">Search</button>
     </form>
+
+    <!--TODO Button action -->
+    <button id="random_button">Random issue</button>
 </section>
 
 <!--Issue suggestions-->
 <section id = "suggested_issues">
-    <article>
-        <figure> <!--TODO pass as arguments instead?-->
-            <% var recent_issue = issues[0];
-            for(i = 0; i < issues.length; i++) {
-                if(issues[i].date > recent_issue.date) {
-                    recent_issue = issues[i];
-                }
-            }%>
 
+    <article>
+        <figure>
+            <figcaption>Recent</figcaption>
             <a href="<%="../" + recent_issue.type + "/" + recent_issue.url%>">
             <img src = "<%= recent_issue.image%>" alt = "Recent issue - <%= recent_issue.name%>">
             <p><%= recent_issue.description%></p>
             </a>
-            <figcaption>Recent</figcaption>
+
         </figure>
     </article>
+
     <article>
         <figure>
-            <% var popular_issue = issues[0];
-            for(i = 0; i < issues.length; i++) {
-                if(issues[i].popularity > popular_issue.popularity) {
-                    popular_issue = issues[i];
-                }
-            }%>
+            <figcaption>Popular</figcaption>
             <a href= "<%="../" + popular_issue.type + "/" + popular_issue.url%>">
                 <img src = "<%= popular_issue.image%>" alt = "Popular issue - <%= popular_issue.name%>">
                 <%= popular_issue.description%>
             </a>
-            <figcaption>Popular</figcaption>
+
         </figure>
     </article>
+
 </section>
 
 </body>

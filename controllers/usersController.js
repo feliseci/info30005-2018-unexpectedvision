@@ -77,8 +77,6 @@ module.exports.editor = function(req,res){
     res.render('editor_template', {editor: editor})
 };
 
-
-
 module.exports.loadOpportunities = function (req, res) {
     // Resolve converts to absolute path required for sendFile
     // See https://nodejs.org/api/path.html#path_path_resolve_paths

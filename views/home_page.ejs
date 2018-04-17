@@ -26,32 +26,50 @@
     </form>
 
     <!--TODO Button action -->
-    <button id="random_button">Random issue</button>
+<!--    <button id="random_button">Random issue</button>-->
 </section>
 
 <!--Issue suggestions-->
 <section id = "suggested_issues">
 
     <article>
+
         <figure>
             <figcaption>Recent</figcaption>
-            <a href="<%="../" + recent_issue.type + "/" + recent_issue.url%>">
-            <img src = "<%= recent_issue.image%>" alt = "Recent issue - <%= recent_issue.name%>">
-            <p><%= recent_issue.description%></p>
-            </a>
 
+            <a href="<%="../" + recent_issue.type + "/" + recent_issue.url%>">
+
+                <!--TODO as per tutorial -->
+                <section class = "container">
+                    <img src = "<%= recent_issue.image%>" alt = "Recent issue - <%= recent_issue.name%>">
+                    <section class = "overlay"><p><%= recent_issue.description%></p></section>
+                </section>
+                <h4><%= recent_issue.name%></h4>
+
+            </a>
         </figure>
+
+
     </article>
 
     <article>
+
         <figure>
+
             <figcaption>Popular</figcaption>
+
             <a href= "<%="../" + popular_issue.type + "/" + popular_issue.url%>">
+
                 <img src = "<%= popular_issue.image%>" alt = "Popular issue - <%= popular_issue.name%>">
-                <%= popular_issue.description%>
+                <h4><%= popular_issue.name%></h4>
+                <section class = "overlay"><p><%= popular_issue.description%></p></section>
+
             </a>
 
         </figure>
+
+
+
     </article>
 
 </section>

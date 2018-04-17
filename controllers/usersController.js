@@ -1,18 +1,21 @@
+const issues = require('../models/dummyIssues');
+const contributions = require('../models/dummyContribution');
+const editors = require('../models/dummyEditors');
 
-module.exports.loadIndex = function (req, res) {
-    // Resolve converts to absolute path required for sendFile
-    // See https://nodejs.org/api/path.html#path_path_resolve_paths
-    const resolve = require('path').resolve;
-    res.sendFile(resolve('./views/index.html'));
-};
-
-/* TODO: PAGES */
 module.exports.landing = function (req, res) {
     const resolve = require('path').resolve;
     res.sendFile(resolve('./views/landing_page.html'));
 };
 
-const issues = require('../models/dummyIssues');
+module.exports.login = function (req, res) {
+    const resolve = require('path').resolve;
+    res.sendFile(resolve('./views/login.html'));
+};
+
+module.exports.create_account = function (req, res) {
+    const resolve = require('path').resolve;
+    res.sendFile(resolve('./views/create_account.html'));
+};
 
 module.exports.home = function (req, res) {
     // Pass the issues to be displayed on the home page & load.
@@ -121,11 +124,10 @@ module.exports.search = function (req,res) {
     res.render('search_results', {results: results});
 };
 
-module.exports.search_all = function (req,res) {
+search_all = function (req,res) {
+    // TODO put in search()?
     res.render('search_results', {results: issues});
 };
-
-const contributions = require('../models/dummyContribution');
 
 module.exports.contribution = function (req,res) {
     const contribution = contributions[req.params.id];
@@ -134,16 +136,23 @@ module.exports.contribution = function (req,res) {
 
 
 /* Editor Page - Jenny testing how editor_template works */
-const editors = require('../models/dummyEditors');
 
 module.exports.editor = function(req,res){
     const editor = editors[req.params.id];
     res.render('editor_template', {editor: editor})
 };
 
+
 /* LECTURE / WORKSHOP CODE - FOR REFERENCE*/
 //Only the controller should have access to the data in the models.
 const users = require('../models/usersArray');
+
+module.exports.loadIndex = function (req, res) {
+    // Resolve converts to absolute path required for sendFile
+    // See https://nodejs.org/api/path.html#path_path_resolve_paths
+    const resolve = require('path').resolve;
+    res.sendFile(resolve('./views/index.html'));
+};
 
 module.exports.sayHello = function (req, res) {
     res.send("Hello World!");

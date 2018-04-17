@@ -90,14 +90,11 @@ button:hover {
   display: inline-grid;
   grid-template-areas: "article article";
   grid-column-gap: 50px;
-/*  background-color: purple;*/
 }
 
-/*TODO: container*/
 #suggested_issues article {
   height: 200px;
-  padding: 0;
-/*  background-color: burlywood;*/
+  background-color: burlywood;
 }
 
 #suggested_issues figcaption {
@@ -162,6 +159,7 @@ img {
   padding-left: 10%;
   width: 100%;
 /*  position: fixed; !*TODO*!*/
+
 }
 
 #search_options h4 {

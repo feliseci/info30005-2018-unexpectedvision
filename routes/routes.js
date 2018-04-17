@@ -14,8 +14,15 @@ router.get('/create-account', controller.create_account);
 router.get('/search/', controller.search);
 router.get('/contributor/:id', controller.contribution);
 
+
 /* Editor page route - Jenny test*/
-router.get('/editor/', controller.editor);
+router.get('/editor/:id', controller.editor);
+router.get('/opportunities', controller.loadOpportunities);
+router.get('/contributions', controller.loadContributions);
+router.get('/editors',controller.loadEditors);
+router.get('/about', controller.loadAbout);
+
+
 
 
 /* LECTURE / WORKSHOP CODE - FOR REFERENCE*/

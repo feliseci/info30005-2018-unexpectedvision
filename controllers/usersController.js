@@ -139,9 +139,39 @@ module.exports.contribution = function (req,res) {
 
 module.exports.editor = function(req,res){
     const editor = editors[req.params.id];
+
+    console.log("EDITOR NAME: " + editor.name);
     res.render('editor_template', {editor: editor})
 };
 
+
+module.exports.loadOpportunities = function (req, res) {
+    // Resolve converts to absolute path required for sendFile
+    // See https://nodejs.org/api/path.html#path_path_resolve_paths
+    const resolve = require('path').resolve;
+    res.sendFile(resolve('./views/opportunities_landing.html'));
+};
+
+module.exports.loadContributions = function (req, res) {
+    // Resolve converts to absolute path required for sendFile
+    // See https://nodejs.org/api/path.html#path_path_resolve_paths
+    const resolve = require('path').resolve;
+    res.sendFile(resolve('./views/contributions_landing.html'));
+};
+
+module.exports.loadEditors = function (req, res) {
+    // Resolve converts to absolute path required for sendFile
+    // See https://nodejs.org/api/path.html#path_path_resolve_paths
+    const resolve = require('path').resolve;
+    res.sendFile(resolve('./views/editors_landing.html'));
+};
+
+module.exports.loadAbout = function (req, res) {
+    // Resolve converts to absolute path required for sendFile
+    // See https://nodejs.org/api/path.html#path_path_resolve_paths
+    const resolve = require('path').resolve;
+    res.sendFile(resolve('./views/about.html'));
+};
 
 /* LECTURE / WORKSHOP CODE - FOR REFERENCE*/
 //Only the controller should have access to the data in the models.

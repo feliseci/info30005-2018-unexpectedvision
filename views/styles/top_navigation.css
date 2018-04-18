@@ -6,7 +6,7 @@
     /*margin-left:10%;*/
     padding: 10px;
     overflow: hidden;
-    background-color: #91d7ee ;
+    background-color: #00CC8C;
 }
 
 #top_navigation li {
@@ -23,5 +23,5 @@
 
 /* Change the link color to #111 (black) on hover */
 #top_navigation li a:hover {
-    background-color: #4ab9db;
+    background-color: #267F63;
 }

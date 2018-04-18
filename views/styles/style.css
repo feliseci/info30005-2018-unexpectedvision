@@ -12,7 +12,7 @@ html {
 body {
   text-align: center;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: white;
+  color: black;
   margin: 0;
 }
 
@@ -358,4 +358,19 @@ button:hover {
 #container {
   width: 100%;
   margin: 0 auto;
+}
+
+#article_repository table{
+  width:70%;
+  margin-left:15%;
+  margin-right:15%;
+  border: 1px solid black;
+}
+
+/* Trying to work out how to set an Image as a Background for the landing page*/
+#landing body {
+  background-image: url("");
+  background-repeat: no-repeat;
+  height: 100%;
+  background-size: cover;
 }

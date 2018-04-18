@@ -1,5 +1,5 @@
 {
-  "name": "untitled",
+  "name": "unexpectedvision",
   "version": "1.0.0",
   "description": "hello world",
   "main": "app.js",
@@ -7,12 +7,21 @@
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "croft, phan and ciblis",
   "license": "ISC",
   "dependencies": {
     "ejs": "^2.5.8",
     "express": "^4.16.3",
     "faker": "^4.1.0",
     "npm": "^5.8.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/feliseci/info30005-2018-unexpectedvision.git"
+  },
+  "bugs": {
+    "url": "https://github.com/feliseci/info30005-2018-unexpectedvision/issues"
+  },
+  "homepage": "https://github.com/feliseci/info30005-2018-unexpectedvision#readme"
 }

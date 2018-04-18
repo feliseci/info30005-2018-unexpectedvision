@@ -102,8 +102,6 @@ button:hover {
   height: 50px;
 }
 
-.input-group
-
 #random_button {
   margin-top: 10px;
   padding: 10px;
@@ -360,17 +358,10 @@ button:hover {
   margin: 0 auto;
 }
 
-#article_repository table{
-  width:70%;
-  margin-left:15%;
-  margin-right:15%;
+#article_repository table, th, td {
   border: 1px solid black;
+  border-collapse: collapse;
+  margin-left: 50%;
 }
 
 /* Trying to work out how to set an Image as a Background for the landing page*/
-#landing body {
-  background-image: url("");
-  background-repeat: no-repeat;
-  height: 100%;
-  background-size: cover;
-}

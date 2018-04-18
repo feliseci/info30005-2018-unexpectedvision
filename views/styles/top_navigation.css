@@ -1,13 +1,16 @@
 #top_navigation ul{
     list-style-type: none;
+    display: inline-block;
     margin: 0;
+    width: 100%;
+    /*margin-left:10%;*/
     padding: 10px;
     overflow: hidden;
     background-color: #00CC8C;
 }
 
 #top_navigation li {
-    float: left;
+    float: left ;
 }
 
 #top_navigation li a {

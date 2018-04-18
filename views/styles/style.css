@@ -12,7 +12,7 @@ html {
 body {
   text-align: center;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: white;
+  color: black;
   margin: 0;
 }
 
@@ -186,9 +186,10 @@ button:hover {
   display: grid;
   grid-gap: 0;
   overflow: hidden;
-  background-color: burlywood;
+  background-color: #597c5e;
   grid-template-columns: 1fr 4fr;
   grid-template-areas: 'nav section';
+  min-height: 100%;
 }
 
 #search_options {
@@ -212,7 +213,7 @@ button:hover {
   grid-column-start: 2; /* TODO*/
   display: grid;
   grid-template-areas: "article" "article";
-  background-color: aqua;
+  background-color: #3e5b4a;
   grid-gap: 0;
   width: 100%;
   padding-bottom: 100px;
@@ -260,15 +261,16 @@ button:hover {
   margin-left: 10px;
   margin-bottom: 5px;
   margin-top: 5px;
+  max-height: 200px;
 }
 
 .editor {
-  background-color: cornflowerblue; /*Editor & contributor have different colours*/
+  background-color: #afbfb1; /*Editor & contributor have different colours*/
   /*TODO better colour implementation - doubles with "#results_list"  */
 }
 
 .contributor {
-  background-color: aliceblue;
+  background-color: #e6f7e8;
 }
 
 #search_results article h4 {
@@ -372,4 +374,19 @@ button:hover {
 #container {
   width: 100%;
   margin: 0 auto;
+}
+
+#article_repository table{
+  width:70%;
+  margin-left:15%;
+  margin-right:15%;
+  border: 1px solid black;
+}
+
+/* Trying to work out how to set an Image as a Background for the landing page*/
+#landing body {
+  background-image: url("");
+  background-repeat: no-repeat;
+  height: 100%;
+  background-size: cover;
 }

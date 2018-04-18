@@ -10,7 +10,7 @@ const issues = [
         popularity: 1,
         categories: ["privacy", "internet"],
         image: "https://source.unsplash.com/random/800x600",
-        url: "",  // URL constructed from (site)/(type)/url (url = id)
+        url: "0",  // URL constructed from (site)/(type)/url (url = id)
         description: "Facebook records users' metadata and sells it to other companies."
     },
     {
@@ -30,7 +30,7 @@ const issues = [
         popularity: 3,
         categories: ["environment"],
         image: "https://source.unsplash.com/eXdKs9d37Sc/800x600",
-        url: "",
+        url: "0",
         description: "Global warming dummy text"
     }
 ];

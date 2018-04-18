@@ -31,7 +31,7 @@ header {
 }
 
 .centered_header {
-  padding-top: 20px;
+  padding-top: 50px;
 }
 
 h1 {
@@ -101,6 +101,8 @@ button:hover {
   padding: 10px;
   height: 50px;
 }
+
+.input-group
 
 #random_button {
   margin-top: 10px;
@@ -324,7 +326,7 @@ button:hover {
 }
 
 .button {
-  border: black;
+  border: white;
   color: black;
   padding: 15px 32px;
   text-align: center;

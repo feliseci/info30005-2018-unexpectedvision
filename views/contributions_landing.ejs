@@ -41,13 +41,6 @@
     <!--Search results-->
     <section id = "search_results">
 
-        <section id = "search_bar_small">
-            <form action = "" method = "get">
-                <input type="text" placeholder="Search..." name="query" />
-                <button type="submit">Search</button>
-            </form>
-        </section>
-
         <% for(i = 0; i < results.length; i++) { %>
         <article class = "contributor">
             <a href="<%="../" + results[i].type + "/" + results[i].url%>">

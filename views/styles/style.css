@@ -173,6 +173,7 @@ button:hover {
   background-color: burlywood;
   grid-template-columns: 1fr 4fr;
   grid-template-areas: 'nav section';
+  min-height: 100%;
 }
 
 #search_options {
@@ -244,6 +245,7 @@ button:hover {
   margin-left: 10px;
   margin-bottom: 5px;
   margin-top: 5px;
+  max-height: 200px;
 }
 
 .editor {

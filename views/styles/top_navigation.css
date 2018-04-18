@@ -3,7 +3,7 @@
     margin: 0;
     padding: 10px;
     overflow: hidden;
-    background-color: #1b3249;
+    background-color: #00CC8C;
 }
 
 #top_navigation li {
@@ -20,5 +20,5 @@
 
 /* Change the link color to #111 (black) on hover */
 #top_navigation li a:hover {
-    background-color: #1c1c1c;
+    background-color: #267F63;
 }

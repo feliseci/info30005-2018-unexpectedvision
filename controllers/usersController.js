@@ -1,6 +1,7 @@
 const issues = require('../models/dummyIssues');
 const contributions = require('../models/dummyContribution');
 const editors = require('../models/dummyEditors');
+const opportunities = require('../models/dummyOpportunities');
 
 module.exports.landing = function (req, res) {
     const resolve = require('path').resolve;
@@ -143,31 +144,40 @@ module.exports.editor = function(req,res){
     res.render('editor_template', {editor: editor})
 };
 
+module.exports.opportunity = function (req, res) {
+    const opportunity = opportunities[req.params.id];
+    res.render('opportunity_template', {opportunity: opportunity})
+};
 
 module.exports.loadOpportunities = function (req, res) {
-    // Resolve converts to absolute path required for sendFile
-    // See https://nodejs.org/api/path.html#path_path_resolve_paths
-    const resolve = require('path').resolve;
-    res.sendFile(resolve('./views/opportunities_landing.html'));
+    res.render('opportunities_landing', {results: opportunities});
 };
 
 module.exports.loadContributions = function (req, res) {
-    // Resolve converts to absolute path required for sendFile
-    // See https://nodejs.org/api/path.html#path_path_resolve_paths
-    const resolve = require('path').resolve;
-    res.sendFile(resolve('./views/contributions_landing.html'));
+    let results = [];
+    for(i = 0; i < issues.length; i++ ) {
+        if("contributor".localeCompare(issues[i].type) == 0) {
+            results.push(issues[i]);
+        }
+    }
+    // Technically, if the display methods are
+    // the same this should just lead to the search with only editor articles selected.
+    // So leave the above but load search_results instead res.render('search_results', {results: results});
+
+    res.render('contributions_landing', {results: results});
 };
 
 module.exports.loadEditors = function (req, res) {
-    // Resolve converts to absolute path required for sendFile
-    // See https://nodejs.org/api/path.html#path_path_resolve_paths
-    const resolve = require('path').resolve;
-    res.sendFile(resolve('./views/editors_landing.html'));
+    let results = [];
+    for(i = 0; i < issues.length; i++ ) {
+        if("editor".localeCompare(issues[i].type) == 0) {
+            results.push(issues[i]);
+        }
+    }
+    res.render('editors_landing', {results: results});
 };
 
 module.exports.loadAbout = function (req, res) {
-    // Resolve converts to absolute path required for sendFile
-    // See https://nodejs.org/api/path.html#path_path_resolve_paths
     const resolve = require('path').resolve;
     res.sendFile(resolve('./views/about.html'));
 };

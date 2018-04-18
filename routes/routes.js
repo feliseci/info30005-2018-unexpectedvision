@@ -13,6 +13,7 @@ router.get('/contributor/:id', controller.contribution);
 
 /* Editor page route - Jenny test*/
 router.get('/editor/:id', controller.editor);
+router.get('/opportunity/:id', controller.opportunity);
 router.get('/opportunities', controller.loadOpportunities);
 router.get('/contributions', controller.loadContributions);
 router.get('/editors',controller.loadEditors);

@@ -172,7 +172,7 @@ button:hover {
   display: grid;
   grid-gap: 0;
   overflow: hidden;
-  background-color: burlywood;
+  background-color: #597c5e;
   grid-template-columns: 1fr 4fr;
   grid-template-areas: 'nav section';
   min-height: 100%;
@@ -199,7 +199,7 @@ button:hover {
   grid-column-start: 2; /* TODO*/
   display: grid;
   grid-template-areas: "article" "article";
-  background-color: aqua;
+  background-color: #3e5b4a;
   grid-gap: 0;
   width: 100%;
   padding-bottom: 100px;
@@ -251,12 +251,12 @@ button:hover {
 }
 
 .editor {
-  background-color: cornflowerblue; /*Editor & contributor have different colours*/
+  background-color: #afbfb1; /*Editor & contributor have different colours*/
   /*TODO better colour implementation - doubles with "#results_list"  */
 }
 
 .contributor {
-  background-color: aliceblue;
+  background-color: #e6f7e8;
 }
 
 #search_results article h4 {

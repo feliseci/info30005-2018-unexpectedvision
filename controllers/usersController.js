@@ -136,7 +136,6 @@ module.exports.contribution = function (req,res) {
 
 
 /* Editor Page - Jenny testing how editor_template works */
-
 module.exports.editor = function(req,res){
     const editor = editors[req.params.id];
 

@@ -1,7 +1,7 @@
 // Make sure Node.js is enabled in your Settings before running.
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 app.set('view engine', 'ejs');
 

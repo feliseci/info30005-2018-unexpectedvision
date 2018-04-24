@@ -30,10 +30,6 @@ header {
   font-size: xx-large;
 }
 
-.centered_header {
-  padding-top: 20px;
-}
-
 .centered_landing {
   padding-top: 60px;
 }
@@ -41,6 +37,7 @@ header {
 h1 {
   font-family: "Abril Fatface", sans-serif;
   color: #000000;
+  margin-bottom: 0;
 }
 
 h2 {
@@ -376,27 +373,10 @@ button:hover {
   margin: 0 auto;
 }
 
-#article_repository table{
-  width:70%;
-  margin-left:15%;
-  margin-right:15%;
+#article_repository table, th, td {
   border: 1px solid black;
+  border-collapse: collapse;
+  margin-left: 50%;
 }
 
 /* Trying to work out how to set an Image as a Background for the landing page*/
-#landing body {
-  background-image: url("../images/landing.jpg");
-  background-repeat: no-repeat;
-  height: 100%;
-  background-size: cover;
-}
-
-.background {
-  background-image: url("../images/landing.jpg");
-}
-
-#gradient {
-  background:
-    linear-gradient(transparent, rgb(138, 163, 153, 0.55)),
-    url("../images/landing.jpg");
-}

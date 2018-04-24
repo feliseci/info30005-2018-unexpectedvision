@@ -385,8 +385,18 @@ button:hover {
 
 /* Trying to work out how to set an Image as a Background for the landing page*/
 #landing body {
-  background-image: url("");
+  background-image: url("../images/landing.jpg");
   background-repeat: no-repeat;
   height: 100%;
   background-size: cover;
+}
+
+.background {
+  background-image: url("../images/landing.jpg");
+}
+
+#gradient {
+  background:
+    linear-gradient(transparent, rgb(138, 163, 153, 0.55)),
+    url("../images/landing.jpg");
 }

@@ -1,0 +1,285 @@
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans');
+
+#landing {
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.centered_landing {
+    padding-top: 60px;
+}
+
+#centered h1 {
+    font-family: "Abril Fatface", sans-serif;
+    font-size: 75px;
+    color: white;
+}
+
+#centered h2 {
+    color: white;
+}
+
+#centered {
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Homepage */
+#search {
+    margin-bottom: 40px;
+}
+
+#search input {
+    margin: 0;
+    padding: 0 10px 0 10px;
+    border: none;
+    height: 50px;
+}
+
+#search form button {
+    margin: -4px;
+    padding: 10px;
+    height: 50px;
+}
+
+.account {
+    display: block;
+    width: 30%;
+    border-radius: 2px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    margin-left: 35%;
+    box-sizing: border-box;
+    font-family: "IBM Plex Sans", sans-serif;
+}
+
+
+#random_button {
+    margin-top: 10px;
+    padding: 10px;
+    height: 50px;
+    text-transform: uppercase;
+}
+
+#suggested_issues {
+    width: 50%;
+    display: inline-grid;
+    grid-template-areas: "article article";
+    grid-column-gap: 50px;
+}
+
+#suggested_issues article {
+    height: 200px;
+}
+
+#suggested_issues figcaption {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.image_container {
+    /* See https://www.w3schools.com/howto/howto_css_image_overlay.asp for reference. */
+    position: relative;
+}
+
+#suggested_issues img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: grey;
+}
+
+.image_container:hover .overlay {
+    opacity: 0.9;
+}
+
+#suggested_issues p {
+    color: white;
+    padding-top: 30%; /* As per tutorial also works. */
+    text-align: center;
+}
+
+#suggested_issues h4 {
+    margin-top: 0;
+    font-weight: bolder;
+}
+
+/* Search results */
+#sidebar_page {
+    display: grid;
+    grid-gap: 0;
+    overflow: hidden;
+    background-color: #597c5e;
+    grid-template-columns: 1fr 4fr;
+    grid-template-areas: 'nav section';
+    min-height: 100%;
+}
+
+#search_options {
+    text-align: start;
+    padding-left: 10%;
+    width: 100%;
+    /*Would have to change page layout or work with animations to have
+    good-looking "sticky search".*/
+}
+
+#search_options h4 {
+    top: 10px;
+}
+
+#search_options ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+#search_results {
+    grid-column-start: 2; /* TODO*/
+    display: grid;
+    grid-template-areas: "article" "article";
+    background-color: #3e5b4a;
+    grid-gap: 0;
+    width: 100%;
+    padding-bottom: 100px;
+}
+
+#search_bar_small {
+    width: 100%;
+    white-space: nowrap;
+    padding: 0;
+    margin-right: 0;
+    margin-bottom: 5px;
+    text-align: start;
+    height: 50px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: darkslategrey 100px;
+    font-size: 0; /*Needed to remove the white-space that comes with inline-block*/
+}
+
+#search_bar_small form { height: 100%; }
+#search_bar_small input {
+    box-sizing: border-box;
+    height: 100%;
+    padding-left: 10px;
+    width: 90%;
+    display: inline-block;
+    margin: 0;
+    font-size: 13px;
+}
+#search_bar_small button {   /*TODO: Clean*/
+    display: inline-block;
+    margin: 0;
+    border: none;
+    height: 100%;
+    width: 10%;
+    font-size: 13px;
+}
+
+#search_results article {
+    text-align: start;
+    padding-left: 5%;
+    padding-top: 10px;
+    padding-bottom: 50px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    max-height: 200px;
+}
+
+.editor {
+    background-color: #afbfb1; /*Editor & contributor have different colours*/
+    /*TODO better colour implementation - doubles with "#results_list"  */
+}
+
+.contributor {
+    background-color: #e6f7e8;
+}
+
+#search_results article h4 {
+    display: inline-block; /*All items intended to be inline must have this tag*/
+}
+.issue_category {
+    display: inline-block;
+}
+
+/*Contributions page*/
+#contributions_grid {
+    background-color: #3e5b4a;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-auto-rows: 1fr;
+    grid-template-areas: "article article" "article article";
+    grid-gap: 10px;
+    padding: 1%;
+}
+
+#contributions_grid article {
+    background-color: #e6f7e8; /*3e5b4a for dark bg*/
+    padding: 20px;
+}
+
+.comment_username {
+    text-align: start;
+    font-weight: bold;
+}
+
+.preview {
+    background-color: #ace5b3;
+    width: 80%;
+    margin-left: 10%; /* container = 10% margin + 80% preview (+ 10% margin)*/
+    padding: 10px;
+    height: 10%;
+}
+
+.comment_description {
+    text-align: start;
+    padding: 20px;
+    height: 50%;
+    background-color: white;
+    color: grey;
+    border-radius: 10px;
+}
+
+#invisible {
+    visibility: hidden;
+}
+
+.button {
+    border: white;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 16px;
+}
+
+#submit {
+    margin-top: 30px;
+    /*Wizardry to get the submit button to appear centered but on the next line*/
+    display: block;
+    border-radius: 4px;
+    margin-left: 47.5%;
+    width: 5%;
+    height: 40px;
+    font-family: "IBM Plex Sans", sans-serif;
+}

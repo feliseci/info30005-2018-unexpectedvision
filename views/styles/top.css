@@ -47,13 +47,14 @@
     margin-left: 50%;
 }
 
+/* Not sticky when the page requires scrolling */
 .footer {
-    position: fixed;
+    position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
     background-color: #D4D4D4;
     color: black;
     text-align: center;
-    padding: 20px;
+    padding: 5px;
 }

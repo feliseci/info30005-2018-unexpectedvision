@@ -3,6 +3,7 @@
 
 #landing {
     height: 100%;
+    background: url('../images/landing.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -12,10 +13,14 @@
     padding-top: 60px;
 }
 
-#centered h1 {
+.centered h1 {
     font-family: "Abril Fatface", sans-serif;
     font-size: 75px;
     color: white;
+}
+
+.banner_header h1{
+    font-size: 300%;
 }
 
 #centered h2 {

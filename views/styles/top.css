@@ -46,3 +46,14 @@
     border-collapse: collapse;
     margin-left: 50%;
 }
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #D4D4D4;
+    color: black;
+    text-align: center;
+    padding: 30px;
+}

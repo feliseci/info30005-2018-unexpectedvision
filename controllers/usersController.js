@@ -177,8 +177,7 @@ module.exports.loadEditors = function (req, res) {
 };
 
 module.exports.loadAbout = function (req, res) {
-    const resolve = require('path').resolve;
-    res.sendFile(resolve('./views/about.html'));
+    res.render('about_page');
 };
 
 /* LECTURE / WORKSHOP CODE - FOR REFERENCE*/

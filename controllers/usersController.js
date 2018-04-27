@@ -14,8 +14,7 @@ module.exports.login = function (req, res) {
 };
 
 module.exports.create_account = function (req, res) {
-    const resolve = require('path').resolve;
-    res.sendFile(resolve('./views/create_account.html'));
+    res.render('create_account');
 };
 
 module.exports.home = function (req, res) {

@@ -1,3 +1,4 @@
+//Only the controller should have access to the data in the models.
 const issues = require('../models/dummyIssues');
 const contributions = require('../models/dummyContribution');
 const editors = require('../models/dummyEditors');
@@ -79,13 +80,35 @@ module.exports.search = function (req,res) {
 
         // Add the issue to the search results if the query was in one of the fields
         if((in_name + in_description + in_category) > -3) {
-           results.push(issues[i]);
+            results.push(issues[i]);
         }
 
     }
 
     /* Sort the array if a sorting method was entered. Default sorting TBD at back-end. */
-    /*const sort_type = req.query.sort;
+    const sort_type = req.query.sort;
+    console.log("Sort type: " + sort_type);
+
+    // TODO
+    /* Do within search page - i.e. just reorders everything?
+     * This only works if you can reload the page while keeping the original search term
+     * Could pass the search term as a parameter - so can access it in the search results
+     * There may be some other way to access it without doing this using JS -
+     * if not only rewriting parts of the URL, then just accessing the URL
+     * Alternatively having another url path /search?=.../sort/popularity ... ugly*/
+    // Popularity descending //TODO assumes popularity ordered by most points = more popular
+    if(sort_type.localeCompare("popularity") == 0) {
+        // Descending popularity sort
+        results.sort(function(a, b) {
+
+            if (a.popularity > b.popularity) { return -1; } // 1 if ascending & same ordering
+            if (a.popularity < b.popularity) { return 1; } // -1 if ascending
+            return 0;
+
+        });
+    }
+
+    /*
 
     if(!(sort_type === undefined || sort_type.isEmptyObject)) {
         // Ascending alphabetical sort
@@ -134,6 +157,19 @@ module.exports.contribution = function (req,res) {
     res.render('contributions_template', {contribution: contribution});
 };
 
+module.exports.random = function (req,res) {
+    // Generate a random index in the issues array
+    let random_id = Math.floor(Math.random() * (issues.length));
+
+    // Check the type, fetch the issue contents depending on the type.
+    if(issues[random_id].type.localeCompare("editor")) {
+        res.render('editor_template', {editor: editors[issues[random_id].url]});
+    }
+    else {
+        res.render('contributions_template', {contribution: contributions[issues[random_id].url]});
+    }
+
+};
 
 /* Editor Page - Jenny testing how editor_template works */
 module.exports.editor = function(req,res){
@@ -178,28 +214,4 @@ module.exports.loadEditors = function (req, res) {
 
 module.exports.loadAbout = function (req, res) {
     res.render('about_page');
-};
-
-/* LECTURE / WORKSHOP CODE - FOR REFERENCE*/
-//Only the controller should have access to the data in the models.
-const users = require('../models/usersArray');
-
-module.exports.loadIndex = function (req, res) {
-    // Resolve converts to absolute path required for sendFile
-    // See https://nodejs.org/api/path.html#path_path_resolve_paths
-    const resolve = require('path').resolve;
-    res.sendFile(resolve('./views/index.html'));
-};
-
-module.exports.sayHello = function (req, res) {
-    res.send("Hello World!");
-};
-
-module.exports.fetchAllUsers = function (req, res) {
-    //res.render('./views/user_template',{user : db[0]});
-    res.render('user_template', {user: users});
-};
-
-module.exports.fetchUser =  function (req,res) {
-    res.render('user_template', {user: users[req.params.id]});
 };

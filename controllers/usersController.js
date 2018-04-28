@@ -14,7 +14,7 @@ module.exports.login = function (req, res) {
 };
 
 module.exports.create_account = function (req, res) {
-    /* res.render('create_account'); */
+     res.render('create_account');
 };
 
 module.exports.home = function (req, res) {
@@ -176,7 +176,7 @@ module.exports.loadEditors = function (req, res) {
 };
 
 module.exports.loadAbout = function (req, res) {
-    res.render('aboutPage');
+    res.render('about_page');
 };
 
 /* LECTURE / WORKSHOP CODE - FOR REFERENCE*/

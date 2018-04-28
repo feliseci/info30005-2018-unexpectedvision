@@ -34,7 +34,7 @@
 
 /* Not sticky when the page requires scrolling */
 .footer {
-    position: absolute;
+    position: sticky;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -71,6 +71,7 @@ div{
     position: absolute;
     padding: 20px;
     bottom:0;
-    max-width: 50%;
+    max-width: 20%;
+    align: right;
 
 }

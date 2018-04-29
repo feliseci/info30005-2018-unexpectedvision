@@ -4,6 +4,52 @@ const contributions = require('../models/dummyContribution');
 const editors = require('../models/dummyEditors');
 const opportunities = require('../models/dummyOpportunities');
 
+const mongoose = require('mongoose');
+const Issue = mongoose.model('issues');
+/*const Contribution = mongoose.model('contribution');*/
+
+// TODO testing DB
+module.exports.testDB = function (req, res) {
+    res.render('editor_form', {});
+};
+module.exports.new_issue = function (req, res) {
+    let newIssue = new Issue({
+        "name": req.query.name,
+        "author": req.query.author,
+        "description": req.query.description,
+        "image": req.query.image,
+        "hl_source": req.query.hl_source,
+        "r_source": req.query.r_source,
+        "o_source": req.query.o_source
+    });
+    newIssue.save(function(err,newIssue) {
+        if(!err) {
+            res.send(newIssue);
+            console.log("New issue sent.");
+        } else{
+            res.sendStatus(400);
+        }
+    });
+};
+module.exports.new_contribution = function (req, res) {
+
+    // Define the new contribution
+    let newContribution = {
+        "author": req.query.author,
+        "comment": req.query.comment,
+        "article_url": req.query.article_url
+    };
+
+    // Update the issue with a new contribution
+    // TODO fully overwrites contributions
+    let collection = mongoose.connection.db.collection('issues');
+    collection.update({"name": req.query.name}, {$set: {"contributions": [newContribution]}});
+
+    res.send(newContribution);
+
+};
+
+
 module.exports.landing = function (req, res) {
     const resolve = require('path').resolve;
     res.sendFile(resolve('./views/landing_page.html'));

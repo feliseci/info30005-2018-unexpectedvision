@@ -5,8 +5,11 @@ const PORT = process.env.PORT || 3000;
 
 app.set('view engine', 'ejs');
 
-const router = require('./routes/routes');
+// Database setup
+require('./models/db.js');
 
+// Router setup
+const router = require('./routes/routes');
 app.use(router);
 app.use(express.static('./views')); // Needed for CSS to work, there may be a better way
 

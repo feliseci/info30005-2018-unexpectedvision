@@ -19,6 +19,9 @@ router.get('/editors',controller.loadEditors);
 router.get('/about', controller.loadAbout);
 router.get('/random', controller.random);
 
+//TODO - DB testing
+router.get('/test', controller.testDB);
+router.get('/new_issue', controller.new_issue);
+router.get('/new_contribution', controller.new_contribution);
+
 module.exports = router;
-
-

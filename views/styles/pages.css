@@ -289,6 +289,13 @@
     font-family: "IBM Plex Sans", sans-serif;
 }
 
+/* Used for sticky footer */
 .content {
     flex:1 0 auto;
+}
+
+
+/* Titles of Page*/
+#pageHeading{
+    margin-top:0;
 }

@@ -11,7 +11,7 @@
     Use the = unless it's a for loop (not going to be turned to HTML). -->
 <% if(user.length > 1) {
     for(i = 0; i < user.length; i++) {  %>
-    <h1><%=user[i].name%></h1>
+    <h1 id = "pageHeading"><%=user[i].name%></h1>
 
     <p>Email: <%=user[i].email%></p>
     <p>Title: <%=user[i].title%></p>

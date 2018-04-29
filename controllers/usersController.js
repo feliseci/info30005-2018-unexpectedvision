@@ -213,3 +213,8 @@ module.exports.loadEditors = function (req, res) {
 module.exports.loadAbout = function (req, res) {
     res.render('about_page');
 };
+
+
+module.exports.editorApplication = function (req, res) {
+    res.render('editor_application');
+};

@@ -18,6 +18,7 @@ router.get('/contributions', controller.loadContributions);
 router.get('/editors',controller.loadEditors);
 router.get('/about', controller.loadAbout);
 router.get('/random', controller.random);
+router.get('/editor-application', controller.editorApplication);
 
 module.exports = router;
 

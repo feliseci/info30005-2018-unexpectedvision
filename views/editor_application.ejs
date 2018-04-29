@@ -1,0 +1,41 @@
+
+<!-- Application for becoming an editor -->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> <%= editor.name %> - Editors </title>
+    <link href="/styles/style.css" type="text/css" rel="stylesheet">
+    <link href="/styles/pages.css" type="text/css" rel="stylesheet">
+    <link href="/styles/top.css" type = "text/css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class = "content"> <!-- Used to make footers sticky -->
+
+    <!--Site title-->
+    <% include ./partial/header.ejs%>
+    <% include ./partial/navbar.ejs%>
+
+    <header>
+        <h1> Apply to be an editor!!</h1>
+    </header>
+
+    <h2> Are you Editor Material?</h2>
+    <p>What are we looking for?
+        <ol>
+        <li> thoughtful </li>
+        <li> experience....</li>
+        <li> something else </li>
+    </ol>
+    </p>
+
+
+</div>
+<footer>
+    <% include ./partial/footer.ejs%>
+</footer>
+
+</body>
+</html>

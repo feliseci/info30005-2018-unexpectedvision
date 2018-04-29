@@ -1,3 +1,5 @@
+/* Start of Nav Bar CSS */
+
 #top_navigation ul{
     list-style-type: none;
     display: inline-block;
@@ -25,6 +27,11 @@
 #top_navigation li a:hover {
     background-color: #267F63;
 }
+
+#login button{
+}
+
+/* End of Nav Bar */
 
 #article_repository table, th, td {
     border: 1px solid black;

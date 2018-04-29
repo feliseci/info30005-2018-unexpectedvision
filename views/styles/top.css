@@ -34,11 +34,8 @@
 
 /* Not sticky when the page requires scrolling */
 .footer {
-    position: sticky;
-    left: 0;
-    bottom: 0;
-    width: 100%;
     background-color: #D4D4D4;
+    flex-shrink: 0;
     color: black;
     text-align: center;
     padding: 5px;

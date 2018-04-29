@@ -38,16 +38,16 @@
 </header>
 
 <section>
-    <!--Note: Dummy form action -->
-    <form action = "../home">
+    <!-- TODO Proper redirect. Currently sends the entered info. -->
+    <form action = "../new_user" method="get">
         <h3>Username</h3>
-        <input type="text" class="account" placeholder="Enter username"/>
+        <input type="text" class="account" placeholder="Enter username" name="username"/>
         <h3>Password</h3>
-        <input type="text" class="account" placeholder="Enter password"/>
+        <input type="text" class="account" placeholder="Enter password" name="password"/>
         <h3>Confirm Password</h3>
-        <input type="text" class="account" placeholder="Re-enter password"/>
+        <input type="text" class="account" placeholder="Re-enter password"/> <!--TODO: Check == above. -->
         <h3>Email</h3>
-        <input type="text" class="account" placeholder="Enter your email address"/>
+        <input type="text" class="account" placeholder="Enter your email address" name="email"/>
         <button type="submit" id="submit">Submit</button>
     </form>
 </section>

@@ -6,6 +6,8 @@ const opportunities = require('../models/dummyOpportunities');
 
 const mongoose = require('mongoose');
 const Issue = mongoose.model('issues');
+const User = mongoose.model('users');
+const Opportunity = mongoose.model('opportunities');
 /*const Contribution = mongoose.model('contribution');*/
 
 // TODO testing DB
@@ -41,14 +43,51 @@ module.exports.new_contribution = function (req, res) {
     };
 
     // Update the issue with a new contribution
-    // TODO fully overwrites contributions
+    // TODO fully overwrites contributions https://stackoverflow.com/questions/33049707/push-items-into-mongo-array-via-mongoose
     let collection = mongoose.connection.db.collection('issues');
     collection.update({"name": req.query.name}, {$set: {"contributions": [newContribution]}});
 
     res.send(newContribution);
 
 };
-
+module.exports.new_user = function (req, res) {
+    let newUser = new User({
+        "username": req.query.username,
+        "display_name": req.query.username, // Default to == username
+        "email": req.query.email,
+        "password": req.query.password // Security
+    });
+    newUser.save(function(err,newUser) {
+        if(!err) {
+            res.send(newUser);
+            console.log("New user sent.");
+        } else{
+            res.sendStatus(400);
+        }
+    });
+};
+module.exports.testDBopp = function (req, res) {
+    res.render('opportunities_form', {});
+};
+module.exports.new_opportunity = function (req, res) {
+    let newOpportunity = new Opportunity({
+        "name": req.query.name,
+        "organiser": req.query.organiser,
+        "description": req.query.description,
+        "image": req.query.image,
+        "date_event": req.query.date,
+        "location": req.query.location,
+        "further_info": req.query.further_info
+    });
+    newOpportunity.save(function(err,newOpportunity) {
+        if(!err) {
+            res.send(newOpportunity);
+            console.log("New opportunity sent.");
+        } else{
+            res.sendStatus(400);
+        }
+    });
+};
 
 module.exports.landing = function (req, res) {
     const resolve = require('path').resolve;

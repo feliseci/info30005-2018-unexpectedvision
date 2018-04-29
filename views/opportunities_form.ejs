@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<p>Create a new opportunity.</p>
+<!--TODO: Use post-->
+<form action = "../new_opportunity/" method = "get">
+    <input type="hidden" name="organiser" value = "orangecaramel">
+    Opportunity Name:<input type="text" name="name">
+    Description:<input type="text" name="description">
+    Image URL:<input type="text" name="image">  <!--TODO: URL checks-->
+    Date of the Event: <input type="text" name="date">
+    Location: <input type="text" name="location">
+    Link for further info: <input type="text" name="further_info"> <!--TODO: URL checks-->
+    <button type="submit">Submit</button>
+</form>
+
+<!--TODO: Checks for proper form completion -->
+
+</body>
+</html>

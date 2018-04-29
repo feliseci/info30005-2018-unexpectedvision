@@ -13,3 +13,5 @@ mongoose.connect('mongodb://multiview:unexpectedvision@ds161529.mlab.com:61529/u
 });
 
 require('./issues.js');
+require('./users.js');
+require('./opportunities.js');

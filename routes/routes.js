@@ -23,5 +23,8 @@ router.get('/random', controller.random);
 router.get('/test', controller.testDB);
 router.get('/new_issue', controller.new_issue);
 router.get('/new_contribution', controller.new_contribution);
+router.get('/new_user', controller.new_user);
+router.get('/test_opp', controller.testDBopp);
+router.get('/new_opportunity', controller.new_opportunity);
 
 module.exports = router;

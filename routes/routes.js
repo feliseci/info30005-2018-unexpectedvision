@@ -17,14 +17,7 @@ router.get('/opportunities', controller.loadOpportunities);
 router.get('/contributions', controller.loadContributions);
 router.get('/editors',controller.loadEditors);
 router.get('/about', controller.loadAbout);
-
-
-/* LECTURE / WORKSHOP CODE - FOR REFERENCE*/
-router.get('/coming-soon', controller.loadIndex); // do NOT use the brackets which come with the auto-fill (sayHello() does not work)
-router.get('/hello', controller.sayHello);
-router.get('/user', controller.fetchAllUsers); // How to bring up user database
-router.get('/user/:id', controller.fetchUser); // bringing up specific user based on id
-
+router.get('/random', controller.random);
 
 module.exports = router;
 

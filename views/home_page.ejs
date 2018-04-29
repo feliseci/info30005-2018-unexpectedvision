@@ -15,16 +15,18 @@
 
 
 <!--Search button-->
+
+<!--Search button-->
 <section id = "search">
     <h2> Topic Search </h2>
     <form action = "../search/" method = "get">
         <input type="text" placeholder="Enter an issue!" name="query" />
-        <!--<input type="hidden" name="sort" value="date"/>-->
+        <input type="hidden" name="sort" value="date"/> <!--Default sorting: recent to old-->
         <button type="submit">Search</button>
     </form>
 
-    <!--TODO Button action -->
-    <!--<button id="random_button">Random issue</button>-->
+    <a href = "../random/"><button id="random_button">Random issue</button></a>
+
 </section>
 
 <!--Issue suggestions-->

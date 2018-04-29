@@ -66,3 +66,7 @@ button:hover {
     background-color: darkgrey;
     cursor: pointer;
 }
+
+form {
+    margin-bottom: 20px;
+}

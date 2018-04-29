@@ -30,7 +30,7 @@ const issues = [
         popularity: 3,
         categories: ["environment"],
         image: "https://source.unsplash.com/eXdKs9d37Sc/800x600",
-        url: "0",
+        url: "1",
         description: "Global warming dummy text"
     }
 ];

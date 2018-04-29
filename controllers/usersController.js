@@ -218,3 +218,7 @@ module.exports.loadAbout = function (req, res) {
 module.exports.editorApplication = function (req, res) {
     res.render('editor_application');
 };
+
+module.exports.createArticle = function (req, res) {
+    res.render('create_article');
+};

@@ -20,6 +20,9 @@ router.get('/about', controller.loadAbout);
 router.get('/random', controller.random);
 router.get('/editor-application', controller.editorApplication);
 
+/* Permission based option - only for Editors*/
+router.get('/create-article', controller.createArticle);
+
 module.exports = router;
 
 

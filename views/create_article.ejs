@@ -1,0 +1,42 @@
+
+<!-- How Editors Create Articles -->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Create an article </title>
+    <link href="/styles/style.css" type="text/css" rel="stylesheet">
+    <link href="/styles/pages.css" type="text/css" rel="stylesheet">
+    <link href="/styles/top.css" type = "text/css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class = "content"> <!-- Used to make footers sticky -->
+
+    <!--Site title-->
+    <% include ./partial/header.ejs%>
+    <% include ./partial/navbar.ejs%>
+
+    <!-- Maybe make this a sidebar on the left -->
+    <header>
+        <h1> Create your article </h1>
+    </header>
+    <!-- Early Stages of a form for article creation BY EDITORS -->
+    <section id = "application">
+        <form action = "../home">
+            <h3> List Experience </h3>
+            <input type = "text" class = "editor_ap" placeholder = "i.e. Articles published, blog link"/>
+            <h3> Why you wish to be an editor? </h3>
+            <input type = "text" class = "editor_ap" placeholder = "i.e. What you would bring to the role?"/>
+            <button type = "submit" id = "submit"> Submit </button>
+        </form>
+    </section>
+
+</div>
+<footer>
+    <% include ./partial/footer.ejs%>
+</footer>
+
+</body>
+</html>

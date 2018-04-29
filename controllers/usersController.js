@@ -10,8 +10,7 @@ module.exports.landing = function (req, res) {
 };
 
 module.exports.login = function (req, res) {
-    const resolve = require('path').resolve;
-    res.sendFile(resolve('./views/login.html'));
+    res.render('login');
 };
 
 module.exports.create_account = function (req, res) {

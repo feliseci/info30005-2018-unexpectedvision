@@ -23,16 +23,21 @@
     font-size: 300%;
 }
 
-#centered h2 {
+.centered h2 {
     color: white;
 }
 
-#centered {
-    position: absolute;
-    top: 42%;
-    left: 50%;
+#landing_triangle{
+    height:9em;
+}
+
+#landing_graphic{
+    position: fixed;
+    top:50%;
+    left:50%;
     transform: translate(-50%, -50%);
 }
+
 
 /* Homepage */
 #search {
@@ -287,4 +292,15 @@
     width: 5%;
     height: 40px;
     font-family: "IBM Plex Sans", sans-serif;
+}
+
+/* Used for sticky footer */
+.content {
+    flex:1 0 auto;
+}
+
+
+/* Titles of Page*/
+#pageHeading{
+    margin-top:0;
 }

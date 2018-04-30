@@ -18,6 +18,10 @@ router.get('/contributions', controller.loadContributions);
 router.get('/editors',controller.loadEditors);
 router.get('/about', controller.loadAbout);
 router.get('/random', controller.random);
+router.get('/editor-application', controller.editorApplication);
+
+/* Permission based option - only for Editors*/
+router.get('/create-article', controller.createArticle);
 
 //TODO - DB testing
 router.get('/test', controller.testDB);

@@ -11,13 +11,16 @@
 </head>
 
 <body>
+
+<div class = "content"> <!-- Used to make footers sticky -->
+
 <!--Site title-->
 <% include ./partial/header.ejs%>
 <% include ./partial/navbar.ejs%>
 
 
 <header>
-    <h1><%= editor.name %></h1>
+    <h1 id = "pageHeading"><%= editor.name %></h1>
     <h2><%= editor.creator %> </h2> <!-- Follow creator option; see draft -->
     <h3> Rating </h3> <!-- Possible JS to render stars -->
     <h3> Tags: <% for(i = 0; i < editor.categories.length; i++) { %>
@@ -75,7 +78,7 @@
 <!--    </section>
 </section>-->
 
-
+</div>
 <footer>
     <% include ./partial/footer.ejs%>
 </footer>

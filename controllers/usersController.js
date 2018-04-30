@@ -95,13 +95,11 @@ module.exports.landing = function (req, res) {
 };
 
 module.exports.login = function (req, res) {
-    const resolve = require('path').resolve;
-    res.sendFile(resolve('./views/login.html'));
+    res.render('login');
 };
 
 module.exports.create_account = function (req, res) {
-    const resolve = require('path').resolve;
-    res.sendFile(resolve('./views/create_account.html'));
+     res.render('create_account');
 };
 
 module.exports.home = function (req, res) {
@@ -299,4 +297,13 @@ module.exports.loadEditors = function (req, res) {
 
 module.exports.loadAbout = function (req, res) {
     res.render('about_page');
+};
+
+
+module.exports.editorApplication = function (req, res) {
+    res.render('editor_application');
+};
+
+module.exports.createArticle = function (req, res) {
+    res.render('create_article');
 };

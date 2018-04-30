@@ -1,0 +1,51 @@
+
+<!-- Application for becoming an editor -->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Editor Application!! </title>
+    <link href="/styles/style.css" type="text/css" rel="stylesheet">
+    <link href="/styles/pages.css" type="text/css" rel="stylesheet">
+    <link href="/styles/top.css" type = "text/css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class = "content"> <!-- Used to make footers sticky -->
+
+    <!--Site title-->
+    <% include ./partial/header.ejs%>
+    <% include ./partial/navbar.ejs%>
+
+    <!-- Maybe make this a sidebar on the left -->
+    <header>
+        <h1> Apply to be an editor!!</h1>
+    </header>
+    <h2> Are you Editor Material?</h2>
+    <p>What are we looking for?
+        <ol>
+        <li> thoughtful </li>
+        <li> experience....</li>
+        <li> something else </li>
+    </ol>
+    </p>
+
+<!-- Early Stages of a form for applying to be an editor -->
+<section id = "application">
+    <form action = "../home">
+        <h3> List Experience </h3>
+        <input type = "text" class = "editor_ap" placeholder = "i.e. Articles published, blog link"/>
+        <h3> Why you wish to be an editor? </h3>
+        <input type = "text" class = "editor_ap" placeholder = "i.e. What you would bring to the role?"/>
+        <button type = "submit" id = "submit"> Submit </button>
+    </form>
+</section>
+
+</div>
+<footer>
+    <% include ./partial/footer.ejs%>
+</footer>
+
+</body>
+</html>

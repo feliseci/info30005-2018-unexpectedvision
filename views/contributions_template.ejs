@@ -10,12 +10,15 @@
 </head>
 
 <body>
+
+<div class = "content"> <!-- Used to make footers sticky -->
+
 <!--Site title-->
 <% include ./partial/header.ejs%>
 <% include ./partial/navbar.ejs%>
 
 <header>
-    <h1><%= contribution.name %></h1>
+    <h1 id = "pageHeading"><%= contribution.name %></h1>
     <h2>Author: <%= contribution.creator %></h2>
 </header>
 
@@ -49,6 +52,7 @@
 
 </section>
 </section>
+</div>
 
 <footer>
     <% include ./partial/footer.ejs%>

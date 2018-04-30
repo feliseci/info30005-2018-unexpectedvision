@@ -9,13 +9,16 @@
 </head>
 
 <body>
+
+<div class = "content"> <!-- Used to make footers sticky -->
+
 <!--Site title-->
 <<!--Site title-->
 <% include ./partial/header.ejs%>
 <% include ./partial/navbar.ejs%>
 
 <header id = "event_header">
-    <h1> <%= opportunity.name %> </h1>
+    <h1 id = "pageHeading"> <%= opportunity.name %> </h1>
     <img src = "<%= opportunity.image %>" alt = "event banner">
 </header>
 
@@ -45,6 +48,7 @@
 
 
 </section>
+</div>
 
 <footer>
     <% include ./partial/footer.ejs %>

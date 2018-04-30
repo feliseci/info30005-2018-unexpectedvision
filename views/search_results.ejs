@@ -9,11 +9,14 @@
 </head>
 
 <body>
+
+<div class = "content"> <!-- Used to make footers sticky -->
+
 <!--Site title-->
 <% include ./partial/header.ejs%>
 <% include ./partial/navbar.ejs%>
 
-<h1> Search Results</h1>
+<h1 id = "pageHeading"> Search Results</h1>
 
 <section id = "sidebar_page">
 <!-- Advanced search options -->
@@ -55,7 +58,7 @@
 
 </section>
 </section>
-
+</div>
 <footer>
     <% include ./partial/footer.ejs%>
 </footer>

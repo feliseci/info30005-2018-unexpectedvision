@@ -172,8 +172,6 @@ module.exports.random = function (req,res) {
 /* Editor Page - Jenny testing how editor_template works */
 module.exports.editor = function(req,res){
     const editor = editors[req.params.id];
-
-    console.log("EDITOR NAME: " + editor.name);
     res.render('editor_template', {editor: editor})
 };
 
@@ -186,7 +184,7 @@ module.exports.loadOpportunities = function (req, res) {
     res.render('opportunities_landing', {results: opportunities});
 };
 
-module.exports.loadContributions = function (req, res) {
+module.exports.loadArticles = function (req, res) {
     let results = [];
     for(i = 0; i < issues.length; i++ ) {
         if("contributor".localeCompare(issues[i].type) == 0) {
@@ -197,17 +195,7 @@ module.exports.loadContributions = function (req, res) {
     // the same this should just lead to the search with only editor articles selected.
     // So leave the above but load search_results instead res.render('search_results', {results: results});
 
-    res.render('contributions_landing', {results: results});
-};
-
-module.exports.loadEditors = function (req, res) {
-    let results = [];
-    for(i = 0; i < issues.length; i++ ) {
-        if("editor".localeCompare(issues[i].type) == 0) {
-            results.push(issues[i]);
-        }
-    }
-    res.render('editors_landing', {results: results});
+    res.render('articles_landing', {results: results});
 };
 
 module.exports.loadAbout = function (req, res) {

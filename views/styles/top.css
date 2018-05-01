@@ -1,5 +1,10 @@
 /* Start of Nav Bar CSS */
 
+#top_navigation{
+    background-color: #00CC8C;
+    padding-left:100px;
+}
+
 #top_navigation ul{
     list-style-type: none;
     display: inline-block;
@@ -8,7 +13,6 @@
     /*margin-left:10%;*/
     padding: 10px;
     overflow: hidden;
-    background-color: #00CC8C;
 }
 
 #top_navigation li {
@@ -19,8 +23,12 @@
     display: block;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding: 2px 8px;
     text-decoration: none;
+}
+
+#right_buttons{
+    float:right;
 }
 
 /* Change the link color to #111 (black) on hover */
@@ -39,7 +47,7 @@
     margin-left: 50%;
 }
 
-/* Not sticky when the page requires scrolling */
+/* Sticky Footer */
 .footer {
     background-color: #D4D4D4;
     flex-shrink: 0;
@@ -48,18 +56,18 @@
     padding: 5px;
 }
 
+/* Banner Stuff*/
 .banner{
     width:100%;
-    height: 150px;
+    height: 70px;
     margin: 0 auto;
     background: url('../images/landing.jpg') center;
     background-size: cover;
     overflow: hidden;
 }
 
-.slogan{
-    color: white;
-    font-size: 120%;
+.banner_text h1{
+    font-size: 200%;
 }
 #container {
     width: 100%;
@@ -72,8 +80,8 @@ div{
 
 /* Positions triangle to be inline with text */
 .logo{
-    top:25%;
-    right:180px;
-    height:0.7em;
+    top:8%;
+    right:115px;
+    height:0.8em;
 
 }

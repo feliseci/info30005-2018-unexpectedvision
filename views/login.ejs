@@ -9,6 +9,7 @@
 </head>
 
 <body>
+<script src = "./javascript/log_in.js"></script>
 
 <div class = "content"> <!-- Used to make footers sticky -->
 
@@ -17,7 +18,7 @@
 <% include ./partial/navbar.ejs%>
 
     <header class="centered_header">
-        <h1">Login</h1>
+        <h1>Login</h1>
     </header>
 
 
@@ -27,7 +28,7 @@
             <input type="text" class="account" placeholder="Username"/>
             <input type="text" class="account" placeholder="Password"/>
         </form>
-        <button type="submit" id="submit">Submit</button>
+        <button type="submit" id="login_submit">Submit</button>
 
         <!--TODO: Redirect to Create Account button-->
         <a href = "../create-account"> <button type = "submit" id = "submit">Create Account</button></a>

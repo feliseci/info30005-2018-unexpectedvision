@@ -3,14 +3,14 @@
 #top_navigation{
     background-color: #00CC8C;
     padding-left:100px;
+    padding-top: 0.5%;
+    padding-bottom:0.5%;
 }
 
 #top_navigation ul{
     list-style-type: none;
-    display: inline-block;
     margin: 0;
-    width: 100%;
-    padding: 7px;
+    padding: 0;
     overflow: hidden;
 }
 
@@ -19,7 +19,7 @@
 }
 
 #top_navigation li a {
-    display: block;
+    display: inline-block;
     color: white;
     text-align: center;
     padding: 1px 8px;
@@ -27,17 +27,22 @@
     font-size: 80%;
 }
 
-#right_buttons{
-    float:right;
-}
-
 /* Change the link color to #111 (black) on hover */
 #top_navigation li a:hover {
     background-color: #267F63;
 }
 
+#right_buttons{
+    float:right;
+}
+
+
+
 #login button{
 }
+
+
+
 
 /* End of Nav Bar */
 
@@ -52,8 +57,13 @@
     background-color: #D4D4D4;
     flex-shrink: 0;
     color: black;
-    text-align: center;
-    padding: 5px;
+    padding: 1.5px;
+    font-size: 60%;
+}
+
+/* Used for sticky footer */
+.content {
+    flex:1 0 auto;
 }
 
 /* Banner Stuff*/

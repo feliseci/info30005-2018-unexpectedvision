@@ -18,12 +18,12 @@ module.exports.create_account = function (req, res) {
 
 module.exports.home = function (req, res) {
     // Pass the issues to be displayed on the home page & load.
-    let popular_issue = issues[0];
     let recent_issue = issues[0];
+    let popular_issue = issues[0];
     let popular_index = 0;
 
     // Get most popular issue
-    for(i = 0; i < issues.length; i++) {
+    for(let i = 0; i < issues.length; i++) {
         if (issues[i].popularity > popular_issue.popularity) {
             popular_issue = issues[i];
             popular_index = i;
@@ -31,7 +31,7 @@ module.exports.home = function (req, res) {
     }
 
     // Get most recent issue
-    for(i = 0; i < issues.length; i++) {
+    for(let i = 0; i < issues.length; i++) {
         if (issues[i].date > recent_issue.date) {
             // If it's the same as the most popular issue, ignore
             // NOTE: Only works if issues can't have the same name; compare URL & type instead
@@ -40,6 +40,16 @@ module.exports.home = function (req, res) {
                 recent_issue = issues[i];
             }
         }
+
+        // Example of how to use attributes in javascript
+        /*let someobj = {
+            big: 10,
+            small: 2,
+            add: function() {
+                return this.big + this.small;
+            }
+        };
+        console.log(someobj.add());*/
     }
 
     res.render('home_page', {popular_issue: popular_issue, recent_issue: recent_issue});

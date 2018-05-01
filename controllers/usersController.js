@@ -5,8 +5,7 @@ const editors = require('../models/dummyEditors');
 const opportunities = require('../models/dummyOpportunities');
 
 module.exports.landing = function (req, res) {
-    const resolve = require('path').resolve;
-    res.sendFile(resolve('./views/landing_page.html'));
+    res.render('index');
 };
 
 module.exports.login = function (req, res) {

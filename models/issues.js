@@ -15,7 +15,6 @@ const mongoose = require('mongoose');
     }
 );*/
 
-
 const issueSchema = mongoose.Schema(
     {
         "name": String,
@@ -29,14 +28,15 @@ const issueSchema = mongoose.Schema(
         "hl_source": [String],
         "r_source": [String],
         "o_source": [String],
-        "contributions": Array
+        "contributions": Array,
+        "url": Number
 /*        "contributions": {type: [contributionSchema], default: []} // TODO */
         /* "url": Number*/
+        // Original format: url: "0",  // URL constructed from (site)/(type)/url (url = id)
     }
 );
 
 // Note: Required attributes not specified; they're checked for at the text entry-level.
 
-
-mongoose.model('issues', issueSchema);
+/*module.exports = */mongoose.model('issues', issueSchema);
 /*mongoose.model('contributions', contributionSchema);*/

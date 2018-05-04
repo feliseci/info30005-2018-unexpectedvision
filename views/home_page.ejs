@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title> MultiView - Home </title>
-    <link href="styles/style.css" type="text/css" rel="stylesheet">
-    <link href="styles/pages.css" type="text/css" rel="stylesheet">
-    <link href="styles/top.css" type = "text/css" rel="stylesheet">
+    <link href="/styles/style.css" type="text/css" rel="stylesheet">
+    <link href="/styles/pages.css" type="text/css" rel="stylesheet">
+    <link href="/styles/top.css" type = "text/css" rel="stylesheet">
 </head>
 
 <body>
@@ -39,7 +39,7 @@
         <figure>
             <figcaption>Recent</figcaption>
 
-            <a href="<%="../" + recent_issue.type + "/" + recent_issue.url%>">
+            <a href="<%="../issue/" + recent_issue.url%>">
 
                 <section class = "image_container">
                     <img src = "<%= recent_issue.image%>" alt = "Recent issue - <%= recent_issue.name%>">
@@ -58,7 +58,7 @@
         <figure>
             <figcaption>Popular</figcaption>
 
-            <a href="<%="../" + popular_issue.type + "/" + popular_issue.url%>">
+            <a href="<%="../issue/" + popular_issue.url%>">
 
                 <section class = "image_container">
                     <img src = "<%= popular_issue.image%>" alt = "Popular issue - <%= popular_issue.name%>">

@@ -14,7 +14,8 @@
     "express": "^4.16.3",
     "faker": "^4.1.0",
     "mongoose": "^5.0.16",
-    "npm": "^5.8.0"
+    "npm": "^5.8.0",
+    "passport": "^0.4.0"
   },
   "devDependencies": {},
   "repository": {

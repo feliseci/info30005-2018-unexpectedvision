@@ -1,186 +1,102 @@
-//Only the controller should have access to the data in the models.
-const issues = require('../models/dummyIssues');
-const contributions = require('../models/dummyContribution');
-const editors = require('../models/dummyEditors');
-const opportunities = require('../models/dummyOpportunities');
-
+/* Imports */
+// Requirements
 const mongoose = require('mongoose');
+
+// Schema
 const Issue = mongoose.model('issues');
 const User = mongoose.model('users');
 const Opportunity = mongoose.model('opportunities');
-/*const Contribution = mongoose.model('contribution');*/
 
-// TODO testing DB
-module.exports.testDB = function (req, res) {
-    res.render('editor_form', {});
-};
-module.exports.new_issue = function (req, res) {
-    let newIssue = new Issue({
-        "name": req.query.name,
-        "author": req.query.author,
-        "description": req.query.description,
-        "image": req.query.image,
-        "hl_source": req.query.hl_source,
-        "r_source": req.query.r_source,
-        "o_source": req.query.o_source
-    });
-    newIssue.save(function(err,newIssue) {
-        if(!err) {
-            res.send(newIssue);
-            console.log("New issue sent.");
-        } else{
-            res.sendStatus(400);
-        }
-    });
-};
-module.exports.new_contribution = function (req, res) {
-
-    // Define the new contribution
-    let newContribution = {
-        "author": req.query.author,
-        "comment": req.query.comment,
-        "article_url": req.query.article_url
-    };
-
-    // Update the issue with a new contribution
-    // TODO fully overwrites contributions https://stackoverflow.com/questions/33049707/push-items-into-mongo-array-via-mongoose
-    let collection = mongoose.connection.db.collection('issues');
-    collection.update({"name": req.query.name}, {$set: {"contributions": [newContribution]}});
-
-    res.send(newContribution);
-
-};
-module.exports.new_user = function (req, res) {
-    let newUser = new User({
-        "username": req.query.username,
-        "display_name": req.query.username, // Default to == username
-        "email": req.query.email,
-        "password": req.query.password // Security
-    });
-    newUser.save(function(err,newUser) {
-        if(!err) {
-            res.send(newUser);
-            console.log("New user sent.");
-        } else{
-            res.sendStatus(400);
-        }
-    });
-};
-module.exports.testDBopp = function (req, res) {
-    res.render('opportunities_form', {});
-};
-module.exports.new_opportunity = function (req, res) {
-    let newOpportunity = new Opportunity({
-        "name": req.query.name,
-        "organiser": req.query.organiser,
-        "description": req.query.description,
-        "image": req.query.image,
-        "date_event": req.query.date,
-        "location": req.query.location,
-        "further_info": req.query.further_info
-    });
-    newOpportunity.save(function(err,newOpportunity) {
-        if(!err) {
-            res.send(newOpportunity);
-            console.log("New opportunity sent.");
-        } else{
-            res.sendStatus(400);
-        }
-    });
-};
-
-module.exports.landing = function (req, res) {
-    const resolve = require('path').resolve;
-    res.sendFile(resolve('./views/landing_page.html'));
-};
-
-module.exports.login = function (req, res) {
-    res.render('login');
-};
-
-module.exports.create_account = function (req, res) {
-     res.render('create_account');
-};
-
+/*Search-related methods*/
 module.exports.home = function (req, res) {
-    // Pass the issues to be displayed on the home page & load.
-    let popular_issue = issues[0];
-    let recent_issue = issues[0];
-    let popular_index = 0;
-
-    // Get most popular issue
-    for(i = 0; i < issues.length; i++) {
-        if (issues[i].popularity > popular_issue.popularity) {
-            popular_issue = issues[i];
-            popular_index = i;
+    Issue.find({}).limit(1).sort({"popularity": -1}).exec(function(err, popular_issue) {
+        if(!err) {
+            Issue.find({}).limit(2).sort({"date_update": -1}).exec(function(err, recent_issue) {
+                if(err) {
+                    res.sendStatus(409);
+                    return;
+                }
+                if(recent_issue[0]._id === popular_issue[0]._id) {
+                    // Technically unnecessary (statistically improbable that
+                    // two issues will be updated at exact same time)
+                    res.render('home_page',
+                        {popular_issue: popular_issue[0], recent_issue: recent_issue[1]});
+                    return;
+                }
+                res.render('home_page',
+                    {popular_issue: popular_issue[0], recent_issue: recent_issue[0]});
+            });
         }
-    }
-
-    // Get most recent issue
-    for(i = 0; i < issues.length; i++) {
-        if (issues[i].date > recent_issue.date) {
-            // If it's the same as the most popular issue, ignore
-            // NOTE: Only works if issues can't have the same name; compare URL & type instead
-
-            if(i !== popular_index) {
-                recent_issue = issues[i];
-            }
+        else {
+            res.sendStatus(409);
         }
-    }
+    });
 
-    res.render('home_page', {popular_issue: popular_issue, recent_issue: recent_issue});
+    // TODO populate with more issues
 };
+module.exports.search = function (req, res) {
 
-module.exports.search = function (req,res) {
-    // req.query.var accesses the "stuff" in /URLend?var=stuff
-    // See http://expressjs.com/en/api.html#req.query
-    const query = req.query.query;
+    // Fetch the whole issues collection
+    Issue.find({}, function(err, issues) {
+        if(!err) {
+            let results = [];
 
-    // If no query was entered, display all objects.
-    if(query.isEmptyObject) {
-        res.render('search_results', {results: issues});
-        return;
-    }
+            // Iterate over the issues documents
+            for(i = 0; i < issues.length; i++) {
 
-    // TODO change to test: syntax regexp.test(string to be searched in); returns true/false
-    // unless want to highlight the searched term https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test
+                // Check each for the search query (in relevant fields)
+                if(check(issues[i], req.query.query)) {
 
-    const regexp = new RegExp(query, "i");
-
-    let results = [];
-
-    /*Search issues for the term. */
-    for(i = 0; i < issues.length; i++) {
-        // Check presence of the query in name, description & category
-        const in_name = issues[i].name.search(regexp); // /query/i? TODO
-        const in_description = issues[i].description.search(regexp);
-        let in_category = -1;
-        for(j = 0; j < issues[i].categories.length; j++) {
-            if(issues[i].categories[j].search(regexp) > -1) {
-                in_category = 0;
+                    // Add only required fields to the search results
+                    results.push({
+                        name: issues[i].name,
+                        categories: issues[i].categories,
+                        description: issues[i].description,
+                        url: issues[i].url
+                    });
+                }
             }
+            sort(results, req.query.sort); // Sort issues according to entered method
+            res.render('search_results', {results: results});
+        } else {
+            res.sendStatus(409);
         }
+    });
+};
+function check(issue, query) {
+    // Check presence of the query in name, description & category
+    const regexp = new RegExp(query, "i"); // Case-insensitive search
 
-        // Add the issue to the search results if the query was in one of the fields
-        if((in_name + in_description + in_category) > -3) {
-            results.push(issues[i]);
+    if(query === undefined) { return; } // No query was entered, list all results
+
+    const in_name = issue.name.search(regexp);
+    const in_description = issue.description.search(regexp);
+    let in_category = -1;
+    for(j = 0; j < issue.categories.length; j++) {
+        if(issue.categories[j].search(regexp) > -1) {
+            in_category = 0;
+
         }
-
     }
 
-    /* Sort the array if a sorting method was entered. Default sorting TBD at back-end. */
-    const sort_type = req.query.sort;
-    console.log("Sort type: " + sort_type);
+    // Add the issue to the search results if the query was in one of the fields
+    return((in_name + in_description + in_category) > -3);
+}
+function sort(issues, type) {
+    // TODO, could separate into further methods
+    if(type === undefined) { return; } // No sort was entered, use default sorting
+    console.log("Sort type: " + type);
+    return issues;
 
-    // TODO
     /* Do within search page - i.e. just reorders everything?
      * This only works if you can reload the page while keeping the original search term
      * Could pass the search term as a parameter - so can access it in the search results
      * There may be some other way to access it without doing this using JS -
      * if not only rewriting parts of the URL, then just accessing the URL
      * Alternatively having another url path /search?=.../sort/popularity ... ugly*/
-    // Popularity descending //TODO assumes popularity ordered by most points = more popular
-    if(sort_type.localeCompare("popularity") == 0) {
+
+    // FUNCTIONAL: Popularity descending
+    /*if(type.localeCompare("popularity") === 0) {
         // Descending popularity sort
         results.sort(function(a, b) {
 
@@ -189,13 +105,13 @@ module.exports.search = function (req,res) {
             return 0;
 
         });
-    }
+    }*/
 
     /*
 
     if(!(sort_type === undefined || sort_type.isEmptyObject)) {
         // Ascending alphabetical sort
-        if(sort_type.localeCompare("alpha") == 0) {
+        if(sort_type.localeCompare("alpha") === 0) {
             results.sort(function(a, b) {
                 const name_a = a.name.toLowerCase();
                 const name_b = b.name.toLowerCase();
@@ -205,7 +121,7 @@ module.exports.search = function (req,res) {
                 return 0;
             });
         }
-        else if(sort_type.localeCompare("popularity") == 0) {
+        else if(sort_type.localeCompare("popularity") === 0) {
             // Descending date sort (most recent first)
             results.sort(function(a, b) {
                 if (a.popularity > b.popularity) { return 1; }
@@ -214,7 +130,7 @@ module.exports.search = function (req,res) {
             }); // Replace with implementation appropriate to data format
 
         }
-        else if(sort_type.localeCompare("date") == 0) {
+        else if(sort_type.localeCompare("date") === 0) {
             // Descending popularity sort
             results.sort(function(a, b) {
 
@@ -231,79 +147,271 @@ module.exports.search = function (req,res) {
         }
 
     }*/
-
-    res.render('search_results', {results: results});
-};
-
-module.exports.contribution = function (req,res) {
-    const contribution = contributions[req.params.id];
-    res.render('contributions_template', {contribution: contribution});
-};
-
+}
 module.exports.random = function (req,res) {
-    // Generate a random index in the issues array
-    let random_id = Math.floor(Math.random() * (issues.length));
+    Issue.count({}, function(err, count){
 
-    // Check the type, fetch the issue contents depending on the type.
-    if(issues[random_id].type.localeCompare("editor")) {
-        res.render('editor_template', {editor: editors[issues[random_id].url]});
-    }
-    else {
-        res.render('contributions_template', {contribution: contributions[issues[random_id].url]});
-    }
+        // Generate a random index in the issues array
+        if(err) {
+            res.sendStatus(409);
+            return;
+        }
 
+        let random_id = Math.floor(Math.random() * (count));
+
+        // Fetch the issue associated with that id
+        Issue.findOne({url: random_id}, function(err, issue) {
+            if(err) {
+                res.sendStatus(400);
+                return;
+            }
+
+            res.render('editor_template', {editor: issue});
+        });
+    });
+
+    //TODO redirect to /issues/...
 };
 
-/* Editor Page - Jenny testing how editor_template works */
-module.exports.editor = function(req,res){
-    const editor = editors[req.params.id];
+/*Content page-related methods*/
+module.exports.issue = function(req,res){
+    Issue.findOne({url: req.params.id}, function(err, issue) {
+        if(err) {
+            res.sendStatus(409);
+            return;
+        }
+        // Issue ID invalid; no results returned by findOne
+        if(issue === null) {
+            // Note: find returns [] if empty, findOne returns null
+            res.sendStatus(404);
+            return;
+        }
 
-    console.log("EDITOR NAME: " + editor.name);
-    res.render('editor_template', {editor: editor})
+        // Issue with the given id successfully found
+        res.render('editor_template', {editor: issue});
+
+    });
 };
-
 module.exports.opportunity = function (req, res) {
-    const opportunity = opportunities[req.params.id];
-    res.render('opportunity_template', {opportunity: opportunity})
-};
+    Opportunity.findOne({url: req.params.id}, function(err, opportunity) {
+        if(err) {
+            res.sendStatus(409);
+            return;
+        }
+        // Issue ID invalid; no results returned by findOne
+        if(opportunity === null) {
+            // Note: find returns [] if empty, findOne returns null
+            res.sendStatus(404);
+            return;
+        }
 
+        // Issue with the given id successfully found
+        res.render('opportunity_template', {opportunity: opportunity});
+
+    });
+
+};
 module.exports.loadOpportunities = function (req, res) {
-    res.render('opportunities_landing', {results: opportunities});
-};
+    // Fetch the whole opportunities collection
+    Opportunity.find({}, function(err, opportunities) {
+        if(!err) {
+            let results = [];
 
-module.exports.loadContributions = function (req, res) {
-    let results = [];
-    for(i = 0; i < issues.length; i++ ) {
-        if("contributor".localeCompare(issues[i].type) == 0) {
-            results.push(issues[i]);
+            // Iterate over the issues documents
+            for(i = 0; i < opportunities.length; i++) {
+
+                // Add only required fields to the search results
+                results.push({
+                    name: opportunities[i].name,
+                    categories: opportunities[i].categories,
+                    description: opportunities[i].description,
+                    url: opportunities[i].url
+                });
+            }
+
+            sort(results, req.query.sort); // Sort issues according to entered method
+            res.render('opportunities_landing', {results: results});
+
+        } else {
+            res.sendStatus(409);
         }
-    }
-    // Technically, if the display methods are
-    // the same this should just lead to the search with only editor articles selected.
-    // So leave the above but load search_results instead res.render('search_results', {results: results});
+    });
 
-    res.render('contributions_landing', {results: results});
 };
 
-module.exports.loadEditors = function (req, res) {
-    let results = [];
-    for(i = 0; i < issues.length; i++ ) {
-        if("editor".localeCompare(issues[i].type) == 0) {
-            results.push(issues[i]);
+/*Database addition-related pages*/
+module.exports.create_account = function (req, res) {
+    res.render('create_account');
+};
+module.exports.new_user = function (req, res) {
+    let newUser = new User({
+        "username": req.query.username,
+        "display_name": req.query.username, // Default to == username
+        "email": req.query.email,
+        "password": req.query.password // Security
+    });
+    newUser.save(function(err,newUser) {
+        if(!err) {
+            res.send(newUser); // TODO replace with appropriate render
+            console.log("New user sent.");
+        } else{
+            res.sendStatus(400);
         }
-    }
-    res.render('editors_landing', {results: results});
+    });
 };
+module.exports.createArticle = function (req, res) {
+    res.render('create_article');
+};
+module.exports.new_issue = function (req, res) {
+    let newIssue = new Issue({
+        "name": req.query.name,
+        "author": req.query.author,
+        "description": req.query.description,
+        "image": req.query.image,
+        "hl_source": req.query.hl_source,
+        "r_source": req.query.r_source,
+        "o_source": req.query.o_source
+    });
+    newIssue.save(function(err,newIssue) {
+        if(!err) {
+            res.send(newIssue); // TODO replace with appropriate render
+            console.log("New issue sent.");
+        } else{
+            res.sendStatus(400);
+        }
+    });
+};
+module.exports.new_contribution = function (req, res) {
 
+    // Define the new contribution
+    let newContribution = {
+        "author": req.query.author,
+        "comment": req.query.comment,
+        "article_url": req.query.article_url
+    };
+
+    // Update the issue with a new contribution
+    Issue.findOneAndUpdate({name: req.query.name}, {$push: {contributions: newContribution}}, function(err) {
+        if (err) { res.sendStatus(409); return; }
+        console.log("New contribution sent.");
+    });
+
+    res.send(newContribution); // TODO replace with appropriate render
+
+};
+module.exports.createOpportunity = function (req, res) {
+    res.render('opportunities_form');
+};
+module.exports.new_opportunity = function (req, res) {
+    let newOpportunity = new Opportunity({
+        "name": req.query.name,
+        "organiser": req.query.organiser,
+        "description": req.query.description,
+        "image": req.query.image,
+        "date_event": req.query.date,
+        "location": req.query.location,
+        "further_info": req.query.further_info
+    });
+    newOpportunity.save(function(err,newOpportunity) {
+        if(!err) {
+            res.send(newOpportunity); // TODO replace with appropriate render
+            console.log("New opportunity sent.");
+        } else{
+            res.sendStatus(400);
+        }
+    });
+};
+module.exports.editorApplication = function (req, res) {
+    res.render('editor_application');
+}; // TODO
+
+/*Landing & simple rendering methods. */
+module.exports.landing = function (req, res) {
+    const resolve = require('path').resolve;
+    res.sendFile(resolve('./views/landing_page.html'));
+};
+module.exports.login = function (req, res) {
+    res.render('login');
+};
 module.exports.loadAbout = function (req, res) {
     res.render('about_page');
 };
 
+/* Test functions */
+/* Used to populate DB in case of reset. Note documents should be deleted manually. */
+module.exports.resetDB = function (req, res) {
+    // Please delete all documents in the collection manually in mLab.
+    resetIssues();
+    resetOpportunities();
+    resetUsers();
 
-module.exports.editorApplication = function (req, res) {
-    res.render('editor_application');
+    res.send("Database reset!");
+
+};
+resetIssues = function (req, res) {
+    const dummyIssues = require('../models/dummy/dummyIssues');
+    // Please delete all documents in the collection manually in mLab.
+
+    // Add issues from dummyIssues.js
+    for(i = 0; i < dummyIssues.length; i++) {
+        let newIssue = new Issue({
+            "name": dummyIssues[i].name,
+            "author": dummyIssues[i].author,
+            "description": dummyIssues[i].description,
+            "image": dummyIssues[i].image,
+            "hl_source": dummyIssues[i].hl_source,
+            "r_source": dummyIssues[i].r_source,
+            "o_source": dummyIssues[i].o_source,
+            "date_post": dummyIssues[i].date_post,
+            "date_update": dummyIssues[i].date_update,
+            "popularity": dummyIssues[i].popularity,
+            "categories": dummyIssues[i].categories,
+            "contributions": dummyIssues[i].contributions,
+            "url": dummyIssues[i].url
+        });
+        newIssue.save(function(err) {
+            if(!err) {
+                console.log("New issue sent.");
+            } else{
+                res.sendStatus(400);
+            }
+        });
+    }
+
+    console.log("Issues reset");
+};
+resetOpportunities = function (req, res) {
+    const dummyOpportunities = require('../models/dummy/dummyOpportunities');
+    // Please delete all documents in the collection manually in mLab.
+
+    // Add issues from dummyOpportunities.js
+    for(i = 0; i < dummyOpportunities.length; i++) {
+        let newOpportunity = new Opportunity({
+            "name": dummyOpportunities[i].name,
+            "organiser": dummyOpportunities[i].author,
+            "description": dummyOpportunities[i].description,
+            "image": dummyOpportunities[i].image,
+            "date_post": dummyOpportunities[i].date_post,
+            "date_event": dummyOpportunities[i].date_event,
+            "popularity": dummyOpportunities[i].popularity,
+            "categories": dummyOpportunities[i].categories,
+            "url": dummyOpportunities[i].url,
+            "location": dummyOpportunities[i].location,
+            "further_info": dummyOpportunities[i].further_info
+        });
+        newOpportunity.save(function(err) {
+            if(!err) {
+                console.log("New opportunity sent.");
+            } else{
+                res.sendStatus(400);
+            }
+        });
+    }
+
+    console.log("Opportunities reset");
+};
+resetUsers = function (req, res) {
 };
 
-module.exports.createArticle = function (req, res) {
-    res.render('create_article');
-};
+
+

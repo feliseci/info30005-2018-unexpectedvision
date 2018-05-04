@@ -7,7 +7,8 @@ const userSchema = mongoose.Schema(
         "username": String,
         "display_name": String,
         "profile_description": {type: String, default: ""},
-        "email": String
+        "email": String,
+        "is_editor": {type: Boolean, default: false}
         /* "posts": [Number],
         "followed_issues": [String],
         "followed_categories": [String],

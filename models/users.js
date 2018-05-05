@@ -2,9 +2,11 @@
 *             http://mongoosejs.com/docs/guide.html*/
 const mongoose = require('mongoose');
 
+
 const userSchema = mongoose.Schema(
     {
         "username": String,
+        "password": String,
         "display_name": String,
         "profile_description": {type: String, default: ""},
         "email": String,

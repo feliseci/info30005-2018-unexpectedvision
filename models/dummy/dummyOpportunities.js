@@ -1,9 +1,5 @@
-// Note: This is not a working, or well-designed database.
-// It's simply designed to spit out the data required for the front-end.
-
-
-
-const opportunities = [
+// Clean dummy data to repopulate the DB with after testing.
+const dummyOpportunities = [
     {
        name: "Volunteer with LandCare Australia",
        organiser: "Helen1234",
@@ -13,7 +9,7 @@ const opportunities = [
        location: "Holmesglen",
        description: "hello world",
        image: "https://source.unsplash.com/p5EiqkBYIEE/800x600",
-       url: 0,
+       /*url: 0,*/
        further_info: "http://google.com",
        popularity: 9
     },
@@ -26,10 +22,10 @@ const opportunities = [
         location: "Cabin in the Woods",
         description: "run run run",
         image: "https://source.unsplash.com/p5EiqkBYIEE/800x600",
-        url: 1,
+        /*url: 1,*/
         further_info: "http://youtube.com",
         popularity: 3
     }
 ];
 
-module.exports = opportunities;
+module.exports = dummyOpportunities;

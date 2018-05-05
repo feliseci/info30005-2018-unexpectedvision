@@ -1,8 +1,8 @@
-
+// Clean dummy data to repopulate the DB with after testing.
 const dummyIssues = [
     {
         name: "Facebook data leak",
-        author: "Brockhampton", // TODO link with actual users
+        author: "Brockhampton",
         date_post: new Date(2018,5,3,13),
         date_update: new Date(2018,5,3,13),
         popularity: 6,
@@ -19,8 +19,8 @@ const dummyIssues = [
                 "comment": "I like this article",
                 "article_url": "https://www.theage.com.au/sport/afl/afl-to-keep-close-watch-on-dip-in-scoring-20180503-p4zd9g.html"
             }
-        ],
-        url: 0
+        ]/*,
+        url: 0*/
     },
     {
         name: "Horse racing",
@@ -63,8 +63,8 @@ const dummyIssues = [
                 popularity: 5,
                 description: "I like this article.",
                 article_url: "",
-            }],
-        url: 1
+            }]/*,
+        url: 1*/
     },
     {
         name: "Global warming",
@@ -79,8 +79,8 @@ const dummyIssues = [
         o_source: ["https://www.theage.com.au/national/victoria/health-department-asks-robert-doyle-to-attend-interview-or-have-health-assessment-20180503-p4zd7g.html"],
         image: "https://source.unsplash.com/random/800x600",
         description: "Global warming!",
-        contributions: [],
-        url: 2
+        contributions: []/*,
+        url: 2*/
     },
     {
         name: "Intervention in the Middle East",
@@ -95,8 +95,8 @@ const dummyIssues = [
         date_post: Date.now(),
         date_update: Date.now(),
         contributions: [],
-        image: "",
-        url: 3,
+        image: ""/*,
+        url: 3,*/
     },
     {
         name: "Trump in power",
@@ -111,8 +111,8 @@ const dummyIssues = [
         date_post: Date.now(),
         date_update: Date.now(),
         contributions: [],
-        image: "",
-        url: 4,
+        image: ""/*,
+        url: 4,*/
     },
     {
         name: "Hello World",
@@ -127,8 +127,8 @@ const dummyIssues = [
         date_post: Date.now(),
         date_update: Date.now(),
         contributions: [],
-        image: "",
-        url: 5,
+        image: ""/*,
+        url: 5,*/
     }
 
 

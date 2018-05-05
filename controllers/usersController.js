@@ -9,22 +9,51 @@ const Opportunity = mongoose.model('opportunities');
 
 /*Search-related methods*/
 module.exports.home = function (req, res) {
+
+    // Find the most popular issue
     Issue.find({}).limit(1).sort({"popularity": -1}).exec(function(err, popular_issue) {
         if(!err) {
+
+            let popular = {
+                name: popular_issue[0].name,
+                categories: popular_issue[0].categories,
+                description: popular_issue[0].description,
+                url: popular_issue[0]._id,
+                image: popular_issue[0].image
+            };
+
+            // Find the most recently updated issue
             Issue.find({}).limit(2).sort({"date_update": -1}).exec(function(err, recent_issue) {
                 if(err) {
                     res.sendStatus(409);
                     return;
                 }
+                // Check recent & popular issue are not the same
                 if(recent_issue[0]._id === popular_issue[0]._id) {
-                    // Technically unnecessary (statistically improbable that
-                    // two issues will be updated at exact same time)
+                    let recent = {
+                        name: recent_issue[1].name,
+                        categories: recent_issue[1].categories,
+                        description: recent_issue[1].description,
+                        url: recent_issue[1]._id,
+                        image: recent_issue[1].image
+                    };
+
                     res.render('home_page',
-                        {popular_issue: popular_issue[0], recent_issue: recent_issue[1]});
+                        {popular_issue: popular, recent_issue: recent});
                     return;
                 }
+
+                let recent = {
+                    name: recent_issue[0].name,
+                    categories: recent_issue[0].categories,
+                    description: recent_issue[0].description,
+                    url: recent_issue[0]._id,
+                    image: recent_issue[0].image
+                };
+
+                // Render home page with recent & popular issue
                 res.render('home_page',
-                    {popular_issue: popular_issue[0], recent_issue: recent_issue[0]});
+                    {popular_issue: popular, recent_issue: recent});
             });
         }
         else {
@@ -41,10 +70,10 @@ module.exports.search = function (req, res) {
         if(!err) {
             let results = [];
 
-            // Iterate over the issues documents
+            // Iterate over the documents
             for(i = 0; i < issues.length; i++) {
 
-                // Check each for the search query (in relevant fields)
+                // Check each relevant field for the search query
                 if(check(issues[i], req.query.query)) {
 
                     // Add only required fields to the search results
@@ -52,23 +81,25 @@ module.exports.search = function (req, res) {
                         name: issues[i].name,
                         categories: issues[i].categories,
                         description: issues[i].description,
-                        url: issues[i].url
+                        url: issues[i]._id
                     });
                 }
             }
+
             sort(results, req.query.sort); // Sort issues according to entered method
-            res.render('search_results', {results: results});
+            res.render('search_results', {results: results}); // Render the results
+
         } else {
             res.sendStatus(409);
         }
     });
 };
 function check(issue, query) {
-    // Check presence of the query in name, description & category
     const regexp = new RegExp(query, "i"); // Case-insensitive search
 
     if(query === undefined) { return; } // No query was entered, list all results
 
+    // Check presence of the query in name, description & category
     const in_name = issue.name.search(regexp);
     const in_description = issue.description.search(regexp);
     let in_category = -1;
@@ -79,7 +110,7 @@ function check(issue, query) {
         }
     }
 
-    // Add the issue to the search results if the query was in one of the fields
+    // Add the issue to the search results if the query was in at least one of the fields
     return((in_name + in_description + in_category) > -3);
 }
 function sort(issues, type) {
@@ -149,40 +180,46 @@ function sort(issues, type) {
     }*/
 }
 module.exports.random = function (req,res) {
+    // Get the number of documents in the issues collection
     Issue.count({}, function(err, count){
 
-        // Generate a random index in the issues array
         if(err) {
             res.sendStatus(409);
             return;
         }
 
+        // Generate a random index in the issues array
         let random_id = Math.floor(Math.random() * (count));
 
         // Fetch the issue associated with that id
-        Issue.findOne({url: random_id}, function(err, issue) {
+        Issue.findOne({_id: random_id}, function(err, issue) {
             if(err) {
                 res.sendStatus(400);
                 return;
             }
 
+            // Render the issue as normal
             res.render('editor_template', {editor: issue});
         });
     });
 
     //TODO redirect to /issues/...
+    //TODO if an issue is deleted, not all indeces in the range of the length will be valid
 };
 
 /*Content page-related methods*/
 module.exports.issue = function(req,res){
-    Issue.findOne({url: req.params.id}, function(err, issue) {
+
+    // Fetch the issue with the given URL/id
+    Issue.findOne({_id: req.params.id}, function(err, issue) {
         if(err) {
             res.sendStatus(409);
             return;
         }
+
         // Issue ID invalid; no results returned by findOne
+        // Note: find returns [] if empty, findOne returns null
         if(issue === null) {
-            // Note: find returns [] if empty, findOne returns null
             res.sendStatus(404);
             return;
         }
@@ -193,14 +230,16 @@ module.exports.issue = function(req,res){
     });
 };
 module.exports.opportunity = function (req, res) {
-    Opportunity.findOne({url: req.params.id}, function(err, opportunity) {
+
+    // Fetch the opportunity with the given URL/id
+    Opportunity.findOne({_id: req.params.id}, function(err, opportunity) {
         if(err) {
             res.sendStatus(409);
             return;
         }
         // Issue ID invalid; no results returned by findOne
+        // Note: find returns [] if empty, findOne returns null
         if(opportunity === null) {
-            // Note: find returns [] if empty, findOne returns null
             res.sendStatus(404);
             return;
         }
@@ -225,7 +264,7 @@ module.exports.loadOpportunities = function (req, res) {
                     name: opportunities[i].name,
                     categories: opportunities[i].categories,
                     description: opportunities[i].description,
-                    url: opportunities[i].url
+                    url: opportunities[i]._id // id = url
                 });
             }
 
@@ -244,12 +283,16 @@ module.exports.create_account = function (req, res) {
     res.render('create_account');
 };
 module.exports.new_user = function (req, res) {
+
+    // Get the entered details for the new user from the URL
     let newUser = new User({
         "username": req.query.username,
         "display_name": req.query.username, // Default to == username
         "email": req.query.email,
         "password": req.query.password // Security
     });
+
+    // Add the new user to the DB
     newUser.save(function(err,newUser) {
         if(!err) {
             res.send(newUser); // TODO replace with appropriate render
@@ -263,6 +306,7 @@ module.exports.createArticle = function (req, res) {
     res.render('create_article');
 };
 module.exports.new_issue = function (req, res) {
+    // Get the entered details for the new issue from the URL
     let newIssue = new Issue({
         "name": req.query.name,
         "author": req.query.author,
@@ -272,6 +316,8 @@ module.exports.new_issue = function (req, res) {
         "r_source": req.query.r_source,
         "o_source": req.query.o_source
     });
+
+    // Add the new issue to the DB
     newIssue.save(function(err,newIssue) {
         if(!err) {
             res.send(newIssue); // TODO replace with appropriate render
@@ -282,15 +328,14 @@ module.exports.new_issue = function (req, res) {
     });
 };
 module.exports.new_contribution = function (req, res) {
-
-    // Define the new contribution
+    // Get the entered details for the new contribution from the URL
     let newContribution = {
         "author": req.query.author,
         "comment": req.query.comment,
         "article_url": req.query.article_url
     };
 
-    // Update the issue with a new contribution
+    // Update the given issue with a new contribution
     Issue.findOneAndUpdate({name: req.query.name}, {$push: {contributions: newContribution}}, function(err) {
         if (err) { res.sendStatus(409); return; }
         console.log("New contribution sent.");
@@ -303,6 +348,7 @@ module.exports.createOpportunity = function (req, res) {
     res.render('opportunities_form');
 };
 module.exports.new_opportunity = function (req, res) {
+    // Get the entered details for the new opportunity from the URL
     let newOpportunity = new Opportunity({
         "name": req.query.name,
         "organiser": req.query.organiser,
@@ -312,6 +358,8 @@ module.exports.new_opportunity = function (req, res) {
         "location": req.query.location,
         "further_info": req.query.further_info
     });
+
+    // Add the new opportunity to the DB
     newOpportunity.save(function(err,newOpportunity) {
         if(!err) {
             res.send(newOpportunity); // TODO replace with appropriate render
@@ -337,20 +385,20 @@ module.exports.loadAbout = function (req, res) {
     res.render('about_page');
 };
 
-/* Test functions */
-/* Used to populate DB in case of reset. Note documents should be deleted manually. */
+/* Test functions used to populate DB in case of reset.
+ * Note documents should be deleted manually in mLab. */
 module.exports.resetDB = function (req, res) {
-    // Please delete all documents in the collection manually in mLab.
+
+    // Add the dummy data to each collection
     resetIssues();
     resetOpportunities();
-    resetUsers();
+    /*resetUsers();*/
 
     res.send("Database reset!");
 
 };
 resetIssues = function (req, res) {
     const dummyIssues = require('../models/dummy/dummyIssues');
-    // Please delete all documents in the collection manually in mLab.
 
     // Add issues from dummyIssues.js
     for(i = 0; i < dummyIssues.length; i++) {
@@ -366,8 +414,8 @@ resetIssues = function (req, res) {
             "date_update": dummyIssues[i].date_update,
             "popularity": dummyIssues[i].popularity,
             "categories": dummyIssues[i].categories,
-            "contributions": dummyIssues[i].contributions,
-            "url": dummyIssues[i].url
+            "contributions": dummyIssues[i].contributions/*,
+            "url": dummyIssues[i].url*/
         });
         newIssue.save(function(err) {
             if(!err) {
@@ -382,9 +430,8 @@ resetIssues = function (req, res) {
 };
 resetOpportunities = function (req, res) {
     const dummyOpportunities = require('../models/dummy/dummyOpportunities');
-    // Please delete all documents in the collection manually in mLab.
 
-    // Add issues from dummyOpportunities.js
+    // Add opportunities from dummyOpportunities.js
     for(i = 0; i < dummyOpportunities.length; i++) {
         let newOpportunity = new Opportunity({
             "name": dummyOpportunities[i].name,
@@ -395,7 +442,7 @@ resetOpportunities = function (req, res) {
             "date_event": dummyOpportunities[i].date_event,
             "popularity": dummyOpportunities[i].popularity,
             "categories": dummyOpportunities[i].categories,
-            "url": dummyOpportunities[i].url,
+            /*"url": dummyOpportunities[i].url,*/
             "location": dummyOpportunities[i].location,
             "further_info": dummyOpportunities[i].further_info
         });
@@ -411,6 +458,27 @@ resetOpportunities = function (req, res) {
     console.log("Opportunities reset");
 };
 resetUsers = function (req, res) {
+    const dummyUsers = require('../models/dummy/dummyUsers');
+
+    // Add users from dummyOpportunities.js
+    for(i = 0; i < dummyUsers.length; i++) {
+        let newUser = new User({
+            "username": dummyUsers[i].username,
+            "password": dummyUsers[i].password,
+            "display_name": dummyUsers[i].display_name,
+            "profile_description": dummyUsers[i].profile_description,
+            "email": dummyUsers[i].email,
+            "is_editor": dummyUsers[i].is_editor
+        });
+        newUser.save(function(err) {
+            if(!err) {
+                console.log("New opportunity sent.");
+            } else{
+                res.sendStatus(400);
+            }
+        });
+    }
+
 };
 
 

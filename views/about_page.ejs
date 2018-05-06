@@ -2,10 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>about</title>
+    <title>About Us</title>
     <link href="/styles/style.css" type="text/css" rel="stylesheet">
     <link href="/styles/specifics.css" type="text/css" rel="stylesheet">
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
+
+    <!-- CSS for About Page - will be moved to css file later stage -->
+    <style>
+        .grid-container{
+            display: grid;
+            grid-template-columns: auto auto auto;
+            grid-gap: 10px;
+            background-color:white;
+            padding-left: 15%;
+            padding-right:15%;
+        }
+
+        .grid-container > div {
+            background-color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            font-size: 15px;
+        }
+
+        .item2{
+            grid-column-start:1;
+            grid-column-end: 4;
+        }
+
+        .item3{
+            grid-column-start:1;
+            grid-column-end: 4;
+        }
+        .item4{
+            grid-column-start:1;
+            grid-column-end: 4;
+        }
+        .item5{
+            grid-column-start:1;
+            grid-column-end: 4;
+        }
+        .item6{
+            grid-column-start:1;
+            grid-column-end: 4;
+        }
+
+    </style>
+
 </head>
 
 <body>
@@ -15,10 +57,57 @@
 <!--Site title-->
 <% include ./partial/header.ejs%>
 <% include ./partial/navbar.ejs%>
-<header>
-    <h1> About Page </h1>
-</header>
-    <p> NOTE: explanation of the aims of the page </p>
+
+    <header> </header>
+    <div class = "item1">
+        <img src = "./images/blue_architecture.jpg" style = "height:15em; width:100%; filter:grayscale(50%)">
+        <div class = 'centered'><h1 class = "white_text font_400">BROADEN YOUR PERSPECTIVE</h1></div>
+    </div>
+
+<div class = "grid-container">
+
+    <!-- Mission statement -->
+    <div class = "item2">
+    <h2>OUR MISSION</h2>
+    <p>To break down the echo chambers of today's political discussions, and to increase access to political
+        information and activism opportunities.</p>
+    </div>
+
+<hr>
+    <div class = "item3">
+    <h2>ABOUT US </h2>
+    <p>MultiView is a social platform for sharing knowledge, perspectives, and insight that seeks to address the
+        question of <em>'how might we address global urgent challenges at the intersection of peace, prosperity and planet
+            in radically new ways?'</em>.</p>
+    </div>
+
+    <div class = "item4">
+    <p>The popularisation of social media platforms has brought with it the siloing of ideas and opinions into echo
+        chambers due to the use of behaviour-centric algorithms to populate a user's feed with 'individual-specific' news
+        and content. This is of particular concern to us as it tends to reinforce arguments and opinions from one
+        perspective, rather than offering variety and/or challenging arguments and evidence. In the current Australian
+        political climate, it is easy to be either apathetic to political issues by disengaging from the political
+        discussions, or to witness the development of polarised groups. We want to empower the individual to get involved in
+        the community through knowledge and positive action!</p>
+    </div>
+
+    <hr>
+    <div class = "item5">
+    <h2>HOW TO APPROACH OUR WEBSITE</h2>
+    <p> We aim to increase access to information about political issues, and serve as an starting point for further research
+        for the everyday citizen! A key consideration for our website was how best to present information in a way that
+        takes into account that on any given day different people want a different levels of detail about an issue.</p>
+    </div>
+    <div class = "item6">
+    <h2><b>Our solution:</b> have thoughtful, well-researched individuals, editors, curate repositories of resources of
+        different levels/styles <em>(i.e. high level, opinion pieces, reports)</em> referring to specific topics. In addition,
+        users can contribute their own found online articles in the contributions section, which can offer another
+        perspective on the issue, and engage with the contents of the editor's article. Any user can become an editor by
+        applying through our website and citing relevant experience for the role - <em>see editor code of conduct.</em></h2>
+    </div>
+
+
+</div>
 </div>
 
 <!-- footer for the page -->

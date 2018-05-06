@@ -309,3 +309,16 @@
     height: 40px;
     font-family: "IBM Plex Sans", sans-serif;
 }
+
+/* Centered text for images */
+.centered {
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+
+/* Used for controlling font size for banner*/
+.font_400{
+    font-size: 400%;
+}

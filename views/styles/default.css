@@ -78,6 +78,7 @@
 
 .banner_text h1{
     font-size: 200%;
+    font-family: "Abril Fatface", sans-serif;
 }
 #container {
     width: 100%;
@@ -94,4 +95,9 @@ div{
     right:115px;
     height:0.8em;
 
+}
+
+/* Makes text white */
+.white_text{
+    color:white;
 }

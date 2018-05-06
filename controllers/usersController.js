@@ -219,3 +219,7 @@ module.exports.editorApplication = function (req, res) {
 module.exports.createArticle = function (req, res) {
     res.render('create_article');
 };
+
+module.exports.tester = function (req, res) {
+    res.render('tester');
+};

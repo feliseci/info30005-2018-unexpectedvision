@@ -101,3 +101,17 @@ div{
 .white_text{
     color:white;
 }
+
+
+/* profile nav*/
+#profile_nav{
+    display:none;
+    float:right;
+    padding-right:5%
+}
+
+#login_nav{
+    display:block;
+    float:right;
+    padding-right:5%
+}

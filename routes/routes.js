@@ -22,6 +22,10 @@ router.get('/editor-application', controller.editorApplication);
 /* Permission based option - only for Editors*/
 router.get('/create-article', controller.createArticle);
 
+
+/* test */
+router.get('/tester', controller.tester);
+
 module.exports = router;
 
 

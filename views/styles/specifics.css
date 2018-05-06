@@ -14,28 +14,46 @@
 }
 
 /* Also used for banner */
-.centered h1 {
+.name h1 {
     font-family: "Abril Fatface", sans-serif;
     font-size: 75px;
     color: white;
 }
 
-
-.centered h2 {
+.name h2 {
     color: white;
 }
 
-#landing_triangle{
+#landing_triangle {
     height:9em;
 }
 
-#landing_graphic{
+#landing_graphic {
     position: fixed;
     top:45%;
     left:50%;
     transform: translate(-50%, -50%);
 }
 
+/*
+.about h1 {
+    text-align: left;
+    padding-right: 1000px;
+    color: white;
+}
+
+.about p {
+    text-align: left;
+    padding-right: 1000px;
+    color: white;
+}
+*/
+
+.boxed {
+    color: white;
+    border: 1px solid #00FFAF;
+    border-radius: 2px;
+}
 
 /* Homepage */
 #search {
@@ -291,5 +309,3 @@
     height: 40px;
     font-family: "IBM Plex Sans", sans-serif;
 }
-
-

@@ -5,8 +5,7 @@ const editors = require('../models/dummyEditors');
 const opportunities = require('../models/dummyOpportunities');
 
 module.exports.landing = function (req, res) {
-    const resolve = require('path').resolve;
-    res.sendFile(resolve('./views/landing_page.html'));
+    res.render('index');
 };
 
 module.exports.login = function (req, res) {
@@ -19,12 +18,12 @@ module.exports.create_account = function (req, res) {
 
 module.exports.home = function (req, res) {
     // Pass the issues to be displayed on the home page & load.
-    let popular_issue = issues[0];
     let recent_issue = issues[0];
+    let popular_issue = issues[0];
     let popular_index = 0;
 
     // Get most popular issue
-    for(i = 0; i < issues.length; i++) {
+    for(let i = 0; i < issues.length; i++) {
         if (issues[i].popularity > popular_issue.popularity) {
             popular_issue = issues[i];
             popular_index = i;
@@ -32,7 +31,7 @@ module.exports.home = function (req, res) {
     }
 
     // Get most recent issue
-    for(i = 0; i < issues.length; i++) {
+    for(let i = 0; i < issues.length; i++) {
         if (issues[i].date > recent_issue.date) {
             // If it's the same as the most popular issue, ignore
             // NOTE: Only works if issues can't have the same name; compare URL & type instead
@@ -41,6 +40,16 @@ module.exports.home = function (req, res) {
                 recent_issue = issues[i];
             }
         }
+
+        // Example of how to use attributes in javascript
+        /*let someobj = {
+            big: 10,
+            small: 2,
+            add: function() {
+                return this.big + this.small;
+            }
+        };
+        console.log(someobj.add());*/
     }
 
     res.render('home_page', {popular_issue: popular_issue, recent_issue: recent_issue});
@@ -172,8 +181,6 @@ module.exports.random = function (req,res) {
 /* Editor Page - Jenny testing how editor_template works */
 module.exports.editor = function(req,res){
     const editor = editors[req.params.id];
-
-    console.log("EDITOR NAME: " + editor.name);
     res.render('editor_template', {editor: editor})
 };
 
@@ -186,7 +193,7 @@ module.exports.loadOpportunities = function (req, res) {
     res.render('opportunities_landing', {results: opportunities});
 };
 
-module.exports.loadContributions = function (req, res) {
+module.exports.loadArticles = function (req, res) {
     let results = [];
     for(i = 0; i < issues.length; i++ ) {
         if("contributor".localeCompare(issues[i].type) == 0) {
@@ -197,17 +204,7 @@ module.exports.loadContributions = function (req, res) {
     // the same this should just lead to the search with only editor articles selected.
     // So leave the above but load search_results instead res.render('search_results', {results: results});
 
-    res.render('contributions_landing', {results: results});
-};
-
-module.exports.loadEditors = function (req, res) {
-    let results = [];
-    for(i = 0; i < issues.length; i++ ) {
-        if("editor".localeCompare(issues[i].type) == 0) {
-            results.push(issues[i]);
-        }
-    }
-    res.render('editors_landing', {results: results});
+    res.render('articles_landing', {results: results});
 };
 
 module.exports.loadAbout = function (req, res) {

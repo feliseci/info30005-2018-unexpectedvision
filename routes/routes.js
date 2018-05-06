@@ -14,8 +14,7 @@ router.get('/editor/:id', controller.editor);
 router.get('/opportunity/:id', controller.opportunity);
 
 router.get('/opportunities', controller.loadOpportunities);
-router.get('/contributions', controller.loadContributions);
-router.get('/editors',controller.loadEditors);
+router.get('/articles', controller.loadArticles);
 router.get('/about', controller.loadAbout);
 router.get('/random', controller.random);
 router.get('/editor-application', controller.editorApplication);

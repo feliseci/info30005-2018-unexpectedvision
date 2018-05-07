@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title> MultiView - Landing </title>
-    <link href="styles/style.css" type="text/css" rel="stylesheet">
-    <link href="styles/pages.css" type="text/css" rel="stylesheet">
-    <link href="styles/top.css" type = "text/css" rel="stylesheet">
+    <link href="/styles/style.css" type="text/css" rel="stylesheet">
+    <link href="/styles/specifics.css" type="text/css" rel="stylesheet">
+    <link href="/styles/default.css" type = "text/css" rel="stylesheet">
 </head>
 
 <body>
@@ -18,19 +18,20 @@
 
 
 <header class = "centered_header">
-    <h1 id = "pageHeading">Create Account</h1>
+    <h1>Create Account</h1>
 </header>
 
 <section>
+<<<<<<< HEAD
     <!-- TODO Proper redirect. Currently sends the entered info. -->
     <form action = "../new_user" method="get">
-        <h3>Username</h3>
+        <h2>Username</h3>
         <input type="text" class="account" placeholder="Enter username" name="username"/>
-        <h3>Password</h3>
+        <h2>Password</h3>
         <input type="password" class="account" placeholder="Enter password" name="password"/>
-        <h3>Confirm Password</h3>
+        <h2>Confirm Password</h3>
         <input type="password" class="account" placeholder="Re-enter password"/> <!--TODO: Check == above. -->
-        <h3>Email</h3>
+        <h2>Email</h3>
         <input type="text" class="account" placeholder="Enter your email address" name="email"/>
         <button type="submit" id="submit">Submit</button>
     </form>

@@ -7,9 +7,9 @@ const Issue = mongoose.model('issues');
 const User = mongoose.model('users');
 const Opportunity = mongoose.model('opportunities');
 
+
 /*Search-related methods*/
 module.exports.home = function (req, res) {
-
     // Find the most popular issue
     Issue.find({}).limit(1).sort({"popularity": -1}).exec(function(err, popular_issue) {
         if(!err) {
@@ -60,7 +60,6 @@ module.exports.home = function (req, res) {
             res.sendStatus(409);
         }
     });
-
     // TODO populate with more issues
 };
 module.exports.search = function (req, res) {
@@ -226,9 +225,21 @@ module.exports.issue = function(req,res){
 
         // Issue with the given id successfully found
         res.render('editor_template', {editor: issue});
-
+		// TODO contributions
     });
 };
+/*module.exports.loadArticles = function (req, res) {
+    let results = [];
+    for(i = 0; i < issues.length; i++ ) {
+        if("contributor".localeCompare(issues[i].type) == 0) {
+            results.push(issues[i]);
+		}
+	}
+	
+	res.render('articles_landing', {results: results});
+};	
+*/
+
 module.exports.opportunity = function (req, res) {
 
     // Fetch the opportunity with the given URL/id
@@ -275,15 +286,13 @@ module.exports.loadOpportunities = function (req, res) {
             res.sendStatus(409);
         }
     });
-
-};
-
+});
+	
 /*Database addition-related pages*/
 module.exports.create_account = function (req, res) {
     res.render('create_account');
 };
 module.exports.new_user = function (req, res) {
-
     // Get the entered details for the new user from the URL
     let newUser = new User({
         "username": req.query.username,
@@ -342,7 +351,6 @@ module.exports.new_contribution = function (req, res) {
     });
 
     res.send(newContribution); // TODO replace with appropriate render
-
 };
 module.exports.createOpportunity = function (req, res) {
     res.render('opportunities_form');
@@ -375,8 +383,7 @@ module.exports.editorApplication = function (req, res) {
 
 /*Landing & simple rendering methods. */
 module.exports.landing = function (req, res) {
-    const resolve = require('path').resolve;
-    res.sendFile(resolve('./views/landing_page.html'));
+    res.render('index');
 };
 module.exports.login = function (req, res) {
     res.render('login');

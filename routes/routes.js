@@ -13,6 +13,7 @@ router.get('/issue/:id', controller.issue);
 router.get('/opportunity/:id', controller.opportunity);
 
 router.get('/opportunities', controller.loadOpportunities);
+//router.get('/articles', controller.loadArticles);
 router.get('/about', controller.loadAbout);
 router.get('/random', controller.random);
 router.get('/editor-application', controller.editorApplication);

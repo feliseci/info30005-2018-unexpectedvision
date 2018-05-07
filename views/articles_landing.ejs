@@ -2,24 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Editors</title>
+    <title>Articles</title>
     <link href="styles/style.css" type="text/css" rel="stylesheet">
-    <link href="styles/pages.css" type="text/css" rel="stylesheet">
-    <link href="styles/top.css" type = "text/css" rel="stylesheet">
+    <link href="styles/specifics.css" type="text/css" rel="stylesheet">
+    <link href="styles/default.css" type = "text/css" rel="stylesheet">
 </head>
 
 <body>
-
 <div class = "content"> <!-- Used to make footers sticky -->
-
 <!--Site title-->
 <% include ./partial/header.ejs%>
 <% include ./partial/navbar.ejs%>
 
-    <header>
-<h1 id = "pageHeading"> Editors Landing Page </h1>
-    </header>
-
+<header>
+<h1> Articles Page</h1>
+</header>
 
 <section id = "sidebar_page">
     <!-- Advanced search options -->
@@ -37,10 +34,10 @@
     <section id = "search_results">
 
         <% for(i = 0; i < results.length; i++) { %>
-        <article class = "<%=results[i].type%>">
+        <article class = "contributor">
             <a href="<%="../" + results[i].type + "/" + results[i].url%>">
-                <h3><%=results[i].name%></h3>
-                <p><%=results[i].description%></p>
+            <h3><%=results[i].name%></h3>
+            <p><%=results[i].description%></p>
             </a>
             <h4>Categories:</h4>
             <% var categories = results[i].categories;
@@ -55,8 +52,9 @@
     </section>
 </section>
 </div>
+
 <footer>
-    <% include ./partial/footer.ejs%>
+    <% include ./partial/footer.ejs %>
 </footer>
 
 </body>

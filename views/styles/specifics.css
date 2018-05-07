@@ -5,7 +5,7 @@
     height: 100%;
     background: url('../images/landing.jpg');
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-size: cover;
 }
 
@@ -13,31 +13,47 @@
     padding-top: 60px;
 }
 
-.centered h1 {
+/* Also used for banner */
+.name h1 {
     font-family: "Abril Fatface", sans-serif;
     font-size: 75px;
     color: white;
 }
 
-.banner_text h1{
-    font-size: 300%;
-}
-
-.centered h2 {
+.name h2 {
     color: white;
 }
 
-#landing_triangle{
+#landing_triangle {
     height:9em;
 }
 
-#landing_graphic{
+#landing_graphic {
     position: fixed;
-    top:50%;
+    top:45%;
     left:50%;
     transform: translate(-50%, -50%);
 }
 
+/*
+.about h1 {
+    text-align: left;
+    padding-right: 1000px;
+    color: white;
+}
+
+.about p {
+    text-align: left;
+    padding-right: 1000px;
+    color: white;
+}
+*/
+
+.boxed {
+    color: white;
+    border: 1px solid #00FFAF;
+    border-radius: 2px;
+}
 
 /* Homepage */
 #search {
@@ -292,15 +308,4 @@
     width: 5%;
     height: 40px;
     font-family: "IBM Plex Sans", sans-serif;
-}
-
-/* Used for sticky footer */
-.content {
-    flex:1 0 auto;
-}
-
-
-/* Titles of Page*/
-#pageHeading{
-    margin-top:0;
 }

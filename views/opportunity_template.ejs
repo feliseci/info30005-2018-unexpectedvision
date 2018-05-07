@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title> <%= opportunity.name %> - opportunity </title>
     <link href="/styles/style.css" type="text/css" rel="stylesheet">
-    <link href="/styles/pages.css" type="text/css" rel="stylesheet">
-    <link href="/styles/top.css" type = "text/css" rel="stylesheet">
+    <link href="/styles/specifics.css" type="text/css" rel="stylesheet">
+    <link href="/styles/default.css" type = "text/css" rel="stylesheet">
 </head>
 
 <body>
@@ -18,7 +18,7 @@
 <% include ./partial/navbar.ejs%>
 
 <header id = "event_header">
-    <h1 id = "pageHeading"> <%= opportunity.name %> </h1>
+    <h1> <%= opportunity.name %> </h1>
     <img src = "<%= opportunity.image %>" alt = "event banner">
 </header>
 

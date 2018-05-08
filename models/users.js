@@ -1,7 +1,7 @@
 /*References: http://mongoosejs.com/docs/index.html
 *             http://mongoosejs.com/docs/guide.html*/
 const mongoose = require('mongoose');
-
+const passportLocalMongoose = require('passport-local-mongoose');
 
 const userSchema = mongoose.Schema(
     {
@@ -18,6 +18,7 @@ const userSchema = mongoose.Schema(
     }
 );
 
-// Note: Required attributes not specified; they're checked for at the text entry-level.
+userSchema.plugin(passportLocalMongoose);
 
+// Note: Required attributes not specified; they're checked for at the text entry-level.
 mongoose.model('users', userSchema);

@@ -7,9 +7,9 @@ const Issue = mongoose.model('issues');
 const User = mongoose.model('users');
 const Opportunity = mongoose.model('opportunities');
 
-
 /*Search-related methods*/
 module.exports.home = function (req, res) {
+
     // Find the most popular issue
     Issue.find({}).limit(1).sort({"popularity": -1}).exec(function(err, popular_issue) {
         if(!err) {
@@ -53,13 +53,14 @@ module.exports.home = function (req, res) {
 
                 // Render home page with recent & popular issue
                 res.render('home_page',
-                    {popular_issue: popular, recent_issue: recent});
+                    {popular_issue: popular, recent_issue: recent, user: req.user});
             });
         }
         else {
             res.sendStatus(409);
         }
     });
+
     // TODO populate with more issues
 };
 module.exports.search = function (req, res) {
@@ -86,7 +87,7 @@ module.exports.search = function (req, res) {
             }
 
             sort(results, req.query.sort); // Sort issues according to entered method
-            res.render('search_results', {results: results}); // Render the results
+            res.render('search_results', {results: results, user: req.user}); // Render the results
 
         } else {
             res.sendStatus(409);
@@ -190,19 +191,10 @@ module.exports.random = function (req,res) {
         // Generate a random index in the issues array
         let random_id = Math.floor(Math.random() * (count));
 
-        // Fetch the issue associated with that id
-        Issue.findOne({_id: random_id}, function(err, issue) {
-            if(err) {
-                res.sendStatus(400);
-                return;
-            }
+        res.redirect('../issue/' + random_id);
 
-            // Render the issue as normal
-            res.render('editor_template', {editor: issue});
-        });
     });
 
-    //TODO redirect to /issues/...
     //TODO if an issue is deleted, not all indeces in the range of the length will be valid
 };
 
@@ -224,21 +216,30 @@ module.exports.issue = function(req,res){
         }
 
         // Issue with the given id successfully found
-        res.render('editor_template', {editor: issue});
-		// TODO contributions
+        res.render('editor_template', {editor: issue, user: req.user});
+        // TODO contributions
     });
 };
-/*module.exports.loadArticles = function (req, res) {
-    let results = [];
-    for(i = 0; i < issues.length; i++ ) {
-        if("contributor".localeCompare(issues[i].type) == 0) {
-            results.push(issues[i]);
-		}
-	}
-	
-	res.render('articles_landing', {results: results});
-};	
-*/
+
+module.exports.loadContributions = function (req, res) {
+    // Fetch the issue with the given URL/id
+    Issue.findOne({_id: req.params.id}, function(err, issue) {
+        if(err) {
+            res.sendStatus(409);
+            return;
+        }
+
+        // Issue ID invalid; no results returned by findOne
+        // Note: find returns [] if empty, findOne returns null
+        if(issue === null) {
+            res.sendStatus(404);
+            return;
+        }
+
+        // Issue with the given id successfully found
+        res.render('contributions_template', {issue: {name: issue.name}, comments: issue.contributions, user: req.user});
+    });
+}; // temp; contrib's will be part of issue page in final
 
 module.exports.opportunity = function (req, res) {
 
@@ -256,7 +257,7 @@ module.exports.opportunity = function (req, res) {
         }
 
         // Issue with the given id successfully found
-        res.render('opportunity_template', {opportunity: opportunity});
+        res.render('opportunity_template', {opportunity: opportunity, user: req.user});
 
     });
 
@@ -280,19 +281,22 @@ module.exports.loadOpportunities = function (req, res) {
             }
 
             sort(results, req.query.sort); // Sort issues according to entered method
-            res.render('opportunities_landing', {results: results});
+            res.render('opportunities_landing', {results: results, user: req.user});
 
         } else {
             res.sendStatus(409);
         }
     });
-});
-	
+};
+
 /*Database addition-related pages*/
 module.exports.create_account = function (req, res) {
-    res.render('create_account');
+    // Have to pass user for navbar to work
+    // although create account shouldn't be accessible while logged in
+    res.render('create_account', {user: req.user});
 };
 module.exports.new_user = function (req, res) {
+
     // Get the entered details for the new user from the URL
     let newUser = new User({
         "username": req.query.username,
@@ -312,7 +316,7 @@ module.exports.new_user = function (req, res) {
     });
 };
 module.exports.createArticle = function (req, res) {
-    res.render('create_article');
+    res.render('create_article', {user: req.user});
 };
 module.exports.new_issue = function (req, res) {
     // Get the entered details for the new issue from the URL
@@ -353,7 +357,7 @@ module.exports.new_contribution = function (req, res) {
     res.send(newContribution); // TODO replace with appropriate render
 };
 module.exports.createOpportunity = function (req, res) {
-    res.render('opportunities_form');
+    res.render('opportunities_form', {user: req.user});
 };
 module.exports.new_opportunity = function (req, res) {
     // Get the entered details for the new opportunity from the URL
@@ -378,18 +382,18 @@ module.exports.new_opportunity = function (req, res) {
     });
 };
 module.exports.editorApplication = function (req, res) {
-    res.render('editor_application');
+    res.render('editor_application', {user: req.user});
 }; // TODO
 
 /*Landing & simple rendering methods. */
 module.exports.landing = function (req, res) {
-    res.render('index');
+    res.render('index', {user: req.user});
 };
 module.exports.login = function (req, res) {
-    res.render('login');
+    res.render('login', {user: req.user}); // TODO Remove login button on login page? See createAccount
 };
 module.exports.loadAbout = function (req, res) {
-    res.render('about_page');
+    res.render('about_page', {user: req.user});
 };
 
 /* Test functions used to populate DB in case of reset.
@@ -488,5 +492,10 @@ resetUsers = function (req, res) {
 
 };
 
-
-
+/* Passport-related methods */
+module.exports.logout = function(req, res){
+    let name = req.user.username;
+    console.log("Logging out " + name + "...");
+    req.logout();
+    res.redirect('../');
+};

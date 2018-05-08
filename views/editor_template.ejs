@@ -23,7 +23,7 @@
     <h1><%= editor.name %></h1>
     <h2><%= editor.creator %> </h2> <!-- Follow creator option; see draft -->
     <h3> Rating </h3> <!-- Possible JS to render stars -->
-    <h3> Tags: <% for(i = 0; i < editor.categories.length; i++) { %>
+    <h3> Categories: <% for(i = 0; i < editor.categories.length; i++) { %>
         <%= "#" + editor.categories[i] %> <%}%>
     </h3>
 </header>

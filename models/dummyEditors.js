@@ -19,7 +19,7 @@ const editors = [
         date: "14/3",
         categories: ['trump', 'america'],
         popularity: 4,
-        description: "trump sucks lolololol",
+        description: "trump sucks lolololol trump sucks lololololtrump sucks",
         hl_source: ["http://www.google.com"],
         r_source: ["http://www.amazon.com"],
         o_source: ["http://www.youtube.com"],

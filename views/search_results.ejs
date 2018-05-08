@@ -16,7 +16,9 @@
 <% include ./partial/header.ejs%>
 <% include ./partial/navbar.ejs%>
 
-<h1> Search Results</h1>
+<br>
+<div id="search_title"><h1>Search Results</h1></div>
+<br>
 
 <section id = "sidebar_page">
 <!-- Advanced search options -->
@@ -41,7 +43,7 @@
     </section>
 
     <% for(i = 0; i < results.length; i++) { %>
-        <article class = "<%=results[i].type%>">
+        <article class = "<%=results[i].type%>" id="search_box">
             <a href="<%="../" + results[i].type + "/" + results[i].url%>">
                 <h3><%=results[i].name%></h3>
                 <p><%=results[i].description%></p>

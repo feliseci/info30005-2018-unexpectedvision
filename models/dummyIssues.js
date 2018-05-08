@@ -19,7 +19,7 @@ const issues = [
         date: 3,
         popularity: 2,
         categories: ["animal welfare"],
-        image: "https://source.unsplash.com/p5EiqkBYIEE/800x600",
+        image: "https://images.pexels.com/photos/158976/pexels-photo-158976.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
         url: "0",
         description: "Is horse racing animal abuse?"
     },
@@ -29,7 +29,7 @@ const issues = [
         date: 2,
         popularity: 3,
         categories: ["environment"],
-        image: "https://source.unsplash.com/eXdKs9d37Sc/800x600",
+        image: "https://images.pexels.com/photos/29465/smoke-chimney-industrial-29465.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
         url: "1",
         description: "Global warming dummy text"
     }

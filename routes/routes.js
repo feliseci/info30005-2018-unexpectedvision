@@ -1,27 +1,43 @@
 // Heroku link: https://powerful-ravine-40272.herokuapp.com/ (Note that Frida has to update it - use nodemon to test)
 const express = require('express');
+const passport = require('passport');
+const passportLocalMongoose = require('passport-local-mongoose');
 const router = express.Router();
-const controller = require('../controllers/usersController');
+const controller = require('../controllers/controller');
 
 router.get('/', controller.landing);
 router.get('/home', controller.home);
 router.get('/login', controller.login);
-router.get('/create-account', controller.create_account);
+router.get('/create-account', controller.createAccount);
 
 router.get('/search/', controller.search);
-router.get('/contributor/:id', controller.contribution);
-router.get('/editor/:id', controller.editor);
+router.get('/issue/:id', controller.issue);
+router.get('/comments/:id', controller.loadContributions); // TODO temporary
 router.get('/opportunity/:id', controller.opportunity);
 
 router.get('/opportunities', controller.loadOpportunities);
-router.get('/articles', controller.loadArticles);
 router.get('/about', controller.loadAbout);
 router.get('/random', controller.random);
 router.get('/editor-application', controller.editorApplication);
 
-/* Permission based option - only for Editors*/
+router.get('/new-issue', controller.newIssue); // TODO use .post as per login
+router.get('/new-contribution', controller.newContribution);
+router.get('/new-user', controller.newUser);
+router.get('/new-opportunity', controller.newOpportunity);
+
+// Permission based options - only for Editors
 router.get('/create-article', controller.createArticle);
+router.get('/create-opportunity', controller.createOpportunity);
+
+// For use in database setup only
+router.get('/reset', controller.resetDB);
+
+// Passport-related
+router.post('/login', passport.authenticate('local', {
+    successRedirect: '/home',
+    failureRedirect: '/login'
+    // 'req.user' contains the authenticated user.
+}));
+router.get('/logout', controller.logout);
 
 module.exports = router;
-
-

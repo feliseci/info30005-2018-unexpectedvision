@@ -28,26 +28,12 @@
     </h3>
 </header>
 
-<!-- Advanced search options -->
-<!--
-<section id = "sidebar_page">
-    <nav id = "search_options">
-        <h4>Sort By:</h4>
-        <ul>
-            <li><a href="">Alphabetical</a></li>
-            <li><a href="">Most recent</a></li>
-            <li><a href="">Most popular</a></li>
-        </ul>
-    </nav>
 
-    <section>
--->
-    <section>
-        <section id = "article_description">
-            <p><%= editor.description %></p>
-        </section>
-
+<section>
+    <section id = "article_description">
+        <p><%= editor.description %></p>
     </section>
+</section>
 
 <section id = "article_repository">
     <table>
@@ -89,6 +75,11 @@
 <section id = "related_opportunities">
     <h2> Related Opportunities </h2>
 </section>
+
+<section>
+    <button><a href = "<%="../comments/" + editor._id%>">See comments on this issue</a></button>
+</section>
+
 <!--    </section>
 </section>-->
 

@@ -24,11 +24,11 @@
 
     <section>
         <!--Note: Dummy form action -->
-        <form action = "../home">
-            <input type="text" class="account" placeholder="Username"/>
-            <input type="text" class="account" placeholder="Password"/>
+        <form action = "../login" method ="post"> <!--TODO: originally Home-->
+            <input type="text" class="account" name="username" placeholder="Username"/>
+            <input type="password" class="account" name="password" placeholder="Password"/>
+            <input type="submit" id="login_submit" value="Submit">
         </form>
-        <button type="submit" id="login_submit">Submit</button>
 
         <!--TODO: Redirect to Create Account button-->
         <a href = "../create-account"> <button type = "submit" id = "submit">Create Account</button></a>

@@ -24,31 +24,10 @@ require('./opportunities.js');
 
 // Authentication
 const User = mongoose.model('users');
-passport.use(new LocalStrategy(
-    function(username, password, done) {
-        User.findOne({ username: username }, function (err, user) {
-            if (err) { return done(err); }
-            if (!user) {
-                console.log("Incorrect username");
-                return done(null, false, { message: 'Incorrect username.' });
-            }
-            if(user.password !== password) {
-                console.log("Incorrect password");
-                return done(null, false, { message: 'Incorrect password.' });
-            }
-            /*            if (!user.validPassword(password)) {*/
-            // if (!user.verifyPassword(password)) { return done(null, false); }
-            console.log("Success");
-            return done(null, user);
-        });
-    }
-));
-
-// Needed for persistent sessions
+passport.use(new LocalStrategy(User.authenticate())); // Automatically uses the local-mongoose strategy
 passport.serializeUser( function(user, done) {
     return done(null, user);
 });
-
 passport.deserializeUser( function(user, done) {
     return done(null, user);
-}); // Are the fields correct?
+});

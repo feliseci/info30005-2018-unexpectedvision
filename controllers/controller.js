@@ -290,25 +290,24 @@ module.exports.loadOpportunities = function (req, res) {
 };
 
 /*Database addition-related pages*/
-module.exports.create_account = function (req, res) {
+module.exports.createAccount = function (req, res) {
     // Have to pass user for navbar to work
     // although create account shouldn't be accessible while logged in
     res.render('create_account', {user: req.user});
 };
-module.exports.new_user = function (req, res) {
+module.exports.newUser = function (req, res) {
 
     // Get the entered details for the new user from the URL
     let newUser = new User({
         "username": req.query.username,
         "display_name": req.query.username, // Default to == username
         "email": req.query.email,
-        "password": req.query.password // Security
     });
 
-    // Add the new user to the DB
-    newUser.save(function(err,newUser) {
+    // Register the user using passport-local-mongoose, which hashes the password
+    User.register(newUser, req.query.password, function(err) {
         if(!err) {
-            res.send(newUser); // TODO replace with appropriate render
+            res.redirect('../home'); // TODO authenticate
             console.log("New user sent.");
         } else{
             res.sendStatus(400);
@@ -318,7 +317,7 @@ module.exports.new_user = function (req, res) {
 module.exports.createArticle = function (req, res) {
     res.render('create_article', {user: req.user});
 };
-module.exports.new_issue = function (req, res) {
+module.exports.newIssue = function (req, res) {
     // Get the entered details for the new issue from the URL
     let newIssue = new Issue({
         "name": req.query.name,
@@ -340,7 +339,7 @@ module.exports.new_issue = function (req, res) {
         }
     });
 };
-module.exports.new_contribution = function (req, res) {
+module.exports.newContribution = function (req, res) {
     // Get the entered details for the new contribution from the URL
     let newContribution = {
         "author": req.query.author,
@@ -359,7 +358,7 @@ module.exports.new_contribution = function (req, res) {
 module.exports.createOpportunity = function (req, res) {
     res.render('opportunities_form', {user: req.user});
 };
-module.exports.new_opportunity = function (req, res) {
+module.exports.newOpportunity = function (req, res) {
     // Get the entered details for the new opportunity from the URL
     let newOpportunity = new Opportunity({
         "name": req.query.name,
@@ -403,7 +402,7 @@ module.exports.resetDB = function (req, res) {
     // Add the dummy data to each collection
     resetIssues();
     resetOpportunities();
-    /*resetUsers();*/
+/*    resetUsers();*/
 
     res.send("Database reset!");
 
@@ -475,20 +474,22 @@ resetUsers = function (req, res) {
     for(i = 0; i < dummyUsers.length; i++) {
         let newUser = new User({
             "username": dummyUsers[i].username,
-            "password": dummyUsers[i].password,
             "display_name": dummyUsers[i].display_name,
             "profile_description": dummyUsers[i].profile_description,
             "email": dummyUsers[i].email,
             "is_editor": dummyUsers[i].is_editor
         });
-        newUser.save(function(err) {
+
+        User.register(newUser, dummyUsers[i].password, function(err, user) {
             if(!err) {
-                console.log("New opportunity sent.");
+                console.log("New user sent.");
             } else{
                 res.sendStatus(400);
             }
         });
     }
+
+    console.log("Users reset.");
 
 };
 
@@ -497,5 +498,5 @@ module.exports.logout = function(req, res){
     let name = req.user.username;
     console.log("Logging out " + name + "...");
     req.logout();
-    res.redirect('../');
+    res.redirect('../home'); // Or landing
 };

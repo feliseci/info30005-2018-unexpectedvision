@@ -11,16 +11,15 @@ const dummyIssues = [
             "https://www.theage.com.au/national/victoria/hurstbridge-trains-back-on-track-from-friday-20180503-p4zd6h.html"],
         r_source: ["https://www.theage.com.au/national/victoria/health-department-asks-robert-doyle-to-attend-interview-or-have-health-assessment-20180503-p4zd7g.html"],
         o_source: ["https://www.theage.com.au/national/victoria/health-department-asks-robert-doyle-to-attend-interview-or-have-health-assessment-20180503-p4zd7g.html"],
-        image: "https://source.unsplash.com/random/800x600",
+        image: "https://source.unsplash.com/_UeY8aTI6d0/800x600",
         description: "Facebook records users' metadata and sells it to other companies.",
         contributions: [
             {
-                "author": "orangecaramel",
-                "comment": "I like this article",
-                "article_url": "https://www.theage.com.au/sport/afl/afl-to-keep-close-watch-on-dip-in-scoring-20180503-p4zd9g.html"
+                author: "orangecaramel",
+                comment: "I like this article",
+                article_url: "https://www.theage.com.au/sport/afl/afl-to-keep-close-watch-on-dip-in-scoring-20180503-p4zd9g.html"
             }
-        ]/*,
-        url: 0*/
+        ]
     },
     {
         name: "Horse racing",
@@ -33,38 +32,37 @@ const dummyIssues = [
             "https://www.theage.com.au/national/victoria/hurstbridge-trains-back-on-track-from-friday-20180503-p4zd6h.html"],
         r_source: ["https://www.theage.com.au/national/victoria/health-department-asks-robert-doyle-to-attend-interview-or-have-health-assessment-20180503-p4zd7g.html"],
         o_source: ["https://www.theage.com.au/national/victoria/health-department-asks-robert-doyle-to-attend-interview-or-have-health-assessment-20180503-p4zd7g.html"],
-        image: "https://source.unsplash.com/random/800x600",
+        image: "https://source.unsplash.com/U-yHjENTmMg/800x600",
         description: "Them horses.",
         contributions: [
             {
-                username: "Brockhampton",
-                date: "12/2",
-                popularity: 2,
-                description: "I like this article.",
+                author: "Brockhampton",
+/*                date: "12/2",
+                popularity: 2,*/
+                comment: "I like this article.",
                 article_url: "",
             },
             {
-                username: "ramenlover",
-                date: "12/3",
-                popularity: 2,
-                description: "This is why this article is good....",
+                author: "ramenlover",
+/*                date: "12/3",
+                popularity: 2,*/
+                comment: "This is why this article is good....",
                 article_url: "",
             },
             {
-                username: "jason32123",
-                date: "12/2",
-                popularity: 1,
-                description: "Extremely long dummy text for testing. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                author: "jason32123",
+/*                date: "12/2",
+                popularity: 1,*/
+                comment: "Extremely long dummy text for testing. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                 article_url: "",
             },
             {
-                username: "blackberry",
-                date: "12/5",
-                popularity: 5,
-                description: "I like this article.",
+                author: "blackberry",
+/*                date: "12/5",
+                popularity: 5,*/
+                comment: "I like this article.",
                 article_url: "",
-            }]/*,
-        url: 1*/
+            }]
     },
     {
         name: "Global warming",
@@ -79,8 +77,7 @@ const dummyIssues = [
         o_source: ["https://www.theage.com.au/national/victoria/health-department-asks-robert-doyle-to-attend-interview-or-have-health-assessment-20180503-p4zd7g.html"],
         image: "https://source.unsplash.com/random/800x600",
         description: "Global warming!",
-        contributions: []/*,
-        url: 2*/
+        contributions: []
     },
     {
         name: "Intervention in the Middle East",
@@ -95,8 +92,7 @@ const dummyIssues = [
         date_post: Date.now(),
         date_update: Date.now(),
         contributions: [],
-        image: ""/*,
-        url: 3,*/
+        image: "https://source.unsplash.com/SHKOxGviXvM/800x600"
     },
     {
         name: "Trump in power",
@@ -111,8 +107,7 @@ const dummyIssues = [
         date_post: Date.now(),
         date_update: Date.now(),
         contributions: [],
-        image: ""/*,
-        url: 4,*/
+        image: "https://source.unsplash.com/H6mCeW7B9KY/800x600"
     },
     {
         name: "Hello World",
@@ -127,8 +122,7 @@ const dummyIssues = [
         date_post: Date.now(),
         date_update: Date.now(),
         contributions: [],
-        image: ""/*,
-        url: 5,*/
+        image: ""
     }
 
 

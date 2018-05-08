@@ -8,8 +8,7 @@ const dummyOpportunities = [
        date_event: new Date(2018,4,20,12),
        location: "Holmesglen",
        description: "hello world",
-       image: "https://source.unsplash.com/p5EiqkBYIEE/800x600",
-       /*url: 0,*/
+       image: "https://source.unsplash.com/jRF4UDDuzJc/800x600",
        further_info: "http://google.com",
        popularity: 9
     },
@@ -21,8 +20,7 @@ const dummyOpportunities = [
         date_event: new Date(2018,4,15,8),
         location: "Cabin in the Woods",
         description: "run run run",
-        image: "https://source.unsplash.com/p5EiqkBYIEE/800x600",
-        /*url: 1,*/
+        image: "https://source.unsplash.com/c5SEmsjqq5o/800x600",
         further_info: "http://youtube.com",
         popularity: 3
     }

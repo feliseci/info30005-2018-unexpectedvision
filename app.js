@@ -7,8 +7,8 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const session = require('express-session');
-/*const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;*/
+const passport = require('passport');
+/*const LocalStrategy = require('passport-local').Strategy;*/
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // True? False?
 app.use(bodyParser.json());
 app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(session({
-    secret: '', saveUninitialized: true, resave: true
+    secret: '?', saveUninitialized: true, resave: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());

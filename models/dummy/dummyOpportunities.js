@@ -1,33 +1,31 @@
-// Note: This is not a working, or well-designed database.
-// It's simply designed to spit out the data required for the front-end.
-
-const opportunities = [
+// Clean dummy data to repopulate the DB with after testing.
+const dummyOpportunities = [
     {
        name: "Volunteer with LandCare Australia",
        organiser: "Helen1234",
        categories: ["environment", "volunteer"],
-       date_post: "14/3",
-       event_date: "20/4",
-       event_time: "12:00",
+       date_post: new Date(2018,3,10),
+       date_event: new Date(2018,4,20,12),
        location: "Holmesglen",
        description: "hello world",
        image: "https://source.unsplash.com/p5EiqkBYIEE/800x600",
-       url: "http://google.com",
+       /*url: 0,*/
+       further_info: "http://google.com",
+       popularity: 9
     },
     {
         name: "International Women's Day Fun Run",
         organiser: "babelFish2",
         categories: ["women", "funrun"],
-        date_post: "14/3",
-        event_date: "15/4",
-        event_time: "08:00",
+        date_post: new Date(2018,3,14),
+        date_event: new Date(2018,4,15,8),
         location: "Cabin in the Woods",
         description: "run run run",
         image: "https://source.unsplash.com/p5EiqkBYIEE/800x600",
-        url: "http://youtube.com",
+        /*url: 1,*/
+        further_info: "http://youtube.com",
+        popularity: 3
     }
+];
 
-    ];
-
-
-module.exports = opportunities;
+module.exports = dummyOpportunities;

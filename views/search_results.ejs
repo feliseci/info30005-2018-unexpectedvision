@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title> Search </title>
+    <!-- Note: neither "./" or no "/" work with EJS due to absolute path issues. -->
     <link href="/styles/style.css" type="text/css" rel="stylesheet">
     <link href="/styles/specifics.css" type="text/css" rel="stylesheet">
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
@@ -41,8 +42,8 @@
     </section>
 
     <% for(i = 0; i < results.length; i++) { %>
-        <article class = "<%=results[i].type%>">
-            <a href="<%="../" + results[i].type + "/" + results[i].url%>">
+        <article class = "editor"> <!--TODO: remove difference -->
+            <a href="<%="../issue/" + results[i].url%>">
                 <h3><%=results[i].name%></h3>
                 <p><%=results[i].description%></p>
             </a>

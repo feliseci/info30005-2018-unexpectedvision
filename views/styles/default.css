@@ -42,8 +42,6 @@
 }
 
 
-
-
 /* End of Nav Bar */
 
 #article_repository table, th, td {
@@ -114,4 +112,11 @@ div{
     display:block;
     float:right;
     padding-right:5%
+}
+
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%
 }

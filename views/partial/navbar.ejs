@@ -8,10 +8,11 @@
         <ul>
             <li><a href = "../home">Home</a></li>
             <li> <a href = "../about"> About </a></li>
-            <li><a href = "../articles"> Articles </a></li>
+            <li><a href = "../search?query="> Articles </a></li>
             <li><a href="../opportunities"> Opportunities </a></li>
 
             <!--TODO: Login button-->
+	<!-- From OrgChange branch
            <div>
                <div  id = "login_nav"><li><a href = "../login"><button type = "button"> Login </button></a></li></div>
                <div id = "profile_nav"><li><button> User's Name </button></li></div>
@@ -29,16 +30,28 @@
 
 
 
-           </div>
+           </div>-->
+
+            <!--
+            <div>
+            <li id = "login" style = "visibility:visible; float:right; padding-right:5%"><a href = "../login"><button type = "button"> Login </button></a></li>
+            <li id = "profile" style = "visibility: hidden; float:right; padding-right:5%"> Profile </li>
+           </div>-->
+
             <!-- TODO: Apply to be an editor button -->
             <!-- would be great if it pops up in the screen - rather than a redirect*/-->
             <!--<li id = "applyEditor"><a href = "../editor-application"><button type = "button"> Apply now! </button></a></li>
--->
 
+            <!--TODO: Login button-->
+            <% if(user) { %>
+                <li id = "login" ><a href = "../logout"><button type = "button"> Logout, <%=user.username%>! </button></a></li>
+            <%} else { %>
+                <li id = "login"><a href = "../login"><button type = "button"> Login </button></a></li>
+            <% } %>
 
             <!-- TODO: Button for Editors to make articles - based on permissions -->
-            <!-- <li id = "createArticle"><a href = "../create-article"><button type = "button"> Create Article </button></a></li>
- -->
+            <!-- <li id = "createArticle"><a href = "../create-article"><button type = "button"> Create Article </button></a></li>-->
+
         </ul>
     </nav>
 </section>

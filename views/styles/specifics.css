@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
 @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans');
 
+/* Landing page */
 #landing {
     height: 100%;
     background: url('../images/landing.jpg');
@@ -25,34 +26,45 @@
 }
 
 #landing_triangle {
-    height:9em;
+    height: 9em;
 }
 
 #landing_graphic {
-    position: fixed;
-    top:45%;
-    left:50%;
+    position: absolute;
+    top: 45%;
+    left: 50%;
     transform: translate(-50%, -50%);
 }
 
-/*
-.about h1 {
-    text-align: left;
-    padding-right: 1000px;
-    color: white;
+#about_box {
+    top: 100%;
+    display: grid;
+    grid-gap: 0;
+    overflow: hidden;
+    color: black;
+    background: #EEF0F2;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'div img';
 }
 
-.about p {
+#about_box div {
     text-align: left;
-    padding-right: 1000px;
-    color: white;
+    padding-left: 15%;
+    padding-top: 15%;
+    font-size: x-large;
 }
-*/
 
-.boxed {
-    color: white;
-    border: 1px solid #00FFAF;
-    border-radius: 2px;
+#about_box div h1 {
+    font-size: x-large;
+}
+
+#about_box div p {
+    font-size: large;
+}
+
+#about_box img {
+    height: 400px;
+    width: 100%;
 }
 
 /* Homepage */
@@ -73,6 +85,25 @@
     height: 50px;
 }
 
+#submit {
+    margin-top: 30px;
+    /*Wizardry to get the submit button to appear centered but on the next line*/
+    display: block;
+    border-radius: 4px;
+    margin-left: 47.5%;
+    width: 5%;
+    height: 40px;
+    font-family: "IBM Plex Sans", sans-serif;
+}
+
+#random_button {
+    margin-top: 10px;
+    padding: 10px;
+    height: 50px;
+    text-transform: uppercase;
+    border-radius: 2px;
+}
+
 .account {
     display: block;
     width: 30%;
@@ -82,14 +113,6 @@
     margin-left: 35%;
     box-sizing: border-box;
     font-family: "IBM Plex Sans", sans-serif;
-}
-
-
-#random_button {
-    margin-top: 10px;
-    padding: 10px;
-    height: 50px;
-    text-transform: uppercase;
 }
 
 #suggested_issues {
@@ -115,8 +138,8 @@
 
 #suggested_issues img {
     display: block;
-    width: 100%;
-    height: auto;
+    width: 280px;
+    height: 200px;
 }
 
 .overlay {
@@ -148,14 +171,40 @@
 }
 
 /* Search results */
+#search_title h1 {
+    overflow: hidden;
+    text-align: center;
+}
+
+#search_title h1:before,
+#search_title h1:after {
+    border-top: 2px solid #000;
+    content: "";
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    width: 50%;
+}
+
+#search_title h1:before {
+    right: 0.5em;
+    margin-left: -50%;
+}
+#search_title h1:after {
+    left: 0.5em;
+    margin-right: -50%;
+}
+
 #sidebar_page {
     display: grid;
     grid-gap: 0;
     overflow: hidden;
-    background-color: #597c5e;
+    background-color: white;
     grid-template-columns: 1fr 4fr;
     grid-template-areas: 'nav section';
     min-height: 100%;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 #search_options {
@@ -175,20 +224,30 @@
     padding-left: 0;
 }
 
+
 #search_results {
-    grid-column-start: 2; /* TODO*/
     display: grid;
     grid-template-areas: "article" "article";
-    background-color: #3e5b4a;
+    background-color: #E1F2E9;
     grid-gap: 0;
-    width: 100%;
-    padding-bottom: 100px;
+    padding-bottom: 500px;
+    padding-right: 10px;
+}
+
+#search_box {
+    background: white;
+    border-style: solid;
+    border-color: grey;
+    border-width: 1px;
+    border-radius: 2px;
+    border-left: 10px;
+    border-right: 10px;
 }
 
 #search_bar_small {
     width: 100%;
     white-space: nowrap;
-    padding: 0;
+    padding-left: 2px;
     margin-right: 0;
     margin-bottom: 5px;
     text-align: start;
@@ -204,6 +263,8 @@
 #search_bar_small input {
     box-sizing: border-box;
     height: 100%;
+    border-radius: 2px;
+    border-width: 0;
     padding-left: 10px;
     width: 90%;
     display: inline-block;
@@ -214,6 +275,7 @@
     display: inline-block;
     margin: 0;
     border: none;
+    border-radius: 2px;
     height: 100%;
     width: 10%;
     font-size: 13px;
@@ -230,20 +292,41 @@
     max-height: 200px;
 }
 
+/*
 .editor {
     background-color: #afbfb1; /*Editor & contributor have different colours*/
-    /*TODO better colour implementation - doubles with "#results_list"  */
+    /*TODO better colour implementation - doubles with "#results_list"
 }
 
 .contributor {
     background-color: #e6f7e8;
 }
+*/
 
 #search_results article h4 {
     display: inline-block; /*All items intended to be inline must have this tag*/
 }
+
 .issue_category {
     display: inline-block;
+}
+
+#contributions_sidebar {
+    display: grid;
+    grid-gap: 0;
+    overflow: hidden;
+    background-color: white;
+    grid-template-columns: 1fr 4fr;
+    grid-template-areas: 'nav section';
+    min-height: 100%;
+}
+
+#contributions_options {
+    text-align: start;
+    padding-left: 10%;
+    width: 100%;
+    /*Would have to change page layout or work with animations to have
+    good-looking "sticky search".*/
 }
 
 /*Contributions page*/
@@ -321,4 +404,16 @@
 /* Used for controlling font size for banner*/
 .font_400{
     font-size: 400%;
+
+#article_description {
+    padding-left: 20%;
+    padding-right: 20%;
+
+}
+
+#article_repository table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 20%;
+    margin-left: 40%;
 }

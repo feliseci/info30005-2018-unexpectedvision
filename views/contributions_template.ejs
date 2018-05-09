@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<!-- testing code to see if push works -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> <%= contribution.name %> - Contributions </title>
+    <title> <%= issue.name %> - Contributions </title>
     <link href="/styles/style.css" type="text/css" rel="stylesheet">
     <link href="/styles/specifics.css" type="text/css" rel="stylesheet">
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
@@ -18,13 +17,12 @@
 <% include ./partial/navbar.ejs%>
 
 <header>
-    <h1><%= contribution.name %></h1>
-    <h2>Author: <%= contribution.creator %></h2>
+    <h1><%= issue.name %></h1>
 </header>
 
 <!-- Advanced search options -->
-<section id = "sidebar_page">
-<nav id = "search_options">
+<section id="contributions_sidebar">
+<nav id = "contributions_options">
     <h4>Sort By:</h4>
     <ul>
         <li><a href="">Alphabetical</a></li>
@@ -36,17 +34,19 @@
 <!--Contributions list-->
 <section id = "contributions_grid">
     <!--Individual contribution-->
-    <% const comments = contribution.comments;
-    for(i = 0; i < comments.length-1; i++) { %>
+    <% /*const comments = issue.contributions;*/
+    for(i = 0; i < comments.length; i++) { %>
     <article>
         <!--User info - links to user profile-->
-        <p class = "comment_username"><a href=""><%=comments[i].username%></a></p>
-        <p class = "comment_description"><%=comments[i].description%></p>
+        <p class = "comment_username"><a href="../profile/<%=comments[i].author%>"><%=comments[i].author%></a></p>
+        <p class = "comment_description"><%=comments[i].comment%></p>
         <!--Article preview-->
         <p class = "preview"><a href="<%=comments[i].article_url%>">Preview (TBD)</a></p>
     </article>
-    <% } if(comments.length%2==0) {%>
-    <article id = "invisible"></article>
+    <% } if(comments.length == 0) {%>
+        <p>No comments on this article yet!<p> <!--TODO-->
+     <%} else if(comments.length%2==0) {%>
+        <article id = "invisible"></article>
     <%}
     %>
 

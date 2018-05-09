@@ -1,7 +1,4 @@
-
-<!-- How Editors Create Articles -->
-<!-- VERYYYY preliminary atm -->
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,42 +7,62 @@
     <link href="/styles/specifics.css" type="text/css" rel="stylesheet">
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
 </head>
-
 <body>
 
-<div class = "content"> <!-- Used to make footers sticky -->
+<% include ./partial/header.ejs%>
+<% include ./partial/navbar.ejs%>
 
-    <!--Site title-->
-    <% include ./partial/header.ejs%>
-    <% include ./partial/navbar.ejs%>
+<header>
+    <h1> Create your article </h1>
+</header>
 
-    <!-- Maybe make this a sidebar on the left -->
-    <header>
-        <h1> Create your article </h1>
-    </header>
-    <!-- Early Stages of a form for article creation BY EDITORS -->
-    <section id = "application">
-        <form action = "../home">
-            <h3> Article Title </h3>
-            <input type = "text" class = "editor_ap"/>
-            <h3> Tags </h3>
-            <input type = "text" class = "editor_ap" placeholder = "i.e. #america, #globalwarming"/>
-            <h3> Summary of Issue </h3>
-            <input type = "text" class = "editor_ap" placeholder = "Less than 300 words"/>
-            <h3> High Level Sources </h3>
-            <input type = "text" class = "editor_ap"/>
-            <h3> Reports </h3>
-            <input type = "text" class = "editor_ap"/>
-            <h3> Opinion Pieces </h3>
-            <input type = "text" class = "editor_ap"/>
-            <button type = "submit" id = "submit"> Submit </button>
-        </form>
-    </section>
+<!--TODO: Use post-->
+<form action = "../new-issue/" method = "get">
+    <input type="hidden" name="author" value = "orangecaramel"> <!--TODO: From curr. username-->
+    Issue Name:<input type="text" name="name">
+    Description:<input type="text" name="description">
+    Image URL:<input type="text" name="image">  <!--TODO: URL checks-->
+    Source HL: <input type="text" name="hl_source"> <!--TODO: >1-->
+    <!-- Dynamic plus button / to do list -->
+    Source R: <input type="text" name="r_source">
+    Source O: <input type="text" name="o_source">
+    <!--TODO Categories-->
+    <button type="submit">Submit</button>
+</form>
 
-</div>
+<!--Jenny's -->
+<!--<section id = "application">
+    <form action = "../home">
+        <h3> Article Title </h3>
+        <input type = "text" class = "editor_ap"/>
+        <h3> Tags </h3>
+        <input type = "text" class = "editor_ap" placeholder = "i.e. #america, #globalwarming"/>
+        <h3> Summary of Issue </h3>
+        <input type = "text" class = "editor_ap" placeholder = "Less than 300 words"/>
+        <h3> High Level Sources </h3>
+        <input type = "text" class = "editor_ap"/>
+        <h3> Reports </h3>
+        <input type = "text" class = "editor_ap"/>
+        <h3> Opinion Pieces </h3>
+        <input type = "text" class = "editor_ap"/>
+        <button type = "submit" id = "submit"> Submit </button>
+    </form>
+</section>-->
+
+<h3>Contribute</h3>
+<form action = "../new-contribution/" method = "get">
+    <input type="hidden" name="name" value = "Facebook data leak"> <!--Dummy value for issue name in mLab-->
+    <input type="hidden" name="author" value = "discoPanic">
+    Comment:<input type="text" name="comment">
+    Article URL:<input type="text" name="article_url">
+    <button type="submit">Submit</button>
+</form>
+
+<!--TODO: Checks for proper form completion -->
+<!--TODO: Separate contributions to issue page-->
+
 <footer>
     <% include ./partial/footer.ejs%>
 </footer>
-
 </body>
 </html>

@@ -40,4 +40,6 @@ router.post('/login', passport.authenticate('local', {
 }));
 router.get('/logout', controller.logout);
 
+router.get('/tester', controller.tester);
+
 module.exports = router;

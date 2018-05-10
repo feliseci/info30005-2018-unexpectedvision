@@ -1,33 +1,25 @@
 <!-- navigation bar to be rendered for every page -->
+<link rel = "stylesheet" type = "text/css" href = "/styles/default.css">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<nav>
+    <!--<div class = "logo"><img src = "./images/thickSmallTriangle.png"></div>-->
+    <p> <img src = "./images/thickSmallTriangle.png" style = "width:30px; filter:brightness(0) invert(1)"> MultiView </p>
+    <ul>
+        <li> <a href = "/home"> Home </a></li>
+        <li> <a href = "../about"> About </a></li>
+        <li> <a href = "../search?query="> Articles </a></li>
+        <li> <a href = "../opportunities"> Opportunities </a></li>
 
-
-<div class = "topnav" id = "top_navigation">
-    <a href = "../home" class = "active"> Home </a>
-    <a href = "../about"> About </a>
-    <a href = "../search?query="> Articles </a>
-    <a href = "../opportunities"> Opportunities </a>
-    <div class = "dropdown">
-        <button class = "dropbtn"> user's name
-            <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-            <a href="#">Settings</a>
-            <a href="#">Other Option</a>
-            <a href="#">Log Out</a>
-        </div>
-    </div>
-    <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
-</div>
-
-<script>
-    function myFunction() {
-        var x = document.getElementById("top_navigation");
-        if (x.className === "topnav") {
-            x.className += " responsive";
-        } else {
-            x.className = "topnav";
-        }
-    }
-</script>
+        <% if(user) { %>
+        <li> <a href = "#"> <%= user.username%> <img src = "./images/thickSmallTriangle.png" style = "width:15px; transform:rotate(180deg); filter:brightness(0) invert(1)"> </a> <!-- Need to include # for the drop down -->
+            <ul>
+                <li> <a href = "#"> Settings </a></li>
+                <li> <a href = "#"> Option2 </a></li>
+                <li> <a href = "../logout"> Log Out </a></li>
+            </ul>
+        </li>
+        <%} else { %>
+            <li id = "login"><a href = "../login"><button type = "button"> Login </button></a></li>
+        <%}%>
+    </ul>
+</nav>

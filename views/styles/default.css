@@ -7,7 +7,7 @@ nav {
 }
 
 nav p {
-    font-family: "IBM Plex Sans", sans-serif;
+    font-family: Encode Sans Condensed;
     color: white;
     font-size: 24px;
     line-height:55px;
@@ -40,7 +40,7 @@ nav ul li a {
 nav ul li ul {
     display: none;
     position: absolute;
-    background-color: darkgrey;
+    background-color: #85d0a1;
     padding: 10px;
     border-radius: 0px 0px 4px 4px;
     z-index: 999;
@@ -52,7 +52,7 @@ nav ul li:hover ul {
 }
 
 nav ul li ul li {
-    width: 180px;
+    width: 100px;
     border-radius: 4px;
 }
 
@@ -63,7 +63,7 @@ nav ul li ul li a {
 
 nav ul li ul li a:hover{
     padding: 8px 14px;
-    background-color: blue;
+    background-color: #7bb33d;
 }
 
 

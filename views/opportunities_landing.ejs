@@ -18,25 +18,28 @@
 
 
 <header>
-    <h1>Opportunities Landing Page</h1>
+    <h1>Opportunities</h1>
 </header>
 
+<!--
 <section id = "sidebar_page">
-    <!-- Advanced search options -->
+    <!-- Advanced search options
     <nav id = "search_options">
         <h4>Sort By:</h4>
         <ul>
-            <!--Note: currently non-functional -->
+            <!--Note: currently non-functional
             <li><a href="">Alphabetical</a></li>
             <li><a href="">Most recent</a></li>
             <li><a href="">Most popular</a></li>
         </ul>
     </nav>
+-->
 
     <!--Search results-->
-    <section id = "search_results">
+    <section>
 
         <% for(i = 0; i < results.length; i++) { %>
+        <div id = "opportunity_results">
         <article class = "editor">
             <a href="<%="../opportunity/" + i%>">
             <h3><%=results[i].name%></h3>
@@ -51,6 +54,7 @@
             <% } %>
         </article>
         <% } %>
+        </div>
 
     </section>
 </section>

@@ -22,7 +22,8 @@
     <h2> Topic Search </h2>
     <form action = "../search/" method = "get">
         <input type="text" placeholder="Enter an issue!" name="query" />
-        <input type="hidden" name="sort" value="date"/> <!--Default sorting: recent to old-->
+        <input type="hidden" name="sort" value="date_update"/> <!--Default sorting: recent to old-->
+        <input type="hidden" name="asc" value="true"/>
         <button type="submit">Search</button>
     </form>
 

@@ -15,8 +15,8 @@ function log_in(){
 
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
-function showDropDown() {
-    document.getElementById("myDropDown").classList.toggle("show");
+function showDropDown(){
+    document.getElementById("myDropdown").classList.toggle("show");
 }
 
 // Close the dropdown menu if the user clicks outside of it

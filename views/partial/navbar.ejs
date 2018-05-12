@@ -1,63 +1,24 @@
 <!-- navigation bar to be rendered for every page -->
+<link rel = "stylesheet" type = "text/css" href = "/styles/default.css">
 
-<script src = "../javascript/log_in.js"></script>
-<script src = "../javascript/sticky_nav.js"></script>
+<nav class = "topnav">
+    <p> <a href = "/"><img src = "./images/thickSmallTriangle.png" style = "width:30px; filter:brightness(0) invert(1)"> MultiView </a></p>
+    <ul>
+        <li> <a href = "/home"> Home </a></li>
+        <li> <a href = "../about"> About </a></li>
+        <li> <a href = "../search?query="> Articles </a></li>
+        <li> <a href = "../opportunities"> Opportunities </a></li>
 
-<!-- reusable header for all the website specifics -->
-
-<!--<div class = "banner banner_text">
-
-</div>-->
-
-<section>
-    <nav id="top_navigation">
-        <ul>
-            <li><a href = "../home">Home</a></li>
-            <li> <a href = "../about"> About </a></li>
-            <li><a href = "../search?query="> Articles </a></li>
-            <li><a href="../opportunities"> Opportunities </a></li>
-
-            <!--TODO: Login button-->
-	<!-- From OrgChange branch
-           <div>
-               <div  id = "login_nav"><li><a href = "../login"><button type = "button"> Login </button></a></li></div>
-               <div id = "profile_nav"><li><button> User's Name </button></li></div>
-
-
-               <!-- Drop Down Menu after logging in --> <!--
-               <div class = "dropdown" id = "">
-                   <button onclick = "showDropDown()" class = "dropbtn"> DropDown </button>
-                   <div id = "myDropDown" class = "dropdown-content">
-                       <a href = "#"> Settings </a>
-                       <a href = "#"> Other Option </a>
-                       <a href = "#"> Log Out </a>
-                   </div>
-               </div>
-
-
-
-           </div>-->
-
-            <!--
-            <div>
-            <li id = "login" style = "visibility:visible; float:right; padding-right:5%"><a href = "../login"><button type = "button"> Login </button></a></li>
-            <li id = "profile" style = "visibility: hidden; float:right; padding-right:5%"> Profile </li>
-           </div>-->
-
-            <!-- TODO: Apply to be an editor button -->
-            <!-- would be great if it pops up in the screen - rather than a redirect*/-->
-            <!--<li id = "applyEditor"><a href = "../editor-application"><button type = "button"> Apply now! </button></a></li>
-
-            <!--TODO: Login button-->
-            <% if(user) { %>
-                <li id = "login" ><a href = "../logout"><button type = "button"> Logout, <%=user.username%>! </button></a></li>
-            <%} else { %>
-                <li id = "login"><a href = "../login"><button type = "button"> Login </button></a></li>
-            <% } %>
-
-            <!-- TODO: Button for Editors to make articles - based on permissions -->
-            <!-- <li id = "createArticle"><a href = "../create-article"><button type = "button"> Create Article </button></a></li>-->
-
-        </ul>
-    </nav>
-</section>
+        <% if(user) { %>
+        <li> <a href = "#"> <%= user.username%> <img src = "./images/thickSmallTriangle.png" style = "width:15px; transform:rotate(180deg); filter:brightness(0) invert(1)"> </a> <!-- Need to include # for the drop down -->
+            <ul>
+                <li> <a href = "#"> Settings </a></li>
+                <li> <a href = "#"> Option2 </a></li>
+                <li> <a href = "../logout"> Log Out </a></li>
+            </ul>
+        </li>
+        <%} else { %>
+            <li id = "login"><a href = "../login"><button type = "button"> Login </button></a></li>
+        <%}%>
+    </ul>
+</nav>

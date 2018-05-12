@@ -7,6 +7,7 @@
     <link href="/styles/specifics.css" type="text/css" rel="stylesheet">
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
     <script src = "./javascript/log_in.js"></script>
+    <script src = "./javascript/formValidation.js"></script>
 </head>
 
 <body>
@@ -23,15 +24,15 @@
 
 
     <section>
-        <!--Note: Dummy form action -->
-        <form action = "../login" method ="post"> <!--TODO: originally Home-->
+        <form action = "../login" method ="post" onsubmit="return validateLogin()">
             <input type="text" class="account" name="username" placeholder="Username"/>
             <input type="password" class="account" name="password" placeholder="Password"/>
+            <p id="error"></p> <!--Used for validation error messages -->
             <input type="submit" id="login_submit" value="Submit">
         </form>
         <!--<a href = "../home"><button id="login_submit" onclick = "log_in()">Submit</button></a>-->
         <!--TODO: Redirect to Create Account button-->
-        <a href = "../create-account"> <button type = "submit" id = "submit">Create Account</button></a>
+        <button type = "submit" id = "submit"><a href = "../create-account">Create Account</a></button>
     </section>
 </div>
 

@@ -402,8 +402,9 @@
 }
 
 /* Used for controlling font size for banner*/
-.font_400{
+.font_400 {
     font-size: 400%;
+}
 
 #article_description {
     padding-left: 20%;
@@ -416,4 +417,19 @@
     border-collapse: collapse;
     width: 20%;
     margin-left: 40%;
+}
+
+/* Opportunities page*/
+#opportunity_results {
+    display: inline-grid;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 2px;
 }

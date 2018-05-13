@@ -1,11 +1,13 @@
 function changeColor(id) {
     const element = document.getElementById(id);
     if (id === "bookmarkButton") {
-        element.classList.toggle("bookmarkTick");
+        element.classList.toggle("bookmarkOn");
+        element.classList.toggle("bookmarkOff");
     }
 
     if (id === "likeButton") {
-        element.classList.toggle("thumbsupTick");
+        element.classList.toggle("likeOn");
+        element.classList.toggle("likeOff");
     }
 
     if (id === "followButton"){

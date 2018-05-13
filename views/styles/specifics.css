@@ -432,20 +432,25 @@
 
 }
 
+.likeButtonTick{
+    background:url("../images/thumbsupTick.png");
+    z-index: 999;
+}
+
 #bookmarkButton{
     border: none;
     color: white;
+    background:url("../images/bookmark.png")no-repeat top left;
     height: 64px;
     width: 64px;
     padding: 2px 8px;
 }
 
-.bookmark{
-    background:url("../images/bookmark.png")no-repeat top left;
-}
+
 
 .bookmarkTick{
-    background:url("../images/bookmarkTick.png")no-repeat top left;
+    background:url("../images/bookmarkTick.png");
+    z-index: 999;
 }
 
 
@@ -453,4 +458,8 @@
     border: none;
     color: white;
     padding: 2px 8px;
+}
+
+.followTick {
+    background-color : #08BF7E;
 }

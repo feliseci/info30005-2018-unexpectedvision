@@ -402,8 +402,9 @@
 }
 
 /* Used for controlling font size for banner*/
-.font_400{
+.font_400 {
     font-size: 400%;
+}
 
 #article_description {
     padding-left: 20%;
@@ -416,4 +417,40 @@
     border-collapse: collapse;
     width: 20%;
     margin-left: 40%;
+}
+
+
+/*Buttons for users to interact with editor articles*/
+
+#likeButton{
+    border: none;
+    background:url("../images/thumbsup.png")no-repeat top left;
+    color: white;
+    height: 64px;
+    width: 64px;
+    padding: 2px 8px;
+
+}
+
+#bookmarkButton{
+    border: none;
+    color: white;
+    height: 64px;
+    width: 64px;
+    padding: 2px 8px;
+}
+
+.bookmark{
+    background:url("../images/bookmark.png")no-repeat top left;
+}
+
+.bookmarkTick{
+    background:url("../images/bookmarkTick.png")no-repeat top left;
+}
+
+
+#followButton{
+    border: none;
+    color: white;
+    padding: 2px 8px;
 }

@@ -25,6 +25,12 @@
     <h3> Categories: <% for(i = 0; i < editor.categories.length; i++) { %>
         <%= "#" + editor.categories[i] %> <%}%>
     </h3>
+
+    <div>
+        <div id = "likeButton" onclick= "changeColor(this.id)"> </div>
+        <div id = "bookmarkButton" onclick = "changeColor(this.id)"></div>
+        <button id = "followButton" onclick = "changeColor(this.id)"> Follow </button>
+    </div>
 </header>
 
 

@@ -236,6 +236,7 @@ module.exports.loadOpportunities = function (req, res) {
                     categories: opportunities[i].categories,
                     description: opportunities[i].description,
                     image: opportunities[i].image,
+                    organiser: opportunities[i].organiser,
                     url: opportunities[i]._id // id = url
                 });
             }

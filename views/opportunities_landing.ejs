@@ -30,10 +30,9 @@
     </section>
 
     <!--Search results-->
-    <section>
+    <section id = "opportunity_results">
 
         <% for(i = 0; i < results.length; i++) { %>
-        <div id = "opportunity_results">
         <article class = "editor">
             <a href="<%="../opportunity/" + i%>">
             <h3><%=results[i].name%></h3>
@@ -47,11 +46,13 @@
             </p>
             <% } %>
         </article>
-        <% } %>
-        </div>
+
+        <!--Add "invisible" articles which take up the required empty spaces in the grid row -->
+        <%} for(i=0; i < results.length%3+1; i++) {%>
+            <article id = "invisible"></article>
+        <%} %>
 
     </section>
-</section>
 </div>
 
 <footer>

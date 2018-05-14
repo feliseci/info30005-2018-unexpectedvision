@@ -497,10 +497,12 @@
 
 #opportunity_results {
     display: inline-grid;
-    grid-template-areas: "article article";
+    grid-template-areas: "article article article" "article article article";
     grid-column-gap: 20px;
     grid-row-gap: 20px;
+    grid-template-columns: 33% 33% 33%; /* Even column width*/
 }
+
 
 #opportunity_results article {
     padding: 10px;

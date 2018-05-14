@@ -65,8 +65,17 @@ module.exports.home = function (req, res) {
 };
 module.exports.search = function (req, res) {
 
-    // Fetch the whole issues collection
-    Issue.find({}, function(err, issues) {
+    // Define the sort order & variable
+    let sort = {};
+    if(req.query.asc === "true") {
+        sort[req.query.sort] = 1;
+    }
+    else {
+        sort[req.query.sort] = -1; // Descending is default
+    }
+
+    // Fetch the whole issues collection, sorted as above
+    Issue.find({}).sort(sort).exec(function(err, issues) {
         if(!err) {
             let results = [];
 
@@ -74,7 +83,7 @@ module.exports.search = function (req, res) {
             for(i = 0; i < issues.length; i++) {
 
                 // Check each relevant field for the search query
-                if(check(issues[i], req.query.query)) {
+                if(check(issues[i], req.query.query, req.query.category)) {
 
                     // Add only required fields to the search results
                     results.push({
@@ -86,21 +95,35 @@ module.exports.search = function (req, res) {
                 }
             }
 
-            sort(results, req.query.sort); // Sort issues according to entered method
-            res.render('search_results', {results: results, user: req.user}); // Render the results
+            // Render the results
+            res.render('search_results', {results: results, user: req.user, query: req.query.query});
 
         } else {
             res.sendStatus(409);
         }
     });
 };
-function check(issue, query) {
+function check(issue, query, category) {
     const regexp = new RegExp(query, "i"); // Case-insensitive search
 
     if(query === undefined) { return; } // No query was entered, list all results
 
+    // Check for the required category
+    if(category !== undefined) {
+        let got_category = false;
+        for(j = 0; j < issue.categories.length; j++) {
+            if(issue.categories[j] === category) {
+                got_category = true;
+            }
+        }
+
+        if(got_category === false) {
+            return false; // Lack of the category automatically fails
+        }
+    }
+
     // Check presence of the query in name, description & category
-    const in_name = issue.name.search(regexp);
+    const in_name = issue.name.search(regexp); // Each search will return -1 if unsuccessful
     const in_description = issue.description.search(regexp);
     let in_category = -1;
     for(j = 0; j < issue.categories.length; j++) {
@@ -111,73 +134,8 @@ function check(issue, query) {
     }
 
     // Add the issue to the search results if the query was in at least one of the fields
+    // Query was found: returns true
     return((in_name + in_description + in_category) > -3);
-}
-function sort(issues, type) {
-    // TODO, could separate into further methods
-    if(type === undefined) { return; } // No sort was entered, use default sorting
-    console.log("Sort type: " + type);
-    return issues;
-
-    /* Do within search page - i.e. just reorders everything?
-     * This only works if you can reload the page while keeping the original search term
-     * Could pass the search term as a parameter - so can access it in the search results
-     * There may be some other way to access it without doing this using JS -
-     * if not only rewriting parts of the URL, then just accessing the URL
-     * Alternatively having another url path /search?=.../sort/popularity ... ugly*/
-
-    // FUNCTIONAL: Popularity descending
-    /*if(type.localeCompare("popularity") === 0) {
-        // Descending popularity sort
-        results.sort(function(a, b) {
-
-            if (a.popularity > b.popularity) { return -1; } // 1 if ascending & same ordering
-            if (a.popularity < b.popularity) { return 1; } // -1 if ascending
-            return 0;
-
-        });
-    }*/
-
-    /*
-
-    if(!(sort_type === undefined || sort_type.isEmptyObject)) {
-        // Ascending alphabetical sort
-        if(sort_type.localeCompare("alpha") === 0) {
-            results.sort(function(a, b) {
-                const name_a = a.name.toLowerCase();
-                const name_b = b.name.toLowerCase();
-
-                if(name_a > name_b) { return 1; }
-                if(name_a < name_b) { return -1; }
-                return 0;
-            });
-        }
-        else if(sort_type.localeCompare("popularity") === 0) {
-            // Descending date sort (most recent first)
-            results.sort(function(a, b) {
-                if (a.popularity > b.popularity) { return 1; }
-                if (a.popularity < b.popularity) { return -1; }
-                return 0;
-            }); // Replace with implementation appropriate to data format
-
-        }
-        else if(sort_type.localeCompare("date") === 0) {
-            // Descending popularity sort
-            results.sort(function(a, b) {
-
-                if (a.date > b.date) { return 1; }
-                if (a.date < b.date) { return -1; }
-                return 0;
-
-            }); // Replace with implementation appropriate to data format
-
-            for(k = 0; k < results.length; k++) {
-                console.log(results[k].date);
-            }
-
-        }
-
-    }*/
 }
 module.exports.random = function (req,res) {
     // Get the number of documents in the issues collection
@@ -220,7 +178,6 @@ module.exports.issue = function(req,res){
         // TODO contributions
     });
 };
-
 module.exports.loadContributions = function (req, res) {
     // Fetch the issue with the given URL/id
     Issue.findOne({_id: req.params.id}, function(err, issue) {
@@ -240,7 +197,6 @@ module.exports.loadContributions = function (req, res) {
         res.render('contributions_template', {issue: {name: issue.name}, comments: issue.contributions, user: req.user});
     });
 }; // temp; contrib's will be part of issue page in final
-
 module.exports.opportunity = function (req, res) {
 
     // Fetch the opportunity with the given URL/id
@@ -480,7 +436,7 @@ resetUsers = function (req, res) {
             "is_editor": dummyUsers[i].is_editor
         });
 
-        User.register(newUser, dummyUsers[i].password, function(err, user) {
+        User.register(newUser, dummyUsers[i].password, function(err) {
             if(!err) {
                 console.log("New user sent.");
             } else{

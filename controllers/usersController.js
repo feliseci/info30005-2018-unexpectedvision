@@ -223,3 +223,7 @@ module.exports.createArticle = function (req, res) {
 module.exports.tester = function (req, res) {
     res.render('tester');
 };
+
+module.exports.userProfile= function (req, res) {
+    res.render('user_profile');
+};

@@ -52,7 +52,7 @@ nav.topnav ul li:hover ul {
 }
 
 nav.topnav ul li ul li {
-    width: 100px;
+    width: 200px;
     border-radius: 4px;
 }
 

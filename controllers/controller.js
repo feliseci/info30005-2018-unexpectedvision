@@ -500,3 +500,9 @@ module.exports.logout = function(req, res){
     req.logout();
     res.redirect('../home'); // Or landing
 };
+
+
+//* User profile
+module.exports.userProfile= function (req, res) {
+    res.render('user_profile');
+};

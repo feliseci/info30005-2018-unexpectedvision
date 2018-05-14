@@ -1,3 +1,7 @@
+
+/* Function takes the id of the specific button and toggles the colour on and off to indicate
+ * whether a user has completed an action in the form of visual feedback */
+
 function changeColor(id) {
     const element = document.getElementById(id);
     if (id === "bookmarkButton") {
@@ -14,23 +18,3 @@ function changeColor(id) {
         element.classList.toggle("followTick");
     }
 }
-
-
-   /* && click === false){
-        element.classList.add("bookmarkTick");
-        element.classList.remove("bookmark");
-        const click = true;
-    }
-
-    else if (id === "bookmarkButton" && click === true){
-        element.classList.add("bookmark");
-        element.classList.remove("bookmarkTick");
-        const click = false;
-    }
-
-
-}
-
-
-    /*let element = document.getElementById(id);
-    element.classList.toggle("changeColor")*/

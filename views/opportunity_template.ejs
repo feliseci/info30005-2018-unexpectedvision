@@ -13,7 +13,6 @@
 <div class = "content"> <!-- Used to make footers sticky -->
 
 <!--Site title-->
-<<!--Site title-->
 <% include ./partial/navbar.ejs%>
 
 <header id = "event_header">
@@ -32,12 +31,12 @@
             <th> Attendees </th>
         </tr>
         <tr>
-            <td> <%= opportunity.event_date %> </td>
-            <td> <%= opportunity.event_time %> </td>
+            <td> <%= opportunity.date_event %> </td>
+            <td> <%= opportunity.date_event %> </td> <!--TODO -->
             <td> <%= opportunity.location %> </td>
             <td> <%= opportunity.description %></td>
             <td> <%= opportunity.organiser %> </td>
-            <td> TD </td>
+            <td> TD </td> <!--TODO All fields-->
         </tr>
 
     </table>

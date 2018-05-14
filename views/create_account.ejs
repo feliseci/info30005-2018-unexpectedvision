@@ -6,6 +6,7 @@
     <link href="/styles/style.css" type="text/css" rel="stylesheet">
     <link href="/styles/specifics.css" type="text/css" rel="stylesheet">
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
+    <script src = "./javascript/formValidation.js"></script>
 </head>
 
 <body>
@@ -22,7 +23,7 @@
 
 <section>
     <!-- TODO Proper redirect. Currently sends the entered info. -->
-    <form action = "../new-user" method="get">
+    <form action = "../create-account" method="post" onsubmit="return validateUser()">
         <h2>Username</h2>
         <input type="text" class="account" placeholder="Enter username" name="username"/>
         <h2>Password</h2>
@@ -30,7 +31,8 @@
         <h2>Confirm Password</h2>
         <input type="password" class="account" placeholder="Re-enter password"/> <!--TODO: Check == above. -->
         <h2>Email</h2>
-        <input type="text" class="account" placeholder="Enter your email address" name="email"/>
+        <input type="email" class="account" placeholder="Enter your email address" name="email"/>
+        <p id="error"></p> <!--Used for validation error messages -->
         <button type="submit" id="submit">Submit</button>
     </form>
 </section>

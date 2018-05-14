@@ -22,7 +22,6 @@ router.get('/editor-application', controller.editorApplication);
 
 router.get('/new-issue', controller.newIssue); // TODO use .post as per login
 router.get('/new-contribution', controller.newContribution);
-router.get('/new-user', controller.newUser);
 router.get('/new-opportunity', controller.newOpportunity);
 
 // Permission based options - only for Editors
@@ -35,9 +34,9 @@ router.get('/reset', controller.resetDB);
 // Passport-related
 router.post('/login', passport.authenticate('local', {
     successRedirect: '/home',
-    failureRedirect: '/login'
-    // 'req.user' contains the authenticated user.
+    failureRedirect: '/login?failure=true'
 }));
+router.post('/create-account', controller.newUser);
 router.get('/logout', controller.logout);
 
 module.exports = router;

@@ -1,6 +1,7 @@
 /* Imports */
 // Requirements
 const mongoose = require('mongoose');
+const passport = require('passport');
 
 // Schema
 const Issue = mongoose.model('issues');
@@ -90,6 +91,8 @@ module.exports.search = function (req, res) {
                         name: issues[i].name,
                         categories: issues[i].categories,
                         description: issues[i].description,
+                        image: issues[i].image,
+                        author: issues[i].author,
                         url: issues[i]._id
                     });
                 }
@@ -232,11 +235,11 @@ module.exports.loadOpportunities = function (req, res) {
                     name: opportunities[i].name,
                     categories: opportunities[i].categories,
                     description: opportunities[i].description,
+                    image: opportunities[i].image,
                     url: opportunities[i]._id // id = url
                 });
             }
 
-            sort(results, req.query.sort); // Sort issues according to entered method
             res.render('opportunities_landing', {results: results, user: req.user});
 
         } else {
@@ -247,30 +250,48 @@ module.exports.loadOpportunities = function (req, res) {
 
 /*Database addition-related pages*/
 module.exports.createAccount = function (req, res) {
-    // Have to pass user for navbar to work
-    // although create account shouldn't be accessible while logged in
+    if(req.user) {
+        // TODO better redirect
+        res.redirect('../home'); // Not allowed to visit this as a logged-in user
+        return;
+    }
     res.render('create_account', {user: req.user});
 };
-module.exports.newUser = function (req, res) {
+module.exports.newUser = function (req, res, next) {
 
     // Get the entered details for the new user from the URL
     let newUser = new User({
-        "username": req.query.username,
-        "display_name": req.query.username, // Default to == username
-        "email": req.query.email,
+        "username": req.body.username,
+        "display_name": req.body.username, // Default to == username
+        "email": req.body.email,
     });
 
     // Register the user using passport-local-mongoose, which hashes the password
-    User.register(newUser, req.query.password, function(err) {
+    User.register(newUser, req.body.password, function(err) {
         if(!err) {
-            res.redirect('../home'); // TODO authenticate
+
+            // Login (authenticate) the new user
+            passport.authenticate('local', function(err, user) {
+                if (err) { return next(err); }
+                req.logIn(user, function(err) {
+                    if (err) { return next(err); }
+                    return res.redirect('../home');
+                });
+            })(req, res, next);
+
             console.log("New user sent.");
         } else{
             res.sendStatus(400);
         }
     });
+
 };
 module.exports.createArticle = function (req, res) {
+    if(!req.user || !req.user.is_editor) {
+        // TODO better redirect
+        res.redirect('../home'); // Not allowed to visit this page as a non-editor
+        return;
+    }
     res.render('create_article', {user: req.user});
 };
 module.exports.newIssue = function (req, res) {
@@ -282,13 +303,14 @@ module.exports.newIssue = function (req, res) {
         "image": req.query.image,
         "hl_source": req.query.hl_source,
         "r_source": req.query.r_source,
-        "o_source": req.query.o_source
+        "o_source": req.query.o_source,
+        "categories": req.query.c_source
     });
 
     // Add the new issue to the DB
     newIssue.save(function(err,newIssue) {
         if(!err) {
-            res.send(newIssue); // TODO replace with appropriate render
+            res.redirect('../issue/' + newIssue._id); // Redirect to new issue
             console.log("New issue sent.");
         } else{
             res.sendStatus(400);
@@ -312,12 +334,17 @@ module.exports.newContribution = function (req, res) {
     res.send(newContribution); // TODO replace with appropriate render
 };
 module.exports.createOpportunity = function (req, res) {
+    if(!req.user || !req.user.is_editor) {
+        // TODO better redirect
+        res.redirect('../home'); // Not allowed to visit this page as a non-editor
+        return;
+    }
     res.render('opportunities_form', {user: req.user});
 };
 module.exports.newOpportunity = function (req, res) {
     // Get the entered details for the new opportunity from the URL
     let newOpportunity = new Opportunity({
-        "name": req.query.name,
+        "name": req.query.name[0].toUpperCase() + req.query.name.substr(1),
         "organiser": req.query.organiser,
         "description": req.query.description,
         "image": req.query.image,
@@ -337,6 +364,12 @@ module.exports.newOpportunity = function (req, res) {
     });
 };
 module.exports.editorApplication = function (req, res) {
+    if(!req.user || req.user.is_editor) {
+        // TODO better redirect
+        res.redirect('../home'); // Not allowed to visit this page as a non-user or editor
+        return;
+    }
+
     res.render('editor_application', {user: req.user});
 }; // TODO
 
@@ -345,6 +378,11 @@ module.exports.landing = function (req, res) {
     res.render('index', {user: req.user});
 };
 module.exports.login = function (req, res) {
+    if(req.user) {
+        // TODO better redirect
+        res.redirect('../home'); // Not allowed to visit the log in page as a logged-in user
+        return;
+    }
     res.render('login', {user: req.user}); // TODO Remove login button on login page? See createAccount
 };
 module.exports.loadAbout = function (req, res) {
@@ -451,8 +489,13 @@ resetUsers = function (req, res) {
 
 /* Passport-related methods */
 module.exports.logout = function(req, res){
+    if(!req.user) {
+        res.redirect('../home'); // TODO better redirect
+        return;
+    }
+
     let name = req.user.username;
     console.log("Logging out " + name + "...");
     req.logout();
-    res.redirect('../home'); // Or landing
+    res.redirect('../home');
 };

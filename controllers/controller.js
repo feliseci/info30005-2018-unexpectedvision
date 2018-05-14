@@ -499,3 +499,9 @@ module.exports.logout = function(req, res){
     req.logout();
     res.redirect('../home');
 };
+
+
+//* User profile
+module.exports.userProfile= function (req, res) {
+    res.render('user_profile', {user: req.user});
+};

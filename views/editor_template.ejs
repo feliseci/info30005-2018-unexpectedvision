@@ -8,6 +8,7 @@
     <link href="/styles/style.css" type="text/css" rel="stylesheet">
     <link href="/styles/specifics.css" type="text/css" rel="stylesheet">
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
+    <script src = "/javascript/changeColor.js"></script>
 </head>
 
 <body>
@@ -25,6 +26,12 @@
     <h3> Categories: <% for(i = 0; i < editor.categories.length; i++) { %>
         <%= "#" + editor.categories[i] %> <%}%>
     </h3>
+
+    <div>
+        <button id = "likeButton" class = "likeOff" onclick= "changeColor(this.id)">  </button>
+        <button id = "bookmarkButton" class = "bookmarkOff"  onclick = "changeColor(this.id)"></button>
+        <button id = "followButton" onclick = "changeColor(this.id)"> Follow </button>
+    </div>
 </header>
 
 

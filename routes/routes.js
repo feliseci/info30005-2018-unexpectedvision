@@ -24,6 +24,11 @@ router.get('/new-issue', controller.newIssue); // TODO use .post as per login
 router.get('/new-contribution', controller.newContribution);
 router.get('/new-opportunity', controller.newOpportunity);
 
+
+// User Profile
+router.get('/profile', controller.userProfile);
+
+
 // Permission based options - only for Editors
 router.get('/create-article', controller.createArticle);
 router.get('/create-opportunity', controller.createOpportunity);

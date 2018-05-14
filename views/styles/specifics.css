@@ -424,6 +424,52 @@
     border-collapse: collapse;
 }
 
+/*Buttons for users to interact with editor articles*/
+
+#likeButton{
+    border: none;
+    color: white;
+    height: 64px;
+    width: 64px;
+    padding: 2px 8px;
+
+}
+
+.likeOn{
+    background:url("../images/thumbsupTick.png");
+}
+
+.likeOff{
+    background:url("../images/thumbsup.png")no-repeat top left;
+}
+
+#bookmarkButton{
+    border: none;
+    color: white;
+    height: 64px;
+    width: 64px;
+    padding: 2px 8px;
+}
+
+.bookmarkOff{
+    background:url("../images/bookmark.png")no-repeat top left;
+}
+
+.bookmarkOn{
+     background:url("../images/bookmarkTick.png");
+ }
+
+
+#followButton{
+    border: none;
+    color: white;
+    padding: 2px 8px;
+}
+
+.followTick {
+    background-color : #08BF7E;
+}
+
 /* Opportunities page*/
 #opportunity_search {
     display: grid;

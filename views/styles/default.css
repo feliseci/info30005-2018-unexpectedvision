@@ -7,7 +7,7 @@ nav.topnav {
 }
 
 nav.topnav p {
-    font-family: Encode Sans Condensed;
+    font-family: 'Encode Sans Condensed', sans-serif;
     color: white;
     font-size: 24px;
     line-height:55px;
@@ -30,7 +30,7 @@ nav.topnav ul li {
 
 nav.topnav ul li a {
     display: block;
-    font-family:Arial;
+    font-family: Arial, serif;
     color: white;
     font-size: 14px;;
     padding: 22px 14px;

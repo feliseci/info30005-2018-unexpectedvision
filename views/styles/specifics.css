@@ -420,16 +420,40 @@
 }
 
 /* Opportunities page*/
+#opportunity_search {
+    display: grid;
+    grid-template-areas: "input input";
+    width: 40%;
+    margin-left: 36%;
+    margin-right: 30%;
+}
+
+#opportunity_bar {
+    height: 30px;
+    border: solid;
+    border-radius: 3px;
+    color: white;
+    background: white;
+    /* Find appropriate one */
+    font-size: medium;
+}
+
+#magnifying_glass {
+    width: auto;
+    height: auto;
+    max-height: 30px;
+}
+
 #opportunity_results {
     display: inline-grid;
+    grid-template-areas: "article article";
     grid-column-gap: 20px;
     grid-row-gap: 20px;
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 1;
-    grid-row-end: 3;
-    border-style: solid;
+}
+
+#opportunity_results article {
+    padding: 10px;
+    border: solid;
     border-color: black;
-    border-width: 2px;
-    border-radius: 2px;
+    background: white;
 }

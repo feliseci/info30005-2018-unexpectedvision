@@ -26,7 +26,17 @@ require('./opportunities.js');
 const User = mongoose.model('users');
 passport.use(new LocalStrategy(User.authenticate())); // Automatically uses the local-mongoose strategy
 passport.serializeUser( function(user, done) {
-    return done(null, user);
+    // Decide which details are stored by the session
+    // See https://stackoverflow.com/questions/27637609/understanding-passport-serialize-deserialize
+    let user_details = {
+        username: user.username,
+        is_editor: user.is_editor,
+        display_name: user.display_name,
+        email: user.email
+    };
+
+    // Simply passing user would include the salt and hashed password, and is insecure
+    return done(null, user_details);
 });
 passport.deserializeUser( function(user, done) {
     return done(null, user);

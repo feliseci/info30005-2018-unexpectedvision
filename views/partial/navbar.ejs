@@ -9,6 +9,7 @@
         <li> <a href = "../search?query="> Articles </a></li>
         <li> <a href = "../opportunities"> Opportunities </a></li>
 
+        <!-- Displays when the user is logged in -->
         <% if(user) { %>
         <li> <a href = "../profile"> <%= user.username%> <img src = "../images/thickSmallTriangle.png" style = "width:15px; transform:rotate(180deg); filter:brightness(0) invert(1)"> </a> <!-- Need to include # for the drop down -->
             <ul>
@@ -17,12 +18,17 @@
                 <li> <a href = "../editor-application"> Apply to be an Editor! </a></li>
 
                 <!-- if user is an editor than this renders -->
-                <li> <a href = "../create-article"> **Create an Article! </a></li>
-                <li> <a href = "../create-opportunity"> Make an Event! </a></li>
+                <% if(user.is_editor) { %>
+                    <li> <a href = "../create-article"> Create an Article </a></li>
+                <% } else { %>
+                    <li> <a href = "../editor-application"> Apply Ed. </a></li>
+					<li> <a href = "../create-opportunity"> Make an Event! </a></li>
+                <% }%>
                 <li> <a href = "../logout"> Log Out </a></li>
             </ul>
         </li>
         <%} else { %>
+            <!-- Displays when the user isn't logged in -->
             <li id = "login"><a href = "../login"><button type = "button"> Login </button></a></li>
         <%}%>
     </ul>

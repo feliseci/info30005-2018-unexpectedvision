@@ -412,13 +412,17 @@
 
 }
 
+/* Article page */
+#article_repository table {
+    width: 30%;
+    margin-left: 35%;
+    margin-right: 35%;
+}
+
 #article_repository table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
-    width: 20%;
-    margin-left: 40%;
 }
-
 
 /*Buttons for users to interact with editor articles*/
 
@@ -464,4 +468,49 @@
 
 .followTick {
     background-color : #08BF7E;
+}
+
+/* Opportunities page*/
+#opportunity_search {
+    display: grid;
+    grid-template-areas: "input input";
+    width: 40%;
+    margin-left: 36%;
+    margin-right: 30%;
+}
+
+#opportunity_bar {
+    height: 30px;
+    border: solid;
+    border-radius: 3px;
+    color: white;
+    background: white;
+    /* Find appropriate one */
+    font-size: medium;
+}
+
+#magnifying_glass {
+    width: auto;
+    height: auto;
+    max-height: 30px;
+}
+
+#opportunity_results {
+    display: inline-grid;
+    grid-template-areas: "article article";
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+}
+
+#opportunity_results article {
+    padding: 10px;
+    border: solid;
+    border-color: black;
+    background: white;
+}
+
+#event_information table {
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
 }

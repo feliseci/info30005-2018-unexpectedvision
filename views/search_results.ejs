@@ -23,12 +23,18 @@
 <section id = "sidebar_page">
 <!-- Advanced search options -->
 <nav id = "search_options">
+    <% let sort_url = "../search/?query=" + query + "&sort="%>
     <h4>Sort By:</h4>
     <ul>
-        <!--Note: currently non-functional -->
-        <li><a href="">Alphabetical</a></li>
-        <li><a href="">Most recent</a></li>
-        <li><a href="">Most popular</a></li>
+        <li>Alphabetical
+            <a href="<%=sort_url +"name&asc=true"%>">ASC</a> |
+            <a href="<%=sort_url + "name&asc=false"%>">DSC</a></li>
+        <li>Most recent
+            <a href="<%=sort_url +"date_update&asc=true"%>">ASC</a> |
+            <a href="<%=sort_url + "date_update&asc=false"%>">DSC</a></li>
+        <li>Most popular
+            <a href="<%=sort_url +"popularity&asc=true"%>">ASC</a> |
+            <a href="<%=sort_url + "popularity&asc=false"%>">DSC</a></li>
     </ul>
 </nav>
 
@@ -38,7 +44,7 @@
     <section id = "search_bar_small">
         <form action = "" method = "get">
             <input type="text" placeholder="Search..." name="query" />
-            <button type="submit">Search</button>
+            <button type="submit">Enter</button>
         </form>
     </section>
 
@@ -46,13 +52,13 @@
         <article class = "editor" id="search_box"> <!--TODO: remove difference -->
             <a href="<%="../issue/" + results[i].url%>">
                 <h3><%=results[i].name%></h3>
-                <p><%=results[i].description%></p>
             </a>
+            <p><%=results[i].description%></p>
             <h4>Categories:</h4>
             <% var categories = results[i].categories;
             for(j = 0; j < categories.length; j++) { %>
                 <p class = "issue_category">
-                    <a href="">#<%=categories[j]%></a>
+                    <a href=<%="../search?query=&category=" + categories[j]%>>#<%=categories[j]%></a>
                 </p>
             <% } %>
         </article>

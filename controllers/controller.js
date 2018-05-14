@@ -1,6 +1,7 @@
 /* Imports */
 // Requirements
 const mongoose = require('mongoose');
+const passport = require('passport');
 
 // Schema
 const Issue = mongoose.model('issues');
@@ -65,8 +66,17 @@ module.exports.home = function (req, res) {
 };
 module.exports.search = function (req, res) {
 
-    // Fetch the whole issues collection
-    Issue.find({}, function(err, issues) {
+    // Define the sort order & variable
+    let sort = {};
+    if(req.query.asc === "true") {
+        sort[req.query.sort] = 1;
+    }
+    else {
+        sort[req.query.sort] = -1; // Descending is default
+    }
+
+    // Fetch the whole issues collection, sorted as above
+    Issue.find({}).sort(sort).exec(function(err, issues) {
         if(!err) {
             let results = [];
 
@@ -74,33 +84,49 @@ module.exports.search = function (req, res) {
             for(i = 0; i < issues.length; i++) {
 
                 // Check each relevant field for the search query
-                if(check(issues[i], req.query.query)) {
+                if(check(issues[i], req.query.query, req.query.category)) {
 
                     // Add only required fields to the search results
                     results.push({
                         name: issues[i].name,
                         categories: issues[i].categories,
                         description: issues[i].description,
+                        image: issues[i].image,
+                        author: issues[i].author,
                         url: issues[i]._id
                     });
                 }
             }
 
-            sort(results, req.query.sort); // Sort issues according to entered method
-            res.render('search_results', {results: results, user: req.user}); // Render the results
+            // Render the results
+            res.render('search_results', {results: results, user: req.user, query: req.query.query});
 
         } else {
             res.sendStatus(409);
         }
     });
 };
-function check(issue, query) {
+function check(issue, query, category) {
     const regexp = new RegExp(query, "i"); // Case-insensitive search
 
     if(query === undefined) { return; } // No query was entered, list all results
 
+    // Check for the required category
+    if(category !== undefined) {
+        let got_category = false;
+        for(j = 0; j < issue.categories.length; j++) {
+            if(issue.categories[j] === category) {
+                got_category = true;
+            }
+        }
+
+        if(got_category === false) {
+            return false; // Lack of the category automatically fails
+        }
+    }
+
     // Check presence of the query in name, description & category
-    const in_name = issue.name.search(regexp);
+    const in_name = issue.name.search(regexp); // Each search will return -1 if unsuccessful
     const in_description = issue.description.search(regexp);
     let in_category = -1;
     for(j = 0; j < issue.categories.length; j++) {
@@ -111,73 +137,8 @@ function check(issue, query) {
     }
 
     // Add the issue to the search results if the query was in at least one of the fields
+    // Query was found: returns true
     return((in_name + in_description + in_category) > -3);
-}
-function sort(issues, type) {
-    // TODO, could separate into further methods
-    if(type === undefined) { return; } // No sort was entered, use default sorting
-    console.log("Sort type: " + type);
-    return issues;
-
-    /* Do within search page - i.e. just reorders everything?
-     * This only works if you can reload the page while keeping the original search term
-     * Could pass the search term as a parameter - so can access it in the search results
-     * There may be some other way to access it without doing this using JS -
-     * if not only rewriting parts of the URL, then just accessing the URL
-     * Alternatively having another url path /search?=.../sort/popularity ... ugly*/
-
-    // FUNCTIONAL: Popularity descending
-    /*if(type.localeCompare("popularity") === 0) {
-        // Descending popularity sort
-        results.sort(function(a, b) {
-
-            if (a.popularity > b.popularity) { return -1; } // 1 if ascending & same ordering
-            if (a.popularity < b.popularity) { return 1; } // -1 if ascending
-            return 0;
-
-        });
-    }*/
-
-    /*
-
-    if(!(sort_type === undefined || sort_type.isEmptyObject)) {
-        // Ascending alphabetical sort
-        if(sort_type.localeCompare("alpha") === 0) {
-            results.sort(function(a, b) {
-                const name_a = a.name.toLowerCase();
-                const name_b = b.name.toLowerCase();
-
-                if(name_a > name_b) { return 1; }
-                if(name_a < name_b) { return -1; }
-                return 0;
-            });
-        }
-        else if(sort_type.localeCompare("popularity") === 0) {
-            // Descending date sort (most recent first)
-            results.sort(function(a, b) {
-                if (a.popularity > b.popularity) { return 1; }
-                if (a.popularity < b.popularity) { return -1; }
-                return 0;
-            }); // Replace with implementation appropriate to data format
-
-        }
-        else if(sort_type.localeCompare("date") === 0) {
-            // Descending popularity sort
-            results.sort(function(a, b) {
-
-                if (a.date > b.date) { return 1; }
-                if (a.date < b.date) { return -1; }
-                return 0;
-
-            }); // Replace with implementation appropriate to data format
-
-            for(k = 0; k < results.length; k++) {
-                console.log(results[k].date);
-            }
-
-        }
-
-    }*/
 }
 module.exports.random = function (req,res) {
     // Get the number of documents in the issues collection
@@ -220,7 +181,6 @@ module.exports.issue = function(req,res){
         // TODO contributions
     });
 };
-
 module.exports.loadContributions = function (req, res) {
     // Fetch the issue with the given URL/id
     Issue.findOne({_id: req.params.id}, function(err, issue) {
@@ -240,7 +200,6 @@ module.exports.loadContributions = function (req, res) {
         res.render('contributions_template', {issue: {name: issue.name}, comments: issue.contributions, user: req.user});
     });
 }; // temp; contrib's will be part of issue page in final
-
 module.exports.opportunity = function (req, res) {
 
     // Fetch the opportunity with the given URL/id
@@ -276,11 +235,11 @@ module.exports.loadOpportunities = function (req, res) {
                     name: opportunities[i].name,
                     categories: opportunities[i].categories,
                     description: opportunities[i].description,
+                    image: opportunities[i].image,
                     url: opportunities[i]._id // id = url
                 });
             }
 
-            sort(results, req.query.sort); // Sort issues according to entered method
             res.render('opportunities_landing', {results: results, user: req.user});
 
         } else {
@@ -291,30 +250,48 @@ module.exports.loadOpportunities = function (req, res) {
 
 /*Database addition-related pages*/
 module.exports.createAccount = function (req, res) {
-    // Have to pass user for navbar to work
-    // although create account shouldn't be accessible while logged in
+    if(req.user) {
+        // TODO better redirect
+        res.redirect('../home'); // Not allowed to visit this as a logged-in user
+        return;
+    }
     res.render('create_account', {user: req.user});
 };
-module.exports.newUser = function (req, res) {
+module.exports.newUser = function (req, res, next) {
 
     // Get the entered details for the new user from the URL
     let newUser = new User({
-        "username": req.query.username,
-        "display_name": req.query.username, // Default to == username
-        "email": req.query.email,
+        "username": req.body.username,
+        "display_name": req.body.username, // Default to == username
+        "email": req.body.email,
     });
 
     // Register the user using passport-local-mongoose, which hashes the password
-    User.register(newUser, req.query.password, function(err) {
+    User.register(newUser, req.body.password, function(err) {
         if(!err) {
-            res.redirect('../home'); // TODO authenticate
+
+            // Login (authenticate) the new user
+            passport.authenticate('local', function(err, user) {
+                if (err) { return next(err); }
+                req.logIn(user, function(err) {
+                    if (err) { return next(err); }
+                    return res.redirect('../home');
+                });
+            })(req, res, next);
+
             console.log("New user sent.");
         } else{
             res.sendStatus(400);
         }
     });
+
 };
 module.exports.createArticle = function (req, res) {
+    if(!req.user || !req.user.is_editor) {
+        // TODO better redirect
+        res.redirect('../home'); // Not allowed to visit this page as a non-editor
+        return;
+    }
     res.render('create_article', {user: req.user});
 };
 module.exports.newIssue = function (req, res) {
@@ -326,13 +303,14 @@ module.exports.newIssue = function (req, res) {
         "image": req.query.image,
         "hl_source": req.query.hl_source,
         "r_source": req.query.r_source,
-        "o_source": req.query.o_source
+        "o_source": req.query.o_source,
+        "categories": req.query.c_source
     });
 
     // Add the new issue to the DB
     newIssue.save(function(err,newIssue) {
         if(!err) {
-            res.send(newIssue); // TODO replace with appropriate render
+            res.redirect('../issue/' + newIssue._id); // Redirect to new issue
             console.log("New issue sent.");
         } else{
             res.sendStatus(400);
@@ -356,12 +334,17 @@ module.exports.newContribution = function (req, res) {
     res.send(newContribution); // TODO replace with appropriate render
 };
 module.exports.createOpportunity = function (req, res) {
+    if(!req.user || !req.user.is_editor) {
+        // TODO better redirect
+        res.redirect('../home'); // Not allowed to visit this page as a non-editor
+        return;
+    }
     res.render('opportunities_form', {user: req.user});
 };
 module.exports.newOpportunity = function (req, res) {
     // Get the entered details for the new opportunity from the URL
     let newOpportunity = new Opportunity({
-        "name": req.query.name,
+        "name": req.query.name[0].toUpperCase() + req.query.name.substr(1),
         "organiser": req.query.organiser,
         "description": req.query.description,
         "image": req.query.image,
@@ -381,6 +364,12 @@ module.exports.newOpportunity = function (req, res) {
     });
 };
 module.exports.editorApplication = function (req, res) {
+    if(!req.user || req.user.is_editor) {
+        // TODO better redirect
+        res.redirect('../home'); // Not allowed to visit this page as a non-user or editor
+        return;
+    }
+
     res.render('editor_application', {user: req.user});
 }; // TODO
 
@@ -389,6 +378,11 @@ module.exports.landing = function (req, res) {
     res.render('index', {user: req.user});
 };
 module.exports.login = function (req, res) {
+    if(req.user) {
+        // TODO better redirect
+        res.redirect('../home'); // Not allowed to visit the log in page as a logged-in user
+        return;
+    }
     res.render('login', {user: req.user}); // TODO Remove login button on login page? See createAccount
 };
 module.exports.loadAbout = function (req, res) {
@@ -480,7 +474,7 @@ resetUsers = function (req, res) {
             "is_editor": dummyUsers[i].is_editor
         });
 
-        User.register(newUser, dummyUsers[i].password, function(err, user) {
+        User.register(newUser, dummyUsers[i].password, function(err) {
             if(!err) {
                 console.log("New user sent.");
             } else{
@@ -495,10 +489,15 @@ resetUsers = function (req, res) {
 
 /* Passport-related methods */
 module.exports.logout = function(req, res){
+    if(!req.user) {
+        res.redirect('../home'); // TODO better redirect
+        return;
+    }
+
     let name = req.user.username;
     console.log("Logging out " + name + "...");
     req.logout();
-    res.redirect('../home'); // Or landing
+    res.redirect('../home');
 };
 
 

@@ -25,9 +25,10 @@ router.get('/new-contribution', controller.newContribution);
 router.get('/new-user', controller.newUser);
 router.get('/new-opportunity', controller.newOpportunity);
 
-// User Profile
 
+// User Profile
 router.get('/profile', controller.userProfile);
+
 
 // Permission based options - only for Editors
 router.get('/create-article', controller.createArticle);

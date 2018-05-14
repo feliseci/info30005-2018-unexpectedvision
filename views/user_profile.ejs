@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> <!--%= user.username%--> - profile </title>
+    <title> <%= user.username%> - Profile </title>
     <link href="/styles/style.css" type="text/css" rel="stylesheet">
     <link href="/styles/specifics.css" type="text/css" rel="stylesheet">
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
@@ -12,12 +12,15 @@
 
 <div class = "content"> <!-- Used to make footers sticky -->
 
-<header>
 
-</header>
-
-    <<!--Site title-->
+    <!--Site title-->
 <% include ./partial/navbar.ejs%>
+
+    <header>
+
+    </header>
+    <p> this is the user profile </p>
+
 </div>
 <footer>
     <% include ./partial/footer.ejs%>

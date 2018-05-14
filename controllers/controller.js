@@ -504,5 +504,5 @@ module.exports.logout = function(req, res){
 
 //* User profile
 module.exports.userProfile= function (req, res) {
-    res.render('user_profile');
+    res.render('user_profile', {user: req.user});
 };

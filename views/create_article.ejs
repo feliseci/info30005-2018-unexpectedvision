@@ -18,7 +18,7 @@
 
 <!--TODO: Use post-->
 <form action = "../new-issue/" method = "get" onsubmit="return validateArticle()">
-    <input type="hidden" name="author" value = <%=user.username%>> <!--TODO: From curr. username-->
+    <input type="hidden" name="author" value = <%=user.username%>>
     <h3>Issue Title:</h3>
     <input type="text" name="name" class="account">
     <h3>Description:</h3>
@@ -26,13 +26,27 @@
     <h3>Image URL:</h3>
     <input type="text" name="image" class="account">
     <h3>High-Level Sources:</h3>
-    <input type="text" name="hl_source" class="account"> <!--TODO: >1-->
-    <!-- Dynamic plus button / to do list -->
+    <div id="container_hl">
+        <input type="text" name="hl_source" class="account">
+    </div>
+    <button type="button" class="plus_button" onclick="addSource('hl')">+</button>
     <h3>Reports:</h3>
-    <input type="text" name="r_source" class="account">
+    <div id="container_r">
+        <input type="text" name="r_source" class="account">
+    </div>
+    <button type="button" class="plus_button" onclick="addSource('r')">+</button>
     <h3>Opinion Pieces:</h3>
-    <input type="text" name="o_source" class="account">
-    <!--TODO Categories-->
+    <div id="container_o">
+        <input type="text" name="o_source" class="account">
+    </div>
+    <button type="button" class="plus_button" onclick="addSource('o')">+</button>
+    <!--TODO Better Categories-->
+    <!--Category selection currently the same as for sources-->
+    <h3>Categories:</h3>
+    <div id="container_c">
+        <input type="text" name="c_source" class="account">
+    </div>
+    <button type="button" class="plus_button" onclick="addSource('c')">+</button>
     <p id="error"></p>
     <button type="submit">Submit</button>
 </form>

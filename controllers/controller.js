@@ -91,6 +91,8 @@ module.exports.search = function (req, res) {
                         name: issues[i].name,
                         categories: issues[i].categories,
                         description: issues[i].description,
+                        image: issues[i].image,
+                        author: issues[i].author,
                         url: issues[i]._id
                     });
                 }
@@ -233,6 +235,7 @@ module.exports.loadOpportunities = function (req, res) {
                     name: opportunities[i].name,
                     categories: opportunities[i].categories,
                     description: opportunities[i].description,
+                    image: opportunities[i].image,
                     url: opportunities[i]._id // id = url
                 });
             }
@@ -249,7 +252,7 @@ module.exports.loadOpportunities = function (req, res) {
 module.exports.createAccount = function (req, res) {
     if(req.user) {
         // TODO better redirect
-        res.redirect('../home'); // Not allowed to visit the log in page as a logged-in user
+        res.redirect('../home'); // Not allowed to visit this as a logged-in user
         return;
     }
     res.render('create_account', {user: req.user});
@@ -284,9 +287,9 @@ module.exports.newUser = function (req, res, next) {
 
 };
 module.exports.createArticle = function (req, res) {
-    if(!req.user) {
+    if(!req.user || !req.user.is_editor) {
         // TODO better redirect
-        res.redirect('../home'); // Not allowed to visit the log in page as a logged-in user
+        res.redirect('../home'); // Not allowed to visit this page as a non-editor
         return;
     }
     res.render('create_article', {user: req.user});
@@ -300,7 +303,8 @@ module.exports.newIssue = function (req, res) {
         "image": req.query.image,
         "hl_source": req.query.hl_source,
         "r_source": req.query.r_source,
-        "o_source": req.query.o_source
+        "o_source": req.query.o_source,
+        "categories": req.query.c_source
     });
 
     // Add the new issue to the DB
@@ -330,9 +334,9 @@ module.exports.newContribution = function (req, res) {
     res.send(newContribution); // TODO replace with appropriate render
 };
 module.exports.createOpportunity = function (req, res) {
-    if(!req.user) {
+    if(!req.user || !req.user.is_editor) {
         // TODO better redirect
-        res.redirect('../home'); // Not allowed to visit the log in page as a logged-in user
+        res.redirect('../home'); // Not allowed to visit this page as a non-editor
         return;
     }
     res.render('opportunities_form', {user: req.user});
@@ -360,6 +364,12 @@ module.exports.newOpportunity = function (req, res) {
     });
 };
 module.exports.editorApplication = function (req, res) {
+    if(!req.user || req.user.is_editor) {
+        // TODO better redirect
+        res.redirect('../home'); // Not allowed to visit this page as a non-user or editor
+        return;
+    }
+
     res.render('editor_application', {user: req.user});
 }; // TODO
 
@@ -487,5 +497,5 @@ module.exports.logout = function(req, res){
     let name = req.user.username;
     console.log("Logging out " + name + "...");
     req.logout();
-    res.redirect('../home'); // Or landing
+    res.redirect('../home');
 };

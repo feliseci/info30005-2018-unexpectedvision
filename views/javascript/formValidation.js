@@ -90,12 +90,44 @@ function validateArticle() {
 
     // Check article links are links TODO to accepted news sites
     let regexpURL = /http[s]*:\/\/[^\s]+/;
-    if(!regexpURL.test(image)) {
-        document.getElementById("error").innerHTML = "Invalid URL.";
-        return false;
-    } // TODO MULTIPLE, CURRENT
+    let hl_sources = document.getElementsByName("hl_source");
+    let r_sources = document.getElementsByName("r_source");
+    let o_sources = document.getElementsByName("o_source");
+
+    for(i = 0; i < hl_sources.length; i++) {
+        if(!regexpURL.test(hl_sources[i].value)) {
+            document.getElementById("error").innerHTML = "Invalid url: High-level link number" + (i+1);
+            return false;
+        }
+    }
+    for(i = 0; i < r_sources.length; i++) {
+        if(!regexpURL.test(r_sources[i].value)) {
+            document.getElementById("error").innerHTML = "Invalid url: Report link number" + (i+1);
+            return false;
+        }
+    }
+    for(i = 0; i < o_sources.length; i++) {
+        if(!regexpURL.test(o_sources[i].value)) {
+            document.getElementById("error").innerHTML = "Invalid url: Opinion link number" + (i+1);
+            return false;
+        }
+    }
+
+    // TODO check no links & categories are repeated
 
     return true;
+}
+
+// Adds additional text entry fields with name (type)_source to a form
+function addSource(type) {
+    let container = document.getElementById("container_"+type);
+    let newSource = document.createElement("input");
+    newSource.type="text";
+    newSource.name= type+ "_source";
+    newSource.class="account";
+    container.appendChild(document.createElement("br"));
+    container.appendChild(newSource);
+    // Could check for max. number of sources here by checking no. of child nodes
 }
 
 

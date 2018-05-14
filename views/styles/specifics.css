@@ -433,3 +433,9 @@
     border-width: 2px;
     border-radius: 2px;
 }
+
+#event_information table {
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+}

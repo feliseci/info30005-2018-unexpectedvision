@@ -15,9 +15,12 @@
             <ul>
                 <li> <a href = "#"> Settings </a></li>
                 <li> <a href = "#"> Option2 </a></li>
+                <% if(user.is_editor) { %>
+                    <li> <a href = "../create-article"> Create Article </a></li>
+                <% } else { %>
+                    <li> <a href = "../editor-application"> Apply Ed. </a></li>
+                <% }%>
                 <li> <a href = "../logout"> Log Out </a></li>
-                <li> <a href = "../create-article"> Create Article </a></li> <!--TODO check is_editor-->
-                <li> <a href = "../editor-application"> Apply Ed. </a></li> <!--TODO check is_editor-->
             </ul>
         </li>
         <%} else { %>

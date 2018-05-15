@@ -18,6 +18,11 @@ nav.topnav p {
     margin:0;
 }
 
+nav.topnav a {
+    color: white;
+}
+
+
 nav.topnav ul {
     float:left;
     margin:0;
@@ -39,6 +44,10 @@ nav.topnav ul li a {
     text-decoration: none;
 }
 
+nav.topnav ul li:hover a {
+    background-color: #0a4b3e; /* TODO: Pick a nicer hover colour */
+}
+
 nav.topnav ul li ul {
     display: none;
     position: absolute;
@@ -54,7 +63,7 @@ nav.topnav ul li:hover ul {
 }
 
 nav.topnav ul li ul li {
-    width: 200px;
+    width: 160px;
     border-radius: 4px;
 }
 
@@ -65,7 +74,7 @@ nav.topnav ul li ul li a {
 
 nav.topnav ul li ul li a:hover{
     padding: 8px 14px;
-    background-color: #7bb33d;
+    background-color: #7bb33d; /*TODO: change gross green colour */
 }
 
 

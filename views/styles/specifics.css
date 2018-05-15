@@ -429,34 +429,38 @@
 #likeButton{
     border: none;
     color: white;
-    height: 64px;
-    width: 64px;
+    height: 40px;
+    width: 40px;
     padding: 2px 8px;
 
 }
 
 .likeOn{
     background:url("../images/thumbsupTick.png");
+    background-size: 40px auto;
 }
 
 .likeOff{
     background:url("../images/thumbsup.png")no-repeat top left;
+    background-size: 40px auto;
 }
 
 #bookmarkButton{
     border: none;
     color: white;
-    height: 64px;
-    width: 64px;
+    height: 40px;
+    width: 40px;
     padding: 2px 8px;
 }
 
 .bookmarkOff{
     background:url("../images/bookmark.png")no-repeat top left;
+    background-size: 40px auto;
 }
 
 .bookmarkOn{
      background:url("../images/bookmarkTick.png");
+    background-size: 40px auto;
  }
 
 

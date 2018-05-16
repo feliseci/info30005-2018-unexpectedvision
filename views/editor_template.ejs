@@ -1,5 +1,5 @@
 <!-- In progress - trying in html first -->
-
+<script src = "../javascript/op_scroll.js"></script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -78,9 +78,9 @@
     <!-- Temporary Image for Styling --> <!-- TODO: able to include image -->
     <div>
         <!-- Darken and Greyscale the image so we can overlay white text -->
-    <img src = "../images/blue_architecture.jpg" style = "height:15em; width:100%; filter:grayscale(80%); opacity: 2">
+    <img src = "<%=editor.image%>" style = "height:15em; width:100%; filter:grayscale(80%); opacity: 2">
     <div class = 'centered'><h1 class = "white_text font_400"><%= editor.name %></h1>
-        <h2 style = "color:white"> By <em><%= editor.creator %>  Temporary Name</em> <!-- Follow creator option; see draft -->
+        <h2 style = "color:white"> By <em><%= editor.author%></em> <!-- Follow creator option; see draft -->
             <button id = "followButton" onclick = "changeColor(this.id)" style = "color:darkslategray"> Follow </button></h2>
     </div>
     </div>
@@ -137,6 +137,7 @@
 
 <section class = "item8" id = "related_opportunities">
     <h2> Related Opportunities </h2>
+    <%include ./partial/opportunities_sidescroll.ejs%>
 </section>
 
 <section class = "item9">

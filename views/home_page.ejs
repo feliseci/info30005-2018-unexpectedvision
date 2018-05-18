@@ -19,57 +19,50 @@
 
 <!--Search button-->
 <section id = "search">
-    <h2> Topic Search </h2>
+    <h2>Search for a topic!</h2>
     <form action = "../search/" method = "get">
-        <input type="text" placeholder="Enter an issue!" name="query" />
+        <input type="text" placeholder="Enter an issue..." name="query"/>
         <input type="hidden" name="sort" value="date_update"/> <!--Default sorting: recent to old-->
         <input type="hidden" name="asc" value="true"/>
-        <button type="submit">Search</button>
+        <a href="../random/"><button id="random_button">Random</button></a>
     </form>
 
-    <a href = "../random/"><button id="random_button">Random issue</button></a>
 
 </section>
 
 <!--Issue suggestions-->
-<section id = "suggested_issues">
+<section id="suggested_issues">
 
     <article>
 
         <figure>
-            <figcaption>Recent</figcaption>
+            <figcaption><h3>RECENT</h3></figcaption>
 
-            <a href="<%="../issue/" + recent_issue.url%>">
-
-                <section class = "image_container">
+                <section>
+                    <a href="<%="../issue/" + recent_issue.url%>">
                     <img src = "<%= recent_issue.image%>" alt = "Recent issue - <%= recent_issue.name%>">
-                    <section class = "overlay"><p><%= recent_issue.description%></p></section>
+                    <h4><%= recent_issue.name%></h4>
+                    </a>
+                    <section><p><%= recent_issue.description%></p></section>
                 </section>
-                <h4><%= recent_issue.name%></h4>
 
-            </a>
+
         </figure>
-
-
     </article>
 
     <article>
-
         <figure>
-            <figcaption>Popular</figcaption>
+            <figcaption><h3>POPULAR</h3></figcaption>
 
-            <a href="<%="../issue/" + popular_issue.url%>">
-
-                <section class = "image_container">
+                <section>
+                    <a href="<%="../issue/" + popular_issue.url%>">
                     <img src = "<%= popular_issue.image%>" alt = "Popular issue - <%= popular_issue.name%>">
-                    <section class = "overlay"><p><%= popular_issue.description%></p></section>
+                    <h4><%= popular_issue.name%></h4>
+                    </a>
+                    <section><p><%= popular_issue.description%></p></section>
                 </section>
-                <h4><%= popular_issue.name%></h4>
 
-            </a>
         </figure>
-
-
     </article>
 
 </section>

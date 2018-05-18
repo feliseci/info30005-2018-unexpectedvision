@@ -14,16 +14,15 @@
         <li> <a href = "../profile"> <%= user.username%> <img src = "../images/thickSmallTriangle.png" style = "width:15px; transform:rotate(180deg); filter:brightness(0) invert(1)"> </a> <!-- Need to include # for the drop down -->
             <ul>
                 <li> <a href = "#" onclick = "alert('Settings to be implemented')"> Settings </a></li>
-                <!-- if user is not an editor this will render -->
-                <li> <a href = "../editor-application"> Apply to be an Editor! </a></li>
 
                 <!-- if user is an editor than this renders -->
                 <% if(user.is_editor) { %>
                     <li> <a href = "../create-article"> Create an Article </a></li>
+                <!-- if user is not an editor this will render -->
                 <% } else { %>
-                    <li> <a href = "../editor-application"> Apply Ed. </a></li>
-					<li> <a href = "../create-opportunity"> Make an Event! </a></li>
+                    <li> <a href = "../editor-application"> Apply to be an Editor </a></li>
                 <% }%>
+                <li> <a href = "../create-opportunity"> Make an Event! </a></li>
                 <li> <a href = "../logout"> Log Out </a></li>
             </ul>
         </li>

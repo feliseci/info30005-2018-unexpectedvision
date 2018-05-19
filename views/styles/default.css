@@ -133,7 +133,9 @@ div{
 }
 
 
-/* CSS to Enable functionality of Dropdown Menu */
+/* CSS to Enable functionality of Dropdown Menu
+ Credit:
+ */
 .dropbtn {
     background-color: #3498DB;
     color: white;
@@ -177,3 +179,19 @@ div{
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
+
+
+/* Sticky Navigation Bar*/
+
+/* The sticky class is added to the header with JS when it reaches its scroll position */
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index:999;
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
+.sticky + .content {
+    padding-top: 60px;
+}

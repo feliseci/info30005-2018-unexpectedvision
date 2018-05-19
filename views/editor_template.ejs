@@ -13,19 +13,24 @@
 
     <!-- Javascript files -->
     <script src = "/javascript/changeColor.js"></script>
-    <script src = "../javascript/op_scroll.js"></script>
+    <!--script src = "../javascript/op_scroll.js"></script>
+    <!-- Used to make Navigation Bar Sticky -->
+    <script src = "../javascript/sticky_nav.js"></script>
 
     <!-- Name of Article -->
-    <title> <%= editor.name %> </title>
+    <title> <%= editor.name %> - <%= editor.author%> </title>
 </head>
 
 
 <body>
-<!-- Used to make footers sticky -->
-<div class = "content">
 
 <!-- Site Navigation Bar -->
 <% include ./partial/navbar.ejs%>
+
+
+<!-- Used to make footers sticky -->
+<div class = "content">
+
 
     <div class = "grid-container-editor">
 

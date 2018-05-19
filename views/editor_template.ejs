@@ -4,152 +4,122 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> <%= editor.name %> - Editors </title>
+    <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
+
+    <!-- Stylesheets -->
     <link href="/styles/style.css" type="text/css" rel="stylesheet">
     <link href="/styles/specifics.css" type="text/css" rel="stylesheet">
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
+
+    <!-- Javascript files -->
     <script src = "/javascript/changeColor.js"></script>
-    <style>
-    .grid-container{
-    display: grid;
-    grid-template-columns: auto auto auto auto auto;
-    grid-gap: 10px;
-    padding-left: 10%;
-    padding-right:10%;
-    }
+    <script src = "../javascript/op_scroll.js"></script>
 
-    .grid-container > div {
-    background-color: rgba(255, 255, 255, 0.8);
-    text-align: center;
-    font-size: 15px;
-    }
-
-    .item2{
-    grid-column-start:1;
-    grid-column-end: 5;
-    }
-
-    .item3{
-    grid-column-start:1;
-    grid-column-end: 5;
-    }
-    .item4{
-    grid-column-start:1;
-    grid-column-end: 4;
-    }
-
-    <!-- the pst -->
-    .item5{
-    grid-column-start:3;
-    grid-column-end: 4;
-    }
-    .item6{
-    grid-column-start:1;
-    grid-column-end: 4;
-    }
-    .item7{
-        grid-column-start:1;
-        grid-column-end: 4;
-    }
-    .item8{
-        grid-column-start:1;
-        grid-column-end: 5;
-    }
-
-    .item9{
-        grid-column-start:1;
-        grid-column-end: 5;
-    }
-
-    </style>
-
+    <!-- Name of Article -->
+    <title> <%= editor.name %> </title>
 </head>
 
+
 <body>
+<!-- Used to make footers sticky -->
+<div class = "content">
 
-<div class = "content"> <!-- Used to make footers sticky -->
-
-<!--Site title-->
+<!-- Site Navigation Bar -->
 <% include ./partial/navbar.ejs%>
 
-    <div class = "grid-container">
+    <div class = "grid-container-editor">
 
-<header class = "item2">
-    <!-- Temporary Image for Styling --> <!-- TODO: able to include image -->
-    <div>
-        <!-- Darken and Greyscale the image so we can overlay white text -->
-    <img src = "<%=editor.image%>" style = "height:15em; width:100%; filter:grayscale(80%); opacity: 2">
-    <div class = 'centered'><h1 class = "white_text font_400"><%= editor.name %></h1>
-        <h2 style = "color:white"> By <em><%= editor.author%></em> <!-- Follow creator option; see draft -->
-            <button id = "followButton" onclick = "changeColor(this.id)" style = "color:darkslategray"> Follow </button></h2>
-    </div>
-    </div>
+        <!-- Article Banner -->
+        <header class = "header">
+            <div class = "editor-banner">
+                <img src = "<%=editor.image%>" class = "editor-image">
+                <div class = 'centered'><h1 class = "white_text font_400 text_shadow"><%= editor.name %></h1>
+                    <h2 class = "white_text text_shadow"> By <em><%= editor.author%> &nbsp;</em>
 
+                        <!-- Follow creator option; see draft -->
+                        <button id = "followButton" onclick = "changeColor(this.id)"> Follow </button></h2>
+                    <h3 class =  "gray_text"><em> <%= editor.date_post%></em></h3>
+                </div>
+                <div id = "interaction_buttons" class = "bubble">
+                    <button id = "likeButton" class = "likeOff" onclick= "changeColor(this.id)">  </button>
+                    <button id = "bookmarkButton" class = "bookmarkOff"  onclick = "changeColor(this.id)"></button>
+                </div>
+            </div>
+        </header>
 
-    <div style = "float:right">
-        <button id = "likeButton" class = "likeOff" onclick= "changeColor(this.id)">  </button>
-        <button id = "bookmarkButton" class = "bookmarkOff"  onclick = "changeColor(this.id)"></button>
+        <!-- Information for User to assess whether to read the article at a glance -->
+        <div class = "ratings">
+            <!-- Number of users who have liked the article -->
+            <p> <b>Popularity:</b> <em><%=editor.popularity%></em> people liked this article
+                <!-- Categories hyperlinked to similar articles -->
+                | <b>Categories:</b> <% for(let i = 0; i < editor.categories.length; i++) { %>
+                <a href=<%="../search?query=&category=" + editor.categories[i]%>> <%= "#" + editor.categories[i] %></a> <%}%></p>
+        </div>
 
-    </div>
-    <p> Rating: **** | Categories: <% for(i = 0; i < editor.categories.length; i++) { %>
-        <%= "#" + editor.categories[i] %> <%}%></p> <!-- Possible JS to render stars -->
+        <!-- Description of the Article by the Editor -->
+        <div class = "description bubble">
+                <h2>"<%= editor.description %>"</h2>
+        </div>
 
-</header>
-    <section class = "item3" id = "article_description" style = "background-color:white; vertical-align: middle; padding:20px 47px; border-radius: 25px">
-        <h3>"<%= editor.description %>"</h3>
-    </section>
+        <!-- Repository Title  -->
+        <div class = "title-articlerepos bubble">
+            <h1 class="white_text"> <img src = "../images/downwards-arrow-key.png" style = "float:left; width:28px">
+                <%= editor.author%>'s Resource Repository <img src = "../images/downwards-arrow-key.png" style = "float:right; width:28px"> </h1>
+        </div>
 
+        <!-- High Level Links  -->
+        <div class = "high_l bubble">
+            <h1> High Level Perspectives</h1>
+            <ul>
+                <% for(i = 0; i < editor.hl_source.length; i++) { %>
+                <li> <a href = "<%=editor.hl_source[i]%>" target="_blank"> <%=editor.hl_source[i]%>  </a> </li>
+                <% } %>
+            </ul>
+        </div>
 
-<div class = "item4" id = "high_l" style = "background-color:darkseagreen; vertical-align: middle; padding:20px 47px; border-radius: 25px">
-    <h1> High Level Perspectives</h1>
-    <!--High level-->
-    <ul>
-        <% for(i = 0; i < editor.hl_source.length; i++) { %>
-        <li> <a href = "<%=editor.hl_source[i]%>" target="_blank"> <%=editor.hl_source[i]%>  </a> </li>
-        <% } %>
-    </ul>
-</div>
-    <div class = "item5" id = "pst" style = "background-color:lightgrey; padding:5px; vertical-align: middle; border-radius: 25px">
+        <!-- Suggestion to read High Level First -->
+        <div class = "pst bubble">
             <p><em>psstt - start here if you are brand new to the issue!</em></p>
             <h1> <-- </h1>
-    </div>
+        </div>
 
-    <div class = "item6" id = "reports" style = "background-color: lightgrey; vertical-align: middle; padding:20px 47px; border-radius: 25px">
-        <h1> Reports</h1>
-        <!--Reports-->
-        <ul>
-            <% for(i = 0; i < editor.r_source.length; i++) { %>
-            <li> <a href = "<%=editor.r_source[i]%>" target="_blank"> <%=editor.r_source[i]%> </a> </li>
-            <% } %>
-        </ul>
-    </div>
-    <div class = "item7" id = "opinions" style = "background-color:darkseagreen; vertical-align: middle; padding:20px 47px; border-radius: 25px">
-        <h1> Opinions </h1>
-        <!--Opinions-->
-        <ul>
-            <% for(i = 0; i < editor.o_source.length; i++) { %>
-            <li> <a href = "<%=editor.o_source[i]%>" target="_blank"> <%=editor.o_source[i]%> </a> </li>
-            <% } %>
-        </ul>
+        <!--Reports Links-->
+        <div class = "reports bubble">
+            <h1> Reports</h1>
+            <ul>
+                <% for(i = 0; i < editor.r_source.length; i++) { %>
+                <li> <a href = "<%=editor.r_source[i]%>" target="_blank"> <%=editor.r_source[i]%> </a> </li>
+                <% } %>
+            </ul>
+        </div>
 
-    </div>
+        <!--Opinion Links-->
+        <div class = "opinions bubble">
+            <h1> Opinions </h1>
+            <ul>
+                <% for(i = 0; i < editor.o_source.length; i++) { %>
+                <li> <a href = "<%=editor.o_source[i]%>" target="_blank"> <%=editor.o_source[i]%> </a> </li>
+                <% } %>
+            </ul>
+
+        </div>
 
 
-<section class = "item8" id = "related_opportunities">
-    <h2> Related Opportunities </h2>
-    <%include ./partial/opportunities_sidescroll.ejs%>
-</section>
+        <section class = "item8 bubble" id = "related_opportunities">
+            <h2> Related Opportunities </h2>
+            <%include ./partial/opportunities_sidescroll.ejs%>
+        </section>
 
-<section class = "item9">
-    <button><a href = "<%="../comments/" + editor._id%>">See comments on this issue</a></button>
-</section>
+        <section class = "item9">
+            <button><a href = "<%="../comments/" + editor._id%>">See comments on this issue</a></button>
+        </section>
 
-    </div>
+            </div>
 
-<!--    </section>
-</section>-->
+        <!--    </section>
+        </section>-->
 
-</div>
+        </div>
 <footer>
     <% include ./partial/footer.ejs%>
 </footer>

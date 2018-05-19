@@ -18,7 +18,7 @@
                 form.style.display = "none";
             }
         }
-    </script>
+    </script> <!--TODO move-->
 </head>
 
 <body>
@@ -34,7 +34,7 @@
     <br>
 </header>
 
-<!-- Advanced search options -->
+<!-- TODO Filter options -->
 <!--<nav id = "contributions_options">
     <h4>Sort By:</h4>
     <ul>
@@ -73,8 +73,8 @@
 </section>
 <button id = "comment_button" onclick="showCommentForm()">Comment!</button>
 <%}%>
-    <!--Enter comment form-->
 
+    <!-- Comment form-->
     <section id="enter_comment_bg">
     <% if(user) {%>
     <form id="enter_comment" action = "../new-contribution/" method = "post">
@@ -85,6 +85,7 @@
         <button type="submit">Submit</button>
     </form>
     <%} else { %>
+        <!--Displayed if the user isn't logged in; prompts them to create an account or login to comment.-->
         <section id="enter_comment">
             <h4>Wait a moment!</h4>
             <p>To make a comment, you need to be a user first.</p>

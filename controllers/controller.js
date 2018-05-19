@@ -321,18 +321,18 @@ module.exports.newIssue = function (req, res) {
 module.exports.newContribution = function (req, res) {
     // Get the entered details for the new contribution from the URL
     let newContribution = {
-        "author": req.query.author,
-        "comment": req.query.comment,
-        "article_url": req.query.article_url
+        "author": req.body.author,
+        "comment": req.body.comment,
+        "article_url": req.body.article_url
     };
 
     // Update the given issue with a new contribution
-    Issue.findOneAndUpdate({name: req.query.name}, {$push: {contributions: newContribution}}, function(err) {
+    Issue.findOneAndUpdate({name: req.body.name}, {$push: {contributions: newContribution}}, function(err, issue) {
         if (err) { res.sendStatus(409); return; }
         console.log("New contribution sent.");
+        res.redirect('../comments/' + issue._id);
     });
 
-    res.send(newContribution); // TODO replace with appropriate render
 };
 module.exports.createOpportunity = function (req, res) {
     if(!req.user || !req.user.is_editor) {

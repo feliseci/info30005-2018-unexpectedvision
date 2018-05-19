@@ -518,10 +518,11 @@ div.bubble{
     vertical-align: middle;
     padding:20px 47px;
     border-radius: 25px;
+    background-color: #eaedec;
 }
 
 /* Darken and Greyscale the image so we can overlay white text */
-.editor-image{
+.banner-image{
     filter:grayscale(80%);
     opacity: 2;
     width:100%;
@@ -529,7 +530,7 @@ div.bubble{
 
 }
 
-div.editor-banner{
+div.banner{
     height: 30em;
     width:100%;
     overflow:hidden;
@@ -603,3 +604,45 @@ div.title-articlerepos{
     grid-column-start:1;
     grid-column-end: 5;
 }
+
+
+/* CSS styling About Page*/
+
+ .grid-container-about{
+     display: grid;
+     grid-template-columns: auto auto auto auto auto;
+     grid-gap: 10px;
+     padding-left: 10%;
+     padding-right:10%;
+ }
+
+.grid-container-about > div {
+    text-align: center;
+    font-size: 15px;
+}
+
+.item1style{
+    grid-column-start:1;
+    grid-column-end: 4;
+    border: 4px dotted #696969;
+}
+
+.grid-container-about header.header{
+    grid-column-start:1;
+    grid-column-end: 5;
+
+}
+
+.grid-container-about p {
+    font-size: 20px;
+}
+
+.grid-container-about ul li {
+    font-size: 20px;
+}
+
+.about-icons {
+    height:32px;
+    float:left;
+}
+

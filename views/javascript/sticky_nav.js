@@ -5,14 +5,10 @@
 window.onscroll = function() {sticky_nav();};
 
 
-
-
 // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
 function sticky_nav() {
 
     const navigation = document.getElementById("myNav");
-
-    console.log(window.pageYOffset);
 
     if (window.pageYOffset !== 0) {
         navigation.classList.add("sticky");

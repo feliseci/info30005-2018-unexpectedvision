@@ -1,6 +1,6 @@
 // When the user scrolls the page, execute myFunction
 // Credit: https://www.w3schools.com/howto/howto_js_sticky_header.asp
-// Get the header
+// Edited by Jenny Croft
 
 window.onscroll = function() {sticky_nav();};
 

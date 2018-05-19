@@ -40,7 +40,7 @@ h4 {
 }
 
 html {
-    background: #e8e8e8;
+    background: #EEEEEE;
     background-image: linear-gradient(left, #999999 0%, #ffffff 100%);
     box-sizing: border-box;
 }
@@ -109,6 +109,10 @@ hr {
 }
 .gray_text{
     color: #D3D3D3;
+}
+
+.darkgray_text{
+    color:#696969;
 }
 
 /* Used for controlling font size for banner*/

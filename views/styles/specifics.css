@@ -510,7 +510,6 @@
 }
 
 .grid-container-editor > div {
-    background-color: rgba(255, 255, 255, 0.8);
     text-align: center;
     font-size: 15px;
 }
@@ -557,43 +556,47 @@ div.editor-banner{
 .grid-container-editor div.description{
     grid-column-start:1;
     grid-column-end: 6;
-    background-color: #EEEEEE;
+    background-color: #dddddd;
     padding: 20px;
 }
 
 div.title-articlerepos{
     grid-column-start:1;
     grid-column-end: 6;
-    background-color: #00af78;
+    background-color: #00CC8C;
     padding: 20px;
     text-transform: uppercase;
 }
 
 
 .high_l{
-    grid-column-start:2;
-    grid-column-end: 5;
-    background-color: #7fc6ad;
+    grid-column-start:4;
+    grid-column-end: 6;
+    border: 4px solid black;
 }
 
-<!-- the pst -->
-.pst{
-    grid-column-start:5;
-    grid-column-end: 6;
+/*the pst*/
+.psst{
+    grid-column-start:1;
+    grid-column-end: 3;
+    background-color: #eaedec;
+    border: 4px dotted dimgrey;
+
 }
 .reports{
     grid-column-start:1;
     grid-column-end: 3;
-    background-color: #7fc6ad;
+    border: 4px solid black;
 }
 .opinions{
     grid-column-start:4;
     grid-column-end: 6;
-    background-color: #7fc6ad;
+    border: 4px solid black;
 }
-.item8{
+
+.related_opportunities{
     grid-column-start:1;
-    grid-column-end: 5;
+    grid-column-end: 6;
 }
 
 .item9{

@@ -1,0 +1,15 @@
+<!-- Article Banner rendered on Article Pages -->
+<div class = "editor-banner">
+    <img src = "<%=editor.image%>" class = "editor-image">
+    <div class = 'centered'><h1 class = "white_text font_400 text_shadow"><%= editor.name %></h1>
+        <h2 class = "white_text text_shadow"> By <em><%= editor.author%> &nbsp;</em>
+
+            <!-- Follow creator option; see draft -->
+            <button id = "followButton" onclick = "changeColor(this.id)"> Follow </button></h2>
+        <h3 class =  "white_text text_shadow"><em> <%= editor.date_post%></em></h3>
+    </div>
+    <div id = "interaction_buttons" class = "bubble">
+        <button id = "likeButton" class = "likeOff" onclick= "changeColor(this.id)">  </button>
+        <button id = "bookmarkButton" class = "bookmarkOff"  onclick = "changeColor(this.id)"></button>
+    </div>
+</div>

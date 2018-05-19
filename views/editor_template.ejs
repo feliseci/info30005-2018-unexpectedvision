@@ -31,20 +31,7 @@
 
         <!-- Article Banner -->
         <header class = "header">
-            <div class = "editor-banner">
-                <img src = "<%=editor.image%>" class = "editor-image">
-                <div class = 'centered'><h1 class = "white_text font_400 text_shadow"><%= editor.name %></h1>
-                    <h2 class = "white_text text_shadow"> By <em><%= editor.author%> &nbsp;</em>
-
-                        <!-- Follow creator option; see draft -->
-                        <button id = "followButton" onclick = "changeColor(this.id)"> Follow </button></h2>
-                    <h3 class =  "gray_text"><em> <%= editor.date_post%></em></h3>
-                </div>
-                <div id = "interaction_buttons" class = "bubble">
-                    <button id = "likeButton" class = "likeOff" onclick= "changeColor(this.id)">  </button>
-                    <button id = "bookmarkButton" class = "bookmarkOff"  onclick = "changeColor(this.id)"></button>
-                </div>
-            </div>
+            <% include ./partial/article-banner.ejs%>
         </header>
 
         <!-- Information for User to assess whether to read the article at a glance -->
@@ -67,6 +54,16 @@
                 <%= editor.author%>'s Resource Repository <img src = "../images/downwards-arrow-key.png" style = "float:right; width:28px"> </h1>
         </div>
 
+        <div class = "psst bubble">
+            <h3 class = "darkgray_text"> <em>Tips to navigate by the Site Creators</em></h3>
+            <p class = "darkgray_text"> If you are unfamiliar with an issue try starting with <em>High Level Perspectives</em>
+            to get an overview of what the issue is about, from there feel free to investigate
+            reports and opinion pieces to begin your research on why the article's Editor holds their stance.
+                <br> Please note: the links are those suggested by the Editor
+            <br> <br> For information on how to make the most of these articles, see our <a href = "../about"> About</a> page! </p>
+        </div>
+
+
         <!-- High Level Links  -->
         <div class = "high_l bubble">
             <h1> High Level Perspectives</h1>
@@ -75,12 +72,6 @@
                 <li> <a href = "<%=editor.hl_source[i]%>" target="_blank"> <%=editor.hl_source[i]%>  </a> </li>
                 <% } %>
             </ul>
-        </div>
-
-        <!-- Suggestion to read High Level First -->
-        <div class = "pst bubble">
-            <p><em>psstt - start here if you are brand new to the issue!</em></p>
-            <h1> <-- </h1>
         </div>
 
         <!--Reports Links-->
@@ -95,7 +86,7 @@
 
         <!--Opinion Links-->
         <div class = "opinions bubble">
-            <h1> Opinions </h1>
+            <h1> Opinion Pieces </h1>
             <ul>
                 <% for(i = 0; i < editor.o_source.length; i++) { %>
                 <li> <a href = "<%=editor.o_source[i]%>" target="_blank"> <%=editor.o_source[i]%> </a> </li>
@@ -104,8 +95,7 @@
 
         </div>
 
-
-        <section class = "item8 bubble" id = "related_opportunities">
+        <section class = "related_opportunities bubble">
             <h2> Related Opportunities </h2>
             <%include ./partial/opportunities_sidescroll.ejs%>
         </section>
@@ -114,12 +104,12 @@
             <button><a href = "<%="../comments/" + editor._id%>">See comments on this issue</a></button>
         </section>
 
-            </div>
+    </div>
 
         <!--    </section>
         </section>-->
 
-        </div>
+</div>
 <footer>
     <% include ./partial/footer.ejs%>
 </footer>

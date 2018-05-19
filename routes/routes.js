@@ -21,7 +21,7 @@ router.get('/random', controller.random);
 router.get('/editor-application', controller.editorApplication);
 
 router.get('/new-issue', controller.newIssue); // TODO use .post as per login
-router.get('/new-contribution', controller.newContribution);
+router.post('/new-contribution', controller.newContribution);
 router.get('/new-opportunity', controller.newOpportunity);
 
 

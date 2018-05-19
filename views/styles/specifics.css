@@ -72,14 +72,25 @@
     margin-bottom: 40px;
 }
 
-#search input {
-    margin: 0;
-    padding: 0 10px 0 10px;
-    border: none;
-    height: 50px;
+#search h2 {
+    font-size: xx-large;
 }
 
-#search form button {
+#search input {
+    margin: 0;
+    padding: 0 10px 0 20px;
+    border: none;
+    border-radius: 5px;
+    height: 75px;
+    width: 40%;
+    font-size: medium;
+    background-image: url(https://png.icons8.com/metro/1600/search.png);
+    background-repeat: no-repeat;
+    background-size: 18px 18px;
+    background-position: 95% center;
+}
+
+/*#search form button {
     margin: -4px;
     padding: 10px;
     height: 50px;
@@ -87,21 +98,25 @@
 
 #submit {
     margin-top: 30px;
-    /*Wizardry to get the submit button to appear centered but on the next line*/
+    !*Wizardry to get the submit button to appear centered but on the next line*!
     display: block;
     border-radius: 4px;
     margin-left: 47.5%;
     width: 5%;
     height: 40px;
     font-family: "IBM Plex Sans", sans-serif;
-}
+}*/
 
 #random_button {
+    background: #44CC7D;
+    border-radius: 5px;
     margin-top: 10px;
     padding: 10px;
-    height: 50px;
+    height: 75px;
+    width: 10%;
+    color: white;
+    font-size: medium;
     text-transform: uppercase;
-    border-radius: 2px;
 }
 
 .account {
@@ -116,14 +131,20 @@
 }
 
 #suggested_issues {
-    width: 50%;
     display: inline-grid;
     grid-template-areas: "article article";
-    grid-column-gap: 50px;
+    grid-column-gap: 75px;
+    border-collapse: collapse;
+    margin-bottom: 50px;
+    align-items: center;
 }
 
 #suggested_issues article {
-    height: 200px;
+    border: groove;
+    border-width: 3px;
+    background: white;
+    width: 500px;
+    height: 600px;
 }
 
 #suggested_issues figcaption {
@@ -136,38 +157,23 @@
     position: relative;
 }
 
+#suggested_issues h3 {
+    color: #639678;
+}
+
 #suggested_issues img {
-    display: block;
-    width: 280px;
-    height: 200px;
-}
-
-.overlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    opacity: 0;
-    transition: .5s ease;
-    background-color: grey;
-}
-
-.image_container:hover .overlay {
-    opacity: 0.9;
-}
-
-#suggested_issues p {
-    color: white;
-    padding-top: 30%; /* As per tutorial also works. */
-    text-align: center;
+    width: 400px;
+    height: 275px;
+    margin-bottom: 5px;
 }
 
 #suggested_issues h4 {
-    margin-top: 0;
-    font-weight: bolder;
+    text-transform: capitalize;
+    font-size: large;
+}
+
+#suggested_issues p {
+    text-align: center;
 }
 
 /* Search results */
@@ -292,17 +298,6 @@
     max-height: 200px;
 }
 
-/*
-.editor {
-    background-color: #afbfb1; /*Editor & contributor have different colours*/
-    /*TODO better colour implementation - doubles with "#results_list"
-}
-
-.contributor {
-    background-color: #e6f7e8;
-}
-*/
-
 #search_results article h4 {
     display: inline-block; /*All items intended to be inline must have this tag*/
 }
@@ -311,6 +306,7 @@
     display: inline-block;
 }
 
+/*Contributions page*/
 #contributions_sidebar {
     display: grid;
     grid-gap: 0;
@@ -329,7 +325,6 @@
     good-looking "sticky search".*/
 }
 
-/*Contributions page*/
 #contributions_grid {
     background-color: #3e5b4a;
     display: grid;
@@ -479,7 +474,8 @@
     display: grid;
     grid-template-areas: "input input";
     width: 40%;
-    margin-left: 36%;
+    /* TODO Need to fix the margin so it's more automated */
+    margin-left: 38%;
     margin-right: 30%;
 }
 
@@ -487,31 +483,30 @@
     height: 30px;
     border: solid;
     border-radius: 3px;
+    padding: 0 10px 0 20px;
     color: white;
     background: white;
-    /* Find appropriate one */
+    /* TODO Find appropriate size */
     font-size: medium;
-}
-
-#magnifying_glass {
-    width: auto;
-    height: auto;
-    max-height: 30px;
+    background-image: url(https://png.icons8.com/metro/1600/search.png);
+    background-repeat: no-repeat;
+    background-size: 18px 18px;
+    background-position: 95% center;
 }
 
 #opportunity_results {
     display: inline-grid;
     grid-template-areas: "article article article" "article article article";
-    grid-column-gap: 20px;
-    grid-row-gap: 20px;
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
     grid-template-columns: 33% 33% 33%; /* Even column width*/
 }
 
-
 #opportunity_results article {
     padding: 10px;
-    border: solid;
-    border-color: black;
+    border: groove;
+    border-color: grey;
+    border-width: 2px;
     background: white;
 }
 

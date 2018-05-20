@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> <%= user.username%> - Profile </title>
+    <title> <%= profile.username%> - Profile </title>
     <link href="/styles/style.css" type="text/css" rel="stylesheet">
     <link href="/styles/specifics.css" type="text/css" rel="stylesheet">
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
@@ -19,41 +19,61 @@
 <div class = "content"> <!-- Used to make footers sticky -->
 
     <header>
-        <h1><%= user.username%></h1>
+        <h1><%= profile.username%></h1>
     </header>
-    <body>
 
     <div class = "grid-container-about">
         <div id = "about-user" class = "item1style bubble">
-            <h2> username: <%= user.username%> </h2>
-            <h2> display name: <%= user.display_name%></h2>
-            <h2> description: <%= user.profile_description%></h2>
-            <h2> email: <%= user.free_email%></h2>
+            <h2> username: <%= profile.username%> </h2>
+            <h2> display name: <%= profile.display_name%></h2>
+            <h2> description: <%= profile.profile_description%></h2>
+            <!--TODO email private or not? -->
         </div>
 
 
     <div class = "item1style bubble">
         <h1> Liked Articles</h1>
-        <p> dummy text </p>
+        <ul style="text-align: left;">
+            <% for(i=0; i < profile.likes.length; i++) { %>
+            <li><a href="../issue/<%=profile.likes[i][0]%>"><%=profile.likes[i][1]%></a></li>
+            <% } if(profile.likes.length === 0) {%>
+                <p>This user hasn't liked anything yet!</p>
+            <%}%>
+        </ul>
     </div>
 
         <div class = "item1style bubble">
             <h1> Followed Editors</h1>
-            <p> dummy text </p>
+            <ul style="text-align: left;">
+                <% for(i=0; i < profile.followed_users.length; i++) { %>
+                <li><a href="../issue/<%=profile.followed_users[i]%>"><%=profile.followed_users[i]%></a></li>
+                <% } if(profile.followed_users.length === 0) {%>
+                <p>This user hasn't followed anyone yet!</p>
+                <%}%>
+            </ul>
         </div>
 
         <div class = "item1style bubble">
             <h1> Bookmarked Articles</h1>
-            <p> dummy text </p>
+            <ul style="text-align: left;">
+                <% for(i=0; i < profile.followed_articles.length; i++) { %>
+                <li><a href="../issue/<%=profile.followed_articles[i][0]%>"><%=profile.followed_articles[i][1]%></a></li>
+                <% } if(profile.followed_articles.length === 0) {%>
+                <p>This user hasn't bookmarked any articles yet!</p>
+                <%}%>
+            </ul>
         </div>
 
         <div class = "item1style bubble">
             <h1> Past Comments</h1>
-            <p> dummy text </p>
+            <ul style="text-align: left;">
+                <% for(i=0; i < profile.posts.length; i++) { %>
+                <li>On <a href="../issue/<%=profile.posts[i][0]%>"><%=profile.posts[i][1]%></a> - <i><%=profile.posts[i][2]%></i></li>
+                <% } if(profile.posts.length === 0) {%>
+                <p>This user hasn't made any posts yet!</p>
+                <%}%>
+            </ul>
         </div>
-
-
-    </body>
     </div>
 
 

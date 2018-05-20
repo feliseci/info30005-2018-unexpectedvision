@@ -4,11 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> MultiView - Home </title>
+
+
+    <!-- CSS Stylesheets -->
     <link href="/styles/style.css" type="text/css" rel="stylesheet">
     <link href="/styles/specifics.css" type="text/css" rel="stylesheet">
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
+
     <!-- Used to make Navigation Bar Sticky -->
     <script src = "./javascript/sticky_nav.js"></script>
+
 </head>
 
 <body>
@@ -18,11 +23,16 @@
 
 <div class = "content"> <!-- Used to make footers sticky -->
 
+
 <div class="hero_image">
     <div class="hero_text">
         <h1>Welcome to MultiView</h1>
     </div>
 </div>
+
+
+
+<!--Search button-->
 
 <!--Search button-->
 <section id = "search">
@@ -50,7 +60,9 @@
                     <img src = "<%= recent_issue.image%>" alt = "Recent issue - <%= recent_issue.name%>">
                     <h4><%= recent_issue.name%></h4>
                     </a>
-                    <section><p><%= recent_issue.description%></p></section>
+                    <section><p><%= recent_issue.description.substring(0,300)%>
+                            <%if(recent_issue.description.length > 300) {%>...
+                            <%}%></p></section>
                 </section>
 
 
@@ -66,7 +78,10 @@
                     <img src = "<%= popular_issue.image%>" alt = "Popular issue - <%= popular_issue.name%>">
                     <h4><%= popular_issue.name%></h4>
                     </a>
-                    <section><p><%= popular_issue.description%></p></section>
+                    <section><p><%= popular_issue.description.substring(0,300)%>
+                        <%if(popular_issue.description.length > 300) {%>...
+                        <%}%></p></section>
+                    </p>
                 </section>
 
         </figure>

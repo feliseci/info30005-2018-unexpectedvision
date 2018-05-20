@@ -54,10 +54,14 @@
     <% for(i = 0; i < results.length; i++) { %>
         <article class = "editor" id="search_box"> <!--TODO: remove difference -->
             <a href="<%="../issue/" + results[i].url%>">
-                <h3><%=results[i].name%></h3>
+                <h3 class = "inline-block"><%=results[i].name%></h3>
             </a>
-            <p> Editor name </p> <!-- TODO: link editors name -->
-            <p><%=results[i].description%></p>
+            <p class = "inline-block">- <a href="../profile/<%=results[i].author%>"><%= results[i].author%></a></p>
+                <p><img src = "<%= results[i].image%>" class = "article-image">
+                    <%=results[i].description.substring(0,300)%>
+                    <%if(results[i].description.length > 300) {%>...
+                    <%}%>
+                </p>
             <h4>Categories:</h4>
             <% var categories = results[i].categories;
             for(j = 0; j < categories.length; j++) { %>
@@ -65,6 +69,7 @@
                     <a href=<%="../search?query=&category=" + categories[j]%>>#<%=categories[j]%></a>
                 </p>
             <% } %>
+
         </article>
     <% } %>
 

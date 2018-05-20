@@ -26,7 +26,7 @@ router.get('/new-opportunity', controller.newOpportunity);
 
 
 // User Profile
-router.get('/profile', controller.userProfile);
+router.get('/profile/:name', controller.userProfile);
 
 
 // Permission based options - only for Editors

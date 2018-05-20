@@ -177,7 +177,7 @@ module.exports.issue = function(req,res){
         }
 
         // Issue with the given id successfully found
-        res.render('editor_template', {editor: issue, user: req.user});
+        res.render('editor_template', {editor: issue, comments: issue.contributions, user: req.user});
         // TODO contributions
     });
 };
@@ -504,5 +504,27 @@ module.exports.logout = function(req, res){
 
 //* User profile
 module.exports.userProfile= function (req, res) {
-    res.render('user_profile', {user: req.user});
+    User.findOne({username: req.params.name}, function(err, user) {
+        if(err) {
+            res.sendStatus(409);
+            return;
+        }
+
+        // Issue ID invalid; no results returned by findOne
+        // Note: find returns [] if empty, findOne returns null
+        if(user === null) {
+            res.sendStatus(404);
+            return;
+        }
+
+        let userDetails = {
+            username: user.username,
+            display_name: user.display_name,
+            profile_description: user.profile_description,
+            likes: user.likes
+        };
+
+        res.render('user_profile', {profile: userDetails, user: req.user});
+
+    });
 };

@@ -710,6 +710,7 @@
 
 #event_header div {
     padding: 10px;
+    text-align: center; /*To center event_buttons*/
 }
 
 #event_header h1 {
@@ -717,8 +718,11 @@
 }
 
 #event_buttons {
-    float:right;
-    margin-top: 50%;
+    display: inline-block; /*To center*/
+    max-width: max-content;
+
+/*    float:right;*/
+/*    margin-top: 50%;*/
 }
 
 #event_information {

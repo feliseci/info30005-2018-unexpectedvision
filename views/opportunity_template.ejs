@@ -26,7 +26,7 @@
     <img src = "<%= opportunity.image %>" alt = "event banner">
     <div>
         <h1><%= opportunity.name %></h1>
-        <h2>By <%= opportunity.organiser %></h2>
+        <h2>By <a href="../profile/<%=opportunity.organiser%>"><%= opportunity.organiser %></a></h2>
         <div id = "event_buttons" class = "bubble">
             <button id = "likeButton" class = "likeOff" onclick= "changeColor(this.id)">  </button>
             <button id = "bookmarkButton" class = "bookmarkOff"  onclick = "changeColor(this.id)"></button>
@@ -53,7 +53,7 @@
 
     <div>
         <h2>LOCATION</h2>
-        <p>Dummy location</p>
+        <p><%= opportunity.location %></p>
     </div>
 
 </section>

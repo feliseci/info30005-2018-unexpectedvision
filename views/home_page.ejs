@@ -33,7 +33,7 @@
 <!--Issue suggestions-->
 <section id="suggested_issues">
 
-    <article>
+    <article style = "grid-area: a;">
 
         <figure>
             <figcaption><h3>RECENT</h3></figcaption>
@@ -50,7 +50,7 @@
         </figure>
     </article>
 
-    <article>
+    <article style = "grid-area: b;">
         <figure>
             <figcaption><h3>POPULAR</h3></figcaption>
 
@@ -64,6 +64,22 @@
 
         </figure>
     </article>
+
+<!--    <section id="more_issues">-->
+    <% for(i=0; i<more_issues.length; i++) { %>
+    <article style = "grid-area: <%=String.fromCharCode('c'.charCodeAt(0) + i)%>;" id="more_issues">
+        <figure>
+            <section>
+                <a href="<%="../issue/" + more_issues[i].url%>">
+                    <img src = "<%= more_issues[i].image%>" alt = "Issue - <%= more_issues[i].name%>">
+                    <h4><%= more_issues[i].name%></h4>
+                </a>
+                <section><p><%= more_issues[i].description%></p></section>
+            </section>
+        </figure>
+    </article>
+    <%}%>
+<!--    </section>-->
 
 </section>
 </div>

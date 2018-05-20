@@ -278,7 +278,7 @@
     height: 275px;
     margin-bottom: 5px;
 }
-
+	
 #more_issues img {
     max-width: 100%;
     height: 250px;
@@ -645,15 +645,12 @@
 
 /* Opportunities Landing Page*/
 #opportunity_search {
-    display: grid;
-    grid-template-areas: "input input";
-    /* TODO Need to fix the margin so it's more automated */
-    margin-left: 33%;
-    margin-right: 33%;
+    margin-left: 20%;
+    margin-right: 20%;
 }
 
 #opportunity_bar {
-    width: 400px;
+    width: 60%;
     height: 30px;
     border: solid;
     border-radius: 3px;
@@ -677,9 +674,7 @@
     grid-template-areas: "article article article";
     grid-column-gap: 30px;
     grid-row-gap: 30px;
-    /*TODO Why is it not centred???*/
     grid-template-columns: 33% 33% 33%; /* Even column width*/
-    /*TODO Fix gaps between the words*/
 }
 
 #opportunity_results article {
@@ -696,14 +691,57 @@
 }
 
 /* Opportunities Template */
-#event_information table {
-    width: 50%;
-    margin-left: 25%;
-    margin-right: 25%;
+#event_header {
+    display: inline-grid;
+    grid-template-areas: "img div";
+    grid-column-gap: 10px;
+    border: solid;
+    border-color: #E59A3F;
+    border-radius: 3px;
+    background: white;
+    width: 1000px;
+    margin-bottom: 10px;
 }
 
+#event_header img {
+    height: 450px;
+    width: 700px;
+}
 
+#event_header div {
+    padding: 10px;
+    text-align: center; /*To center event_buttons*/
+}
 
+#event_header h1 {
+    padding-top: 120px;
+}
+
+#event_buttons {
+    display: inline-block; /*To center*/
+    max-width: max-content;
+
+/*    float:right;*/
+/*    margin-top: 50%;*/
+}
+
+#event_information {
+    display: inline-grid;
+    grid-template-areas: "div div";
+    grid-template-columns: 70% 30%;
+    background: #E59A3F;
+    padding: 3px;
+    border-radius: 3px;
+    width: 1010px;
+}
+
+#event_information div {
+    background: white;
+    text-align: left;
+    padding-left: 5%;
+    padding-right: 5%;
+
+}
 
 /* Editor Template Styling  */
 
@@ -782,7 +820,7 @@ div.title-articlerepos{
     border: 4px solid black;
 }
 
-/*the pst*/
+/*The pst*/
 .psst{
     grid-column-start:1;
     grid-column-end: 3;
@@ -851,7 +889,5 @@ div.title-articlerepos{
     height:32px;
     float:left;
 }
-
-
 
 

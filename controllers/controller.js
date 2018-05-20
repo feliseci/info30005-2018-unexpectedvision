@@ -35,7 +35,7 @@ module.exports.home = function (req, res) {
                 let startIndex = 1; // The index in popular_issue indicating issues NOT the most popular or recent
                 // Check recent & popular issue are not the same
                 if(recent_issue[0]._id === popular_issue[0]._id) {
-                    startIndex = 2;
+                    startIndex = 2; // TODO
                     recent = {
                         name: recent_issue[1].name,
                         categories: recent_issue[1].categories,
@@ -466,7 +466,7 @@ resetOpportunities = function (req, res) {
     for(i = 0; i < dummyOpportunities.length; i++) {
         let newOpportunity = new Opportunity({
             "name": dummyOpportunities[i].name,
-            "organiser": dummyOpportunities[i].author,
+            "organiser": dummyOpportunities[i].organiser,
             "description": dummyOpportunities[i].description,
             "image": dummyOpportunities[i].image,
             "date_post": dummyOpportunities[i].date_post,

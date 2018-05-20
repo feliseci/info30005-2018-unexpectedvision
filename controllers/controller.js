@@ -491,14 +491,14 @@ resetUsers = function (req, res) {
 /* Passport-related methods */
 module.exports.logout = function(req, res){
     if(!req.user) {
-        res.redirect('../home'); // TODO better redirect
+        res.redirect('../'); // TODO better redirect
         return;
     }
 
     let name = req.user.username;
     console.log("Logging out " + name + "...");
     req.logout();
-    res.redirect('../home');
+    res.redirect('../');
 };
 
 

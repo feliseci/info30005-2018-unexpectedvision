@@ -6,27 +6,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> MultiView - Landing </title>
+
+    <!-- CSS Stylesheets -->
     <link href="/styles/style.css" type="text/css" rel="stylesheet">
     <link href="/styles/specifics.css" type="text/css" rel="stylesheet">
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
+
+    <!-- Form Validation for log in -->
+    <script src = "./javascript/formValidation.js"></script>
+
+    <script>
+        function accountCommentForm() {
+            let form = document.getElementById("account-popup-bg");
+            form.style.display="block";
+            console.log("hello");
+        }
+
+        window.onclick = function(event) {
+            let form = document.getElementById("account-popup-bg");
+            if (event.target === form) {
+                form.style.display = "none";
+            }
+        }
+    </script>
 
 </head>
 
 <body class="background" id="landing">
 
-<div id="login">
-    <a href="./login"><button type="button" class="button">Login</button></a>
+<div id="signUp">
+    <a href="#"><button type="button" class="button" onclick="accountCommentForm()">
+            Sign Up </button></a>
 </div>
 
 <section id = "landing_graphic">
-    <div id = "landing_triangle"><img src="./images/triangle.png" alt="triangle" style="width:500px"></div>
+    <div id = "landing_div"><img src="./images/triangle.png" alt="triangle" id = "landing_image"></div>
     <div class = "name"><h1>MultiView</h1><h2>Broaden your perspective</h2></div>
+</section>
+<section id = "login">
+    <form id = "login_fields" action = "../login" method ="post" onsubmit="return validateLogin()" class = "account">
+        <input type="text" class="account" name="username" placeholder="Username"/>
+        <input type="password" class="account" name="password" placeholder="Password"/>
+        <p id="error"></p> <!--Used for validation error messages -->
+        <button id = "login_button" type="submit" class="submit">log in</button>
+    </form>
 
     <div>
-        <a href="./home"><button type="button" class="button">Get Involved</button></a>
-        <a href="./create-account"><button type="button" class="button">Create Account</button></a>
+        <a href="./home" class = "white_text">Continue as a Guest</a>
     </div>
+</section>
 
+<!-- Pop-up to create an account -->
+<section id = "account-popup-bg">
+    <form id = "create_account" action = "../create-account" method="post" onsubmit="return validateUser()">
+        <h1> Create Account </h1>
+        <hr>
+        <h3>Username</h3>
+        <input type="text" class="account" placeholder="Enter username" name="username"/>
+        <h3>Password</h3>
+        <input type="password" class="account" placeholder="Enter password" name="password"/>
+        <h3>Confirm Password</h3>
+        <input type="password" class="account" placeholder="Re-enter password"/> <!--TODO: Check == above. -->
+        <h3>Email</h3>
+        <input type="email" class="account" placeholder="Enter your email address" name="email"/>
+        <p id="error"></p> <!--Used for validation error messages -->
+        <button type="submit" class="submit">Submit</button>
+    </form>
 </section>
 
 <div id="about_box">

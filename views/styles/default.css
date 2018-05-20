@@ -183,3 +183,10 @@ div{
 .sticky + .content {
     padding-top: 60px;
 }
+
+#login_nav{
+    position: absolute;
+    top: 12px;
+    padding: 11px;
+    text-transform:uppercase;
+}

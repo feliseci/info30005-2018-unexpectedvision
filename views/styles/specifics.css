@@ -14,31 +14,38 @@
     padding-top: 60px;
 }
 
-#login {
+#signUp {
     margin-top: 20px;
     margin-left: 85%;
 }
 
 /* Also used for banner */
 .name h1 {
-    font-family: "Abril Fatface", sans-serif;
-    font-size: 75px;
+    font-family: "Encode Sans Condensed", sans-serif;
+    font-size: 97px;
     color: white;
+    text-transform: capitalize;
 }
 
 .name h2 {
     color: white;
+
 }
 
-#landing_triangle {
-    height: 9em;
+#landing_div {
+    height: 11em;
 }
 
 #landing_graphic {
     position: absolute;
-    top: 45%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+#landing_image{
+    width: 550px;
+    height:420px;
 }
 
 #about_box {
@@ -71,6 +78,78 @@
     height: 400px;
     width: 100%;
 }
+
+/*Account Pop Ups on Index Page*/
+#account-popup-bg {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.4);
+    z-index: 2; /*Puts above other elements*/
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+}
+
+#create_account {
+    box-sizing: border-box;
+    border-radius:25px;
+    position: relative;
+    top: 16%;
+    left: 30%;
+    width: 40%;
+    background-color: white;
+    padding: 1%;
+    text-align: left;
+}
+
+#create_account textarea {
+    width: 98%; /* +2% padding*/
+    height: 70%; /* 70+1+1 = 72 (28) -1 -> 27*/
+    background-color: #edf9f3;
+}
+
+#create_account input {
+    padding-left: 3%;
+    height: 27%;
+    width: 80%;
+    background-color: #edf9f3;
+    margin:0 0 0 10%;
+    text-align:center;
+
+}
+#create_account button {
+    color: #696969;
+    width: 25%;
+    background-color: #07f2ab;
+    margin-left: 37.5%;
+}
+
+#create_account h3, h1{
+    text-transform: uppercase;
+    text-align: center;
+    color: #696969;
+}
+
+#login {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#login_fields{
+    margin:0;
+    width:100%;
+}
+
+#login_button{
+    width:80%;
+    text-transform:uppercase;
+    margin-left: 27px;
+}
+
+
 
 /* Homepage */
 .hero_image {
@@ -132,13 +211,14 @@
 
 .account {
     display: block;
-    width: 30%;
-    border-radius: 2px;
+    border-radius:2px;
     padding: 12px 20px;
     margin: 8px 0;
-    margin-left: 35%;
+    width:300px;
     box-sizing: border-box;
     font-family: "IBM Plex Sans", sans-serif;
+    font-size:large;
+
 }
 
 #suggested_issues {
@@ -313,6 +393,13 @@
     display: inline-block; /*All items intended to be inline must have this tag*/
 }
 
+.article-image{
+    height:140px;
+    float:left;
+    margin-right:20px;
+}
+
+
 .issue_category {
     display: inline-block;
 }
@@ -439,10 +526,10 @@
     margin-top: 30px;
     display: block;
     border-radius: 4px;
-    margin-left: 47.5%;
-    width: 5%;
+    width: 100%;
     height: 40px;
-    font-size: small;
+    font-size: large;
+    background-color: #07f2ab;
 }
 
 /* Centered text for images */
@@ -712,4 +799,7 @@ div.title-articlerepos{
     height:32px;
     float:left;
 }
+
+
+
 

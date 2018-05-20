@@ -389,7 +389,6 @@
 }
 
 #contributions_grid {
-    min-height: 100%;
     background-color: white;
     display: grid;
     width: 90%;
@@ -397,7 +396,7 @@
     margin-right: 5%;
     grid-template-columns: 33% 33% 33%;
     grid-auto-rows: 1fr;
-    grid-template-areas: "article article article" "article article article";
+    grid-template-areas: "article article article" /*"article article article"*/;
     grid-gap: 10px;
     padding: 1%;
 }
@@ -405,7 +404,17 @@
 #contributions_grid article {
     background-color: #e6f7e8; /*3e5b4a for dark bg*/
     padding: 20px;
-}
+} /*TODO original*/
+
+#testaroonie {
+    background-color: #e6f7e8; /*3e5b4a for dark bg*/
+    padding: 20px 20px 12% 20px;
+    position: relative;
+} /*TODO temp fix for comments on issue page*/
+
+#testaroonie .comment_description {
+    margin-bottom: 10%;
+} /*TODO temp fix for comments on issue page*/
 
 .comment_username {
     text-align: start;
@@ -418,7 +427,19 @@
     margin-left: 10%; /* container = 10% margin + 80% preview (+ 10% margin)*/
     padding: 10px;
     height: 10%;
-}
+/*    top: 80%;*/
+/*    position: absolute;*/
+} /*TODO original*/
+
+.preview_test {
+    background-color: #ace5b3;
+    width: 80%;
+    padding: 10px;
+    height: 10%;
+    bottom: 0;
+    left: 10%;
+    position: absolute;
+} /*TODO temp fix for comments on issue page*/
 
 .comment_description {
     text-align: start;
@@ -427,7 +448,7 @@
     background-color: white;
     color: grey;
     border-radius: 10px;
-}
+} /*TODO original */
 
 #invisible {
     visibility: hidden;
@@ -543,8 +564,12 @@
 }
 
 #opportunity_results {
+/*    width: 90%;*/
+/*    box-sizing: border-box;*/
+/*    margin-left: 5%;
+    margin-right: 5%;*/
     display: inline-grid;
-    grid-template-areas: "article article article" "article article article";
+    grid-template-areas: "article article article";
     grid-column-gap: 30px;
     grid-row-gap: 30px;
     /*TODO Why is it not centred???*/

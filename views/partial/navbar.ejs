@@ -9,7 +9,7 @@
 
         <!-- Displays when the user is logged in -->
         <% if(user) { %>
-        <li> <a href = "../profile"> <img src = "../images/man-user.png" class = "icon"> <span><%= user.username%> </span> </a></li> <!-- TODO: inline profile pic -->
+        <li> <a href = "../profile/<%=user.username%>"> <img src = "../images/man-user.png" class = "icon"> <span><%= user.username%> </span> </a></li> <!-- TODO: inline profile pic -->
         <li><a href = "#"><img src = "../images/thickSmallTriangle.png" style = "width:20px; transform:rotate(180deg); filter:brightness(0) invert(1)"> </a> <!-- Need to include # for the drop down -->
             <ul>
                 <li> <a href = "#" onclick = "alert('Settings to be implemented')"> Settings </a></li>

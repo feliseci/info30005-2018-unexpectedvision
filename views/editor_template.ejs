@@ -16,6 +16,19 @@
     <!--script src = "../javascript/op_scroll.js"></script>
     <!-- Used to make Navigation Bar Sticky -->
     <script src = "../javascript/sticky_nav.js"></script>
+    <script>
+        function showCommentForm() {
+            let form = document.getElementById("enter_comment_bg");
+            form.style.display="block";
+        }
+
+        window.onclick = function(event) {
+            let form = document.getElementById("enter_comment_bg");
+            if (event.target === form) {
+                form.style.display = "none";
+            }
+        }
+    </script>
 
     <!-- Name of Article -->
     <title> <%= editor.name %> - <%= editor.author%> </title>
@@ -26,8 +39,6 @@
 
 <!-- Site Navigation Bar -->
 <% include ./partial/navbar.ejs%>
-
-<div class = "grid-container">
 
 <!-- Used to make footers sticky -->
 <div class = "content">
@@ -121,12 +132,12 @@
         <!--Individual contribution-->
         <% /*const comments = issue.contributions;*/
         for(i = 0; i < comments.length; i++) { %>
-        <article>
+        <article id="testaroonie">
             <!--User info - links to user profile-->
             <p class = "comment_username"><a href="../profile/<%=comments[i].author%>"><%=comments[i].author%></a></p>
             <p class = "comment_description"><%=comments[i].comment%></p>
             <!--Article preview-->
-            <p class = "preview"><a href="<%=comments[i].article_url%>">See Article</a></p>
+            <p class = "preview_test"><a href="<%=comments[i].article_url%>">See Article</a></p>
         </article>
         <% } // TODO are these necessary?
         if(comments.length%3==2) {%>
@@ -139,8 +150,8 @@
     </section>
     <button id = "comment_button" onclick="showCommentForm()">Comment!</button>
     <%}%>
-    <!--Enter comment form-->
 
+    <!--Enter comment form-->
     <section id="enter_comment_bg">
         <% if(user) {%>
         <form id="enter_comment" action = "../new-contribution/" method = "post">
@@ -160,9 +171,6 @@
         <%}%>
     </section>
 
-
-
-</div>
 </div>
 <footer>
     <% include ./partial/footer.ejs%>

@@ -178,8 +178,9 @@
     margin-bottom: 5px;
 }
 
-.image_container:hover .overlay {
-    opacity: 0.9;
+#suggested_issues h4 {
+    text-transform: capitalize;
+    font-size: large;
 }
 
 #suggested_issues p {

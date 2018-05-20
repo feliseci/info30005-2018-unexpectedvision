@@ -19,6 +19,7 @@
 <div class = "content"> <!-- Used to make footers sticky -->
 
 <header>
+    <br>
     <h1>Opportunities</h1>
 </header>
 
@@ -40,12 +41,11 @@
             </a>
             <p><%=results[i].description%></p>
             <h4>Categories:</h4>
+            <p>
             <% var categories = results[i].categories;
             for(j = 0; j < categories.length; j++) { %>
-            <p class = "issue_category">
                 <a href="">#<%=categories[j]%></a>
-            </p>
-            <% } %>
+            <% } %></p>
         </article>
 
         <!--Add "invisible" articles which take up the required empty spaces in the grid row -->

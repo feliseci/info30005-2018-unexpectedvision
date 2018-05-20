@@ -9,6 +9,9 @@
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
     <!-- Used to make Navigation Bar Sticky -->
     <script src = "../javascript/sticky_nav.js"></script>
+
+    <!-- Javascript files -->
+    <script src = "/javascript/changeColor.js"></script>
 </head>
 
 <body>
@@ -18,46 +21,44 @@
 
 <div class = "content"> <!-- Used to make footers sticky -->
 
-
-<header id = "event_header">
-    <h1> <%= opportunity.name %> </h1>
+<br>
+<header id="event_header">
     <img src = "<%= opportunity.image %>" alt = "event banner">
-</header>
-
-<section id = "event_information">
-    <table>
-        <tr>
-            <th> Date </th>
-            <td> <%= opportunity.date_event %> </td>
-        </tr>
-        <tr>
-            <th> Time </th>
-            <td> <%= opportunity.date_event %> </td> <!--TODO -->
-        </tr>
-        <tr>
-            <th> Location </th>
-            <td> <%= opportunity.location %> </td>
-        </tr>
-        <tr>
-            <th> Description </th>
-            <td> <%= opportunity.description %></td>
-        </tr>
-        <tr>
-            <th> Contact </th>
-            <td> <%= opportunity.organiser %> </td>
-        </tr>
-        <tr>
-            <th> Attendees </th>
-            <td> TD </td> <!--TODO All fields-->
-        </tr>
-    </table>
-    <div id = "date_posted">
-        <h3> Date Posted: <%= opportunity.date_post %></h3>
+    <div>
+        <h1><%= opportunity.name %></h1>
+        <h2>By <%= opportunity.organiser %></h2>
+        <div id = "event_buttons" class = "bubble">
+            <button id = "likeButton" class = "likeOff" onclick= "changeColor(this.id)">  </button>
+            <button id = "bookmarkButton" class = "bookmarkOff"  onclick = "changeColor(this.id)"></button>
+        </div>
     </div>
 
+</header>
+
+
+<section id="event_information">
+
+    <div>
+        <h2>DESCRIPTION</h2>
+        <p><%= opportunity.description %></p>
+    </div>
+    <div>
+        <h2>DATE AND TIME</h2>
+        <p><%= opportunity.date_event %></p>
+    </div>
+
+    <div>
+        <h2></h2>
+    </div>
+
+    <div>
+        <h2>LOCATION</h2>
+        <p>Dummy location</p>
+    </div>
 
 </section>
 </div>
+
 
 <footer>
     <% include ./partial/footer.ejs %>

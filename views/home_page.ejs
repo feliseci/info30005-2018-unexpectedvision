@@ -60,7 +60,9 @@
                     <img src = "<%= recent_issue.image%>" alt = "Recent issue - <%= recent_issue.name%>">
                     <h4><%= recent_issue.name%></h4>
                     </a>
-                    <section><p><%= recent_issue.description%></p></section>
+                    <section><p><%= recent_issue.description.substring(0,300)%>
+                            <%if(recent_issue.description.length > 300) {%>...
+                            <%}%></p></section>
                 </section>
 
 
@@ -76,7 +78,10 @@
                     <img src = "<%= popular_issue.image%>" alt = "Popular issue - <%= popular_issue.name%>">
                     <h4><%= popular_issue.name%></h4>
                     </a>
-                    <section><p><%= popular_issue.description%></p></section>
+                    <section><p><%= popular_issue.description.substring(0,300)%>
+                        <%if(popular_issue.description.length > 300) {%>...
+                        <%}%></p></section>
+                    </p>
                 </section>
 
         </figure>

@@ -379,12 +379,13 @@ module.exports.landing = function (req, res) {
     res.render('index', {user: req.user});
 };
 module.exports.login = function (req, res) {
-    if(req.user) {
+    res.redirect("../");
+/*    if(req.user) {
         // TODO better redirect
         res.redirect('../home'); // Not allowed to visit the log in page as a logged-in user
         return;
     }
-    res.render('login', {user: req.user}); // TODO Remove login button on login page? See createAccount
+    res.render('login', {user: req.user}); // TODO Remove login button on login page? See createAccount*/
 };
 module.exports.loadAbout = function (req, res) {
     res.render('about_page', {user: req.user});
@@ -395,7 +396,7 @@ module.exports.loadAbout = function (req, res) {
 module.exports.resetDB = function (req, res) {
 
     // Add the dummy data to each collection
-    resetIssues();
+/*    resetIssues();*/
     resetOpportunities();
 /*    resetUsers();*/
 
@@ -521,7 +522,10 @@ module.exports.userProfile= function (req, res) {
             username: user.username,
             display_name: user.display_name,
             profile_description: user.profile_description,
-            likes: user.likes
+            likes: user.likes,
+            followed_users: user.followed_users,
+            followed_articles: user.followed_articles,
+            posts: user.posts
         };
 
         res.render('user_profile', {profile: userDetails, user: req.user});

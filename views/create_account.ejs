@@ -2,19 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> MultiView - Landing </title>
     <link href="/styles/style.css" type="text/css" rel="stylesheet">
     <link href="/styles/specifics.css" type="text/css" rel="stylesheet">
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
     <script src = "./javascript/formValidation.js"></script>
+    <!-- Used to make Navigation Bar Sticky -->
+    <script src = "./javascript/sticky_nav.js"></script>
 </head>
 
 <body>
 
-<div class = "content"> <!-- Used to make footers sticky -->
-
-<!--Site title-->
+<!-- Site Navigation Bar -->
 <% include ./partial/navbar.ejs%>
+
+<div class = "content"> <!-- Used to make footers sticky -->
 
 
 <header class = "centered_header">
@@ -33,7 +36,7 @@
         <h2>Email</h2>
         <input type="email" class="account" placeholder="Enter your email address" name="email"/>
         <p id="error"></p> <!--Used for validation error messages -->
-        <button type="submit" id="submit">Submit</button>
+        <button type="submit" class="submit">Submit</button>
     </form>
 </section>
 </div>

@@ -12,7 +12,7 @@ const dummyIssues = [
         r_source: ["https://www.theage.com.au/national/victoria/health-department-asks-robert-doyle-to-attend-interview-or-have-health-assessment-20180503-p4zd7g.html"],
         o_source: ["https://www.theage.com.au/national/victoria/health-department-asks-robert-doyle-to-attend-interview-or-have-health-assessment-20180503-p4zd7g.html"],
         image: "https://source.unsplash.com/_UeY8aTI6d0/800x600",
-        description: "Facebook records users' metadata and sells it to other companies.",
+        description: "Facebook records users' metadata and sells it to other companies. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
         contributions: [
             {
                 author: "orangecaramel",
@@ -39,7 +39,7 @@ const dummyIssues = [
                 author: "Brockhampton",
 /*                date: "12/2",
                 popularity: 2,*/
-                comment: "I like this article.",
+                comment: "I like this article. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
                 article_url: "",
             },
             {
@@ -76,7 +76,7 @@ const dummyIssues = [
         r_source: ["https://www.theage.com.au/national/victoria/health-department-asks-robert-doyle-to-attend-interview-or-have-health-assessment-20180503-p4zd7g.html"],
         o_source: ["https://www.theage.com.au/national/victoria/health-department-asks-robert-doyle-to-attend-interview-or-have-health-assessment-20180503-p4zd7g.html"],
         image: "https://source.unsplash.com/random/800x600",
-        description: "Global warming!",
+        description: "Global warming! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
         contributions: []
     },
     {
@@ -85,7 +85,7 @@ const dummyIssues = [
         date: "12/3",
         categories: ['middle east', 'intervention'],
         popularity: 3,
-        description: "He was a jolly swag man, camped by a billabong",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
         hl_source: ["http://www.actorpoint.com/free_monologues/mvm322.html", "https://proto.io/en/customers/"],
         r_source: ["http://www.google.com"],
         o_source: ["http://www.facebook.com"],
@@ -100,7 +100,7 @@ const dummyIssues = [
         date: "14/3",
         categories: ['trump', 'america'],
         popularity: 4,
-        description: "trump sucks lolololol",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
         hl_source: ["http://www.google.com"],
         r_source: ["http://www.amazon.com"],
         o_source: ["http://www.youtube.com"],
@@ -110,12 +110,12 @@ const dummyIssues = [
         image: "https://source.unsplash.com/H6mCeW7B9KY/800x600"
     },
     {
-        name: "Hello World",
+        name: "School uniform and transgender students",
         author: "MontyPython",
         date: "15/3",
-        categories: ['python', 'america'],
+        categories: ['lgbtq', 'australia'],
         popularity: 2,
-        description: "You see that? That's where I was born. You know, one day, when I was a little boy, my mother she took me on her knee and she said: 'Gaston, my son. The world is a beautiful place. You must go into it, and love everyone, not hate people. You must try and make everyone happy, and bring peace and contentment everywhere you go.' And so...I became a waiter... Well... it's...it's not much of a philosophy, I know... but... well... f#@k you... I can live my own life in my own way if I want to. F#@k off! Don't come following me!",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
         hl_source: ["http://www.helloworld.com"],
         r_source: [],
         o_source: [],

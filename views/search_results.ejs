@@ -2,19 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> Search </title>
     <!-- Note: neither "./" or no "/" work with EJS due to absolute path issues. -->
     <link href="/styles/style.css" type="text/css" rel="stylesheet">
     <link href="/styles/specifics.css" type="text/css" rel="stylesheet">
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
+    <!-- Used to make Navigation Bar Sticky -->
+    <script src = "./javascript/sticky_nav.js"></script>
 </head>
 
 <body>
 
-<div class = "content"> <!-- Used to make footers sticky -->
-
 <!--Site title-->
 <% include ./partial/navbar.ejs%>
+
+<div class = "content"> <!-- Used to make footers sticky -->
 
 <br>
 <div id="search_title"><h1>Search Results</h1></div>
@@ -53,6 +56,7 @@
             <a href="<%="../issue/" + results[i].url%>">
                 <h3><%=results[i].name%></h3>
             </a>
+            <p> Editor name </p> <!-- TODO: link editors name -->
             <p><%=results[i].description%></p>
             <h4>Categories:</h4>
             <% var categories = results[i].categories;

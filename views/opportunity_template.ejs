@@ -24,21 +24,28 @@
     <table>
         <tr>
             <th> Date </th>
-            <th> Time </th>
-            <th> Location </th>
-            <th> Description </th>
-            <th> Contact </th>
-            <th> Attendees </th>
+            <td> <%= opportunity.date_event %> </td>
         </tr>
         <tr>
-            <td> <%= opportunity.date_event %> </td>
+            <th> Time </th>
             <td> <%= opportunity.date_event %> </td> <!--TODO -->
+        </tr>
+        <tr>
+            <th> Location </th>
             <td> <%= opportunity.location %> </td>
+        </tr>
+        <tr>
+            <th> Description </th>
             <td> <%= opportunity.description %></td>
+        </tr>
+        <tr>
+            <th> Contact </th>
             <td> <%= opportunity.organiser %> </td>
+        </tr>
+        <tr>
+            <th> Attendees </th>
             <td> TD </td> <!--TODO All fields-->
         </tr>
-
     </table>
     <div id = "date_posted">
         <h3> Date Posted: <%= opportunity.date_post %></h3>

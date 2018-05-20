@@ -14,6 +14,11 @@
     padding-top: 60px;
 }
 
+#login {
+    margin-top: 20px;
+    margin-left: 85%;
+}
+
 /* Also used for banner */
 .name h1 {
     font-family: "Abril Fatface", sans-serif;
@@ -68,40 +73,61 @@
 }
 
 /* Homepage */
+.hero_image {
+    background-image: url("https://images.unsplash.com/photo-1471623378067-4bccc10be22d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=0af38371aef48a0f6a3c5b7f6dff0a23&auto=format&fit=crop&w=1532&q=80");
+    height: 400px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.hero_text {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.hero_text h1 {
+    text-transform: uppercase;
+    font-size: 75px;
+    color: #E59A3F;
+    text-shadow: 3px 3px white;
+}
+
 #search {
     margin-bottom: 40px;
 }
 
+#search h2 {
+    font-size: xx-large;
+}
+
 #search input {
     margin: 0;
-    padding: 0 10px 0 10px;
+    padding: 0 10px 0 20px;
     border: none;
-    height: 50px;
-}
-
-#search form button {
-    margin: -4px;
-    padding: 10px;
-    height: 50px;
-}
-
-#submit {
-    margin-top: 30px;
-    /*Wizardry to get the submit button to appear centered but on the next line*/
-    display: block;
-    border-radius: 4px;
-    margin-left: 47.5%;
-    width: 5%;
-    height: 40px;
-    font-family: "IBM Plex Sans", sans-serif;
+    border-radius: 5px;
+    height: 75px;
+    width: 40%;
+    font-size: medium;
+    background-image: url(https://png.icons8.com/metro/1600/search.png);
+    background-repeat: no-repeat;
+    background-size: 18px 18px;
+    background-position: 95% center;
 }
 
 #random_button {
+    background: #44CC7D;
+    border-radius: 5px;
     margin-top: 10px;
     padding: 10px;
-    height: 50px;
+    height: 75px;
+    width: 10%;
+    color: white;
+    font-size: medium;
     text-transform: uppercase;
-    border-radius: 2px;
 }
 
 .account {
@@ -116,14 +142,20 @@
 }
 
 #suggested_issues {
-    width: 50%;
     display: inline-grid;
     grid-template-areas: "article article";
-    grid-column-gap: 50px;
+    grid-column-gap: 75px;
+    border-collapse: collapse;
+    margin-bottom: 50px;
+    align-items: center;
 }
 
 #suggested_issues article {
-    height: 200px;
+    border: groove;
+    border-width: 3px;
+    background: white;
+    width: 500px;
+    height: 600px;
 }
 
 #suggested_issues figcaption {
@@ -136,38 +168,23 @@
     position: relative;
 }
 
+#suggested_issues h3 {
+    color: #639678;
+}
+
 #suggested_issues img {
-    display: block;
-    width: 280px;
-    height: 200px;
-}
-
-.overlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    opacity: 0;
-    transition: .5s ease;
-    background-color: grey;
-}
-
-.image_container:hover .overlay {
-    opacity: 0.9;
-}
-
-#suggested_issues p {
-    color: white;
-    padding-top: 30%; /* As per tutorial also works. */
-    text-align: center;
+    width: 425px;
+    height: 275px;
+    margin-bottom: 5px;
 }
 
 #suggested_issues h4 {
-    margin-top: 0;
-    font-weight: bolder;
+    text-transform: capitalize;
+    font-size: large;
+}
+
+#suggested_issues p {
+    text-align: center;
 }
 
 /* Search results */
@@ -416,15 +433,14 @@
     font-size: 16px;
 }
 
-#submit {
+.submit {
     margin-top: 30px;
-    /*Wizardry to get the submit button to appear centered but on the next line*/
     display: block;
     border-radius: 4px;
     margin-left: 47.5%;
     width: 5%;
     height: 40px;
-    font-family: "IBM Plex Sans", sans-serif;
+    font-size: small;
 }
 
 /* Centered text for images */
@@ -463,34 +479,38 @@
 #likeButton{
     border: none;
     color: white;
-    height: 64px;
-    width: 64px;
+    height: 40px;
+    width: 40px;
     padding: 2px 8px;
 
 }
 
 .likeOn{
     background:url("../images/thumbsupTick.png");
+    background-size: 40px auto;
 }
 
 .likeOff{
     background:url("../images/thumbsup.png")no-repeat top left;
+    background-size: 40px auto;
 }
 
 #bookmarkButton{
     border: none;
     color: white;
-    height: 64px;
-    width: 64px;
+    height: 40px;
+    width: 40px;
     padding: 2px 8px;
 }
 
 .bookmarkOff{
     background:url("../images/bookmark.png")no-repeat top left;
+    background-size: 40px auto;
 }
 
 .bookmarkOn{
      background:url("../images/bookmarkTick.png");
+    background-size: 40px auto;
  }
 
 
@@ -504,49 +524,58 @@
     background-color : #08BF7E;
 }
 
-/* Opportunities page*/
+/* Opportunities Landing Page*/
 #opportunity_search {
     display: grid;
     grid-template-areas: "input input";
-    width: 40%;
-    margin-left: 36%;
-    margin-right: 30%;
+    /* TODO Need to fix the margin so it's more automated */
+    margin-left: 33%;
+    margin-right: 33%;
 }
 
 #opportunity_bar {
+    width: 400px;
     height: 30px;
     border: solid;
     border-radius: 3px;
+    padding: 0 20px 0 20px;
     color: white;
     background: white;
-    /* Find appropriate one */
+    /* TODO Find appropriate size */
     font-size: medium;
-}
-
-#magnifying_glass {
-    width: auto;
-    height: auto;
-    max-height: 30px;
+    background-image: url(https://png.icons8.com/metro/1600/search.png);
+    background-repeat: no-repeat;
+    background-size: 18px 18px;
+    background-position: 95% center;
 }
 
 #opportunity_results {
     display: inline-grid;
     grid-template-areas: "article article article" "article article article";
-    grid-column-gap: 20px;
-    grid-row-gap: 20px;
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
+    /*TODO Why is it not centred???*/
     grid-template-columns: 33% 33% 33%; /* Even column width*/
+    /*TODO Fix gaps between the words*/
 }
-
 
 #opportunity_results article {
     padding: 10px;
-    border: solid;
-    border-color: black;
+    border: groove;
+    border-color: grey;
+    border-width: 2px;
     background: white;
 }
 
+#opportunity_results img {
+    width: 375px;
+    height: 270px;
+}
+
+/* Opportunities Template */
 #event_information table {
     width: 50%;
     margin-left: 25%;
     margin-right: 25%;
 }
+

@@ -9,6 +9,60 @@
     <link href="/styles/specifics.css" type="text/css" rel="stylesheet">
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
     <script src = "/javascript/changeColor.js"></script>
+    <style>
+    .grid-container{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    grid-gap: 10px;
+    padding-left: 10%;
+    padding-right:10%;
+    }
+
+    .grid-container > div {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    font-size: 15px;
+    }
+
+    .item2{
+    grid-column-start:1;
+    grid-column-end: 5;
+    }
+
+    .item3{
+    grid-column-start:1;
+    grid-column-end: 5;
+    }
+    .item4{
+    grid-column-start:1;
+    grid-column-end: 4;
+    }
+
+    <!-- the pst -->
+    .item5{
+    grid-column-start:3;
+    grid-column-end: 4;
+    }
+    .item6{
+    grid-column-start:1;
+    grid-column-end: 4;
+    }
+    .item7{
+        grid-column-start:1;
+        grid-column-end: 4;
+    }
+    .item8{
+        grid-column-start:1;
+        grid-column-end: 5;
+    }
+
+    .item9{
+        grid-column-start:1;
+        grid-column-end: 5;
+    }
+
+    </style>
+
 </head>
 
 <body>
@@ -18,73 +72,78 @@
 <!--Site title-->
 <% include ./partial/navbar.ejs%>
 
+    <div class = "grid-container">
 
-<header>
-    <h1><%= editor.name %></h1>
-    <h2><%= editor.creator %> </h2> <!-- Follow creator option; see draft -->
-    <h3> Rating </h3> <!-- Possible JS to render stars -->
-    <h3> Categories: <% for(i = 0; i < editor.categories.length; i++) { %>
-        <%= "#" + editor.categories[i] %> <%}%>
-    </h3>
-
+<header class = "item2">
+    <!-- Temporary Image for Styling --> <!-- TODO: able to include image -->
     <div>
+        <!-- Darken and Greyscale the image so we can overlay white text -->
+    <img src = "../images/blue_architecture.jpg" style = "height:15em; width:100%; filter:grayscale(80%); opacity: 2">
+    <div class = 'centered'><h1 class = "white_text font_400"><%= editor.name %></h1>
+        <h2 style = "color:white"> By <em><%= editor.creator %>  Temporary Name</em> <!-- Follow creator option; see draft -->
+            <button id = "followButton" onclick = "changeColor(this.id)" style = "color:darkslategray"> Follow </button></h2>
+    </div>
+    </div>
+
+
+    <div style = "float:right">
         <button id = "likeButton" class = "likeOff" onclick= "changeColor(this.id)">  </button>
         <button id = "bookmarkButton" class = "bookmarkOff"  onclick = "changeColor(this.id)"></button>
-        <button id = "followButton" onclick = "changeColor(this.id)"> Follow </button>
+
     </div>
+    <p> Rating: **** | Categories: <% for(i = 0; i < editor.categories.length; i++) { %>
+        <%= "#" + editor.categories[i] %> <%}%></p> <!-- Possible JS to render stars -->
+
 </header>
-
-
-<section>
-    <section id = "article_description">
-        <p><%= editor.description %></p>
+    <section class = "item3" id = "article_description" style = "background-color:white; vertical-align: middle; padding:20px 47px; border-radius: 25px">
+        <h3>"<%= editor.description %>"</h3>
     </section>
-</section>
 
-<section id = "article_repository">
-    <table>
-        <tr>
-            <th> High Level </th>
-            <th> Reports </th>
-            <th> Opinions </th>
-        </tr>
-        <tr>
-            <td>
-                <!--High level-->
-                <ul>
-                    <% for(i = 0; i < editor.hl_source.length; i++) { %>
-                    <li> <a href = "<%=editor.hl_source[i]%>" target="_blank"> Link <%=i+1%> </a> </li>
-                    <% } %>
-                </ul>
-            </td>
-            <td>
-                <!--Reports-->
-                <ul>
-                    <% for(i = 0; i < editor.r_source.length; i++) { %>
-                    <li> <a href = "<%=editor.r_source[i]%>" target="_blank"> Link <%=i+1%> </a> </li>
-                    <% } %>
-                </ul>
-            </td>
-            <td>
-                <!--Opinions-->
-                <ul>
-                    <% for(i = 0; i < editor.o_source.length; i++) { %>
-                    <li> <a href = "<%=editor.o_source[i]%>" target="_blank"> Link <%=i+1%> </a> </li>
-                    <% } %>
-                </ul>
-            </td>
-        </tr>
 
-    </table>
-</section>
+<div class = "item4" id = "high_l" style = "background-color:darkseagreen; vertical-align: middle; padding:20px 47px; border-radius: 25px">
+    <h1> High Level Perspectives</h1>
+    <!--High level-->
+    <ul>
+        <% for(i = 0; i < editor.hl_source.length; i++) { %>
+        <li> <a href = "<%=editor.hl_source[i]%>" target="_blank"> High Level Piece <%=i+1%> </a> </li>
+        <% } %>
+    </ul>
+</div>
+    <div class = "item5" id = "pst" style = "background-color:lightgrey; padding:5px; vertical-align: middle; border-radius: 25px">
+            <p><em>psstt - start here if you are brand new to the issue!</em></p>
+            <h1> <-- </h1>
+    </div>
 
-<section id = "related_opportunities">
+    <div class = "item6" id = "reports" style = "background-color: lightgrey; vertical-align: middle; padding:20px 47px; border-radius: 25px">
+        <h1> Reports</h1>
+        <!--Reports-->
+        <ul>
+            <% for(i = 0; i < editor.r_source.length; i++) { %>
+            <li> <a href = "<%=editor.r_source[i]%>" target="_blank"> Report <%=i+1%> </a> </li>
+            <% } %>
+        </ul>
+    </div>
+    <div class = "item7" id = "opinions" style = "background-color:darkseagreen; vertical-align: middle; padding:20px 47px; border-radius: 25px">
+        <h1> Opinions </h1>
+        <!--Opinions-->
+        <ul>
+            <% for(i = 0; i < editor.o_source.length; i++) { %>
+            <li> <a href = "<%=editor.o_source[i]%>" target="_blank"> Opinion Piece <%=i+1%> </a> </li>
+            <% } %>
+        </ul>
+
+    </div>
+
+
+<section class = "item8" id = "related_opportunities">
     <h2> Related Opportunities </h2>
 </section>
 
-<section>
+<section class = "item9">
     <button><a href = "<%="../comments/" + editor._id%>">See comments on this issue</a></button>
 </section>
+
+    </div>
 
 <!--    </section>
 </section>-->

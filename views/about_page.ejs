@@ -11,7 +11,7 @@
     <style>
         .grid-container{
             display: grid;
-            grid-template-columns: auto auto auto;
+            grid-template-columns: auto auto auto auto auto;
             grid-gap: 10px;
             background-color:white;
             padding-left: 15%;
@@ -22,6 +22,11 @@
             background-color: rgba(255, 255, 255, 0.8);
             text-align: center;
             font-size: 15px;
+        }
+
+        .item1{
+            grid-column-start:1;
+            grid-column-end: 4;
         }
 
         .item2{
@@ -52,36 +57,37 @@
 
 <body>
 
-<div class = "content"> <!-- Used to make footers sticky -->
+<div class = "content" > <!-- Used to make footers sticky -->
 
 <!--Site title-->
 <!--% include ./partial/header.ejs%-->
 <% include ./partial/navbar.ejs%>
 
-    <header> </header>
-    <!div class = "item1">
-        <img src = "./images/blue_architecture.jpg" style = "height:15em; width:100%; filter:grayscale(50%)">
-        <div class = 'centered'><h1 class = "white_text font_400">BROADEN YOUR PERSPECTIVE</h1></div>
-    </div>
-
 <div class = "grid-container">
 
+    <header class = "item1">
+        <div >
+            <img src = "./images/blue_architecture.jpg" style = "height:15em; width:100%; filter:grayscale(80%)">
+            <div class = 'centered'><h1 class = "white_text font_400">BROADEN YOUR PERSPECTIVE</h1></div>
+        </div>
+    </header>
+
     <!-- Mission statement -->
-    <div class = "item2">
-    <h2>OUR MISSION</h2>
+    <div class = "item2" style = "background-color:darkseagreen; vertical-align: middle; padding:20px 47px; border-radius: 25px">
+    <h2 style = "color:white">OUR MISSION</h2>
     <p>To break down the echo chambers of today's political discussions, and to increase access to political
         information and activism opportunities.</p>
     </div>
 
-<hr>
-    <div class = "item3">
-    <h2>ABOUT US </h2>
+    <div class = "item3" style = "background-color:darkseagreen; vertical-align: middle; padding:20px 47px; border-radius: 25px">
+    <h2 style = "color:white">ABOUT US </h2>
     <p>MultiView is a social platform for sharing knowledge, perspectives, and insight that seeks to address the
         question of <em>'how might we address global urgent challenges at the intersection of peace, prosperity and planet
             in radically new ways?'</em>.</p>
     </div>
 
-    <div class = "item4">
+    <div class = "item4"style = "background-color:darkseagreen; vertical-align: middle; padding:20px 47px; border-radius: 25px">
+
     <p>The popularisation of social media platforms has brought with it the siloing of ideas and opinions into echo
         chambers due to the use of behaviour-centric algorithms to populate a user's feed with 'individual-specific' news
         and content. This is of particular concern to us as it tends to reinforce arguments and opinions from one
@@ -90,15 +96,13 @@
         discussions, or to witness the development of polarised groups. We want to empower the individual to get involved in
         the community through knowledge and positive action!</p>
     </div>
-
-    <hr>
-    <div class = "item5">
-    <h2>HOW TO APPROACH OUR WEBSITE</h2>
+    <div class = "item5" style = "background-color:darkseagreen; vertical-align: middle; padding:20px 47px; border-radius: 25px">
+    <h2 style = "color:white">HOW TO APPROACH OUR WEBSITE</h2>
     <p> We aim to increase access to information about political issues, and serve as an starting point for further research
         for the everyday citizen! A key consideration for our website was how best to present information in a way that
         takes into account that on any given day different people want a different levels of detail about an issue.</p>
     </div>
-    <div class = "item6">
+    <div class = "item6" style = "background-color:darkseagreen; vertical-align: middle; padding:20px 47px; border-radius: 25px">
     <h2><b>Our solution:</b> have thoughtful, well-researched individuals, editors, curate repositories of resources of
         different levels/styles <em>(i.e. high level, opinion pieces, reports)</em> referring to specific topics. In addition,
         users can contribute their own found online articles in the contributions section, which can offer another

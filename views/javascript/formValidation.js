@@ -147,6 +147,11 @@ function validateComment() {
         document.getElementById("error").innerHTML = "Comment must be at least 6 characters.";
         return false;
     }
+    else if(comment.length > 480) {
+        // 480 is a tested value from use of lorem ipsum.
+        document.getElementById("error").innerHTML = "Comment must be <480 characters.";
+        return false;
+    }
 
     // Check article link is valid URL
     let article = document.querySelectorAll("input[name=article_url]")[0].value;

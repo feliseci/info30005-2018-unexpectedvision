@@ -1,5 +1,4 @@
-/* Navigation Bar Styling */
-
+/* Navigation Bar*/
 nav.topnav {
     width: 100%;
     height: 60px;
@@ -11,8 +10,8 @@ nav.topnav p {
     font-family: 'Encode Sans Condensed', sans-serif;
     color: white;
     font-size: 24px;
-    line-height:55px;
-    float:left;
+    line-height: 55px;
+    float: left;
     padding: 0px 20px;
     margin:0;
 }
@@ -21,10 +20,9 @@ nav.topnav a {
     color: white;
 }
 
-
 nav.topnav ul {
-    float:left;
-    margin:0;
+    float: left;
+    margin: 0;
 }
 
 nav.topnav ul li {
@@ -56,7 +54,6 @@ nav.topnav ul li ul {
     z-index: 999;
 }
 
-
 nav.topnav ul li:hover ul {
     display: block;
 }
@@ -65,7 +62,6 @@ nav.topnav ul li ul li {
     width: 160px;
     border-radius: 4px;
 }
-
 
 nav.topnav ul li ul li a {
     padding: 8px 14px;
@@ -77,8 +73,8 @@ nav.topnav ul li ul li a:hover{
 }
 
 nav.topnav p a img{
-    width:30px;
-    filter:brightness(0) invert(1);
+    width: 30px;
+    filter: brightness(0) invert(1);
 }
 
 .icon {
@@ -87,9 +83,7 @@ nav.topnav p a img{
     height: 13px;
 }
 
-
-
-/* Sticky Footer Styling */
+/* Sticky Footer */
 .footer {
     background-color: #D4D4D4;
     flex-shrink: 0;
@@ -102,7 +96,6 @@ nav.topnav p a img{
     flex:1 0 auto;
     padding-bottom: 20px;
 }
-
 
 #container {
     width: 100%;
@@ -120,8 +113,7 @@ div{
     height:0.8em;
 }
 
-
-/* CSS to Enable functionality of Dropdown Menu
+/* Enable functionality of Dropdown Menu
  Credit:
  */
 .dropbtn {
@@ -170,7 +162,6 @@ div{
 
 
 /* Sticky Navigation Bar*/
-
 /* The sticky class is added to the header with JS when it reaches its scroll position */
 .sticky {
     position: fixed;
@@ -179,7 +170,8 @@ div{
     z-index:999;
 }
 
-/* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
+/* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the
+top of the page (position:fixed and top:0) */
 .sticky + .content {
     padding-top: 60px;
 }

@@ -2,51 +2,63 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> <%= opportunity.name %> - opportunity </title>
     <link href="/styles/style.css" type="text/css" rel="stylesheet">
     <link href="/styles/specifics.css" type="text/css" rel="stylesheet">
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
+    <!-- Used to make Navigation Bar Sticky -->
+    <script src = "../javascript/sticky_nav.js"></script>
+
+    <!-- Javascript files -->
+    <script src = "/javascript/changeColor.js"></script>
 </head>
 
 <body>
 
-<div class = "content"> <!-- Used to make footers sticky -->
-
 <!--Site title-->
 <% include ./partial/navbar.ejs%>
 
-<header id = "event_header">
-    <h1> <%= opportunity.name %> </h1>
+<div class = "content"> <!-- Used to make footers sticky -->
+
+<br>
+<header id="event_header">
     <img src = "<%= opportunity.image %>" alt = "event banner">
-</header>
-
-<section id = "event_information">
-    <table>
-        <tr>
-            <th> Date </th>
-            <th> Time </th>
-            <th> Location </th>
-            <th> Description </th>
-            <th> Contact </th>
-            <th> Attendees </th>
-        </tr>
-        <tr>
-            <td> <%= opportunity.date_event %> </td>
-            <td> <%= opportunity.date_event %> </td> <!--TODO -->
-            <td> <%= opportunity.location %> </td>
-            <td> <%= opportunity.description %></td>
-            <td> <%= opportunity.organiser %> </td>
-            <td> TD </td> <!--TODO All fields-->
-        </tr>
-
-    </table>
-    <div id = "date_posted">
-        <h3> Date Posted: <%= opportunity.date_post %></h3>
+    <div>
+        <h1><%= opportunity.name %></h1>
+        <h2>By <a href="../profile/<%=opportunity.organiser%>"><%= opportunity.organiser %></a></h2>
+        <div id = "event_buttons" class = "bubble">
+            <button id = "likeButton" class = "likeOff" onclick= "changeColor(this.id)">  </button>
+            <button id = "bookmarkButton" class = "bookmarkOff"  onclick = "changeColor(this.id)"></button>
+        </div>
     </div>
 
+</header>
+
+
+<section id="event_information">
+
+    <div>
+        <h2>DESCRIPTION</h2>
+        <p><%= opportunity.description %></p>
+    </div>
+    <div>
+        <h2>DATE AND TIME</h2>
+        <p><%= opportunity.date_event %></p>
+    </div>
+
+    <div>
+        <h2></h2>
+    </div>
+
+    <div>
+        <h2>LOCATION</h2>
+        <p><%= opportunity.location %></p>
+    </div>
 
 </section>
 </div>
+
 
 <footer>
     <% include ./partial/footer.ejs %>

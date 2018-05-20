@@ -2,86 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>About Us</title>
     <link href="/styles/style.css" type="text/css" rel="stylesheet">
     <link href="/styles/specifics.css" type="text/css" rel="stylesheet">
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
 
-    <!-- CSS for About Page - will be moved to css file later stage -->
-    <style>
-        .grid-container{
-            display: grid;
-            grid-template-columns: auto auto auto;
-            grid-gap: 10px;
-            background-color:white;
-            padding-left: 15%;
-            padding-right:15%;
-        }
-
-        .grid-container > div {
-            background-color: rgba(255, 255, 255, 0.8);
-            text-align: center;
-            font-size: 15px;
-        }
-
-        .item2{
-            grid-column-start:1;
-            grid-column-end: 4;
-        }
-
-        .item3{
-            grid-column-start:1;
-            grid-column-end: 4;
-        }
-        .item4{
-            grid-column-start:1;
-            grid-column-end: 4;
-        }
-        .item5{
-            grid-column-start:1;
-            grid-column-end: 4;
-        }
-        .item6{
-            grid-column-start:1;
-            grid-column-end: 4;
-        }
-
-    </style>
+    <!-- Used to make Navigation Bar Sticky -->
+    <script src = "./javascript/sticky_nav.js"></script>
 
 </head>
 
 <body>
 
-<div class = "content"> <!-- Used to make footers sticky -->
-
 <!--Site title-->
-<!--% include ./partial/header.ejs%-->
 <% include ./partial/navbar.ejs%>
 
-    <header> </header>
-    <!div class = "item1">
-        <img src = "./images/blue_architecture.jpg" style = "height:15em; width:100%; filter:grayscale(50%)">
-        <div class = 'centered'><h1 class = "white_text font_400">BROADEN YOUR PERSPECTIVE</h1></div>
-    </div>
+<div class = "content" > <!-- Used to make footers sticky -->
 
-<div class = "grid-container">
+<div class = "grid-container-about">
+
+    <header class = "header">
+        <div class = "banner" >
+            <img src = "./images/blue_architecture.jpg" class = "banner-image">
+            <div class = 'centered'><h1 class = "white_text font_400 text_shadow">BROADEN YOUR PERSPECTIVE</h1>
+            <h2 class = "darkgray_text"><em> break down echo chambers</em></h2>
+            </div>
+        </div>
+    </header>
 
     <!-- Mission statement -->
-    <div class = "item2">
-    <h2>OUR MISSION</h2>
+    <div class = "item1style bubble">
+    <h1><img src = "../images/bullseye.png" class = "about-icons"> OUR MISSION</h1>
     <p>To break down the echo chambers of today's political discussions, and to increase access to political
         information and activism opportunities.</p>
     </div>
 
-<hr>
-    <div class = "item3">
-    <h2>ABOUT US </h2>
-    <p>MultiView is a social platform for sharing knowledge, perspectives, and insight that seeks to address the
+    <div class = "item1style bubble" >
+        <h1> <img src = "../images/eye-open.png" class = "about-icons"> ABOUT US </h1>
+        <p><em>MultiView</em> is a social platform for sharing knowledge, perspectives, and insight that seeks to address the
         question of <em>'how might we address global urgent challenges at the intersection of peace, prosperity and planet
             in radically new ways?'</em>.</p>
     </div>
 
-    <div class = "item4">
+    <div class = "item1style bubble">
+        <h1> <img src = "../images/warning-sign.png" class = "about-icons">  CHANGING DIGITAL LANDSCAPE </h1>
+        <h2 class = "darkgray_text"> <em> - the formation of echo chambers -</em> </h2>
     <p>The popularisation of social media platforms has brought with it the siloing of ideas and opinions into echo
         chambers due to the use of behaviour-centric algorithms to populate a user's feed with 'individual-specific' news
         and content. This is of particular concern to us as it tends to reinforce arguments and opinions from one
@@ -90,22 +56,45 @@
         discussions, or to witness the development of polarised groups. We want to empower the individual to get involved in
         the community through knowledge and positive action!</p>
     </div>
+    
+    <div class = "item1style bubble">
+        <h1> <img src = "../images/thumbsup.png" class = "about-icons"> OUR RESPONSE: </h1>
+        <p>Design a platform where thoughtful, well-researched individuals, 'Editors', can curate repositories of resources of
+            different levels/styles <em>(i.e. high level, opinion pieces, reports)</em> referring to specific topics. In addition,
+            users can contribute their own found online resources in the contributions section of any article, which can offer another
+            perspective on the issue, and engage with the contents of the Editor's article. <br> Any user can become an Editor by
+            applying through our website and citing relevant experience for the role - <a href = "../editor-application">
+                apply here to become an Editor
+            </a>.</p>
+    </div>
 
-    <hr>
-    <div class = "item5">
-    <h2>HOW TO APPROACH OUR WEBSITE</h2>
+
+    <div class = "item1style bubble">
+    <h1> <img src = "../images/thickSmallTriangle.png" class = "about-icons">HOW TO APPROACH OUR WEBSITE</h1>
     <p> We aim to increase access to information about political issues, and serve as an starting point for further research
         for the everyday citizen! A key consideration for our website was how best to present information in a way that
-        takes into account that on any given day different people want a different levels of detail about an issue.</p>
-    </div>
-    <div class = "item6">
-    <h2><b>Our solution:</b> have thoughtful, well-researched individuals, editors, curate repositories of resources of
-        different levels/styles <em>(i.e. high level, opinion pieces, reports)</em> referring to specific topics. In addition,
-        users can contribute their own found online articles in the contributions section, which can offer another
-        perspective on the issue, and engage with the contents of the editor's article. Any user can become an editor by
-        applying through our website and citing relevant experience for the role - <em>see editor code of conduct.</em></h2>
+        takes into account that on any given day different people want a different levels of detail about an issue.
+    </p>
     </div>
 
+    <div class = "item1style bubble">
+        <h1> <img src = "../images/group.png" class = "about-icons">GET INVOLVED IN THE COMMUNITY!</h1>
+        <p>We are more than just articles, this platform is about <b> ACTION </b> follow through to our <a href = "../opportunities">
+                Opportunities </a> Tab to find ways you can get involved in the community, and make an active change!
+            <br>Or better yet - <a href = "../create-opportunity">CREATE </a>  an opportunity for others to get involved!
+        </p>
+    </div>
+
+
+    <div class = "item1style bubble">
+        <h1> <img src = "../images/book.png" class = "about-icons">CODE OF CONDUCT</h1>
+        <ul>
+            <li> Remember to communicate thoughtfully, and acknowledge different opinions </li>
+            <li> Adhere to the same standards of behaviour online that you follow in real life</li>
+            <li> Absolutely no personal attacks or victimisation of any user of the platform </li>
+            <li> Actually read an article before you vote on it </li>
+        </ul>
+    </div>
 
     </div>
 </div>

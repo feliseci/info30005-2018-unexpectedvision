@@ -24,45 +24,70 @@ module.exports.home = function (req, res) {
             };
 
             // Find the most recently updated issue
-            Issue.find({}).limit(2).sort({"date_update": -1}).exec(function(err, recent_issue) {
+            // 6 issues are fetched: the 1st and 2nd most recent (in case the 1st
+            // is the same as the most popular), and 3 extra for populating the home page.
+            Issue.find({}).limit(6).sort({"date_update": -1}).exec(function(err, recent_issue) {
                 if(err) {
                     res.sendStatus(409);
                     return;
                 }
+                let recent;
+                let startIndex = 1; // The index in popular_issue indicating issues NOT the most popular or recent
                 // Check recent & popular issue are not the same
                 if(recent_issue[0]._id === popular_issue[0]._id) {
-                    let recent = {
+                    startIndex = 2; // TODO
+                    recent = {
                         name: recent_issue[1].name,
                         categories: recent_issue[1].categories,
                         description: recent_issue[1].description,
                         url: recent_issue[1]._id,
                         image: recent_issue[1].image
                     };
-
-                    res.render('home_page',
-                        {popular_issue: popular, recent_issue: recent});
-                    return;
+                }
+                else {
+                    recent = {
+                        name: recent_issue[0].name,
+                        categories: recent_issue[0].categories,
+                        description: recent_issue[0].description,
+                        url: recent_issue[0]._id,
+                        image: recent_issue[0].image
+                    };
                 }
 
-                let recent = {
-                    name: recent_issue[0].name,
-                    categories: recent_issue[0].categories,
-                    description: recent_issue[0].description,
-                    url: recent_issue[0]._id,
-                    image: recent_issue[0].image
-                };
+                // Populate the homepage with some more recent issues
+                let issues = []; // the extra issues
+                let indeces = []; // the indeces of the issues that aren't recent or popular
+
+                // TODO start from startIndex instead of checking for recent.url each time
+                // TODO you can start from 1 you know
+                // Check the issue to be added isn't the most popular issue
+                for(i = 0; i < 5; i ++) {
+                    // Check from the i+1 index, as either the most popular or most recent is the first
+                    if(popular.url !== recent_issue[i+1]._id && recent.url !== recent_issue[i+1].id) {
+                        indeces.push(i+1);
+                    }
+                }
+
+                // Add the 3 most recent of the non-popular, non-recent issues using their indeces above
+                for(i=0;i<3;i++) {
+                    issues[i] = {
+                        name: recent_issue[indeces[i]].name,
+                        categories: recent_issue[indeces[i]].categories,
+                        description: recent_issue[indeces[i]].description,
+                        url: recent_issue[indeces[i]]._id,
+                        image: recent_issue[indeces[i]].image
+                    }
+                }
 
                 // Render home page with recent & popular issue
                 res.render('home_page',
-                    {popular_issue: popular, recent_issue: recent, user: req.user});
+                    {popular_issue: popular, recent_issue: recent, user: req.user, more_issues: issues});
             });
         }
         else {
             res.sendStatus(409);
         }
     });
-
-    // TODO populate with more issues
 };
 module.exports.search = function (req, res) {
 
@@ -177,7 +202,7 @@ module.exports.issue = function(req,res){
         }
 
         // Issue with the given id successfully found
-        res.render('editor_template', {editor: issue, user: req.user});
+        res.render('editor_template', {editor: issue, comments: issue.contributions, user: req.user});
         // TODO contributions
     });
 };
@@ -379,12 +404,13 @@ module.exports.landing = function (req, res) {
     res.render('index', {user: req.user});
 };
 module.exports.login = function (req, res) {
-    if(req.user) {
+    res.redirect("../");
+/*    if(req.user) {
         // TODO better redirect
         res.redirect('../home'); // Not allowed to visit the log in page as a logged-in user
         return;
     }
-    res.render('login', {user: req.user}); // TODO Remove login button on login page? See createAccount
+    res.render('login', {user: req.user}); // TODO Remove login button on login page? See createAccount*/
 };
 module.exports.loadAbout = function (req, res) {
     res.render('about_page', {user: req.user});
@@ -395,7 +421,7 @@ module.exports.loadAbout = function (req, res) {
 module.exports.resetDB = function (req, res) {
 
     // Add the dummy data to each collection
-    resetIssues();
+/*    resetIssues();*/
     resetOpportunities();
 /*    resetUsers();*/
 
@@ -440,7 +466,7 @@ resetOpportunities = function (req, res) {
     for(i = 0; i < dummyOpportunities.length; i++) {
         let newOpportunity = new Opportunity({
             "name": dummyOpportunities[i].name,
-            "organiser": dummyOpportunities[i].author,
+            "organiser": dummyOpportunities[i].organiser,
             "description": dummyOpportunities[i].description,
             "image": dummyOpportunities[i].image,
             "date_post": dummyOpportunities[i].date_post,
@@ -504,5 +530,30 @@ module.exports.logout = function(req, res){
 
 //* User profile
 module.exports.userProfile= function (req, res) {
-    res.render('user_profile', {user: req.user});
+    User.findOne({username: req.params.name}, function(err, user) {
+        if(err) {
+            res.sendStatus(409);
+            return;
+        }
+
+        // Issue ID invalid; no results returned by findOne
+        // Note: find returns [] if empty, findOne returns null
+        if(user === null) {
+            res.sendStatus(404);
+            return;
+        }
+
+        let userDetails = {
+            username: user.username,
+            display_name: user.display_name,
+            profile_description: user.profile_description,
+            likes: user.likes,
+            followed_users: user.followed_users,
+            followed_articles: user.followed_articles,
+            posts: user.posts
+        };
+
+        res.render('user_profile', {profile: userDetails, user: req.user});
+
+    });
 };

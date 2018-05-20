@@ -1,8 +1,6 @@
 <!-- navigation bar to be rendered for every page -->
-<link rel = "stylesheet" type = "text/css" href = "/styles/default.css">
-
-<nav class = "topnav">
-    <p> <a href = "/"><img src = "./images/thickSmallTriangle.png" style = "width:30px; filter:brightness(0) invert(1)"> MultiView </a></p>
+<nav class = "topnav" id = "myNav">
+    <p> <a href = "/"><img src = "../images/thickSmallTriangle.png"> MultiView </a></p>
     <ul>
         <li> <a href = "/home"> Home </a></li>
         <li> <a href = "../about"> About </a></li>
@@ -11,7 +9,8 @@
 
         <!-- Displays when the user is logged in -->
         <% if(user) { %>
-        <li> <a href = "../profile"> <%= user.username%> <img src = "../images/thickSmallTriangle.png" style = "width:15px; transform:rotate(180deg); filter:brightness(0) invert(1)"> </a> <!-- Need to include # for the drop down -->
+        <li> <a href = "../profile/<%=user.username%>"> <img src = "../images/man-user.png" class = "icon"> <span><%= user.username%> </span> </a></li> <!-- TODO: inline profile pic -->
+        <li><a href = "#"><img src = "../images/thickSmallTriangle.png" style = "width:20px; transform:rotate(180deg); filter:brightness(0) invert(1)"> </a> <!-- Need to include # for the drop down -->
             <ul>
                 <li> <a href = "#" onclick = "alert('Settings to be implemented')"> Settings </a></li>
 
@@ -21,14 +20,14 @@
                 <!-- if user is not an editor this will render -->
                 <% } else { %>
                     <li> <a href = "../editor-application"> Apply to be an Editor </a></li>
-                <% }%>
-                <li> <a href = "../create-opportunity"> Make an Event! </a></li>
+                <%}%>
+                <li> <a href = "../create-opportunity"> Create an Event! </a></li>
                 <li> <a href = "../logout"> Log Out </a></li>
             </ul>
         </li>
         <%} else { %>
             <!-- Displays when the user isn't logged in -->
-            <li id = "login"><a href = "../login"><button type = "button"> Login </button></a></li>
+            <li><a href = "../"><button type = "button" id="login_nav"> Login </button></a></li>
         <%}%>
     </ul>
 </nav>

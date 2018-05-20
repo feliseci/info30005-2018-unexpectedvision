@@ -32,7 +32,7 @@ passport.serializeUser( function(user, done) {
         username: user.username,
         is_editor: user.is_editor,
         display_name: user.display_name,
-        email: user.email
+/*        email: user.email*/
     };
 
     // Simply passing user would include the salt and hashed password, and is insecure

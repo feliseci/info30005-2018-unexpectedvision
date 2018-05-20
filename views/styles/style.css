@@ -75,6 +75,7 @@ a:hover {
 
 button {
     border: none;
+    font-family: Arial, serif;
 }
 button:hover {
     background-color: darkgrey;
@@ -94,4 +95,36 @@ hr {
     margin-right: auto;
     border-style: inset;
     border-width: 1px;
+}
+
+
+/* High-use general styling*/
+
+.text_shadow {
+    text-shadow: 2px 2px grey;
+}
+
+/* Makes text white */
+.white_text{
+    color:#ffffff;
+}
+.gray_text{
+    color: #D3D3D3;
+}
+
+.darkgray_text{
+    color:#696969;
+}
+
+/* Used for controlling font size for banner*/
+.font_400 {
+    font-size: 400%;
+}
+
+.inline-block{
+    display: inline-block;
+}
+
+.capitalise{
+    text-transform: uppercase;
 }

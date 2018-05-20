@@ -41,6 +41,15 @@
     transform: translate(-50%, -50%);
 }
 
+#anchor_arrow {
+    position: absolute;
+    top: 85%;
+    left: 47.5%; /*(100-width) /2*/
+    width: 5%;
+    filter: invert(0.13);
+
+}
+
 #about_box {
     top: 100%;
     display: grid;
@@ -565,7 +574,7 @@
 
 .grid-container-editor{
     display: grid;
-    grid-template-columns: 1fr 1fr 0fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 0 1fr 1fr;
     grid-gap: 10px;
     padding-left: 10%;
     padding-right:10%;

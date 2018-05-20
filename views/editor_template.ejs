@@ -27,7 +27,7 @@
 <!-- Site Navigation Bar -->
 <% include ./partial/navbar.ejs%>
 
-    <div class = "grid-container">
+<div class = "grid-container">
 
 <!-- Used to make footers sticky -->
 <div class = "content">
@@ -106,15 +106,63 @@
             <%include ./partial/opportunities_sidescroll.ejs%>
         </section>
 
-        <section class = "item9">
-            <button><a href = "<%="../comments/" + editor._id%>">See comments on this issue</a></button>
-        </section>
-
     </div>
 
-        <!--    </section>
-        </section>-->
-        
+    <!--TODO comments section -->
+    <h1>Comments</h1>
+    <br>
+    <% if(comments.length == 0) {%>
+    <section>
+        <p>There are no comments on this article yet!<p> <!--TODO-->
+            <button id = "comment_button_centered" onclick="showCommentForm()">Comment!</button>
+    </section>
+    <% } else { %>
+    <section id = "contributions_grid">
+        <!--Individual contribution-->
+        <% /*const comments = issue.contributions;*/
+        for(i = 0; i < comments.length; i++) { %>
+        <article>
+            <!--User info - links to user profile-->
+            <p class = "comment_username"><a href="../profile/<%=comments[i].author%>"><%=comments[i].author%></a></p>
+            <p class = "comment_description"><%=comments[i].comment%></p>
+            <!--Article preview-->
+            <p class = "preview"><a href="<%=comments[i].article_url%>">See Article</a></p>
+        </article>
+        <% } // TODO are these necessary?
+        if(comments.length%3==2) {%>
+        <article id = "invisible"></article>
+        <%} else if(comments.length%3==1) {%>
+        <article id = "invisible"></article>
+        <article id = "invisible"></article>
+        <%}%>
+
+    </section>
+    <button id = "comment_button" onclick="showCommentForm()">Comment!</button>
+    <%}%>
+    <!--Enter comment form-->
+
+    <section id="enter_comment_bg">
+        <% if(user) {%>
+        <form id="enter_comment" action = "../new-contribution/" method = "post">
+            <input type="hidden" name="name" value="<%=editor.name%>"> <!-- TODO Use ID?-->
+            <input type="hidden" name="author" value = "<%=user.username%>">
+            <textarea name="comment" placeholder="Your comment here..."></textarea><br>
+            <input type="text" name="article_url" placeholder="URL to an article">
+            <button type="submit">Submit</button>
+        </form>
+        <%} else { %>
+        <section id="enter_comment">
+            <h4>Wait a moment!</h4>
+            <p>To make a comment, you need to be a user first.</p>
+            <p><a href="../create-account">Click here to go to the create account page.</a></p>
+            <p><a href="../login">Click here to login.</a></p>
+        </section>
+        <%}%>
+    </section>
+
+
+
+</div>
 </div>
 <footer>
     <% include ./partial/footer.ejs%>

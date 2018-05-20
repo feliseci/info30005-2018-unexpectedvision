@@ -177,7 +177,7 @@ module.exports.issue = function(req,res){
         }
 
         // Issue with the given id successfully found
-        res.render('editor_template', {editor: issue, user: req.user});
+        res.render('editor_template', {editor: issue, comments: issue.contributions, user: req.user});
         // TODO contributions
     });
 };

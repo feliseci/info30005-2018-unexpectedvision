@@ -298,12 +298,14 @@
 #search_results article {
     text-align: start;
     padding-left: 5%;
+    padding-right:5%;
     padding-top: 10px;
     padding-bottom: 50px;
     margin-left: 10px;
     margin-bottom: 5px;
     margin-top: 5px;
     max-height: 200px;
+
 }
 
 #search_results article h4 {

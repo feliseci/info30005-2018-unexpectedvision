@@ -6,6 +6,19 @@
     <link href="/styles/style.css" type="text/css" rel="stylesheet">
     <link href="/styles/specifics.css" type="text/css" rel="stylesheet">
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
+    <script>
+        function showCommentForm() {
+            let form = document.getElementById("enter_comment_bg");
+            form.style.display="block";
+        }
+
+        window.onclick = function(event) {
+            let form = document.getElementById("enter_comment_bg");
+            if (event.target === form) {
+                form.style.display = "none";
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -16,21 +29,28 @@
 <% include ./partial/navbar.ejs%>
 
 <header>
-    <h1><%= issue.name %></h1>
+    <br>
+    <h1><%= issue.name %> - Comments</h1>
+    <br>
 </header>
 
 <!-- Advanced search options -->
-<section id="contributions_sidebar">
-<nav id = "contributions_options">
+<!--<nav id = "contributions_options">
     <h4>Sort By:</h4>
     <ul>
         <li><a href="">Alphabetical</a></li>
         <li><a href="">Most recent</a></li>
         <li><a href="">Most popular</a></li>
     </ul>
-</nav>
+</nav>-->
 
 <!--Contributions list-->
+<% if(comments.length == 0) {%>
+    <section>
+        <p>There are no comments on this article yet!<p> <!--TODO-->
+        <button id = "comment_button_centered" onclick="showCommentForm()">Comment!</button>
+    </section>
+<% } else { %>
 <section id = "contributions_grid">
     <!--Individual contribution-->
     <% /*const comments = issue.contributions;*/
@@ -40,17 +60,40 @@
         <p class = "comment_username"><a href="../profile/<%=comments[i].author%>"><%=comments[i].author%></a></p>
         <p class = "comment_description"><%=comments[i].comment%></p>
         <!--Article preview-->
-        <p class = "preview"><a href="<%=comments[i].article_url%>">Preview (TBD)</a></p>
+        <p class = "preview"><a href="<%=comments[i].article_url%>">See Article</a></p>
     </article>
-    <% } if(comments.length == 0) {%>
-        <p>No comments on this article yet!<p> <!--TODO-->
-     <%} else if(comments.length%2==0) {%>
+    <% } // TODO are these necessary?
+    if(comments.length%3==2) {%>
         <article id = "invisible"></article>
-    <%}
-    %>
+    <%} else if(comments.length%3==1) {%>
+        <article id = "invisible"></article>
+        <article id = "invisible"></article>
+    <%}%>
 
 </section>
-</section>
+<button id = "comment_button" onclick="showCommentForm()">Comment!</button>
+<%}%>
+    <!--Enter comment form-->
+
+    <section id="enter_comment_bg">
+    <% if(user) {%>
+    <form id="enter_comment" action = "../new-contribution/" method = "post">
+        <input type="hidden" name="name" value="<%=issue.name%>"> <!-- TODO Use ID?-->
+        <input type="hidden" name="author" value = "<%=user.username%>">
+        <textarea name="comment" placeholder="Your comment here..."></textarea><br>
+        <input type="text" name="article_url" placeholder="URL to an article">
+        <button type="submit">Submit</button>
+    </form>
+    <%} else { %>
+        <section id="enter_comment">
+            <h4>Wait a moment!</h4>
+            <p>To make a comment, you need to be a user first.</p>
+            <p><a href="../create-account">Click here to go to the create account page.</a></p>
+            <p><a href="../login">Click here to login.</a></p>
+        </section>
+    <%}%>
+    </section>
+
 </div>
 
 <footer>

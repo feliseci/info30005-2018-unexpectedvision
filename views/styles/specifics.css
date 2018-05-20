@@ -228,8 +228,6 @@
     text-align: start;
     padding-left: 10%;
     width: 100%;
-    /*Would have to change page layout or work with animations to have
-    good-looking "sticky search".*/
 }
 
 #search_options h4 {
@@ -318,30 +316,77 @@
 }
 
 /*Contributions page*/
-#contributions_sidebar {
-    display: grid;
-    grid-gap: 0;
-    overflow: hidden;
-    background-color: white;
-    grid-template-columns: 1fr 4fr;
-    grid-template-areas: 'nav section';
-    min-height: 100%;
+#comment_button {
+    position: fixed;
+    min-width: 5%;
+    height: 10%;
+    top: 10%;
+    left: 0;
+    z-index: 1;
+    background-color: #07f2ab;
+    font-weight: bold;
 }
 
-#contributions_options {
-    text-align: start;
-    padding-left: 10%;
+#comment_button_centered {
+    min-width: 10%;
+    height: 50px;
+    background-color: #07f2ab;
+    font-weight: bold;
+}
+
+#enter_comment_bg {
+    height: 100%;
     width: 100%;
-    /*Would have to change page layout or work with animations to have
-    good-looking "sticky search".*/
+    background-color: rgba(0,0,0,0.4);
+    z-index: 2; /*Puts above other elements*/
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+}
+
+#enter_comment {
+    box-sizing: border-box;
+    position: relative;
+    top: 25%;
+    left: 30%;
+    height: 50%;
+    width: 40%;
+    background-color: white;
+    padding: 1%;
+    text-align: left;
+}
+
+#enter_comment textarea {
+    width: 98%; /* +2% padding*/
+    height: 70%; /* 70+1+1 = 72 (28) -1 -> 27*/
+    background-color: #edf9f3;
+}
+
+#enter_comment input {
+    padding-left: 3%;
+    height: 27%;
+    width: 70%;
+    border: none;
+    background-color: #edf9f3;
+}
+#enter_comment button {
+    height: 27%;
+    color: white;
+    width: 25%;
+    background-color: #07f2ab;
 }
 
 #contributions_grid {
-    background-color: #3e5b4a;
+    min-height: 100%;
+    background-color: white;
     display: grid;
-    grid-template-columns: 50% 50%;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    grid-template-columns: 33% 33% 33%;
     grid-auto-rows: 1fr;
-    grid-template-areas: "article article" "article article";
+    grid-template-areas: "article article article" "article article article";
     grid-gap: 10px;
     padding: 1%;
 }

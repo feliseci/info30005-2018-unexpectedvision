@@ -1,8 +1,6 @@
 <!-- navigation bar to be rendered for every page -->
-<link rel = "stylesheet" type = "text/css" href = "/styles/default.css">
-
-<nav class = "topnav">
-    <p> <a href = "/"><img src = "../images/thickSmallTriangle.png" style = "width:30px; filter:brightness(0) invert(1)"> MultiView </a></p>
+<nav class = "topnav" id = "myNav">
+    <p> <a href = "/"><img src = "../images/thickSmallTriangle.png"> MultiView </a></p>
     <ul>
         <li> <a href = "/home"> Home </a></li>
         <li> <a href = "../about"> About </a></li>
@@ -11,7 +9,7 @@
 
         <!-- Displays when the user is logged in -->
         <% if(user) { %>
-        <li> <a href = "../profile"> <img src = "../images/user.png" style = "position:absolute"> <%= user.username%> </a></li> <!-- TODO: inline profile pic -->
+        <li> <a href = "../profile"> <img src = "../images/man-user.png" class = "icon"> <span><%= user.username%> </span> </a></li> <!-- TODO: inline profile pic -->
         <li><a href = "#"><img src = "../images/thickSmallTriangle.png" style = "width:20px; transform:rotate(180deg); filter:brightness(0) invert(1)"> </a> <!-- Need to include # for the drop down -->
             <ul>
                 <li> <a href = "#" onclick = "alert('Settings to be implemented')"> Settings </a></li>

@@ -4,11 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> MultiView - Home </title>
+
+
+    <!-- CSS Stylesheets -->
     <link href="/styles/style.css" type="text/css" rel="stylesheet">
     <link href="/styles/specifics.css" type="text/css" rel="stylesheet">
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
+
     <!-- Used to make Navigation Bar Sticky -->
     <script src = "./javascript/sticky_nav.js"></script>
+
 </head>
 
 <body>
@@ -16,15 +21,15 @@
 <!--Site title-->
 <% include ./partial/navbar.ejs%>
 
+<div class = "content"> <!-- Used to make footers sticky -->
+
+
 <div class="hero_image">
     <div class="hero_text">
         <h1>Welcome to MultiView</h1>
     </div>
 </div>
-<div class = "content"> <!-- Used to make footers sticky -->
 
-
-<!--Search button-->
 
 <!--Search button-->
 <section id = "search">
@@ -42,7 +47,7 @@
 <!--Issue suggestions-->
 <section id="suggested_issues">
 
-    <article>
+    <article style = "grid-area: a;">
 
         <figure>
             <figcaption><h3>RECENT</h3></figcaption>
@@ -52,14 +57,16 @@
                     <img src = "<%= recent_issue.image%>" alt = "Recent issue - <%= recent_issue.name%>">
                     <h4><%= recent_issue.name%></h4>
                     </a>
-                    <section><p><%= recent_issue.description%></p></section>
+                    <section><p><%= recent_issue.description.substring(0,300)%>
+                            <%if(recent_issue.description.length > 300) {%>...
+                            <%}%></p></section>
                 </section>
 
 
         </figure>
     </article>
 
-    <article>
+    <article style = "grid-area: b;">
         <figure>
             <figcaption><h3>POPULAR</h3></figcaption>
 
@@ -68,11 +75,30 @@
                     <img src = "<%= popular_issue.image%>" alt = "Popular issue - <%= popular_issue.name%>">
                     <h4><%= popular_issue.name%></h4>
                     </a>
-                    <section><p><%= popular_issue.description%></p></section>
+                    <section><p><%= popular_issue.description.substring(0,300)%>
+                        <%if(popular_issue.description.length > 300) {%>...
+                        <%}%></p></section>
+                    </p>
                 </section>
 
         </figure>
     </article>
+
+<!--    <section id="more_issues">-->
+    <% for(i=0; i<more_issues.length; i++) { %>
+    <article style = "grid-area: <%=String.fromCharCode('c'.charCodeAt(0) + i)%>;" id="more_issues">
+        <figure>
+            <section>
+                <a href="<%="../issue/" + more_issues[i].url%>">
+                    <img src = "<%= more_issues[i].image%>" alt = "Issue - <%= more_issues[i].name%>">
+                    <h4><%= more_issues[i].name%></h4>
+                </a>
+                <section><p><%= more_issues[i].description%></p></section>
+            </section>
+        </figure>
+    </article>
+    <%}%>
+<!--    </section>-->
 
 </section>
 </div>

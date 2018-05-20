@@ -75,7 +75,7 @@ const dummyIssues = [
             "https://www.theage.com.au/national/victoria/hurstbridge-trains-back-on-track-from-friday-20180503-p4zd6h.html"],
         r_source: ["https://www.theage.com.au/national/victoria/health-department-asks-robert-doyle-to-attend-interview-or-have-health-assessment-20180503-p4zd7g.html"],
         o_source: ["https://www.theage.com.au/national/victoria/health-department-asks-robert-doyle-to-attend-interview-or-have-health-assessment-20180503-p4zd7g.html"],
-        image: "https://source.unsplash.com/random/800x600",
+        image: "https://source.unsplash.com/wVMBn5sPQt0/800x600",
         description: "Global warming! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
         contributions: []
     },
@@ -122,7 +122,7 @@ const dummyIssues = [
         date_post: Date.now(),
         date_update: Date.now(),
         contributions: [],
-        image: ""
+        image: "https://source.unsplash.com/LNwn_A9RGHo/800x600"
     }
 
 

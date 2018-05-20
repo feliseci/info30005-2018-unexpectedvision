@@ -75,6 +75,7 @@ a:hover {
 
 button {
     border: none;
+    font-family: Arial, serif;
 }
 button:hover {
     background-color: darkgrey;
@@ -118,4 +119,12 @@ hr {
 /* Used for controlling font size for banner*/
 .font_400 {
     font-size: 400%;
+}
+
+.inline-block{
+    display: inline-block;
+}
+
+.capitalise{
+    text-transform: uppercase;
 }

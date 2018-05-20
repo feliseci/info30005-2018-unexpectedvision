@@ -14,31 +14,47 @@
     padding-top: 60px;
 }
 
-#login {
+#signUp {
     margin-top: 20px;
     margin-left: 85%;
 }
 
 /* Also used for banner */
 .name h1 {
-    font-family: "Abril Fatface", sans-serif;
-    font-size: 75px;
+    font-family: "Encode Sans Condensed", sans-serif;
+    font-size: 97px;
     color: white;
+    text-transform: capitalize;
 }
 
 .name h2 {
     color: white;
+
 }
 
-#landing_triangle {
-    height: 9em;
+#landing_div {
+    height: 11em;
 }
 
 #landing_graphic {
     position: absolute;
-    top: 45%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+#landing_image{
+    width: 550px;
+    height:420px;
+}
+
+#anchor_arrow {
+    position: absolute;
+    top: 85%;
+    left: 47.5%; /*(100-width) /2*/
+    width: 5%;
+    filter: invert(0.13);
+
 }
 
 #about_box {
@@ -71,6 +87,78 @@
     height: 400px;
     width: 100%;
 }
+
+/*Account Pop Ups on Index Page*/
+#account-popup-bg {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.4);
+    z-index: 2; /*Puts above other elements*/
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+}
+
+#create_account {
+    box-sizing: border-box;
+    border-radius:25px;
+    position: relative;
+    top: 16%;
+    left: 30%;
+    width: 40%;
+    background-color: white;
+    padding: 1%;
+    text-align: left;
+}
+
+#create_account textarea {
+    width: 98%; /* +2% padding*/
+    height: 70%; /* 70+1+1 = 72 (28) -1 -> 27*/
+    background-color: #edf9f3;
+}
+
+#create_account input {
+    padding-left: 3%;
+    height: 27%;
+    width: 80%;
+    background-color: #edf9f3;
+    margin:0 0 0 10%;
+    text-align:center;
+
+}
+#create_account button {
+    color: #696969;
+    width: 25%;
+    background-color: #07f2ab;
+    margin-left: 37.5%;
+}
+
+#create_account h3, h1{
+    text-transform: uppercase;
+    text-align: center;
+    color: #696969;
+}
+
+#login {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#login_fields{
+    margin:0;
+    width:100%;
+}
+
+#login_button{
+    width:80%;
+    text-transform:uppercase;
+    margin-left: 27px;
+}
+
+
 
 /* Homepage */
 .hero_image {
@@ -132,40 +220,53 @@
 
 .account {
     display: block;
-    width: 30%;
-    border-radius: 2px;
+    border-radius:2px;
     padding: 12px 20px;
     margin: 8px 0;
-    margin-left: 35%;
+    width:300px;
     box-sizing: border-box;
     font-family: "IBM Plex Sans", sans-serif;
+    font-size:large;
+
 }
 
 #suggested_issues {
+    width: 80%;
+    box-sizing: border-box;
     display: inline-grid;
-    grid-template-areas: "article article";
-    grid-column-gap: 75px;
+    grid-template-areas: "a a a b b b"
+                         "c c d d e e";
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-row-gap: 20px;
+    grid-column-gap: 1%;
     border-collapse: collapse;
     margin-bottom: 50px;
+    margin-left: 50px;
     align-items: center;
 }
+
+/*
+
+#more_issues {
+    display: inline-grid;
+    grid-template-areas: "article article article";
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 10px;
+}
+*/
 
 #suggested_issues article {
     border: groove;
     border-width: 3px;
     background: white;
-    width: 500px;
-    height: 600px;
+    max-width: 700px;
+    min-height: 600px;
 }
 
 #suggested_issues figcaption {
     font-weight: bold;
     margin-bottom: 10px;
-}
-
-.image_container {
-    /* See https://www.w3schools.com/howto/howto_css_image_overlay.asp for reference. */
-    position: relative;
 }
 
 #suggested_issues h3 {
@@ -176,6 +277,11 @@
     width: 425px;
     height: 275px;
     margin-bottom: 5px;
+}
+	
+#more_issues img {
+    max-width: 100%;
+    height: 250px;
 }
 
 #suggested_issues h4 {
@@ -299,17 +405,26 @@
 #search_results article {
     text-align: start;
     padding-left: 5%;
+    padding-right:5%;
     padding-top: 10px;
     padding-bottom: 50px;
     margin-left: 10px;
     margin-bottom: 5px;
     margin-top: 5px;
     max-height: 200px;
+
 }
 
 #search_results article h4 {
     display: inline-block; /*All items intended to be inline must have this tag*/
 }
+
+.article-image{
+    height:140px;
+    float:left;
+    margin-right:20px;
+}
+
 
 .issue_category {
     display: inline-block;
@@ -378,7 +493,6 @@
 }
 
 #contributions_grid {
-    min-height: 100%;
     background-color: white;
     display: grid;
     width: 90%;
@@ -386,7 +500,7 @@
     margin-right: 5%;
     grid-template-columns: 33% 33% 33%;
     grid-auto-rows: 1fr;
-    grid-template-areas: "article article article" "article article article";
+    grid-template-areas: "article article article" /*"article article article"*/;
     grid-gap: 10px;
     padding: 1%;
 }
@@ -394,7 +508,18 @@
 #contributions_grid article {
     background-color: #e6f7e8; /*3e5b4a for dark bg*/
     padding: 20px;
-}
+} /*TODO original*/
+
+#testaroonie {
+    background-color: #e6f7e8; /*3e5b4a for dark bg*/
+    padding: 20px 20px 12% 20px;
+    position: relative;
+    min-height: 200px;
+} /*TODO temp fix for comments on issue page*/
+
+#testaroonie .comment_description {
+    margin-bottom: 10%;
+} /*TODO temp fix for comments on issue page*/
 
 .comment_username {
     text-align: start;
@@ -407,7 +532,19 @@
     margin-left: 10%; /* container = 10% margin + 80% preview (+ 10% margin)*/
     padding: 10px;
     height: 10%;
-}
+/*    top: 80%;*/
+/*    position: absolute;*/
+} /*TODO original*/
+
+.preview_test {
+    background-color: #ace5b3;
+    width: 80%;
+    padding: 10px;
+    min-height: 10%; /*temp*/
+    bottom: 0;
+    left: 10%;
+    position: absolute;
+} /*TODO temp fix for comments on issue page*/
 
 .comment_description {
     text-align: start;
@@ -416,7 +553,7 @@
     background-color: white;
     color: grey;
     border-radius: 10px;
-}
+} /*TODO original */
 
 #invisible {
     visibility: hidden;
@@ -437,10 +574,10 @@
     margin-top: 30px;
     display: block;
     border-radius: 4px;
-    margin-left: 47.5%;
-    width: 5%;
+    width: 100%;
     height: 40px;
-    font-size: small;
+    font-size: large;
+    background-color: #07f2ab;
 }
 
 /* Centered text for images */
@@ -529,6 +666,10 @@
 }
 
 #opportunity_results {
+/*    width: 90%;*/
+/*    box-sizing: border-box;*/
+/*    margin-left: 5%;
+    margin-right: 5%;*/
     display: inline-grid;
     grid-template-areas: "article article article";
     grid-column-gap: 30px;
@@ -602,7 +743,7 @@
 
 .grid-container-editor{
     display: grid;
-    grid-template-columns: 1fr 1fr 0fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 0 1fr 1fr;
     grid-gap: 10px;
     padding-left: 10%;
     padding-right:10%;
@@ -744,3 +885,5 @@ div.title-articlerepos{
     height:32px;
     float:left;
 }
+
+

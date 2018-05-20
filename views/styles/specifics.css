@@ -495,6 +495,7 @@
     background-color: #e6f7e8; /*3e5b4a for dark bg*/
     padding: 20px 20px 12% 20px;
     position: relative;
+    min-height: 200px;
 } /*TODO temp fix for comments on issue page*/
 
 #testaroonie .comment_description {
@@ -520,7 +521,7 @@
     background-color: #ace5b3;
     width: 80%;
     padding: 10px;
-    height: 10%;
+    min-height: 10%; /*temp*/
     bottom: 0;
     left: 10%;
     position: absolute;

@@ -10,6 +10,7 @@ const Opportunity = mongoose.model('opportunities');
 
 /*Search-related methods*/
 module.exports.home = function (req, res) {
+    // The home page is populated with content: the most popular & recent issue, plus three more recent issues
 
     // Find the most popular issue
     Issue.find({}).limit(1).sort({"popularity": -1}).exec(function(err, popular_issue) {
@@ -31,6 +32,7 @@ module.exports.home = function (req, res) {
                     res.sendStatus(409);
                     return;
                 }
+
                 let recent;
                 let startIndex = 1; // The index in popular_issue indicating issues NOT the most popular or recent
                 // Check recent & popular issue are not the same
@@ -54,7 +56,7 @@ module.exports.home = function (req, res) {
                     };
                 }
 
-                // Populate the homepage with some more recent issues
+                // Populate the homepage with the rest of the recent issues
                 let issues = []; // the extra issues
                 let indeces = []; // the indeces of the issues that aren't recent or popular
 
@@ -79,7 +81,7 @@ module.exports.home = function (req, res) {
                     }
                 }
 
-                // Render home page with recent & popular issue
+                // Render home page with the found issues
                 res.render('home_page',
                     {popular_issue: popular, recent_issue: recent, user: req.user, more_issues: issues});
             });
@@ -91,7 +93,7 @@ module.exports.home = function (req, res) {
 };
 module.exports.search = function (req, res) {
 
-    // Define the sort order & variable
+    // Define the sort order (ascending or descending) on the variable given
     let sort = {};
     if(req.query.asc === "true") {
         sort[req.query.sort] = 1;
@@ -100,7 +102,7 @@ module.exports.search = function (req, res) {
         sort[req.query.sort] = -1; // Descending is default
     }
 
-    // Fetch the whole issues collection, sorted as above
+    // Fetch the whole issues collection, sorted by the parameters above
     Issue.find({}).sort(sort).exec(function(err, issues) {
         if(!err) {
             let results = [];
@@ -111,7 +113,7 @@ module.exports.search = function (req, res) {
                 // Check each relevant field for the search query
                 if(check(issues[i], req.query.query, req.query.category)) {
 
-                    // Add only required fields to the search results
+                    // If the issue passes the check, add only required fields to the search results
                     results.push({
                         name: issues[i].name,
                         categories: issues[i].categories,
@@ -132,11 +134,15 @@ module.exports.search = function (req, res) {
     });
 };
 function check(issue, query, category) {
+    // Checks a given issue's name, category and description for the search query
+    // No query was entered: Every issue will return true.
+    // Required category was given: Issues with the category will return true.
+
     const regexp = new RegExp(query, "i"); // Case-insensitive search
 
     if(query === undefined) { return; } // No query was entered, list all results
 
-    // Check for the required category
+    // Category search: return true if issue has the category
     if(category !== undefined) {
         let got_category = false;
         for(j = 0; j < issue.categories.length; j++) {
@@ -150,22 +156,24 @@ function check(issue, query, category) {
         }
     }
 
-    // Check presence of the query in name, description & category
-    const in_name = issue.name.search(regexp); // Each search will return -1 if unsuccessful
+    // Normal search: check presence of the query in name, description & category list
+    const in_name = issue.name.search(regexp); // search will return -1 if unsuccessful
     const in_description = issue.description.search(regexp);
     let in_category = -1;
     for(j = 0; j < issue.categories.length; j++) {
         if(issue.categories[j].search(regexp) > -1) {
             in_category = 0;
-
         }
     }
 
     // Add the issue to the search results if the query was in at least one of the fields
-    // Query was found: returns true
+    // (Query was found: returns true)
     return((in_name + in_description + in_category) > -3);
 }
 module.exports.random = function (req,res) {
+    // Generates a random issue from the collection and redirects to that page.
+    // (Because issues cannot be deleted, this method is valid)
+
     // Get the number of documents in the issues collection
     Issue.count({}, function(err, count){
 
@@ -177,11 +185,11 @@ module.exports.random = function (req,res) {
         // Generate a random index in the issues array
         let random_id = Math.floor(Math.random() * (count));
 
+        // Redirect to this issue
         res.redirect('../issue/' + random_id);
 
     });
 
-    //TODO if an issue is deleted, not all indeces in the range of the length will be valid
 };
 
 /*Content page-related methods*/
@@ -203,7 +211,7 @@ module.exports.issue = function(req,res){
 
         // Issue with the given id successfully found
         res.render('editor_template', {editor: issue, comments: issue.contributions, user: req.user});
-        // TODO contributions
+
     });
 };
 module.exports.loadContributions = function (req, res) {
@@ -233,14 +241,14 @@ module.exports.opportunity = function (req, res) {
             res.sendStatus(409);
             return;
         }
-        // Issue ID invalid; no results returned by findOne
+        // Opportunity ID invalid; no results returned by findOne
         // Note: find returns [] if empty, findOne returns null
         if(opportunity === null) {
             res.sendStatus(404);
             return;
         }
 
-        // Issue with the given id successfully found
+        // Opportunity with the given id successfully found
         res.render('opportunity_template', {opportunity: opportunity, user: req.user});
 
     });
@@ -252,7 +260,7 @@ module.exports.loadOpportunities = function (req, res) {
         if(!err) {
             let results = [];
 
-            // Iterate over the issues documents
+            // Iterate over the opportunities documents
             for(i = 0; i < opportunities.length; i++) {
 
                 // Add only required fields to the search results
@@ -276,16 +284,17 @@ module.exports.loadOpportunities = function (req, res) {
 
 /*Database addition-related pages*/
 module.exports.createAccount = function (req, res) {
-    if(req.user) {
-        // TODO better redirect
+    res.redirect("../");
+/*    if(req.user) {
+        // TODO better redirect OR message
         res.redirect('../home'); // Not allowed to visit this as a logged-in user
         return;
     }
-    res.render('create_account', {user: req.user});
+    res.render('create_account', {user: req.user});*/
 };
 module.exports.newUser = function (req, res, next) {
 
-    // Get the entered details for the new user from the URL
+    // Get the entered details for the new user from the POST
     let newUser = new User({
         "username": req.body.username,
         "display_name": req.body.username, // Default to == username
@@ -355,7 +364,9 @@ module.exports.newContribution = function (req, res) {
     Issue.findOneAndUpdate({name: req.body.name}, {$push: {contributions: newContribution}}, function(err, issue) {
         if (err) { res.sendStatus(409); return; }
         console.log("New contribution sent.");
-        res.redirect('../comments/' + issue._id);
+
+        //  Redirect the user back to the issue page at the comments section
+        res.redirect('../issue/' + issue._id + '/#contributions_grid');
     });
 
 };
@@ -417,7 +428,7 @@ module.exports.loadAbout = function (req, res) {
 };
 
 /* Test functions used to populate DB in case of reset.
- * Note documents should be deleted manually in mLab. */
+ * Note: chosen collections should be cleared manually in mLab first. */
 module.exports.resetDB = function (req, res) {
 
     // Add the dummy data to each collection

@@ -20,7 +20,7 @@
 </header>
 
 <!--TODO: Use post-->
-<form action = "../new-issue/" method = "get" onsubmit="return validateArticle()">
+<form action = "../new-issue/" method = "post" onsubmit="return validateArticle()">
     <input type="hidden" name="author" value = <%=user.username%>>
     <h3>Issue Title:</h3>
     <input type="text" name="name" class="account">
@@ -53,18 +53,6 @@
     <p id="error"></p>
     <button type="submit">Submit</button>
 </form>
-
-<!--Jenny's -->
-<!--<section id = "application">
-    <form action = "../home">
-        <h3> Article Title </h3>
-        <input type = "text" class = "editor_ap"/>
-        <h3> Tags </h3>
-        <input type = "text" class = "editor_ap" placeholder = "i.e. #america, #globalwarming"/>
-        <h3> Summary of Issue </h3>
-        <input type = "text" class = "editor_ap" placeholder = "Less than 300 words"/>
-    </form>
-</section>-->
 
 <footer>
     <% include ./partial/footer.ejs%>

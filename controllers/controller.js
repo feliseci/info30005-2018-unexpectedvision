@@ -371,7 +371,7 @@ module.exports.newContribution = function (req, res) {
 
 };
 module.exports.createOpportunity = function (req, res) {
-    if(!req.user || !req.user.is_editor) {
+    if(!req.user) {
         // TODO better redirect
         res.redirect('../home'); // Not allowed to visit this page as a non-editor
         return;
@@ -393,7 +393,7 @@ module.exports.newOpportunity = function (req, res) {
     // Add the new opportunity to the DB
     newOpportunity.save(function(err,newOpportunity) {
         if(!err) {
-            res.send(newOpportunity); // TODO replace with appropriate render
+            res.redirect('../opportunity/' + newOpportunity._id);
             console.log("New opportunity sent.");
         } else{
             res.sendStatus(400);
@@ -433,8 +433,8 @@ module.exports.resetDB = function (req, res) {
 
     // Add the dummy data to each collection
 /*    resetIssues();*/
-    resetOpportunities();
-/*    resetUsers();*/
+    // resetOpportunities();
+    resetUsers();
 
     res.send("Database reset!");
 
@@ -509,7 +509,9 @@ resetUsers = function (req, res) {
             "display_name": dummyUsers[i].display_name,
             "profile_description": dummyUsers[i].profile_description,
             "email": dummyUsers[i].email,
-            "is_editor": dummyUsers[i].is_editor
+            "is_editor": dummyUsers[i].is_editor,
+            "followed_users": dummyUsers[i].followed_users,
+            "followed_articles": dummyUsers[i].followed_articles
         });
 
         User.register(newUser, dummyUsers[i].password, function(err) {

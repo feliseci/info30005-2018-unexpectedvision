@@ -75,10 +75,10 @@ function validateArticle() {
 
     // Check description length
     let description = document.querySelectorAll("textarea[name=description]")[0].value;
-    if(description.length < 10 || description.length > 300) {
-        document.getElementById("error").innerHTML = "Description must be between 10 and 300 characters.";
-        return false; // TODO better values
-    } // TODO short description & long argument
+    if(description.length < 300) {
+        document.getElementById("error").innerHTML = "Description must be over 300 characters.";
+        return false;
+    } // The description (the editor's essay) is allowed to be long; it is manually shortened in search results etc.
 
     // Check image is a link to Unsplash TODO other sites
     let image = document.querySelectorAll("textarea[name=image]")[0].value;
@@ -130,11 +130,6 @@ function addSource(type) {
     // Could check for max. number of sources here by checking no. of child nodes
 }
 
-
-/*TODO*/
-function checkCompleted(form) {
-
-} // Helper function
 function validateComment() {
     //TODO dynamically only allow comment to be submitted once a certain length
     // (constant check function) once length > ...  <submit> valid
@@ -160,4 +155,65 @@ function validateComment() {
         document.getElementById("error").innerHTML = "Invalid URL.";
         return false;
     }
-}
+} // TODO integrate with current comment form
+
+function validateOpportunity() {
+
+    let form = document.getElementById("opportunity_form");
+
+    // Check all fields have been completed
+    for(i = 0; i < form.length; i++) {
+        if(form[i].value.length === 0) {
+            document.getElementById("error").innerHTML = "Please complete all fields.";
+            return false;
+        }
+    }
+
+    // Check name meets the minimum length
+    let name = document.querySelectorAll("input[name=name]")[0].value;
+    if(name.length < 6) {
+        document.getElementById("error").innerHTML = "Name must be at least 6 characters.";
+        return false;
+    }
+
+    // Check name contains no special characters
+    let regexp = /[a-zA-Z ]*/;
+    if(!regexp.test(name)) {
+        document.getElementById("error").innerHTML = "Invalid name: name must not contain numeric or special characters.";
+        return false;
+    }
+
+    // Check description length
+    let description = document.querySelectorAll("textarea[name=description]")[0].value;
+    if(description.length < 50 || description.length > 1000) {
+        document.getElementById("error").innerHTML = "Description must be between 50 and 1000 characters.";
+        return false;
+    }
+
+    // Check image is a link to Unsplash TODO other sites
+    let image = document.querySelectorAll("textarea[name=image]")[0].value;
+    let regexpImage = /https:\/\/source.unsplash.com\/[^\s]+/;
+    if(!regexpImage.test(image)) {
+        document.getElementById("error").innerHTML = "Invalid image url: must be an Unsplash source URL.";
+        return false;
+    }
+
+    // Check link to further info is a link
+    let regexpURL = /http[s]*:\/\/[^\s]+/;
+    let furtherInfo = document.getElementsByName("further_info");
+
+    if(!regexpURL.test(furtherInfo.value)) {
+        document.getElementById("error").innerHTML = "Invalid url: Further info";
+        return false;
+    }
+
+    // Location, date not checked. (Date is auto-validated by browser)
+} // TODO categories
+
+/*TODO*/
+function checkCompleted(form) {
+} // Helper function
+
+
+
+

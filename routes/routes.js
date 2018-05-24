@@ -20,14 +20,12 @@ router.get('/about', controller.loadAbout);
 router.get('/random', controller.random);
 router.get('/editor-application', controller.editorApplication);
 
-router.get('/new-issue', controller.newIssue); // TODO use .post as per login
+router.post('/new-issue', controller.newIssue);
 router.post('/new-contribution', controller.newContribution);
-router.get('/new-opportunity', controller.newOpportunity);
-
+router.post('/new-opportunity', controller.newOpportunity);
 
 // User Profile
 router.get('/profile/:name', controller.userProfile);
-
 
 // Permission based options - only for Editors
 router.get('/create-article', controller.createArticle);

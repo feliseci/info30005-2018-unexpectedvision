@@ -12,11 +12,37 @@
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
 
     <!-- Javascript files -->
-    <script src = "/javascript/changeColor.js"></script>
+    <script src = "../javascript/interactButtons.js"></script>
     <!--script src = "../javascript/op_scroll.js"></script>
     <!-- Used to make Navigation Bar Sticky -->
     <script src = "../javascript/sticky_nav.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <script>
+        <% // Get the initial state of every button
+        let liked_post = false;
+/*        console.log(user);*/
+        function findLikes(likes, id) {
+            for(i=0; i<likes.length;i++) {
+                if(likes[i].id === id) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        // TODO bookmarks, follows
+
+        if(user) {
+            liked_post = findLikes(user.likes, editor._id);
+        }
+        if(liked_post === true) {%>
+            // Jquery to set the button to its value in the DB
+            console.log("High high hopes!");
+            $(document).ready(function () {
+                changeColour("likeButton");
+            });
+        <%}%>
+
         function showCommentForm() {
             let form = document.getElementById("enter_comment_bg");
             form.style.display="block";
@@ -28,6 +54,21 @@
                 form.style.display = "none";
             }
         }
+
+
+
+        /*$("form").submit(function(e) {
+            e.preventDefault(); // Prevents browser from performing the default action & reloading the browser
+            $.ajax({
+                url: "/like?=true",
+                data: {...},
+                type: "GET", // if you want to send data via the "data" property change this to "POST". This can be omitted otherwise
+                success: function(responseData) {
+                },
+                error: console.error
+            });
+        });*/
+
     </script>
 
     <!-- Name of Article -->
@@ -48,7 +89,26 @@
 
         <!-- Article Banner -->
         <header class = "header">
-            <% include ./partial/article-banner.ejs%>
+
+            <!-- Article Banner rendered on Article Pages -->
+            <div class = "banner">
+                <img src = "<%=editor.image%>" class = "banner-image">
+                <div class = 'centered'><h1 class = "white_text font_400 text_shadow"><%= editor.name %></h1>
+                    <h2 class = "white_text text_shadow"> By <em><a href="../profile/<%= editor.author%>" style="color: white"><%= editor.author%></a> &nbsp;</em>
+
+                        <!-- Follow creator option; see draft -->
+                        <% // Define the arguments to be used in each button onClick.
+                        let arguments= user.username + "\", " + JSON.stringify(editor); %>
+
+                        <button id = "followButton" onclick = "interactButtons(<%="\"followButton\", \"" + arguments%>)"> Follow </button></h2>
+                    <h3 class =  "white_text text_shadow"><em> <%= editor.date_post%></em></h3>
+                </div>
+                <div id = "interaction_buttons" class = "bubble">
+                    <button id = "likeButton" class = "likeOff" onclick= "interactButtons(<%="\"likeButton\", \"" + arguments%>)"></button>
+                    <button id = "bookmarkButton" class = "bookmarkOff"  onclick = "interactButtons(<%="\"bookmarkButton\", \"" + arguments%>)"></button>
+                </div>
+            </div>
+
         </header>
 
         <!-- Information for User to assess whether to read the article at a glance -->

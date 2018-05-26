@@ -434,7 +434,7 @@ module.exports.resetDB = function (req, res) {
     // Add the dummy data to each collection
 /*    resetIssues();*/
     // resetOpportunities();
-    resetUsers();
+/*    resetUsers();*/
 
     res.send("Database reset!");
 
@@ -569,4 +569,48 @@ module.exports.userProfile= function (req, res) {
         res.render('user_profile', {profile: userDetails, user: req.user});
 
     });
+};
+
+module.exports.likeIssue = function (req, res) {
+    let id = req.body.id;
+    let like = {
+        id: Number(req.body.id),
+        name: req.body.issueName
+    };
+    let username = req.body.username;
+    let add = 1; // Get whether +/- from previous function TODO
+
+    // Update the given issue's popularity
+    Issue.findOneAndUpdate({_id: id}, {$inc: {popularity: add}}, function(err) {
+        if (err) { res.sendStatus(409); return; }
+        console.log("Popularity increased.");
+
+        // Add the like
+        User.findOneAndUpdate({username: username}, {$push: {"likes": like}}, function(err) {
+            if (err) { res.sendStatus(409); return; }
+            console.log("Added to likes.");
+
+            // The browser's user object is updated by fetching an updated user in deserializeUser, which
+            // is called at each HTTP request
+        });
+
+        // Alternatively, remove the like TODO
+
+    });
+
+
+
+    // TODO
+    let data = { // object
+        hey: "bitch"
+    };
+    res.send(data);
+
+    // Remove code:
+    // someArray = [{name:"Kristian", lines:"2,5,10"},
+    //              {name:"John", lines:"1,19,26,96"},
+    //              {name:"Brian",lines:"3,9,62,36" }];
+    // johnRemoved = someArray.filter(function(el) {
+    //     return el.name !== "John";
+    // });
 };

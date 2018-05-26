@@ -23,6 +23,7 @@ router.get('/editor-application', controller.editorApplication);
 router.post('/new-issue', controller.newIssue);
 router.post('/new-contribution', controller.newContribution);
 router.post('/new-opportunity', controller.newOpportunity);
+router.post('/like', controller.likeIssue);
 
 // User Profile
 router.get('/profile/:name', controller.userProfile);

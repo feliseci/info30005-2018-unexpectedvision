@@ -8,7 +8,7 @@
     <link href="/styles/specifics.css" type="text/css" rel="stylesheet">
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
     <!-- Used to make Navigation Bar Sticky -->
-    <script src = "./javascript/sticky_nav.js"></script>
+
 </head>
 
 <body>
@@ -35,7 +35,7 @@
         <h1> Liked Articles</h1>
         <ul style="text-align: left;">
             <% for(i=0; i < profile.likes.length; i++) { %>
-            <li><a href="../issue/<%=profile.likes[i][0]%>"><%=profile.likes[i][1]%></a></li>
+            <li><a href="../issue/<%=profile.likes[i].id%>"><%=profile.likes[i].name%></a></li>
             <% } if(profile.likes.length === 0) {%>
                 <p>This user hasn't liked anything yet!</p>
             <%}%>

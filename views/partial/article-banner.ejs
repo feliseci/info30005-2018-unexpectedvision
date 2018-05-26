@@ -1,3 +1,29 @@
+
+<%
+// Find the given issue in the likes of the issue (move to backend?)
+function findLikes(likes, id) {
+    for(i=0; i<likes.length;i++) {
+        if(likes[i][0] === id) {
+            return true;
+        }
+    }
+    return false;
+}
+
+let liked_post = false;
+if(user) {
+    liked_post = findLikes(user.likes, issue._id);
+}
+
+
+if(user && liked_post === true) {
+    // Jquery to set the button to its value in the DB
+    $(document).ready(function() {
+        $("#likeButton").click();
+    });
+}
+%>
+
 <!-- Article Banner rendered on Article Pages -->
 <div class = "banner">
     <img src = "<%=editor.image%>" class = "banner-image">
@@ -5,11 +31,11 @@
         <h2 class = "white_text text_shadow"> By <em><a href="../profile/<%= editor.author%>" style="color: white"><%= editor.author%></a> &nbsp;</em>
 
             <!-- Follow creator option; see draft -->
-            <button id = "followButton" onclick = "changeColor(this.id)"> Follow </button></h2>
+            <button id = "followButton" onclick = "interactButtons(this.id)"> Follow </button></h2>
         <h3 class =  "white_text text_shadow"><em> <%= editor.date_post%></em></h3>
     </div>
     <div id = "interaction_buttons" class = "bubble">
-        <button id = "likeButton" class = "likeOff" onclick= "changeColor(this.id)">  </button>
-        <button id = "bookmarkButton" class = "bookmarkOff"  onclick = "changeColor(this.id)"></button>
+        <button id = "likeButton" class = "likeOff" onclick= "interactButtons(this.id)">  </button>
+        <button id = "bookmarkButton" class = "bookmarkOff"  onclick = "interactButtons(this.id)"></button>
     </div>
 </div>

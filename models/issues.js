@@ -8,9 +8,8 @@ const autoIncrement = require('mongoose-auto-increment');
         "author": String, // author == editor manual check
         "comment": String,
         "date_post": {type: Date, default: Date.now},
-        "popularity": {type: Number, default: 0}, // Upvotes + comments + clicks
+        "popularity": {type: Number, default: 0}, // Upvotes + comments
         "article_url": String
-        // unique IDs unnecessary as stored in array
     }
 );*/
 
@@ -34,7 +33,7 @@ const issueSchema = new mongoose.Schema(
     }
 );
 
-// Note: Required attributes not specified; they're checked for at the text entry-level.
+// Note: Required attributes not specified; they're checked for at the client-end.
 
 // _id set to increment at each document addition with auto-increment;
 // for ease of use with URLs

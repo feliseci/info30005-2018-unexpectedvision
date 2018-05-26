@@ -19,8 +19,8 @@
     <h1> Create your article </h1>
 </header>
 
-<!--TODO: Use post-->
-<form action = "../new-issue/" method = "post" onsubmit="return validateArticle()">
+<!--<form action = "../new-issue/" method = "post" onsubmit="return validateArticle()">-->
+<form onsubmit="return validateArticle()">
     <input type="hidden" name="author" value = <%=user.username%>>
     <h3>Issue Title:</h3>
     <input type="text" name="name" class="account">
@@ -28,21 +28,23 @@
     <textarea name="description" class="account"></textarea>
     <h3>Image URL:</h3>
     <input type="text" name="image" class="account">
-    <h3>High-Level Sources:</h3>
-    <div id="container_hl">
+    <h3> Sources:</h3>
+    <div id = "container_source">
+        <div class="source">
+            <select name="source_type" class="account">
+                <option value="hl">High level</option>
+                <option value="r">Report</option>
+                <option value="o">Opinion</option>
+            </select>
+            <input type="text" name="link" class="account" placeholder="Article link">
+            <input type="text" name="article_description" class="account" placeholder="Your description of the article">
+        </div>
+    </div>
+<!--    <div id="container_hl">
         <input type="text" name="hl_source" class="account">
-    </div>
-    <button type="button" class="plus_button" onclick="addSource('hl')">+</button>
-    <h3>Reports:</h3>
-    <div id="container_r">
-        <input type="text" name="r_source" class="account">
-    </div>
-    <button type="button" class="plus_button" onclick="addSource('r')">+</button>
-    <h3>Opinion Pieces:</h3>
-    <div id="container_o">
-        <input type="text" name="o_source" class="account">
-    </div>
-    <button type="button" class="plus_button" onclick="addSource('o')">+</button>
+    </div>-->
+    <button type="button" class="plus_button" onclick="addSource('source')">+</button>
+
     <!--TODO Better Categories-->
     <!--Category selection currently the same as for sources-->
     <h3>Categories:</h3>

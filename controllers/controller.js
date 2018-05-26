@@ -373,10 +373,10 @@ module.exports.newContribution = function (req, res) {
 module.exports.createOpportunity = function (req, res) {
     if(!req.user) {
         // TODO better redirect
-        res.redirect('../home'); // Not allowed to visit this page as a non-editor
+        res.redirect('../home'); // Not allowed to visit this page as a non-user
         return;
     }
-    res.render('opportunities_form', {user: req.user});
+    res.render('create_opportunity', {user: req.user});
 };
 module.exports.newOpportunity = function (req, res) {
     // Get the entered details for the new opportunity from the URL

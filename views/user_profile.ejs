@@ -30,6 +30,33 @@
             <!--TODO email private or not? -->
         </div>
 
+    <!-- TODO: How many followers does an editor have -->
+    <% if(user.is_editor) { %>
+    <h1> - Verified Editor - </h1>
+        <div class = "item1style bubble">
+            <h1> Followers </h1>
+            <ul style="text-align: left;">
+                <% for(i=0; i < profile.followed_articles.length; i++) { %>
+                <li><a href="../issue/<%=profile.followed_articles[i][0]%>"><%=profile.followed_articles[i][1]%></a></li>
+                <% } if(profile.followed_articles.length === 0) {%>
+                <p>This user hasn't bookmarked any articles yet!</p>
+                <%}%>
+            </ul>
+        </div>
+
+        <!-- TODO: How many articles does an editor have -->
+        <div class = "item1style bubble">
+            <h1> Created Articles </h1>
+            <ul style="text-align: left;">
+                <% for(i=0; i < profile.followed_articles.length; i++) { %>
+                <li><a href="../issue/<%=profile.followed_articles[i][0]%>"><%=profile.followed_articles[i][1]%></a></li>
+                <% } if(profile.followed_articles.length === 0) {%>
+                <p>This user hasn't bookmarked any articles yet!</p>
+                <%}%>
+            </ul>
+        </div>
+    <%}%>
+
 
     <div class = "item1style bubble">
         <h1> Liked Articles</h1>
@@ -60,6 +87,18 @@
                 <li><a href="../issue/<%=profile.followed_articles[i][0]%>"><%=profile.followed_articles[i][1]%></a></li>
                 <% } if(profile.followed_articles.length === 0) {%>
                 <p>This user hasn't bookmarked any articles yet!</p>
+                <%}%>
+            </ul>
+        </div>
+
+        <!-- TODO: How many Opportunities has a user created -->
+        <div class = "item1style bubble">
+            <h1> Created Opportunities</h1>
+            <ul style="text-align: left;">
+                <% for(i=0; i < profile.posts.length; i++) { %>
+                <li>On <a href="../issue/<%=profile.posts[i][0]%>"><%=profile.posts[i][1]%></a> - <i><%=profile.posts[i][2]%></i></li>
+                <% } if(profile.posts.length === 0) {%>
+                <p>This user hasn't created an opportunities yet!</p>
                 <%}%>
             </ul>
         </div>

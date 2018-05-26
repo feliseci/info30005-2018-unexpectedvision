@@ -102,9 +102,10 @@
     box-sizing: border-box;
     border-radius:25px;
     position: relative;
-    top: 16%;
-    left: 30%;
     width: 40%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
     background-color: white;
     padding: 1%;
     text-align: left;
@@ -867,6 +868,11 @@ div.title-articlerepos{
     grid-column-start:1;
     grid-column-end: 4;
     border: 4px dotted #696969;
+}
+
+.titlestyle{
+    grid-column-start:1;
+    grid-column-end: 4;
 }
 
 .grid-container-about header.header{

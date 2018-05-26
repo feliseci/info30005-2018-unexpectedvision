@@ -50,6 +50,8 @@ body {
     font-family: "IBM Plex Sans", sans-serif;
     color: black;
     margin: 0;
+    overflow-x: hidden;
+
 }
 
 body, html {

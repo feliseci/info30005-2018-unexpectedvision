@@ -371,11 +371,6 @@ module.exports.newContribution = function (req, res) {
 
 };
 module.exports.createOpportunity = function (req, res) {
-    if(!req.user || !req.user.is_editor) {
-        // TODO better redirect
-        res.redirect('../home'); // Not allowed to visit this page as a non-editor
-        return;
-    }
     res.render('opportunities_form', {user: req.user});
 };
 module.exports.newOpportunity = function (req, res) {

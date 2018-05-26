@@ -41,8 +41,8 @@ passport.deserializeUser( function(id, done) {
             is_editor: user.is_editor,
             display_name: user.display_name,
             likes: user.likes,
-            followed_users: user.followed_users,
-            followed_articles: user.followed_articles
+            followedUsers: user.followedUsers,
+            bookmarks: user.bookmarks
         };
 
         done(err, user_details);

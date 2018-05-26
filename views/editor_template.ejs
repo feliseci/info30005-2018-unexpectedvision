@@ -20,7 +20,9 @@
 
     <script>
         <% // Get the initial state of every button
-        let liked_post = false;
+        let likedPost = false;
+        let bookmarkedPost = false;
+        let followedEditor = false;
         function findLikes(likes, id) {
             for(i=0; i<likes.length;i++) {
                 if(likes[i].id === id) {
@@ -29,17 +31,30 @@
             }
             return false;
         }
-        // TODO bookmarks, follows
 
         if(user) {
-            liked_post = findLikes(user.likes, editor._id);
+            likedPost = findLikes(user.likes, editor._id);
+            // Bookmark structure is the same so use the same method
+            bookmarkedPost = findLikes(user.bookmarks, editor._id);
+            if(user.followedUsers.indexOf(editor.author) !== -1) {
+                followedEditor = true;
+            }
         }
-        if(liked_post === true) {%>
-            // Jquery to set the button to its value in the DB
+
+        // Set the buttons to the DB-appropriate state using jQuery
+        if(likedPost === true) {%>
             $(document).ready(function () {
                 changeColour("likeButton");
             });
-        <%}%>
+        <%} if(bookmarkedPost === true) { %>
+            $(document).ready(function () {
+                changeColour("bookmarkButton");
+            });
+        <%} if(followedEditor === true) { %>
+            $(document).ready(function () {
+                changeColour("followButton");
+            });
+        <%} %>
 
         function showCommentForm() {
             let form = document.getElementById("enter_comment_bg");
@@ -100,13 +115,14 @@
                         <!-- Follow creator option; see draft -->
                         <% let arguments;
                         if(!user) {%>
-                            <button id = "followButton" onclick = "showError()"> Follow </button></h2>
+                            <button id = "followButton" onclick = "showError()"> Follow </button>
                         <%}
                         else {
                             // Define the arguments to be used in each button onClick.
                             arguments = user.username + "\", " + JSON.stringify(editor); %>
-                            <button id = "followButton" onclick = "interactButtons(<%="\"followButton\", \"" + arguments%>)"> Follow </button></h2>
+                            <button id = "followButton" onclick = "interactButtons(<%="\"followButton\", \"" + arguments%>)"> Follow </button>
                         <%}%>
+                    </h2>
                     <h3 class =  "white_text text_shadow"><em> <%= editor.date_post%></em></h3>
                 </div>
                 <div id = "interaction_buttons" class = "bubble">

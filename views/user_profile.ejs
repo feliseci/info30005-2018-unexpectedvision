@@ -45,9 +45,9 @@
         <div class = "item1style bubble">
             <h1> Followed Editors</h1>
             <ul style="text-align: left;">
-                <% for(i=0; i < profile.followed_users.length; i++) { %>
-                <li><a href="../issue/<%=profile.followed_users[i]%>"><%=profile.followed_users[i]%></a></li>
-                <% } if(profile.followed_users.length === 0) {%>
+                <% for(i=0; i < profile.followedUsers.length; i++) { %>
+                <li><a href="../profile/<%=profile.followedUsers[i]%>"><%=profile.followedUsers[i]%></a></li>
+                <% } if(profile.followedUsers.length === 0) {%>
                 <p>This user hasn't followed anyone yet!</p>
                 <%}%>
             </ul>
@@ -56,9 +56,9 @@
         <div class = "item1style bubble">
             <h1> Bookmarked Articles</h1>
             <ul style="text-align: left;">
-                <% for(i=0; i < profile.followed_articles.length; i++) { %>
-                <li><a href="../issue/<%=profile.followed_articles[i][0]%>"><%=profile.followed_articles[i][1]%></a></li>
-                <% } if(profile.followed_articles.length === 0) {%>
+                <% for(i=0; i < profile.bookmarks.length; i++) { %>
+                <li><a href="../issue/<%=profile.bookmarks[i].id%>"><%=profile.bookmarks[i].name%></a></li>
+                <% } if(profile.bookmarks.length === 0) {%>
                 <p>This user hasn't bookmarked any articles yet!</p>
                 <%}%>
             </ul>

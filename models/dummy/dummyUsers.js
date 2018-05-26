@@ -39,8 +39,8 @@ const dummyUsers = [
         email: "",
         password: "???",
         is_editor: false,
-        followed_users: ["Brockhampton"],
-        followed_articles: [[9, "Horse racing"]]
+        followedUsers: ["Brockhampton"],
+        bookmarks: [[9, "Horse racing"]]
     }
 ];
 

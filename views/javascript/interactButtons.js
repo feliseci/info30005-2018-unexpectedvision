@@ -15,26 +15,35 @@ function interactButtons(id, username, issue) {
     let buttonState = changeColour(id);
 
     // Process the resulting state into a + or -
-    let type = getChangeType(buttonState);
-    console.log(type);
+    let button = {
+        id: id,
+        type: getChangeType(buttonState)
+    };
 
-    updateDB(id, username, issue._id, issue.name, type);
+    updateDB(button, username, issue._id, issue.name, issue.author);
 }
 
-/* */
-function updateDB(button, username, issueId, issueName, type) {
-    if (button === "likeButton") {
-        $.ajax({
-            // URL to send request to
-            type: 'POST',
-            url: '../like',
-            // Data to be passed to server
-            data: {username: username, id: issueId, issueName: issueName, type: type},
-            dataType: 'json'
-        }).fail(function(jqXHR, textStatus, err) {
-            console.log('AJAX error response: ', textStatus);
-        });
+/* Update the DB depending on pressed button, logged in user & issue details */
+function updateDB(button, username, issueId, issueName, issueAuthor) {
+    let url;
+    if(button.id === "likeButton") {
+        url = '../like';
+    } else if(button.id === "bookmarkButton") {
+        url = '../bookmark';
+    } else if(button.id === "followButton") {
+        url = '../follow';
     }
+
+    $.ajax({
+        // URL to send request to
+        type: 'POST',
+        url: url,
+        // Data to be passed to server
+        data: {username: username, id: issueId, issueName: issueName, type: button.type, editor: issueAuthor},
+        dataType: 'json'
+    }).fail(function(jqXHR, textStatus, err) {
+        console.log('AJAX error response: ', textStatus);
+    });
 }
 
 /* Function takes the id of the specific button and toggles the colour on and off to indicate
@@ -58,10 +67,13 @@ function changeColour(id) {
     return element.className;
 }
 
+/* Get whether the button has changed to On or Off */
 function getChangeType(state) {
 
     // If the last two characters of the string === "On", the popularity change will be +
     if (state.slice(-2) === "On") {
+        return 1;
+    } else if(state.slice(-4) === "Tick") { // Follow button case
         return 1;
     }
 

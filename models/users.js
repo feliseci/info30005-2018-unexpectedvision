@@ -12,9 +12,10 @@ const userSchema = mongoose.Schema(
         "email": {type: String, default: ""},
         "is_editor": {type: Boolean, default: false},
         "likes": {type: Array, default: []},
-        "followed_users": {type: [String], default: []},
-        "followed_articles": {type: Array, default: []},
+        "followedUsers": {type: [String], default: []},
+        "bookmarks": {type: Array, default: []},
         "posts": {type: Array, default: []},
+        "followingUsers": {type: [String], default: []}
     }
 );
 

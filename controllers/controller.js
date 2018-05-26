@@ -510,8 +510,8 @@ resetUsers = function (req, res) {
             "profile_description": dummyUsers[i].profile_description,
             "email": dummyUsers[i].email,
             "is_editor": dummyUsers[i].is_editor,
-            "followed_users": dummyUsers[i].followed_users,
-            "followed_articles": dummyUsers[i].followed_articles
+            "followedUsers": dummyUsers[i].followedUsers,
+            "bookmarks": dummyUsers[i].bookmarks
         });
 
         User.register(newUser, dummyUsers[i].password, function(err) {
@@ -561,8 +561,8 @@ module.exports.userProfile= function (req, res) {
             display_name: user.display_name,
             profile_description: user.profile_description,
             likes: user.likes,
-            followed_users: user.followed_users,
-            followed_articles: user.followed_articles,
+            followedUsers: user.followedUsers,
+            bookmarks: user.bookmarks,
             posts: user.posts
         };
 
@@ -578,7 +578,7 @@ module.exports.likeIssue = function (req, res) {
         name: req.body.issueName
     };
     let username = req.body.username;
-    let add = Number(req.body.type); // Get whether +/- from previous function TODO
+    let add = Number(req.body.type);
 
     // Update the given issue's popularity
     Issue.findOneAndUpdate({_id: id}, {$inc: {popularity: add}}, function(err) {
@@ -600,11 +600,59 @@ module.exports.likeIssue = function (req, res) {
             User.findOneAndUpdate({username: username}, {$pull: {"likes": {id: like.id}}}, function(err) {
                 if (err) { res.sendStatus(409); return; }
                 console.log("Removed from likes.");
-
-                // The browser's user object is updated by fetching an updated user in deserializeUser, which
-                // is called at each HTTP request
             });
         }
 
     });
+};
+module.exports.bookmarkIssue = function (req, res) {
+    let bookmark = {
+        id: Number(req.body.id),
+        name: req.body.issueName
+    };
+    let username = req.body.username;
+    let add = Number(req.body.type);
+
+    // Add the bookmark
+    if(add === 1) {
+        User.findOneAndUpdate({username: username}, {$push: {"bookmarks": bookmark}}, function(err) {
+            if (err) { res.sendStatus(409); return; }
+            console.log("Added to bookmarks.");
+            });
+    }
+    else {
+        // Alternatively, remove the bookmark
+        User.findOneAndUpdate({username: username}, {$pull: {"bookmarks": {id: bookmark.id}}}, function(err) {
+            if (err) { res.sendStatus(409); return; }
+            console.log("Removed from bookmarks.");
+        });
+    }
+};
+module.exports.followEditor = function (req, res) {
+    let editor = req.body.editor;
+    let username = req.body.username;
+    let add = Number(req.body.type);
+
+    if(add === 1) {
+        User.findOneAndUpdate({username: editor}, {$push: {followingUsers: username}}, function(err) {
+            if (err) { res.sendStatus(409); return; }
+            console.log("Following user added.");
+
+            User.findOneAndUpdate({username: username}, {$push: {followedUsers: editor}}, function(err) {
+                if (err) { res.sendStatus(409); return; }
+                console.log("Added to followed.");
+            });
+        });
+    } else {
+        User.findOneAndUpdate({username: editor}, {$pull: {followingUsers: username}}, function(err) {
+            if (err) { res.sendStatus(409); return; }
+            console.log("Following user removed.");
+
+            User.findOneAndUpdate({username: username}, {$pull: {followedUsers: editor}}, function(err) {
+                if (err) { res.sendStatus(409); return; }
+                console.log("Removed from followed.");
+            });
+        });
+
+    }
 };

@@ -447,6 +447,31 @@
     font-weight: bold;
 }
 
+/* Popup that appears if trying to like (etc.) without being logged in (= enter_comment_bg)*/
+#error_popup_bg {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.4);
+    z-index: 2; /*Puts above other elements*/
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+}
+
+#error_popup {
+    box-sizing: border-box;
+    position: relative;
+    top: 25%;
+    left: 30%;
+    height: 50%;
+    width: 40%;
+    background-color: white;
+    padding: 1%;
+    text-align: left;
+}
+
+/* Popup that appears for comment entry; either a form or an error message*/
 #enter_comment_bg {
     height: 100%;
     width: 100%;

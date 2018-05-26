@@ -33,6 +33,8 @@ passport.deserializeUser( function(id, done) {
     // See https://stackoverflow.com/questions/27637609/understanding-passport-serialize-deserialize
     // See https://stackoverflow.com/questions/37516863/auth-using-passport-js-confusion-with-syntax
     // Simply passing user would include the salt and hashed password, and is insecure
+
+    // TODO increases loading time, unfortunately
     User.findOne({_id: id}, function(err, user) {
         let user_details = {
             username: user.username,

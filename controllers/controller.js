@@ -578,39 +578,33 @@ module.exports.likeIssue = function (req, res) {
         name: req.body.issueName
     };
     let username = req.body.username;
-    let add = 1; // Get whether +/- from previous function TODO
+    let add = Number(req.body.type); // Get whether +/- from previous function TODO
 
     // Update the given issue's popularity
     Issue.findOneAndUpdate({_id: id}, {$inc: {popularity: add}}, function(err) {
         if (err) { res.sendStatus(409); return; }
-        console.log("Popularity increased.");
+        console.log("Popularity changed.");
 
         // Add the like
-        User.findOneAndUpdate({username: username}, {$push: {"likes": like}}, function(err) {
-            if (err) { res.sendStatus(409); return; }
-            console.log("Added to likes.");
+        if(add === 1) {
+            User.findOneAndUpdate({username: username}, {$push: {"likes": like}}, function(err) {
+                if (err) { res.sendStatus(409); return; }
+                console.log("Added to likes.");
 
-            // The browser's user object is updated by fetching an updated user in deserializeUser, which
-            // is called at each HTTP request
-        });
+                // The browser's user object is updated by fetching an updated user in deserializeUser, which
+                // is called at each HTTP request
+            });
+        }
+        // Alternatively, remove the like
+        else {
+            User.findOneAndUpdate({username: username}, {$pull: {"likes": {id: like.id}}}, function(err) {
+                if (err) { res.sendStatus(409); return; }
+                console.log("Removed from likes.");
 
-        // Alternatively, remove the like TODO
+                // The browser's user object is updated by fetching an updated user in deserializeUser, which
+                // is called at each HTTP request
+            });
+        }
 
     });
-
-
-
-    // TODO
-    let data = { // object
-        hey: "bitch"
-    };
-    res.send(data);
-
-    // Remove code:
-    // someArray = [{name:"Kristian", lines:"2,5,10"},
-    //              {name:"John", lines:"1,19,26,96"},
-    //              {name:"Brian",lines:"3,9,62,36" }];
-    // johnRemoved = someArray.filter(function(el) {
-    //     return el.name !== "John";
-    // });
 };

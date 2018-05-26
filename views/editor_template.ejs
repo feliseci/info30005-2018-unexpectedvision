@@ -21,7 +21,6 @@
     <script>
         <% // Get the initial state of every button
         let liked_post = false;
-/*        console.log(user);*/
         function findLikes(likes, id) {
             for(i=0; i<likes.length;i++) {
                 if(likes[i].id === id) {
@@ -37,7 +36,6 @@
         }
         if(liked_post === true) {%>
             // Jquery to set the button to its value in the DB
-            console.log("High high hopes!");
             $(document).ready(function () {
                 changeColour("likeButton");
             });
@@ -48,26 +46,20 @@
             form.style.display="block";
         }
 
-        window.onclick = function(event) {
-            let form = document.getElementById("enter_comment_bg");
-            if (event.target === form) {
-                form.style.display = "none";
-            }
+        function showError() {
+            let form = document.getElementById("error_popup_bg");
+            form.style.display="block";
         }
 
-
-
-        /*$("form").submit(function(e) {
-            e.preventDefault(); // Prevents browser from performing the default action & reloading the browser
-            $.ajax({
-                url: "/like?=true",
-                data: {...},
-                type: "GET", // if you want to send data via the "data" property change this to "POST". This can be omitted otherwise
-                success: function(responseData) {
-                },
-                error: console.error
-            });
-        });*/
+        window.onclick = function(event) {
+            let formComment = document.getElementById("enter_comment_bg");
+            let formError = document.getElementById("error_popup_bg");
+            if (event.target === formComment) {
+                formComment.style.display = "none";
+            } else if(event.target === formError) {
+                formError.style.display = "none";
+            }
+        }
 
     </script>
 
@@ -84,6 +76,15 @@
 <!-- Used to make footers sticky -->
 <div class = "content">
 
+    <section id="error_popup_bg">
+        <section id="error_popup">
+            <h4>Wait a moment!</h4>
+            <p>To like, follow or bookmark, you need to be a user first.</p>
+            <p><a href="../create-account">Click here to go to the create account page.</a></p>
+            <p><a href="../login">Click here to login.</a></p>
+        </section>
+    </section>
+
 
     <div class = "grid-container-editor">
 
@@ -97,15 +98,25 @@
                     <h2 class = "white_text text_shadow"> By <em><a href="../profile/<%= editor.author%>" style="color: white"><%= editor.author%></a> &nbsp;</em>
 
                         <!-- Follow creator option; see draft -->
-                        <% // Define the arguments to be used in each button onClick.
-                        let arguments= user.username + "\", " + JSON.stringify(editor); %>
-
-                        <button id = "followButton" onclick = "interactButtons(<%="\"followButton\", \"" + arguments%>)"> Follow </button></h2>
+                        <% let arguments;
+                        if(!user) {%>
+                            <button id = "followButton" onclick = "showError()"> Follow </button></h2>
+                        <%}
+                        else {
+                            // Define the arguments to be used in each button onClick.
+                            arguments = user.username + "\", " + JSON.stringify(editor); %>
+                            <button id = "followButton" onclick = "interactButtons(<%="\"followButton\", \"" + arguments%>)"> Follow </button></h2>
+                        <%}%>
                     <h3 class =  "white_text text_shadow"><em> <%= editor.date_post%></em></h3>
                 </div>
                 <div id = "interaction_buttons" class = "bubble">
-                    <button id = "likeButton" class = "likeOff" onclick= "interactButtons(<%="\"likeButton\", \"" + arguments%>)"></button>
-                    <button id = "bookmarkButton" class = "bookmarkOff"  onclick = "interactButtons(<%="\"bookmarkButton\", \"" + arguments%>)"></button>
+                    <%if(!user) { %>
+                    <button id = "likeButton" class = "likeOff" onclick= "showError()"></button>
+                    <button id = "bookmarkButton" class = "bookmarkOff"  onclick = "showError()"></button>
+                    <%} else {%>
+                        <button id = "likeButton" class = "likeOff" onclick= "interactButtons(<%="\"likeButton\", \"" + arguments%>)"></button>
+                        <button id = "bookmarkButton" class = "bookmarkOff"  onclick = "interactButtons(<%="\"bookmarkButton\", \"" + arguments%>)"></button>
+                    <%}%>
                 </div>
             </div>
 

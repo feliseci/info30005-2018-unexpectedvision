@@ -25,22 +25,7 @@
         <div>
             <!-- Opportunity Title -->
             <h1><%= opportunity.name %></h1>
-
-<br>
-<header id="event_header">
-    <img src = "<%= opportunity.image %>" alt = "event banner">
-    <div>
-        <h1><%= opportunity.name %></h1>
-        <h2>By <a href="../profile/<%=opportunity.organiser%>"><%= opportunity.organiser %></a></h2>
-    </div>
-
-</header>
-
-            <!-- Interaction Buttons -->
-            <div id = "event_buttons" class = "bubble">
-                <button id = "likeButton" class = "likeOff" onclick= "interactButtons(this.id)">  </button>
-                <button id = "bookmarkButton" class = "bookmarkOff"  onclick = "interactButtons(this.id)"></button>
-            </div>
+            <h2>By <a href="../profile/<%=opportunity.organiser%>"><%= opportunity.organiser %></a></h2>
         </div>
     </header>
 

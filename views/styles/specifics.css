@@ -854,7 +854,7 @@ div.title-articlerepos{
 }
 
 /*About*/
-.grid-container-about{
+.grid-container-thirds{
      display: grid;
      grid-template-columns: auto auto auto;
      grid-gap: 10px;
@@ -862,7 +862,7 @@ div.title-articlerepos{
      padding-right:10%;
  }
 
-.grid-container-about > div {
+.grid-container-thirds > div {
     text-align: center;
     font-size: 15px;
 }
@@ -907,13 +907,80 @@ div.title-articlerepos{
     float:left;
 }
 
+
+/* Forms and Applications */
 .form-input{
     border-radius: 2px;
     padding: 12px 20px;
     display: block;
     margin: 8px auto;
-    width: 383px;
+    width: 600px;
     box-sizing: border-box;
     font-family: "IBM Plex Sans", sans-serif;
     font-size: large;
 }
+#description-input{
+    height:450px;
+}
+
+#selector-input {
+    width:132px;
+    background-color: #E59A3F;
+    border-radius:2px;
+    font-size:15px;
+}
+
+.grid-container-repos{
+    box-sizing: border-box;
+    display: inline-grid;
+    grid-template-columns: 2fr 0.8fr;
+    grid-row-gap: 0px;
+    grid-column-gap: 1%;
+    border-collapse: collapse;
+    align-items: center;
+}
+
+#res-link{
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+#res-selector{
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+.add{
+    padding: 15px 18px;
+    background-color: #00CC8C;
+    font-size: large;
+    border-radius: 10px;
+}
+
+.add:hover{
+    background-color: #01ba80;
+}
+
+#res-descriptor{
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.res-input{
+    width: 132px;
+    background-color: #E59A3F;
+    border-radius: 2px;
+    font-size: 15px;
+}
+
+.link-input{
+    width: 456px
+}
+
+.descriptor-input{
+    height:150px;
+}
+
+.categories-input{
+    width: 330px;
+}
+

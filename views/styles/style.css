@@ -100,6 +100,10 @@ hr {
     border-width: 1px;
 }
 
+textarea {
+    resize: none;
+}
+
 /* High-use general styling*/
 .text_shadow {
     text-shadow: 2px 2px grey;

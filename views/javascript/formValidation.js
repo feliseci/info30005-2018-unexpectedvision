@@ -147,10 +147,8 @@ function addSource(type) {
         newSource.querySelector("input[name=article_description]").value = "";
     }
     else {
-        newSource = document.createElement("input");
-        newSource.type="text";
-        newSource.name= type+ "_source";
-        newSource.class="account";
+        let source = container.childNodes[1];
+        newSource = source.cloneNode(true);
     }
 
     container.appendChild(document.createElement("br"));

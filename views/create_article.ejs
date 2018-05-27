@@ -18,90 +18,70 @@
 <!-- Site Navigation Bar -->
 <% include ./partial/navbar.ejs%>
 
-<div class = "grid-container-about">
-    <br>
-    <div class = "item1style formstyle">
-        <h1> Create your article </h1>
-        <hr>
+<div class = "content" > <!-- Used to make footers sticky -->
 
-<form action = "../new-issue/" method = "post" onsubmit="return validateArticle()">
-    <input type="hidden" name="author" value = <%=user.username%>>
-    <h3>Issue Title:</h3>
-    <input type="text" name="name" class="account">
-    <h3>Description:</h3>
-    <textarea name="description" class="account"></textarea>
-    <h3>Image URL:</h3>
-    <input type="text" name="image" class="account">
-    <h3> Sources:</h3>
-    <div id = "container_source">
-        <div class="source">
-            <select name="source_type" class="account">
-                <option value="hl">High level</option>
-                <option value="r">Report</option>
-                <option value="o">Opinion</option>
-            </select>
-            <input type="text" name="link" class="account" placeholder="Article link">
-            <input type="text" name="article_description" class="account" placeholder="Your description of the article">
-        </div>
-    </div>
-    <button type="button" class="plus_button" onclick="addSource('source')">+</button>
-    <h3>Categories:</h3>
-    <div id="container_c">
-        <input type="text" name="c_source" class="account">
-    </div>
-    <button type="button" class="plus_button" onclick="addSource('c')">+</button>
-    <p id="error"></p> <!--Error messages in form validation will show here. -->
-    <button type="submit">Submit</button>
-</form>
-        <!--TODO: Use post-->
-        <form action = "../new-issue/" method = "get" onsubmit="return validateArticle()">
-            <input type="hidden" class = "form-input" name="author" value = <%=user.username%>>
-
-            <h3>Article Title:</h3>
-            <input type="text" name="name" class = "form-input" placeholder = "i.e. 'Are Takeaway Coffee Cups Recyclable?'">
-
-            <h3>Description of Article:</h3>
-            <textarea name="description" class = "form-input" placeholder = "Summary of your view on the issue at a high level"></textarea>
-
-            <h3>Article Banner:</h3>
-            <input type="text" name="image" class = "form-input" placeholder = "Image URL">
-
-            <br><hr>
-            <p> Enter each source in separately </p>
+    <div class = "grid-container-thirds">
+        <br>
+        <div class = "item1style formstyle">
+            <h1> Create your article </h1>
             <hr>
 
-            <h3>High-Level Sources:</h3>
-            <div id="container_hl">
-                <input type="text" name="hl_source" class = "form-input" placeholder = "Article URL">
-            </div>
-            <button type="button" class="plus_button" onclick="addSource('hl')">+</button>
+            <!--TODO: Use post-->
+            <form action = "../new-issue/" method = "get" onsubmit="return validateArticle()">
+                <input type="hidden" class = "form-input" name="author" value = <%=user.username%>>
 
-            <h3>Reports:</h3>
-            <div id="container_r">
-                <input type="text" name="r_source" class = "form-input" class="account">
-            </div>
-            <button type="button" class="plus_button" onclick="addSource('r')">+</button>
+                <h3>Article Title:</h3>
+                <input type="text" name="name" class = "form-input"
+                       placeholder = "i.e. 'Are Takeaway Coffee Cups Recyclable?'">
 
-            <h3>Opinion Pieces:</h3>
-            <div id="container_o">
-                <input type="text" name="o_source" class = "form-input" class="account">
-            </div>
-            <button type="button" class="plus_button" onclick="addSource('o')">+</button>
+                <h3>Description of Article:</h3>
+                <textarea name="description" class = "form-input" id = "description-input"
+                          placeholder = "Summary of your view on the issue at a high level"></textarea>
 
-            <!--TODO Better Categories-->
-            <!--Category selection currently the same as for sources-->
-            <h3>Categories:</h3>
-            <div id="container_c">
-                <input type="text" name="c_source" class = "form-input" placeholder = " i.e. 'environment'">
-            </div>
-            <button type="button" class="plus_button" onclick="addSource('c')">+</button>
-            <p id="error"></p>
-            <button type="submit">Submit</button>
+                <h3>Article Banner:</h3>
+                <input type="text" name="image" class = "form-input" placeholder = "Image URL">
 
-        </form>
+                <br><hr>
+                <h4 class = "darkgray_text"> - Include minimum one of each type of resource - </h4>
+                <hr>
+
+                <h3> Resource Repository:</h3>
+                <div id = "container_source">
+                    <div class = "source grid-container-repos">
+                        <div id = "res-link">
+                            <input type="text" name="link" class="form-input link-input"
+                                   placeholder="Suggested Article Link">
+                        </div>
+                        <div id = "res-selector" >
+                            <select name="source_type" class="form-input res-input">
+                                <option value="hl">High level</option>
+                                <option value="r">Report</option>
+                                <option value="o">Opinion</option>
+                            </select>
+                        </div>
+                        <div id = "res-descriptor">
+                            <textarea type="text" name="article_description" class="form-input descriptor-input"
+                                      placeholder="Your description of why you are suggesting this article"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <button type="button" class="plus_button add" onclick="addSource('source')">+</button>
+                <hr>
+                <h3>Categories:</h3>
+                <div id="container_c">
+                    <input type="text" name="c_source" class="form-input categories-input"
+                           placeholder = "i.e. 'australia'">
+                </div>
+                <button type="button" class="plus_button add" onclick="addSource('c')">+</button>
+                <p id="error"></p> <!--Error messages in form validation will show here. -->
+                <button type="submit" class="submit">Submit</button>
+
+            </form>
+        </div>
+        <br>
+
     </div>
-    <br>
-
 </div>
 
 <footer>

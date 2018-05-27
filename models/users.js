@@ -15,7 +15,16 @@ const userSchema = mongoose.Schema(
         "followedUsers": {type: [String], default: []},
         "bookmarks": {type: Array, default: []},
         "posts": {type: Array, default: []},
-        "followingUsers": {type: [String], default: []}
+        "followingUsers": {type: [String], default: []},
+        "articles": {type: Array, default: []}, // Articles the user created
+        "opportunities": {type: Array, default: []}, // Opportunities the user created
+        "recent_update": {
+            date: Date,
+            updateType: String, // either "comment", "opportunity" or "article"; stored regardless of whether is editor
+            updateContent: String,
+            updateLink: Number,
+            articleName: String
+        }
     }
 );
 

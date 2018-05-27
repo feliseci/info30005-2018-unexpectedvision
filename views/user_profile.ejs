@@ -30,17 +30,19 @@
             <!--TODO email private or not? -->
         </div>
 
+    <%if(user.username === profile.username) {%>
+        <h1 class = "titlestyle"> - Your Updates - </h1>
+        <div class = "item1style bubble">
+            <h1> Recent activity: </h1>
+        </div>
+    <%}%>
+
     <!-- TODO: How many followers does an editor have -->
     <% if(user.is_editor) { %>
     <h1 class = "titlestyle"> - Verified Editor - </h1>
         <div class = "item1style bubble">
             <h1> Followers </h1>
             <ul style="text-align: left;">
-                <% for(i=0; i < profile.followed_articles.length; i++) { %>
-                <li><a href="../issue/<%=profile.followed_articles[i][0]%>"><%=profile.followed_articles[i][1]%></a></li>
-                <% } if(profile.followed_articles.length === 0) {%>
-                <p>This user hasn't bookmarked any articles yet!</p>
-                <%}%>
             </ul>
         </div>
 
@@ -48,16 +50,12 @@
         <div class = "item1style bubble">
             <h1> Created Articles </h1>
             <ul style="text-align: left;">
-                <% for(i=0; i < profile.followed_articles.length; i++) { %>
-                <li><a href="../issue/<%=profile.followed_articles[i][0]%>"><%=profile.followed_articles[i][1]%></a></li>
-                <% } if(profile.followed_articles.length === 0) {%>
-                <p>This user hasn't bookmarked any articles yet!</p>
-                <%}%>
+                <%// profile.articles%>
             </ul>
         </div>
     <%}%>
 
-     <h1 class = "titlestyle"> - User Activity - </h1>
+    <h1 class = "titlestyle"> - User Activity - </h1>
     <div class = "item1style bubble">
         <h1> Liked Articles</h1>
         <ul style="text-align: left;">
@@ -109,7 +107,7 @@
                 <% for(i=0; i < profile.posts.length; i++) { %>
                 <li>On <a href="../issue/<%=profile.posts[i][0]%>"><%=profile.posts[i][1]%></a> - <i><%=profile.posts[i][2]%></i></li>
                 <% } if(profile.posts.length === 0) {%>
-                <p>This user hasn't made any posts yet!</p>
+                <p>This user hasn't made any comments yet!</p>
                 <%}%>
             </ul>
         </div>

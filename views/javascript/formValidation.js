@@ -218,7 +218,7 @@ function validateOpportunity() {
 
     // Check image is a link to Unsplash TODO other sites
     let image = document.querySelector("textarea[name=image]").value;
-    let regexpImage = /https:\/\/source.unsplash.com\/[^\s]+/;
+    let regexpImage = /http[s]:\/\/source.unsplash.com\/[^\s]+/;
     if(!regexpImage.test(image)) {
         document.getElementById("error").innerHTML = "Invalid image url: must be an Unsplash source URL.";
         return false;

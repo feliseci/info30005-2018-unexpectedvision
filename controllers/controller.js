@@ -378,10 +378,40 @@ module.exports.newIssue = function (req, res) {
         "categories": req.body.c_source
     });
 
+    // Get the details for the user activity update
+    let updateUser = {
+        date: Date.now(),
+        updateType: "article",
+        updateContent: "",
+        articleName: newIssue.name
+    };
+    let article = {
+        articleName: newIssue.name,
+        description: newIssue.description
+    };
+
     // Add the new issue to the DB
     newIssue.save(function(err,newIssue) {
         if(!err) {
-            res.redirect('../issue/' + newIssue._id); // Redirect to new issue
+
+            // Add the issue id to the user activity update
+            updateUser.updateLink = newIssue._id;
+            article.id = newIssue._id;
+
+            // Update the user's activity
+            User.findOneAndUpdate({username: req.user.username},
+                {$push: {articles: article}, $set: {recent_update: updateUser}}, function(err) {
+
+                if (err) {
+                    res.sendStatus(409);
+                    return;
+                }
+
+                console.log("User activity updated.");
+            });
+
+            // Redirect to new issue
+            res.redirect('../issue/' + newIssue._id);
             console.log("New issue sent.");
         } else{
             res.sendStatus(400);
@@ -396,10 +426,44 @@ module.exports.newContribution = function (req, res) {
         "article_url": req.body.article_url
     };
 
+    // Set the user's most recent "action" to this comment
+    // (only editors' will be visible in their following user's walls/profiles)
+    let updateUser = {
+        date: Date.now(),
+        updateType: "comment",
+        updateContent: req.body.comment,
+        updateLink: req.body.article_url,
+    };
+    let post = {
+        updateContent: req.body.comment,
+        updateLink: req.body.article_url,
+    }; // The permanent version
+    let updateIssue = {
+        date: Date.now(),
+        updateType: "comment",
+        updateContent: req.body.comment,
+    };
+
     // Update the given issue with a new contribution
-    Issue.findOneAndUpdate({name: req.body.name}, {$push: {contributions: newContribution}}, function(err, issue) {
+    Issue.findOneAndUpdate({name: req.body.name},
+        {$push: {contributions: newContribution}, $set: {recent_update: updateIssue}}, function(err, issue) {
+
         if (err) { res.sendStatus(409); return; }
         console.log("New contribution sent.");
+
+        // Add the issue name to the user activity update
+        updateUser.articleName = issue.name;
+
+        // Update the user's activity
+        User.findOneAndUpdate({username: req.user.username},
+            {$push: {posts: post}, $set: {recent_update: updateUser}}, function(err) {
+
+            if (err) {
+                res.sendStatus(409);
+                return;
+            }
+            console.log("User activity updated.");
+        });
 
         //  Redirect the user back to the issue page at the comments section
         res.redirect('../issue/' + issue._id + '/#contributions_grid');
@@ -426,9 +490,38 @@ module.exports.newOpportunity = function (req, res) {
         "further_info": req.query.further_info
     });
 
+    // Get the details for the user activity update
+    let updateUser = {
+        date: Date.now(),
+        updateType: "opportunity",
+        updateContent: "",
+        articleName: newOpportunity.name
+    };
+    let opportunity = {
+        articleName: newOpportunity.name,
+        description: newOpportunity.description
+    };
+
     // Add the new opportunity to the DB
     newOpportunity.save(function(err,newOpportunity) {
         if(!err) {
+
+            // Add the issue id to the user activity update
+            updateUser.updateLink = newOpportunity._id;
+            opportunity.id = newOpportunity._id;
+
+            // Update the user's activity
+            User.findOneAndUpdate({username: req.user.username},
+                {$push: {opportunities: opportunity}, $set: {recent_update: updateUser}}, function(err) {
+
+                    if (err) {
+                        res.sendStatus(409);
+                        return;
+                    }
+
+                    console.log("User activity updated.");
+                });
+
             res.redirect('../opportunity/' + newOpportunity._id);
             console.log("New opportunity sent.");
         } else{
@@ -576,9 +669,64 @@ module.exports.logout = function(req, res){
     res.redirect('../');
 };
 
+/* User profile */
+module.exports.userProfile = function (req, res) {
+    let updates;
 
-//* User profile
-module.exports.userProfile= function (req, res) {
+    // Profile is the current user's: Get the details for their wall
+    if(req.user && (req.params.name === req.user.username)) {
+        let likeUpdates = [];
+        let followUpdates = [];
+
+        console.log("Following: " + req.user.followedUsers);
+
+        // Get update objects from all the user's liked issues
+        User.find({username: {$in: req.user.followedUsers}}, 'username recent_update', function(err, users) {
+            if(err) {
+                res.sendStatus(409);
+                return;
+            }
+
+            console.log("Oi! Results: " + users);
+
+            followUpdates = users;
+
+        });
+
+        console.log("Oi! Updates in function: " + followUpdates);
+
+        // Get the list of issue IDs for the user's likes
+        let ids;
+        for(i=0; i < req.user.likes.length; i++) {
+            ids.push(req.user.likes[i].id);
+        }
+
+        // Get update objects from all the user's liked issues
+        Issue.find({_id: {$in: ids}}, '_id name recent_update', function(err, issues) {
+            if(err) {
+                res.sendStatus(409);
+                return;
+            }
+
+            likeUpdates = issues;
+
+        });
+
+        console.log(followUpdates);
+/*        console.log()*/
+
+        updates = getRecent(likeUpdates, followUpdates);
+/*        console.log(updates);*/
+        res.send(updates);
+
+        return;
+    }
+
+    // (Check the likes have been set with a wait function, if not just FUCK THE HELL OFF)
+
+    return;
+
+    // Profile is not the user's
     User.findOne({username: req.params.name}, function(err, user) {
         if(err) {
             res.sendStatus(409);
@@ -606,7 +754,26 @@ module.exports.userProfile= function (req, res) {
 
     });
 };
+function getRecent(editorChanges, recentComments) {
+    let results = editorChanges.concat(recentComments);
 
+    // Sort the results
+    results.sort(compareDates);
+
+    // Return the top 5 most recent results
+    return results.slice(0,5);
+}
+function compareDates(a, b) {
+    if(a.recent_update.date > b.recent_update.date) {
+        return 1; // Is this ascending or descending?
+    }
+    if(a.recent_update.date < b.recent_update.date) {
+        return -1;
+    }
+    return 0;
+}
+
+/* Article banner (AJAX) */
 module.exports.likeIssue = function (req, res) {
     let id = req.body.id;
     let like = {

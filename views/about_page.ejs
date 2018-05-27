@@ -3,33 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>About Us</title>
+
+    <!-- About Page - content about the purpose and background of MultiView -->
+    <title>About MultiView</title>
+
     <link href="/styles/style.css" type="text/css" rel="stylesheet">
     <link href="/styles/specifics.css" type="text/css" rel="stylesheet">
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
 
     <!-- Used to make Navigation Bar Sticky -->
     <script src = "./javascript/sticky_nav.js"></script>
-
 </head>
 
 <body>
-
-<!--Site title-->
+<!--Navigation Bar-->
 <% include ./partial/navbar.ejs%>
 
 <div class = "content" > <!-- Used to make footers sticky -->
 
 <div class = "grid-container-thirds">
-
-    <header class = "header">
+        <!-- Banner Image -->
         <div class = "banner" >
             <img src = "./images/blue_architecture.jpg" class = "banner-image">
             <div class = 'centered'><h1 class = "white_text font_400 text_shadow">BROADEN YOUR PERSPECTIVE</h1>
             <h2 class = "darkgray_text"><em> break down echo chambers</em></h2>
             </div>
         </div>
-    </header>
 
     <!-- Mission statement -->
     <div class = "item1style bubble">
@@ -38,13 +37,15 @@
         information and activism opportunities.</p>
     </div>
 
+    <!-- About Section -->
     <div class = "item1style bubble" >
-        <h1> <img src = "../images/eye-open.png" class = "about-icons"> ABOUT US </h1>
+        <h1> <img src = "../images/eye-open.png" class = "about-icons"> ABOUT MULTIVIEW </h1>
         <p><em>MultiView</em> is a social platform for sharing knowledge, perspectives, and insight that seeks to address the
         question of <em>'how might we address global urgent challenges at the intersection of peace, prosperity and planet
             in radically new ways?'</em>.</p>
     </div>
 
+    <!-- Background Section -->
     <div class = "item1style bubble">
         <h1> <img src = "../images/warning-sign.png" class = "about-icons">  CHANGING DIGITAL LANDSCAPE </h1>
         <h2 class = "darkgray_text"> <em> - the formation of echo chambers -</em> </h2>
@@ -56,7 +57,8 @@
         discussions, or to witness the development of polarised groups. We want to empower the individual to get involved in
         the community through knowledge and positive action!</p>
     </div>
-    
+
+    <!-- Our Response Section -->
     <div class = "item1style bubble">
         <h1> <img src = "../images/thumbsup.png" class = "about-icons"> OUR RESPONSE: </h1>
         <p>Design a platform where thoughtful, well-researched individuals, 'Editors', can curate repositories of resources of
@@ -68,7 +70,7 @@
             </a>.</p>
     </div>
 
-
+    <!-- How to Approach Articles Section -->
     <div class = "item1style bubble">
     <h1> <img src = "../images/thickSmallTriangle.png" class = "about-icons">HOW TO APPROACH OUR WEBSITE</h1>
     <p> We aim to increase access to information about political issues, and serve as an starting point for further research
@@ -77,6 +79,7 @@
     </p>
     </div>
 
+    <!-- How to get more involved Section -->
     <div class = "item1style bubble">
         <h1> <img src = "../images/group.png" class = "about-icons">GET INVOLVED IN THE COMMUNITY!</h1>
         <p>We are more than just articles, this platform is about <b> ACTION </b> follow through to our <a href = "../opportunities">
@@ -85,7 +88,7 @@
         </p>
     </div>
 
-
+    <!-- Code of Conduct Section -->
     <div class = "item1style bubble">
         <h1> <img src = "../images/book.png" class = "about-icons">CODE OF CONDUCT</h1>
         <ul>

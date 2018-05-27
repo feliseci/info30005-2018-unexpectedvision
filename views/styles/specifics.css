@@ -268,6 +268,14 @@
     height: 275px;
     margin-bottom: 5px;
 }
+
+.recent_issue{
+    grid-area: a;
+}
+
+.popular_issue{
+    grid-area: b;
+}
 	
 #more_issues img {
     max-width: 100%;
@@ -781,6 +789,8 @@ div.banner{
     height: 30em;
     width: 100%;
     overflow: hidden;
+    grid-column-start:1;
+    grid-column-end: 5;
 }
 
 #interaction_buttons{
@@ -866,11 +876,6 @@ div.title-articlerepos{
     grid-column-start:1;
     grid-column-end: 4;
     border: 4px dotted #696969;
-}
-
-.grid-container-thirds header.header{
-    grid-column-start:1;
-    grid-column-end: 5;
 }
 
 .grid-container-about p {

@@ -1,10 +1,9 @@
-<!-- In progress - trying in html first -->
-<script src = "../javascript/op_scroll.js"></script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
+    <title> <%= editor.name %> - <%= editor.author%> </title>
 
     <!-- Stylesheets -->
     <link href="/styles/style.css" type="text/css" rel="stylesheet">
@@ -13,11 +12,15 @@
 
     <!-- Javascript files -->
     <script src = "../javascript/interactButtons.js"></script>
-    <!--script src = "../javascript/op_scroll.js"></script>
-    <!-- Used to make Navigation Bar Sticky -->
-    <script src = "../javascript/sticky_nav.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+    <!-- Used to make Navigation Bar Sticky -->
+    <script src = "../javascript/sticky_nav.js"></script>
+
+    <!-- Used to enable comment pop up -->
+    <script src = "../javascript/commentPopUp.js"></script>
+
+    <!-- Used to render interactions buttons in relation to past user action -->
     <script>
         <% // Get the initial state of every button
         let likedPost = false;
@@ -55,31 +58,7 @@
                 changeColour("followButton");
             });
         <%} %>
-
-        function showCommentForm() {
-            let form = document.getElementById("enter_comment_bg");
-            form.style.display="block";
-        }
-
-        function showError() {
-            let form = document.getElementById("error_popup_bg");
-            form.style.display="block";
-        }
-
-        window.onclick = function(event) {
-            let formComment = document.getElementById("enter_comment_bg");
-            let formError = document.getElementById("error_popup_bg");
-            if (event.target === formComment) {
-                formComment.style.display = "none";
-            } else if(event.target === formError) {
-                formError.style.display = "none";
-            }
-        }
-
     </script>
-
-    <!-- Name of Article -->
-    <title> <%= editor.name %> - <%= editor.author%> </title>
 </head>
 
 
@@ -91,6 +70,8 @@
 <!-- Used to make footers sticky -->
 <div class = "content">
 
+    <!-- if any Interaction Button is clicked and User is not Logged In
+    an error pops up, and prompts user to Log In first-->
     <section id="error_popup_bg">
         <section id="error_popup">
             <h4>Wait a moment!</h4>
@@ -102,40 +83,48 @@
 
 
     <div class = "grid-container-editor">
-
         <!-- Article Banner -->
         <header class = "header">
-
             <!-- Article Banner rendered on Article Pages -->
             <div class = "banner">
                 <img src = "<%=editor.image%>" class = "banner-image">
                 <div class = 'centered'><h1 class = "white_text font_400 text_shadow"><%= editor.name %></h1>
-                    <h2 class = "white_text text_shadow"> By <em><a href="../profile/<%= editor.author%>" style="color: white"><%= editor.author%></a> &nbsp;</em>
+                    <h2 class = "white_text text_shadow"> By <em>
+                            <a href="../profile/<%= editor.author%>" class = "white_text"><%= editor.author%></a>
+                            &nbsp;</em>
 
-                        <!-- Follow creator option; see draft -->
+                        <!-- Follow Editor Button-->
                         <% let arguments;
+                        /* If user is not logged in error is thrown*/
                         if(!user) {%>
                             <button id = "followButton" onclick = "showError()"> Follow </button>
                         <%}
+                        /* Render the button in respect to whether the user has previously liked the article */
                         else {
                             // Define the arguments to be used in each button onClick.
                             arguments = user.username + "\", " + JSON.stringify(editor); %>
-                            <button id = "followButton" onclick = "interactButtons(<%="\"followButton\", \"" + arguments%>)"> Follow </button>
+                            <button id = "followButton" onclick = "interactButtons(<%="\"followButton\", \""
+                                + arguments%>)"> Follow </button>
                         <%}%>
                     </h2>
                     <h3 class =  "white_text text_shadow"><em> <%= editor.date_post%></em></h3>
                 </div>
+
+                <!-- Interaction Buttons -->
                 <div id = "interaction_buttons" class = "bubble">
                     <%if(!user) { %>
                     <button id = "likeButton" class = "likeOff" onclick= "showError()"></button>
                     <button id = "bookmarkButton" class = "bookmarkOff"  onclick = "showError()"></button>
-                    <%} else {%>
-                        <button id = "likeButton" class = "likeOff" onclick= "interactButtons(<%="\"likeButton\", \"" + arguments%>)"></button>
-                        <button id = "bookmarkButton" class = "bookmarkOff"  onclick = "interactButtons(<%="\"bookmarkButton\", \"" + arguments%>)"></button>
+                    <%}
+                    /* Render the button in respect to whether the user has previously liked the article */
+                    else {%>
+                        <button id = "likeButton" class = "likeOff" onclick= "interactButtons(<%="\"likeButton\", \""
+                            + arguments%>)"></button>
+                        <button id = "bookmarkButton" class = "bookmarkOff"  onclick = "interactButtons
+                                (<%="\"bookmarkButton\", \"" + arguments%>)"></button>
                     <%}%>
                 </div>
             </div>
-
         </header>
 
         <!-- Information for User to assess whether to read the article at a glance -->
@@ -158,6 +147,7 @@
                 <%= editor.author%>'s Resource Repository <img src = "../images/downwards-arrow-key.png" style = "float:right; width:28px"> </h1>
         </div>
 
+        <!-- Tips from Unexpected Vision about how to approach the repository -->
         <div class = "tips bubble">
             <h3 class = "darkgray_text"> <em>Tips to navigate by the Site Creators</em></h3>
             <p class = "darkgray_text"> If you are unfamiliar with an issue try starting with <em>High Level Perspectives</em>
@@ -178,7 +168,7 @@
             </ul>
         </div>
 
-        <!--Reports Links-->
+        <!--Report Links-->
         <div class = "reports bubble">
             <h1> Reports</h1>
             <ul>
@@ -196,29 +186,35 @@
                 <li> <a href = "<%=editor.o_source[i]%>" target="_blank"> <%=editor.o_source[i]%> </a> </li>
                 <% } %>
             </ul>
-
         </div>
 
-        <section class = "related_opportunities bubble">
+        <!-- TODO: Decide if we remove this -->
+        <!--section class = "related_opportunities bubble">
             <h2> Related Opportunities </h2>
-            <%include ./partial/opportunities_sidescroll.ejs%>
+            <!--%include ./partial/opportunities_sidescroll.ejs%-->
         </section>
 
     </div>
-
+    <br>
     <!--TODO comments section -->
+    <!-- Comments Section -->
     <h1>Comments</h1>
     <br>
+
+    <!-- If there are no comments -->
     <% if(comments.length == 0) {%>
     <section>
         <p>There are no comments on this article yet!<p> <!--TODO-->
             <button id = "comment_button_centered" onclick="showCommentForm()">Comment!</button>
     </section>
+
+    <!-- Render Comments Sections -->
     <% } else { %>
     <section id = "contributions_grid">
-        <!--Individual contribution-->
-        <% /*const comments = issue.contributions;*/
-        for(i = 0; i < comments.length; i++) { %>
+        <!-- Render all comments on Article-->
+        <% for(i = 0; i < comments.length; i++) { %>
+
+        <!-- TODO: Frida is this legit? haha or do we rename -->
         <article id="testaroonie">
             <!--User info - links to user profile-->
             <p class = "comment_username"><a href="../profile/<%=comments[i].author%>"><%=comments[i].author%></a></p>
@@ -226,15 +222,18 @@
             <!--Article preview-->
             <p class = "preview_test"><a href="<%=comments[i].article_url%>">See Article</a></p>
         </article>
-        <% } // TODO are these necessary?
+
+        <!-- TODO: are these necessary? -->
+        <% }
         if(comments.length%3==2) {%>
         <article id = "invisible"></article>
         <%} else if(comments.length%3==1) {%>
         <article id = "invisible"></article>
         <article id = "invisible"></article>
         <%}%>
-
     </section>
+
+    <!-- Comment Form Pop Up -->
     <button id = "comment_button" onclick="showCommentForm()">Comment!</button>
     <%}%>
 
@@ -248,7 +247,9 @@
             <input type="text" name="article_url" placeholder="URL to an article">
             <button type="submit">Submit</button>
         </form>
-        <%} else { %>
+        <%}
+        <!-- If user is not logged in error is thrown -->
+        else { %>
         <section id="enter_comment">
             <h4>Wait a moment!</h4>
             <p>To make a comment, you need to be a user first.</p>

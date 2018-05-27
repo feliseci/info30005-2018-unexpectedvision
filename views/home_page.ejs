@@ -13,95 +13,90 @@
 
     <!-- Used to make Navigation Bar Sticky -->
     <script src = "./javascript/sticky_nav.js"></script>
-
 </head>
 
 <body>
 
-<!--Site title-->
+<!--Site Navigation Bar-->
 <% include ./partial/navbar.ejs%>
 
 <div class = "content"> <!-- Used to make footers sticky -->
-
-
-<div class="hero_image">
-    <div class="hero_text">
-        <h1>Welcome to MultiView</h1>
+    <!-- Home Page Hero Image -->
+    <div class="hero_image">
+        <div class="hero_text">
+            <h1>Welcome to MultiView</h1>
+        </div>
     </div>
-</div>
 
+    <!--Search Tool-->
+    <section id = "search">
+        <h2>Search for a topic!</h2>
+        <h4 class = "darkgray_text"><i> or press the 'Random' Button for a surprise article</i></h4>
+        <form action = "../search/" method = "get">
+            <input type="text" placeholder="Enter an issue..." name="query"/>
+            <input type="hidden" name="sort" value="date_update"/> <!--Default sorting: recent to old-->
+            <input type="hidden" name="asc" value="true"/>
+            <!-- Returns a Random Article -->
+            <a href="../random/"><button id="random_button" type="button">Random</button></a>
+        </form>
+    </section>
 
-<!--Search button-->
-<section id = "search">
-    <h2>Search for a topic!</h2>
-    <h4 class = "darkgray_text"><i> or press the 'Random' Button for a surprise article</i></h4>
-    <form action = "../search/" method = "get">
-        <input type="text" placeholder="Enter an issue..." name="query"/>
-        <input type="hidden" name="sort" value="date_update"/> <!--Default sorting: recent to old-->
-        <input type="hidden" name="asc" value="true"/>
-        <a href="../random/"><button id="random_button" type="button">Random</button></a>
-    </form>
+    <!--Issue suggestions-->
+    <section id="suggested_issues">
 
+        <!-- Recent Posted Issue -->
+        <article class = "recent_issue">
+            <figure>
+                <figcaption><h3>RECENT</h3></figcaption>
 
-</section>
+                    <section>
+                        <a href="<%="../issue/" + recent_issue.url%>">
+                        <img src = "<%= recent_issue.image%>" alt = "Recent issue - <%= recent_issue.name%>">
+                        <h4><%= recent_issue.name%></h4>
+                        </a>
+                        <section><p><%= recent_issue.description.substring(0,300)%>
+                                <%if(recent_issue.description.length > 300) {%>...
+                                <%}%></p></section>
+                    </section>
+            </figure>
+        </article>
 
-<!--Issue suggestions-->
-<section id="suggested_issues">
+        <!-- Popular Posted Issue -->
+        <article class = "popular_issue">
+            <figure>
+                <figcaption><h3>POPULAR</h3></figcaption>
 
-    <article style = "grid-area: a;">
-
-        <figure>
-            <figcaption><h3>RECENT</h3></figcaption>
-
-                <section>
-                    <a href="<%="../issue/" + recent_issue.url%>">
-                    <img src = "<%= recent_issue.image%>" alt = "Recent issue - <%= recent_issue.name%>">
-                    <h4><%= recent_issue.name%></h4>
-                    </a>
-                    <section><p><%= recent_issue.description.substring(0,300)%>
-                            <%if(recent_issue.description.length > 300) {%>...
+                    <section>
+                        <a href="<%="../issue/" + popular_issue.url%>">
+                        <img src = "<%= popular_issue.image%>" alt = "Popular issue - <%= popular_issue.name%>">
+                        <h4><%= popular_issue.name%></h4>
+                        </a>
+                        <section><p><%= popular_issue.description.substring(0,300)%>
+                            <%if(popular_issue.description.length > 300) {%>...
                             <%}%></p></section>
-                </section>
+                        </p>
+                    </section>
 
+            </figure>
+        </article>
 
-        </figure>
-    </article>
-
-    <article style = "grid-area: b;">
-        <figure>
-            <figcaption><h3>POPULAR</h3></figcaption>
-
+        <!-- section id="more_issues">-->
+        <% for(i=0; i<more_issues.length; i++) { %>
+        <article style = "grid-area: <%=String.fromCharCode('c'.charCodeAt(0) + i)%>;" id="more_issues">
+            <figure>
                 <section>
-                    <a href="<%="../issue/" + popular_issue.url%>">
-                    <img src = "<%= popular_issue.image%>" alt = "Popular issue - <%= popular_issue.name%>">
-                    <h4><%= popular_issue.name%></h4>
+                    <a href="<%="../issue/" + more_issues[i].url%>">
+                        <img src = "<%= more_issues[i].image%>" alt = "Issue - <%= more_issues[i].name%>">
+                        <h4><%= more_issues[i].name%></h4>
                     </a>
-                    <section><p><%= popular_issue.description.substring(0,300)%>
-                        <%if(popular_issue.description.length > 300) {%>...
-                        <%}%></p></section>
-                    </p>
+                    <section><p><%= more_issues[i].description%></p></section>
                 </section>
+            </figure>
+        </article>
+        <%}%>
+    <!--    </section>-->
 
-        </figure>
-    </article>
-
-<!--    <section id="more_issues">-->
-    <% for(i=0; i<more_issues.length; i++) { %>
-    <article style = "grid-area: <%=String.fromCharCode('c'.charCodeAt(0) + i)%>;" id="more_issues">
-        <figure>
-            <section>
-                <a href="<%="../issue/" + more_issues[i].url%>">
-                    <img src = "<%= more_issues[i].image%>" alt = "Issue - <%= more_issues[i].name%>">
-                    <h4><%= more_issues[i].name%></h4>
-                </a>
-                <section><p><%= more_issues[i].description%></p></section>
-            </section>
-        </figure>
-    </article>
-    <%}%>
-<!--    </section>-->
-
-</section>
+    </section>
 </div>
 <footer>
     <% include ./partial/footer.ejs%>

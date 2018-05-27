@@ -12,6 +12,7 @@ function showError() {
     form.style.display="block";
 }
 
+/* Show and/or Hide Comment - enables Pop Up effect*/
 window.onclick = function(event) {
     let formComment = document.getElementById("enter_comment_bg");
     let formError = document.getElementById("error_popup_bg");

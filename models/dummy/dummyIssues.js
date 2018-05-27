@@ -1,4 +1,6 @@
 // Clean dummy data to repopulate the DB with after testing.
+// NOTE: Dummy data is not necessarily reflective of the database.
+
 const dummyIssues = [
     {
         name: "The lawsuit of O'Connor v. Uber Technologies Inc.",

@@ -236,7 +236,7 @@
     <!--Enter comment form-->
     <section id="enter_comment_bg">
         <% if(user) {%>
-        <form id="enter_comment" action = "../new-contribution/" method = "post" onsubmit = "return validateComment()">
+        <form id="enter_comment" action = "../new-contribution/" method = "post">
             <input type="hidden" name="name" value="<%=editor.name%>">
             <input type="hidden" name="author" value = "<%=user.username%>">
             <textarea class = "comment-field" name="comment" placeholder="Your comment here..."></textarea><br>

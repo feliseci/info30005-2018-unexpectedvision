@@ -157,12 +157,7 @@ function addSource(type) {
 }
 
 function validateComment() {
-    //TODO dynamically only allow comment to be submitted once a certain length
-    // (constant check function) once length > ...  <submit> valid
-    // if length > ... <p id="warning"></p> .innerHTML = "Comment too long by xChars!"
-    // if length > ... <p id="warning"></p> .innerHTML = "Comment too short by xChars!"
-    alert("testing comment");
-    let form = document.getElementsByClassName("comment-field");
+    let form = document.getElementsByClassName("enter_comment");
     // Check all fields have been completed
     for(i = 0; i < form.length; i++) {
         if(form[i].value.length === 0) {
@@ -171,12 +166,11 @@ function validateComment() {
         }
     }
 
-     // TODO: CODE IS NOT TESTING THIS BIT. not sure why - the alert isn't made
     // Check length of comment
     let comment = document.querySelector("input[name=comment]").value;
-    alert("hey");
+
     if(comment.length < 6) {
-        alert("less than 6 characters")
+        alert("less than 6 characters");
         document.getElementById("error").innerHTML = "*Comment must be at least 6 characters.";
         return false;
     }
@@ -193,7 +187,7 @@ function validateComment() {
         document.getElementById("error").innerHTML = "*Invalid URL.";
         return false;
     }
-} // TODO integrate with current comment form
+}
 
 function validateOpportunity() {
 

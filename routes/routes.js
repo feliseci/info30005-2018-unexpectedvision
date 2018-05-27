@@ -12,7 +12,6 @@ router.get('/create-account', controller.createAccount);
 
 router.get('/search/', controller.search);
 router.get('/issue/:id', controller.issue);
-router.get('/comments/:id', controller.loadContributions); // TODO temporary
 router.get('/opportunity/:id', controller.opportunity);
 
 router.get('/opportunities', controller.loadOpportunities);

@@ -190,15 +190,11 @@
             </ul>
         </div>
 
-        <!-- TODO: Decide if we remove this -->
-        <!--section class = "related_opportunities bubble">
-            <h2> Related Opportunities </h2>
-            <!--%include ./partial/opportunities_sidescroll.ejs%-->
         </section>
 
     </div>
     <br>
-    <!--TODO comments section -->
+
     <!-- Comments Section -->
     <h1>Comments</h1>
     <br>
@@ -206,7 +202,7 @@
     <!-- If there are no comments -->
     <% if(comments.length == 0) {%>
     <section>
-        <p>There are no comments on this article yet!<p> <!--TODO-->
+        <p>There are no comments on this article yet!<p>
             <button id = "comment_button_centered" onclick="showCommentForm()">Comment!</button>
     </section>
 
@@ -216,8 +212,7 @@
         <!-- Render all comments on Article-->
         <% for(i = 0; i < comments.length; i++) { %>
 
-        <!-- TODO: Frida is this legit? haha or do we rename -->
-        <article id="testaroonie">
+        <article id="single_comment">
             <!--User info - links to user profile-->
             <p class = "comment_username"><a href="../profile/<%=comments[i].author%>"><%=comments[i].author%></a></p>
             <p class = "comment_description"><%=comments[i].comment%></p>
@@ -225,7 +220,6 @@
             <p class = "preview_test"><a href="<%=comments[i].article_url%>">See Article</a></p>
         </article>
 
-        <!-- TODO: are these necessary? -->
         <% }
         if(comments.length%3==2) {%>
         <article id = "invisible"></article>
@@ -243,7 +237,7 @@
     <section id="enter_comment_bg">
         <% if(user) {%>
         <form id="enter_comment" action = "../new-contribution/" method = "post" onsubmit = "return validateComment()">
-            <input type="hidden" name="name" value="<%=editor.name%>"> <!-- TODO Use ID?-->
+            <input type="hidden" name="name" value="<%=editor.name%>">
             <input type="hidden" name="author" value = "<%=user.username%>">
             <textarea class = "comment-field" name="comment" placeholder="Your comment here..."></textarea><br>
             <input class = "comment-field" type="text" name="article_url" placeholder="URL to an article">

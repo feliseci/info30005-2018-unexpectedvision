@@ -393,7 +393,7 @@
     margin: 0;
     font-size: 13px;
 }
-#search_bar_small button {   /*TODO: Clean*/
+#search_bar_small button {
     display: inline-block;
     margin: 0;
     border: none;
@@ -538,18 +538,18 @@
 #contributions_grid article {
     background-color: #e6f7e8; /*3e5b4a for dark bg*/
     padding: 20px;
-} /*TODO original*/
+}
 
-#testaroonie {
+#single_comment {
     background-color: #e6f7e8; /*3e5b4a for dark bg*/
     padding: 20px 20px 12% 20px;
     position: relative;
     min-height: 200px;
-} /*TODO temp fix for comments on issue page*/
+}
 
-#testaroonie .comment_description {
+#single_comment .comment_description {
     margin-bottom: 10%;
-} /*TODO temp fix for comments on issue page*/
+}
 
 .comment_username {
     text-align: start;
@@ -564,7 +564,7 @@
     height: 10%;
 /*    top: 80%;*/
 /*    position: absolute;*/
-} /*TODO original*/
+}
 
 .preview_test {
     background-color: #ace5b3;
@@ -574,7 +574,7 @@
     bottom: 0;
     left: 10%;
     position: absolute;
-} /*TODO temp fix for comments on issue page*/
+}
 
 .comment_description {
     text-align: start;
@@ -583,7 +583,7 @@
     background-color: white;
     color: grey;
     border-radius: 10px;
-} /*TODO original */
+}
 
 #invisible {
     visibility: hidden;
@@ -684,7 +684,6 @@
     border-radius: 3px;
     padding: 0 20px 0 20px;
     background-color: white;
-    /* TODO Find appropriate size */
     font-size: medium;
     background-image: url(https://png.icons8.com/metro/1600/search.png);
     background-repeat: no-repeat;

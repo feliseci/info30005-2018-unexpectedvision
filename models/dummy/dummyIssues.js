@@ -27,7 +27,7 @@ const dummyIssues = [
         date_post: new Date(2018,5,3,13),
         date_update: new Date(2018,5,3,13),
         popularity: 6,
-        categories: ["privacy", "internet"], // TODO more appropriate images, articles
+        categories: ["privacy", "internet"],
         hl_source: [
             {link: "https://www.theage.com.au/sport/afl/afl-to-keep-close-watch-on-dip-in-scoring-20180503-p4zd9g.html", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"},
             {link: "https://www.theage.com.au/national/victoria/hurstbridge-trains-back-on-track-from-friday-20180503-p4zd6h.html", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"}],

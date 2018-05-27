@@ -47,12 +47,13 @@
         <article class = "recent_issue">
             <figure>
                 <figcaption><h3>RECENT</h3></figcaption>
-
                     <section>
+                        <!-- Image of Article links to Article -->
                         <a href="<%="../issue/" + recent_issue.url%>">
                         <img src = "<%= recent_issue.image%>" alt = "Recent issue - <%= recent_issue.name%>">
                         <h4><%= recent_issue.name%></h4>
                         </a>
+                        <!-- Preview Description of Recent Issue -->
                         <section><p><%= recent_issue.description.substring(0,300)%>
                                 <%if(recent_issue.description.length > 300) {%>...
                                 <%}%></p></section>
@@ -65,10 +66,12 @@
             <figure>
                 <figcaption><h3>POPULAR</h3></figcaption>
                     <section>
+                        <!-- Image of Article links to Article -->
                         <a href="<%="../issue/" + popular_issue.url%>">
                             <img src = "<%= popular_issue.image%>" alt = "Popular issue - <%= popular_issue.name%>">
                             <h4><%= popular_issue.name%></h4>
                         </a>
+                        <!-- Preview Description of Popular Issue -->
                         <section><p><%= popular_issue.description.substring(0,300)%>
                             <%if(popular_issue.description.length > 300) {%>...
                             <%}%></p></section>
@@ -81,11 +84,15 @@
         <article style = "grid-area: <%=String.fromCharCode('c'.charCodeAt(0) + i)%>;" id="more_issues">
             <figure>
                 <section>
+                    <!-- Image of Article links to Article -->
                     <a href="<%="../issue/" + more_issues[i].url%>">
                         <img src = "<%= more_issues[i].image%>" alt = "Issue - <%= more_issues[i].name%>">
                         <h4><%= more_issues[i].name%></h4>
                     </a>
-                    <section><p><%= more_issues[i].description%></p></section>
+                    <!-- Preview Description of Additional Issues -->
+                    <section><p><%= more_issues[i].description.substring(0,300)%>
+                            <%if(popular_issue.description.length > 300) {%>...
+                            <%}%></p></section>
                 </section>
             </figure>
         </article>

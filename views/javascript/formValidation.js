@@ -144,7 +144,7 @@ function addSource(type) {
         // Reset the values of all the inputs
         newSource.querySelector("select[name=source_type]").value = "hl";
         newSource.querySelector("input[name=link]").value = "";
-        newSource.querySelector("input[name=article_description]").value = "";
+        newSource.querySelector("textarea[name=article_description]").value = "";
     }
     else {
         let source = container.childNodes[1];
@@ -222,7 +222,7 @@ function validateOpportunity() {
     if(!regexpImage.test(image)) {
         document.getElementById("error").innerHTML = "Invalid image url: must be an Unsplash source URL.";
         return false;
-    }
+    }*/
 
     // Check link to further info is a link
     let regexpURL = /http[s]*:\/\/[^\s]+/;
@@ -240,6 +240,12 @@ function validateOpportunity() {
 function checkCompleted(form) {
 } // Helper function
 
+
+/*Sourced from: https://stackoverflow.com/questions/9714525/javascript-image-url-verify
+* Credit to: jfriend00*/
+function checkURL(url) {
+    return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
+}
 
 
 

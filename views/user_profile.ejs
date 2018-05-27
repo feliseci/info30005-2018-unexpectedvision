@@ -71,32 +71,46 @@
             <% for(i=0; i < profile.updates.length; i++) { %>
                 <li><%- processUpdate(profile.updates[i])%></li>
             <% } if(profile.updates.length === 0) {%>
-                <p>You don't have any recent activity! Perhaps you haven't followed any articles or editors?</p>
+                <p>You don't have any recent activity! Perhaps you haven't bookmarked or followed
+                    any articles or editors?</p>
             <%}%>
             </ul>
         </div>
     <%}%>
 
-    <!-- TODO: How many followers does an editor have -->
-    <% if(user && user.is_editor) { %>
+    <% if(profile.is_editor) { %>
     <h1 class = "titlestyle"> - Verified Editor - </h1>
         <div class = "item1style bubble">
+
+            <!-- How many followers does an editor have -->
             <h1> Followers </h1>
             <ul style="text-align: left;">
+                <% for(i=0; i < profile.followingUsers.length; i++) { %>
+                <li><a href="../profile/<%=profile.followingUsers[i]%>"><%=profile.followedUsers[i]%></a></li>
+                <% } if(profile.followedUsers.length === 0) {%>
+                <p>This user isn't followed by anyone yet!</p>
+                <%}%>
             </ul>
         </div>
 
-        <!-- TODO: How many articles does an editor have -->
+        <!-- How many articles does an editor have -->
         <div class = "item1style bubble">
             <h1> Created Articles </h1>
             <ul style="text-align: left;">
-                <%/**/%>
+                <% for(i=0; i < profile.articles.length; i++) { %>
+                <li><a href="../issue/<%=profile.articles[i].id%>"><%=profile.articles[i].articleName%></a> -
+                <i><%=profile.articles[i].description.substr(0,50) + "..."%></i></li>
+                <% } if(profile.articles.length === 0) {%>
+                <p>This editor hasn't created any articles yet!</p>
+                <%}%>
             </ul>
         </div>
     <%}%>
 
     <h1 class = "titlestyle"> - User Activity - </h1>
         <div class = "item1style bubble">
+
+            <!-- Issues liked by this user -->
             <h1> Liked Articles</h1>
             <ul style="text-align: left;">
                 <% for(i=0; i < profile.likes.length; i++) { %>
@@ -107,6 +121,7 @@
             </ul>
         </div>
 
+        <!-- Editors this user follows -->
         <div class = "item1style bubble">
             <h1> Followed Editors</h1>
             <ul style="text-align: left;">
@@ -118,6 +133,7 @@
             </ul>
         </div>
 
+        <!-- Bookmarks by this user (private) -->
         <%if(user && (user.username === profile.username)) {%>
         <div class = "item1style bubble">
             <h1> Bookmarked Articles</h1>

@@ -666,8 +666,7 @@
     border: solid;
     border-radius: 3px;
     padding: 0 20px 0 20px;
-    color: white;
-    background: white;
+    background-color: white;
     /* TODO Find appropriate size */
     font-size: medium;
     background-image: url(https://png.icons8.com/metro/1600/search.png);

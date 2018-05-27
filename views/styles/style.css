@@ -104,6 +104,10 @@ textarea {
     resize: none;
 }
 
+div{
+    position: relative;
+}
+
 /* High-use general styling*/
 .text_shadow {
     text-shadow: 2px 2px grey;

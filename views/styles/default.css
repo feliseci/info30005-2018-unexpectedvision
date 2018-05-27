@@ -1,9 +1,8 @@
-/* Navigation Bar*/
-/* Navigation Bar Styling */
-
-#myNav{
-    min-width: 900px;
-}
+/* Navigation Bar
+ Sourced from: https://www.youtube.com/watch?v=rgUp302f_lY
+ Credit: mmtuts
+ Edited by: Jenny Croft
+ */
 
 nav.topnav {
     width: 100%;
@@ -35,7 +34,7 @@ nav.topnav ul li {
     text-transform: uppercase;
     float: left;
     list-style: none;
-    position: relative; /* allows position absolute for the inside items */
+    position: relative;
 }
 
 nav.topnav ul li a {
@@ -75,52 +74,24 @@ nav.topnav ul li ul li a {
 
 nav.topnav ul li ul li a:hover{
     padding: 8px 14px;
-    background-color: #00af78; /*TODO: change gross green colour */
+    background-color: #00af78;
 }
 
 nav.topnav p a img{
     width: 30px;
     filter: brightness(0) invert(1);
 }
+/* End mmtuts' credited content*/
 
-.icon {
-    position: relative;
-    top:2px;
-    height: 13px;
+/* Prevents navigation from overflowing when window is resized*/
+#myNav{
+    min-width: 900px;
 }
 
-/* Sticky Footer */
-.footer {
-    background-color: #D4D4D4;
-    flex-shrink: 0;
-    color: black;
-    padding: 1.5px;
-    font-size: 60%;
-}
-
-.content {
-    flex:1 0 auto;
-    padding-bottom: 20px;
-}
-
-#container {
-    width: 100%;
-    margin: 0 auto;
-}
-
-div{
-    position: relative;
-}
-
-/* Positions triangle to be inline with text */
-.logo{
-    top:8%;
-    right:115px;
-    height:0.8em;
-}
-
-/* Enable functionality of Dropdown Menu
- Credit:
+/* Enables functionality of Dropdown Menu
+ Sourced from: https://www.youtube.com/watch?v=rgUp302f_lY
+ Credit: mmtuts
+ Edits by: Jenny Croft
  */
 .dropbtn {
     background-color: #3498DB;
@@ -166,8 +137,46 @@ div{
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
 
+/* End mmtuts' credited content */
 
-/* Sticky Navigation Bar*/
+/* Sizes Profile Icon in Navigation Bar*/
+.icon {
+    position: relative;
+    top:2px;
+    height: 13px;
+}
+/* Sticky Footer
+ Sourced from: https://css-tricks.com/couple-takes-sticky-footer/
+ Edited by Jenny Croft
+ */
+.footer {
+    background-color: #D4D4D4;
+    flex-shrink: 0;
+    color: black;
+    padding: 1.5px;
+    font-size: 60%;
+}
+
+/* Used to position footer to the bottom of the window - underneath main content*/
+.content {
+    flex:1 0 auto;
+    padding-bottom: 20px;
+}
+
+/*End Sticky Footer*/
+
+/* Drop Down Icon*/
+.drop-icon{
+    width:20px;
+    transform:rotate(180deg);
+    filter:brightness(0) invert(1);
+}
+
+
+/* Sticky Navigation Bar
+Sourced from: https://www.w3schools.com/howto/howto_js_sticky_header.asp
+Edited by: Jenny Croft
+*/
 /* The sticky class is added to the header with JS when it reaches its scroll position */
 .sticky {
     position: fixed;
@@ -182,6 +191,9 @@ top of the page (position:fixed and top:0) */
     padding-top: 60px;
 }
 
+/*End W3Schools credited content*/
+
+/* Log In/Out Button*/
 #login_nav{
     position: absolute;
     top: 12px;

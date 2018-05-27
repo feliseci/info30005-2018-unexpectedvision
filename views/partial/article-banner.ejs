@@ -1,3 +1,4 @@
+<!-- Article Banner rendered on every Article Page -->
 
 <%
 // Find the given issue in the likes of the issue (move to backend?)
@@ -24,16 +25,21 @@ if(user && liked_post === true) {
 }
 %>
 
-<!-- Article Banner rendered on Article Pages -->
 <div class = "banner">
+    <!-- Banner Image -->
     <img src = "<%=editor.image%>" class = "banner-image">
+    <!-- Article Title & Editor Name -->
     <div class = 'centered'><h1 class = "white_text font_400 text_shadow"><%= editor.name %></h1>
-        <h2 class = "white_text text_shadow"> By <em><a href="../profile/<%= editor.author%>" style="color: white"><%= editor.author%></a> &nbsp;</em>
 
-            <!-- Follow creator option; see draft -->
-            <button id = "followButton" onclick = "interactButtons(this.id)"> Follow </button></h2>
+        <!-- Able to click through to Editor Public Profile -->
+        <h2 class = "white_text text_shadow"> By <em><a href="../profile/<%= editor.author%>">
+                    <%= editor.author%></a>&nbsp;</em></h2>
+        <!-- Follow Editor Functionality-->
+        <button id = "followButton" onclick = "interactButtons(this.id)"> Follow </button></h2>
         <h3 class =  "white_text text_shadow"><em> <%= editor.date_post%></em></h3>
     </div>
+
+    <!-- Interaction Buttons -->
     <div id = "interaction_buttons" class = "bubble">
         <button id = "likeButton" class = "likeOff" onclick= "interactButtons(this.id)">  </button>
         <button id = "bookmarkButton" class = "bookmarkOff"  onclick = "interactButtons(this.id)"></button>

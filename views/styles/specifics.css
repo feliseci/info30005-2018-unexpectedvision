@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
 @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans');
 
-/* Index Page */
+/*** Index Page ***/
 #landing {
     height: 100%;
     background: url('../images/landing.jpg');
@@ -83,7 +83,8 @@
     width: 100%;
 }
 
-/*Account Pop Ups on Index Page*/
+/*Account Pop-Up on Index Page*/
+/* Darkens background of screen to show emphasise account pop-up*/
 #account-popup-bg {
     height: 100%;
     width: 100%;
@@ -95,6 +96,7 @@
     left: 0;
 }
 
+/* Create Account Pop-up*/
 #create_account {
     box-sizing: border-box;
     border-radius: 25px;
@@ -109,8 +111,8 @@
 }
 
 #create_account textarea {
-    width: 98%; /* +2% padding*/
-    height: 70%; /* 70+1+1 = 72 (28) -1 -> 27*/
+    width: 98%;
+    height: 70%;
     background-color: #edf9f3;
 }
 
@@ -136,6 +138,7 @@
     color: #696969;
 }
 
+/* Input Fields on Forms for Account*/
 .account {
     display: block;
     border-radius: 2px;
@@ -147,6 +150,7 @@
     font-size: large;
 }
 
+/* Log In Section*/
 #login {
     position: absolute;
     top: 70%;
@@ -165,7 +169,7 @@
     margin-left: 27px;
 }
 
-/* Homepage */
+/*** Homepage ***/
 .hero_image {
     background-image: url("../images/telescope-landscape.jpeg");
     height: 400px;
@@ -189,6 +193,7 @@
     text-shadow: 3px 3px white;
 }
 
+/* Search Tool*/
 #search {
     margin-bottom: 40px;
 }
@@ -222,7 +227,7 @@
     font-size: medium;
     text-transform: uppercase;
 }
-
+/* Suggested Issues on Homepage*/
 #suggested_issues {
     width: 80%;
     box-sizing: border-box;
@@ -238,16 +243,6 @@
     margin-left: 50px;
     align-items: center;
 }
-
-/*
-
-#more_issues {
-    display: inline-grid;
-    grid-template-areas: "article article article";
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-column-gap: 10px;
-}
-*/
 
 #suggested_issues article {
     border: groove;
@@ -286,7 +281,7 @@
     text-align: center;
 }
 
-/* Search Results */
+/*** Search Results Page ***/
 #search_title h1 {
     overflow: hidden;
     text-align: center;
@@ -312,6 +307,7 @@
     margin-right: -50%;
 }
 
+/* Side bar options for Search Results Page*/
 #sidebar_page {
     display: grid;
     grid-gap: 0;
@@ -421,7 +417,7 @@
     display: inline-block;
 }
 
-/*Contributions section*/
+/*** Contributions section of Article Page ***/
 #comment_button {
     position: fixed;
     min-width: 5%;
@@ -575,6 +571,7 @@
     visibility: hidden;
 }
 
+/* General Button */
 .button {
     border: white;
     color: black;
@@ -586,6 +583,7 @@
     font-size: 16px;
 }
 
+/* Submit Button */
 .submit {
     margin-top: 30px;
     display: block;
@@ -614,6 +612,7 @@
     padding: 2px 8px;
 }
 
+/* Toggles between on and off to change colour of image when clicked*/
 .likeOn{
     background:url("../images/thumbsupTick.png");
     background-size: 30px auto;
@@ -654,7 +653,7 @@
     background-color : #08BF7E;
 }
 
-/* Opportunities Landing Page*/
+/*** Opportunities Landing Page ***/
 #opportunity_search {
     margin-left: 20%;
     margin-right: 20%;
@@ -676,10 +675,6 @@
 }
 
 #opportunity_results {
-/*    width: 90%;*/
-/*    box-sizing: border-box;*/
-/*    margin-left: 5%;
-    margin-right: 5%;*/
     display: inline-grid;
     grid-template-areas: "article article article";
     grid-column-gap: 30px;
@@ -700,7 +695,7 @@
     height: 270px;
 }
 
-/* Opportunities Template */
+/*** Opportunity Page ***/
 #event_header {
     display: inline-grid;
     grid-template-areas: "img div";
@@ -730,8 +725,6 @@
 #event_buttons {
     display: inline-block; /*To center*/
     max-width: max-content;
-/*    float:right;*/
-/*    margin-top: 50%;*/
 }
 
 #event_information {
@@ -752,7 +745,7 @@
 
 }
 
-/* Editor Template styling  */
+/*** Article Page  ***/
 .grid-container-editor{
     display: grid;
     grid-template-columns: 1fr 1fr 0 1fr 1fr;
@@ -766,6 +759,7 @@
     font-size: 15px;
 }
 
+/* Creates bubble-style visual around div*/
 div.bubble{
     vertical-align: middle;
     padding: 20px 47px;
@@ -773,7 +767,7 @@ div.bubble{
     background-color: #eaedec;
 }
 
-/* Darken and greyscale the image so we can overlay white text */
+/* Darken and greyscale the image so we can overlay white text for Article banner */
 .banner-image{
     filter: grayscale(80%);
     opacity: 2;
@@ -852,7 +846,7 @@ div.title-articlerepos{
     grid-column-end: 6;
 }
 
-/*About*/
+/*** About Page ***/
 .grid-container-thirds{
      display: grid;
      grid-template-columns: auto auto auto;
@@ -870,22 +864,6 @@ div.title-articlerepos{
     grid-column-start:1;
     grid-column-end: 4;
     border: 4px dotted #696969;
-}
-
-.titlestyle{
-    grid-column-start:2;
-    grid-column-end: 3;
-    color : #00CC8C;
-}
-
-.formstyle{
-    box-sizing: border-box;
-    border-radius: 25px;
-    border: 6px dotted #E59A3F;
-    position: relative;
-    background-color: white;
-    padding: 1%;
-    text-align: left;
 }
 
 .grid-container-thirds header.header{
@@ -908,7 +886,24 @@ div.title-articlerepos{
 }
 
 
-/* Forms and Applications */
+/*** Forms and Applications ***/
+.titlestyle{
+    grid-column-start:2;
+    grid-column-end: 3;
+    color : #00CC8C;
+}
+
+.formstyle{
+    box-sizing: border-box;
+    border-radius: 25px;
+    border: 6px dotted #E59A3F;
+    position: relative;
+    background-color: white;
+    padding: 1%;
+    text-align: left;
+}
+
+/* Input Fields for Forms */
 .form-input{
     border-radius: 2px;
     padding: 12px 20px;
@@ -919,10 +914,13 @@ div.title-articlerepos{
     font-family: "IBM Plex Sans", sans-serif;
     font-size: large;
 }
+
+/* Description Textarea for Forms*/
 #description-input{
     height:450px;
 }
 
+/* Article Type Selector in Create Article Page */
 #selector-input {
     width:132px;
     background-color: #E59A3F;
@@ -930,6 +928,7 @@ div.title-articlerepos{
     font-size:15px;
 }
 
+/* CSS Grid for Article Repository in Create Article Page  */
 .grid-container-repos{
     box-sizing: border-box;
     display: inline-grid;
@@ -949,6 +948,8 @@ div.title-articlerepos{
     grid-column-start: 2;
     grid-column-end: 3;
 }
+
+/* Button add another Category or Article Link in Create Article Page*/
 .add{
     padding: 15px 18px;
     background-color: #00CC8C;

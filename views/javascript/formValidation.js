@@ -216,9 +216,14 @@ function validateOpportunity() {
         return false;
     }
 
-    // Check image is a link to Unsplash TODO other sites
-    let image = document.querySelector("textarea[name=image]").value;
-    let regexpImage = /https:\/\/source.unsplash.com\/[^\s]+/;
+    // Check image is a link is an image format
+    let image = document.querySelector("input[name=image]").value;
+    if(!checkURL(image)){
+        return false;
+    }
+
+
+    /*let regexpImage = /https:\/\/source.unsplash.com\/[^\s]+/;
     if(!regexpImage.test(image)) {
         document.getElementById("error").innerHTML = "Invalid image url: must be an Unsplash source URL.";
         return false;

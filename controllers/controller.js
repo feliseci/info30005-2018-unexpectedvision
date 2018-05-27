@@ -330,16 +330,52 @@ module.exports.createArticle = function (req, res) {
     res.render('create_article', {user: req.user});
 };
 module.exports.newIssue = function (req, res) {
+    let hlSource = [];
+    let rSource = [];
+    let oSource = [];
+
+    // Construct the source objects
+    for(i = 0; i < req.body.source_type.length; i++) {
+        console.log(req.body.source_type);
+
+        let type = req.body.source_type[i];
+
+        console.log("Type "  + type);
+
+        let link = req.body.link[i];
+        let description = req.body.article_description[i];
+        if(type === "hl") {
+            hlSource.push({
+                description: description,
+                link: link
+            });
+        } else if(type === "r") {
+            rSource.push({
+                description: description,
+                link: link
+            });
+        } else if(type === "o") {
+            oSource.push({
+                description: description,
+                link: link
+            });
+        } else {
+            // Error
+            res.sendStatus(400);
+        }
+
+    }
+
     // Get the entered details for the new issue from the URL
     let newIssue = new Issue({
-        "name": req.query.name,
-        "author": req.query.author,
-        "description": req.query.description,
-        "image": req.query.image,
-        "hl_source": req.query.hl_source,
-        "r_source": req.query.r_source,
-        "o_source": req.query.o_source,
-        "categories": req.query.c_source
+        "name": req.body.name,
+        "author": req.body.author,
+        "description": req.body.description,
+        "image": req.body.image,
+        "hl_source": hlSource,
+        "r_source": rSource,
+        "o_source": oSource,
+        "categories": req.body.c_source
     });
 
     // Add the new issue to the DB
@@ -371,7 +407,12 @@ module.exports.newContribution = function (req, res) {
 
 };
 module.exports.createOpportunity = function (req, res) {
-    res.render('opportunities_form', {user: req.user});
+    if(!req.user) {
+        // TODO better redirect
+        res.redirect('../home'); // Not allowed to visit this page as a non-user
+        return;
+    }
+    res.render('create_opportunity', {user: req.user});
 };
 module.exports.newOpportunity = function (req, res) {
     // Get the entered details for the new opportunity from the URL
@@ -388,7 +429,7 @@ module.exports.newOpportunity = function (req, res) {
     // Add the new opportunity to the DB
     newOpportunity.save(function(err,newOpportunity) {
         if(!err) {
-            res.send(newOpportunity); // TODO replace with appropriate render
+            res.redirect('../opportunity/' + newOpportunity._id);
             console.log("New opportunity sent.");
         } else{
             res.sendStatus(400);
@@ -428,7 +469,7 @@ module.exports.resetDB = function (req, res) {
 
     // Add the dummy data to each collection
 /*    resetIssues();*/
-    resetOpportunities();
+    // resetOpportunities();
 /*    resetUsers();*/
 
     res.send("Database reset!");
@@ -504,7 +545,9 @@ resetUsers = function (req, res) {
             "display_name": dummyUsers[i].display_name,
             "profile_description": dummyUsers[i].profile_description,
             "email": dummyUsers[i].email,
-            "is_editor": dummyUsers[i].is_editor
+            "is_editor": dummyUsers[i].is_editor,
+            "followedUsers": dummyUsers[i].followedUsers,
+            "bookmarks": dummyUsers[i].bookmarks
         });
 
         User.register(newUser, dummyUsers[i].password, function(err) {
@@ -554,12 +597,98 @@ module.exports.userProfile= function (req, res) {
             display_name: user.display_name,
             profile_description: user.profile_description,
             likes: user.likes,
-            followed_users: user.followed_users,
-            followed_articles: user.followed_articles,
+            followedUsers: user.followedUsers,
+            bookmarks: user.bookmarks,
             posts: user.posts
         };
 
         res.render('user_profile', {profile: userDetails, user: req.user});
 
     });
+};
+
+module.exports.likeIssue = function (req, res) {
+    let id = req.body.id;
+    let like = {
+        id: Number(req.body.id),
+        name: req.body.issueName
+    };
+    let username = req.body.username;
+    let add = Number(req.body.type);
+
+    // Update the given issue's popularity
+    Issue.findOneAndUpdate({_id: id}, {$inc: {popularity: add}}, function(err) {
+        if (err) { res.sendStatus(409); return; }
+        console.log("Popularity changed.");
+
+        // Add the like
+        if(add === 1) {
+            User.findOneAndUpdate({username: username}, {$push: {"likes": like}}, function(err) {
+                if (err) { res.sendStatus(409); return; }
+                console.log("Added to likes.");
+
+                // The browser's user object is updated by fetching an updated user in deserializeUser, which
+                // is called at each HTTP request
+            });
+        }
+        // Alternatively, remove the like
+        else {
+            User.findOneAndUpdate({username: username}, {$pull: {"likes": {id: like.id}}}, function(err) {
+                if (err) { res.sendStatus(409); return; }
+                console.log("Removed from likes.");
+            });
+        }
+
+    });
+};
+module.exports.bookmarkIssue = function (req, res) {
+    let bookmark = {
+        id: Number(req.body.id),
+        name: req.body.issueName
+    };
+    let username = req.body.username;
+    let add = Number(req.body.type);
+
+    // Add the bookmark
+    if(add === 1) {
+        User.findOneAndUpdate({username: username}, {$push: {"bookmarks": bookmark}}, function(err) {
+            if (err) { res.sendStatus(409); return; }
+            console.log("Added to bookmarks.");
+            });
+    }
+    else {
+        // Alternatively, remove the bookmark
+        User.findOneAndUpdate({username: username}, {$pull: {"bookmarks": {id: bookmark.id}}}, function(err) {
+            if (err) { res.sendStatus(409); return; }
+            console.log("Removed from bookmarks.");
+        });
+    }
+};
+module.exports.followEditor = function (req, res) {
+    let editor = req.body.editor;
+    let username = req.body.username;
+    let add = Number(req.body.type);
+
+    if(add === 1) {
+        User.findOneAndUpdate({username: editor}, {$push: {followingUsers: username}}, function(err) {
+            if (err) { res.sendStatus(409); return; }
+            console.log("Following user added.");
+
+            User.findOneAndUpdate({username: username}, {$push: {followedUsers: editor}}, function(err) {
+                if (err) { res.sendStatus(409); return; }
+                console.log("Added to followed.");
+            });
+        });
+    } else {
+        User.findOneAndUpdate({username: editor}, {$pull: {followingUsers: username}}, function(err) {
+            if (err) { res.sendStatus(409); return; }
+            console.log("Following user removed.");
+
+            User.findOneAndUpdate({username: username}, {$pull: {followedUsers: editor}}, function(err) {
+                if (err) { res.sendStatus(409); return; }
+                console.log("Removed from followed.");
+            });
+        });
+
+    }
 };

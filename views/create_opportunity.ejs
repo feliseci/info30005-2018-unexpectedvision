@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Create an Event! </title>
+    <link href="/styles/style.css" type="text/css" rel="stylesheet">
+    <link href="/styles/specifics.css" type="text/css" rel="stylesheet">
+    <link href="/styles/default.css" type = "text/css" rel="stylesheet">
+    <script src = "./javascript/formValidation.js"></script>
+    <!-- Used to make Navigation Bar Sticky -->
+    <script src = "./javascript/sticky_nav.js"></script>
+</head>
+<body>
+
+<!--Site title-->
+<% include ./partial/navbar.ejs%>
+
+<p>Create a new opportunity.</p>
+<form id="opportunity_form" action = "../new-opportunity/" method = "post" onsubmit="validateOpportunity()">
+    <input type="hidden" name="organiser" value = "<%=user.username%>">
+    Opportunity Name:<input type="text" name="name">
+    Description:<input type="text" name="description">
+    Image URL:<input type="text" name="image">
+    <% /*
+    // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date
+    let date = new Date(2018,0,9);
+    let month;
+    let day;
+    if(date.getMonth() < 9) {
+        month = '0' + (date.getMonth()+1);
+    }
+    if(date.getDate() < 10) {
+        day = '0' + (date.getDate());
+    }
+
+    (HTML:     Date of the Event: <input type="date" name="date" min="  dateString ">)
+    let dateString = date.getFullYear() + "-" + month + '-' + day;
+/!*    let dateString = date.getFullYear() + "-" + month + '-' + date.getDate();*!/
+    console.log(dateString);*/%>
+    Date of the Event: <input type="date" name="date">
+    Location: <input type="text" name="location">
+    Link for further info: <input type="text" name="further_info">
+    <!--TODO categories-->
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>

@@ -12,22 +12,70 @@
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
 
     <!-- Javascript files -->
-    <script src = "/javascript/changeColor.js"></script>
+    <script src = "../javascript/interactButtons.js"></script>
     <!--script src = "../javascript/op_scroll.js"></script>
     <!-- Used to make Navigation Bar Sticky -->
     <script src = "../javascript/sticky_nav.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <script>
+        <% // Get the initial state of every button
+        let likedPost = false;
+        let bookmarkedPost = false;
+        let followedEditor = false;
+        function findLikes(likes, id) {
+            for(i=0; i<likes.length;i++) {
+                if(likes[i].id === id) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        if(user) {
+            likedPost = findLikes(user.likes, editor._id);
+            // Bookmark structure is the same so use the same method
+            bookmarkedPost = findLikes(user.bookmarks, editor._id);
+            if(user.followedUsers.indexOf(editor.author) !== -1) {
+                followedEditor = true;
+            }
+        }
+
+        // Set the buttons to the DB-appropriate state using jQuery
+        if(likedPost === true) {%>
+            $(document).ready(function () {
+                changeColour("likeButton");
+            });
+        <%} if(bookmarkedPost === true) { %>
+            $(document).ready(function () {
+                changeColour("bookmarkButton");
+            });
+        <%} if(followedEditor === true) { %>
+            $(document).ready(function () {
+                changeColour("followButton");
+            });
+        <%} %>
+
         function showCommentForm() {
             let form = document.getElementById("enter_comment_bg");
             form.style.display="block";
         }
 
+        function showError() {
+            let form = document.getElementById("error_popup_bg");
+            form.style.display="block";
+        }
+
         window.onclick = function(event) {
-            let form = document.getElementById("enter_comment_bg");
-            if (event.target === form) {
-                form.style.display = "none";
+            let formComment = document.getElementById("enter_comment_bg");
+            let formError = document.getElementById("error_popup_bg");
+            if (event.target === formComment) {
+                formComment.style.display = "none";
+            } else if(event.target === formError) {
+                formError.style.display = "none";
             }
         }
+
     </script>
 
     <!-- Name of Article -->
@@ -43,12 +91,51 @@
 <!-- Used to make footers sticky -->
 <div class = "content">
 
+    <section id="error_popup_bg">
+        <section id="error_popup">
+            <h4>Wait a moment!</h4>
+            <p>To like, follow or bookmark, you need to be a user first.</p>
+            <p><a href="../create-account">Click here to go to the create account page.</a></p>
+            <p><a href="../login">Click here to login.</a></p>
+        </section>
+    </section>
+
 
     <div class = "grid-container-editor">
 
         <!-- Article Banner -->
         <header class = "header">
-            <% include ./partial/article-banner.ejs%>
+
+            <!-- Article Banner rendered on Article Pages -->
+            <div class = "banner">
+                <img src = "<%=editor.image%>" class = "banner-image">
+                <div class = 'centered'><h1 class = "white_text font_400 text_shadow"><%= editor.name %></h1>
+                    <h2 class = "white_text text_shadow"> By <em><a href="../profile/<%= editor.author%>" style="color: white"><%= editor.author%></a> &nbsp;</em>
+
+                        <!-- Follow creator option; see draft -->
+                        <% let arguments;
+                        if(!user) {%>
+                            <button id = "followButton" onclick = "showError()"> Follow </button>
+                        <%}
+                        else {
+                            // Define the arguments to be used in each button onClick.
+                            arguments = user.username + "\", " + JSON.stringify(editor); %>
+                            <button id = "followButton" onclick = "interactButtons(<%="\"followButton\", \"" + arguments%>)"> Follow </button>
+                        <%}%>
+                    </h2>
+                    <h3 class =  "white_text text_shadow"><em> <%= editor.date_post%></em></h3>
+                </div>
+                <div id = "interaction_buttons" class = "bubble">
+                    <%if(!user) { %>
+                    <button id = "likeButton" class = "likeOff" onclick= "showError()"></button>
+                    <button id = "bookmarkButton" class = "bookmarkOff"  onclick = "showError()"></button>
+                    <%} else {%>
+                        <button id = "likeButton" class = "likeOff" onclick= "interactButtons(<%="\"likeButton\", \"" + arguments%>)"></button>
+                        <button id = "bookmarkButton" class = "bookmarkOff"  onclick = "interactButtons(<%="\"bookmarkButton\", \"" + arguments%>)"></button>
+                    <%}%>
+                </div>
+            </div>
+
         </header>
 
         <!-- Information for User to assess whether to read the article at a glance -->
@@ -71,7 +158,7 @@
                 <%= editor.author%>'s Resource Repository <img src = "../images/downwards-arrow-key.png" style = "float:right; width:28px"> </h1>
         </div>
 
-        <div class = "psst bubble">
+        <div class = "tips bubble">
             <h3 class = "darkgray_text"> <em>Tips to navigate by the Site Creators</em></h3>
             <p class = "darkgray_text"> If you are unfamiliar with an issue try starting with <em>High Level Perspectives</em>
             to get an overview of what the issue is about, from there feel free to investigate

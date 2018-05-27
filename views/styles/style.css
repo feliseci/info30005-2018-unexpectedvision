@@ -7,16 +7,16 @@
 
 header {
     font-size: 90%;
-    margin-top:0;
-    padding:5px;
+    margin-top: 0;
+    padding: 5px;
 }
 
 h1 {
     font-family: 'Encode Sans Condensed', sans-serif;
     color: #000000;
     margin-bottom: 0;
-    margin-top:0;
-    font-size:xx-large;
+    margin-top: 0;
+    font-size: xx-large;
 
 }
 
@@ -50,6 +50,8 @@ body {
     font-family: "IBM Plex Sans", sans-serif;
     color: black;
     margin: 0;
+    overflow-x: hidden;
+
 }
 
 body, html {
@@ -77,6 +79,7 @@ button {
     border: none;
     font-family: Arial, serif;
 }
+
 button:hover {
     background-color: darkgrey;
     cursor: pointer;
@@ -97,9 +100,11 @@ hr {
     border-width: 1px;
 }
 
+textarea {
+    resize: none;
+}
 
 /* High-use general styling*/
-
 .text_shadow {
     text-shadow: 2px 2px grey;
 }
@@ -108,6 +113,7 @@ hr {
 .white_text{
     color:#ffffff;
 }
+
 .gray_text{
     color: #D3D3D3;
 }

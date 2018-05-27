@@ -34,11 +34,12 @@
 <!--Search button-->
 <section id = "search">
     <h2>Search for a topic!</h2>
+    <h4 class = "darkgray_text"><i> or press the 'Random' Button for a surprise article</i></h4>
     <form action = "../search/" method = "get">
         <input type="text" placeholder="Enter an issue..." name="query"/>
         <input type="hidden" name="sort" value="date_update"/> <!--Default sorting: recent to old-->
         <input type="hidden" name="asc" value="true"/>
-        <a href="../random/"><button id="random_button">Random</button></a>
+        <a href="../random/"><button id="random_button" type="button">Random</button></a>
     </form>
 
 

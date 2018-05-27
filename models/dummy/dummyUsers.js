@@ -38,7 +38,9 @@ const dummyUsers = [
         profile_description: "You're welcome.",
         email: "",
         password: "???",
-        is_editor: false
+        is_editor: false,
+        followedUsers: ["Brockhampton"],
+        bookmarks: [[9, "Horse racing"]]
     }
 ];
 

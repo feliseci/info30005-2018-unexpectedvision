@@ -655,27 +655,6 @@
 }
 
 /* Opportunities Landing Page*/
-#opportunity_search {
-    margin-left: 20%;
-    margin-right: 20%;
-}
-
-#opportunity_bar {
-    width: 60%;
-    height: 30px;
-    border: solid;
-    border-radius: 3px;
-    padding: 0 20px 0 20px;
-    color: white;
-    background: white;
-    /* TODO Find appropriate size */
-    font-size: medium;
-    background-image: url(https://png.icons8.com/metro/1600/search.png);
-    background-repeat: no-repeat;
-    background-size: 18px 18px;
-    background-position: 95% center;
-}
-
 #opportunity_results {
 /*    width: 90%;*/
 /*    box-sizing: border-box;*/

@@ -9,7 +9,7 @@ function validateLogin() {
     }
 
     return true;
-} // Can also using autovalidation ("required" attribute; not on Safari?)
+}
 
 function validateUser() {
     let form = document.getElementsByClassName("account");
@@ -80,7 +80,7 @@ function validateArticle() {
         return false;
     } // The description (the editor's essay) is allowed to be long; it is manually shortened in search results etc.
 
-    // Check image is a link to Unsplash TODO other sites
+    // Check image is a link to Unsplash
     let image = document.querySelector("input[name=image]").value;
     let regexpImage = /https:\/\/source.unsplash.com\/[^\s]+/;
     if(!regexpImage.test(image)) {
@@ -132,35 +132,7 @@ function findValue(array, value) {
     return false;
 }
 
-// Adds additional text entry fields with name (type)_source to a form
-function addSource(type) {
-    let container = document.getElementById("container_"+type);
-    let newSource;
-
-    if(type==="source") {
-        let source = container.childNodes[1];
-        newSource = source.cloneNode(true);
-
-        // Reset the values of all the inputs
-        newSource.querySelector("select[name=source_type]").value = "hl";
-        newSource.querySelector("input[name=link]").value = "";
-        newSource.querySelector("input[name=article_description]").value = "";
-    }
-    else {
-        let source = container.childNodes[1];
-        newSource = source.cloneNode(true);
-    }
-
-    container.appendChild(document.createElement("br"));
-    container.appendChild(newSource);
-    // Could check for max. number of sources here by checking no. of child nodes
-}
-
 function validateComment() {
-    //TODO dynamically only allow comment to be submitted once a certain length
-    // (constant check function) once length > ...  <submit> valid
-    // if length > ... <p id="warning"></p> .innerHTML = "Comment too long by xChars!"
-    // if length > ... <p id="warning"></p> .innerHTML = "Comment too short by xChars!"
 
     // Check length of comment
     let comment = document.querySelector("input[name=comment]").value;
@@ -181,7 +153,7 @@ function validateComment() {
         document.getElementById("error").innerHTML = "Invalid URL.";
         return false;
     }
-} // TODO integrate with current comment form
+}
 
 function validateOpportunity() {
 
@@ -216,9 +188,9 @@ function validateOpportunity() {
         return false;
     }
 
-    // Check image is a link to Unsplash TODO other sites
+    // Check image is a link to Unsplash
     let image = document.querySelector("textarea[name=image]").value;
-    let regexpImage = /https:\/\/source.unsplash.com\/[^\s]+/;
+    let regexpImage = /http[s]:\/\/source.unsplash.com\/[^\s]+/;
     if(!regexpImage.test(image)) {
         document.getElementById("error").innerHTML = "Invalid image url: must be an Unsplash source URL.";
         return false;
@@ -234,12 +206,30 @@ function validateOpportunity() {
     }
 
     // Location, date not checked. (Date is auto-validated by browser)
-} // TODO categories
+}
 
-/*TODO*/
-function checkCompleted(form) {
-} // Helper function
+// Adds additional text entry fields with name (type)_source to a form
+function addSource(type) {
+    let container = document.getElementById("container_"+type);
+    let newSource;
 
+    if(type==="source") {
+        let source = container.childNodes[1];
+        newSource = source.cloneNode(true);
 
+        // Reset the values of all the inputs
+        newSource.querySelector("select[name=source_type]").value = "hl";
+        newSource.querySelector("input[name=link]").value = "";
+        newSource.querySelector("input[name=article_description]").value = "";
+    }
+    else {
+        let source = container.childNodes[1];
+        newSource = source.cloneNode(true);
+    }
+
+    container.appendChild(document.createElement("br"));
+    container.appendChild(newSource);
+    // Could check for max. number of sources here by checking no. of child nodes
+}
 
 

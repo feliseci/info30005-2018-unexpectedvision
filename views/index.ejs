@@ -19,7 +19,6 @@
         function accountCommentForm() {
             let form = document.getElementById("account-popup-bg");
             form.style.display="block";
-            console.log("hello");
         }
 
         window.onclick = function(event) {
@@ -58,8 +57,9 @@
 </section>
 
 <!-- Pop-up to create an account -->
-<section id = "account-popup-bg">
+<section id = "account-popup-bg" <%if(failure) {%>style="display:block"<%}%>>
     <form id = "create_account" action = "../create-account" method="post" onsubmit="return validateUser()">
+    <%if(! failure){%>
         <h1> Create Account </h1>
         <hr>
         <h3>Username</h3>
@@ -72,6 +72,12 @@
         <input type="email" class="account" placeholder="Enter your email address" name="email"/>
         <p id="error"></p> <!--Used for validation error messages -->
         <button type="submit" class="submit">Submit</button>
+    <%} else { %>
+        <h1> Error! </h1>
+        <p>It looks like your attempt to login or create account failed.</p>
+        <p>Login: The credentials you entered were incorrect.</p>
+        <p>Create Account: Your username was taken.</p>
+    <%}%>
     </form>
 </section>
 

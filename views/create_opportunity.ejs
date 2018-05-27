@@ -22,7 +22,7 @@
             <h1> <img src = "../images/group.png" class = "form-icons"> Create an opportunity </h1>
             <hr>
 
-    <form id="opportunity_form" action = "../new-opportunity/" method = "post" onsubmit="validateOpportunity()">
+    <form id="opportunity_form" action = "../new-opportunity/" method = "post" onsubmit="return validateOpportunity()">
         <input type="hidden" name="organiser" value = "<%=user.username%>">
 
         <h3>Opportunity Name:</h3>

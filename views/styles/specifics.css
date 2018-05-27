@@ -905,6 +905,7 @@ div.title-articlerepos{
 .about-icons {
     height:32px;
     float:left;
+    filter: brightness(0%);
 }
 
 

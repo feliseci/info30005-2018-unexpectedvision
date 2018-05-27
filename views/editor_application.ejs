@@ -5,10 +5,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> Editor Application!! </title>
+    <title> Editor Application </title>
     <link href="/styles/style.css" type="text/css" rel="stylesheet">
     <link href="/styles/specifics.css" type="text/css" rel="stylesheet">
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
+
     <!-- Used to make Navigation Bar Sticky -->
     <script src = "./javascript/sticky_nav.js"></script>
 </head>
@@ -19,31 +20,33 @@
 <% include ./partial/navbar.ejs%>
 
 <div class = "content"> <!-- Used to make footers sticky -->
+    <div class = "grid-container-thirds">
+        <br>
+        <div class = "item1style formstyle">
+            <h1> <img src = "../images/bullseye.png" class = "form-icons"> Editor Application </h1>
+            <hr>
+            <h2> <i> Are you Editor Material?</i></h2>
+            <div class = "bubble">
+                <h3> We are always looking for thoughtful, highly knowledgeable, critically minded individuals
+                    to join MultiView as Editors. <br> In order to be considered, we request the following information:</h3>
+             </div>
 
-    <!-- Maybe make this a sidebar on the left -->
-    <header>
-        <h1> Apply to be an editor!!</h1>
-    </header>
-    <h2> Are you Editor Material?</h2>
-    <p>What are we looking for?
-        <ol>
-        <li> thoughtful </li>
-        <li> experience....</li>
-        <li> something else </li>
-    </ol>
-    </p>
+        <!-- Early Stages of a form for applying to be an editor -->
+        <section id = "application">
+            <form action = "../home">
+                <h3> List your Experience </h3>
+                <textarea type = "text" class = "form-input descriptor-input" placeholder = "Include professional and academic experiences, and links to published work">
+                </textarea>
+                <h3> Why do you want to be an editor? </h3>
+                <textarea type = "text" class = "form-input descriptor-input" placeholder = "What you would bring to the role?">
+                </textarea>
+                <button type = "submit" id = "submit" class = "submit"> Submit </button>
+            </form>
+        </section>
 
-<!-- Early Stages of a form for applying to be an editor -->
-<section id = "application">
-    <form action = "../home">
-        <h3> List Experience </h3>
-        <input type = "text" class = "editor_ap" placeholder = "i.e. Articles published, blog link"/>
-        <h3> Why you wish to be an editor? </h3>
-        <input type = "text" class = "editor_ap" placeholder = "i.e. What you would bring to the role?"/>
-        <button type = "submit" id = "submit"> Submit </button>
-    </form>
-</section>
-
+        </div>
+        <br>
+</div>
 </div>
 <footer>
     <% include ./partial/footer.ejs%>

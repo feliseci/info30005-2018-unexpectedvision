@@ -181,7 +181,7 @@ function validateComment() {
         document.getElementById("error").innerHTML = "Invalid URL.";
         return false;
     }
-} // TODO integrate with current comment form
+}
 
 function validateOpportunity() {
 

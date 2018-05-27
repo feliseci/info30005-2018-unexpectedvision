@@ -9,6 +9,39 @@
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
     <!-- Used to make Navigation Bar Sticky -->
 
+    <% // Constructs the <li> tag contents based on the details of the past update object
+    function processUpdate(update) {
+
+        // Get whether the source was an issue or an editor
+        if("name" in update) {
+            // Issue
+            if(update.recent_update.updateType === "comment") {
+                let link = "<a href='../issue/" + update._id + "'>";
+                let li =  "Recent comment on issue " + link + update.name + "</a>: ";
+                let commentPreview = update.recent_update.updateContent.substring(0,40) + "...";
+                return (li + "<i>" + commentPreview + "</i>");
+            }
+
+        }
+        else if("username" in update) {
+            let username = update.username;
+            let editor = "<a href='../profile/'" + username + ">" + username + "</a>";
+
+            // Editor
+            if(update.recent_update.updateType === "comment") {
+                let link = "<a href='../issue/" + update.recent_update.updateLink + "'>";
+                let comment = update.recent_update.updateContent.substr(0,40) + "...";
+                return ("Editor " + editor + " commented on issue " + link + update.recent_update.articleName +
+                        "</a>: " + comment);
+            } else if(update.recent_update.updateType === "article") {
+                let link = "<a href='../issue/" + update.recent_update.updateLink + "'>";
+                return ("Editor " + editor + " created issue " + link + update.recent_update.articleName + "</a>");
+            } else if(update.recent_update.updateType === "opportunity") {
+                let link = "<a href='../opportunity/" + update.recent_update.updateLink + "'>";
+                return ("Editor " + editor + " created opportunity " + link + update.recent_update.articleName + "</a>");
+            }
+        }
+    }%>
 </head>
 
 <body>
@@ -27,18 +60,25 @@
             <h2> username: <%= profile.username%> </h2>
             <h2> display name: <%= profile.display_name%></h2>
             <h2> description: <%= profile.profile_description%></h2>
-            <!--TODO email private or not? -->
         </div>
 
-    <%if(user.username === profile.username) {%>
+    <%if(user && (user.username === profile.username)) {%>
         <h1 class = "titlestyle"> - Your Updates - </h1>
         <div class = "item1style bubble">
             <h1> Recent activity: </h1>
+
+            <ul style="text-align: left;">
+            <% for(i=0; i < profile.updates.length; i++) { %>
+                <li><%- processUpdate(profile.updates[i])%></li>
+            <% } if(profile.updates.length === 0) {%>
+                <p>You don't have any recent activity! Perhaps you haven't followed any articles or editors?</p>
+            <%}%>
+            </ul>
         </div>
     <%}%>
 
     <!-- TODO: How many followers does an editor have -->
-    <% if(user.is_editor) { %>
+    <% if(user && user.is_editor) { %>
     <h1 class = "titlestyle"> - Verified Editor - </h1>
         <div class = "item1style bubble">
             <h1> Followers </h1>
@@ -50,22 +90,22 @@
         <div class = "item1style bubble">
             <h1> Created Articles </h1>
             <ul style="text-align: left;">
-                <%// profile.articles%>
+                <%/**/%>
             </ul>
         </div>
     <%}%>
 
     <h1 class = "titlestyle"> - User Activity - </h1>
-    <div class = "item1style bubble">
-        <h1> Liked Articles</h1>
-        <ul style="text-align: left;">
-            <% for(i=0; i < profile.likes.length; i++) { %>
-            <li><a href="../issue/<%=profile.likes[i].id%>"><%=profile.likes[i].name%></a></li>
-            <% } if(profile.likes.length === 0) {%>
-                <p>This user hasn't liked anything yet!</p>
-            <%}%>
-        </ul>
-    </div>
+        <div class = "item1style bubble">
+            <h1> Liked Articles</h1>
+            <ul style="text-align: left;">
+                <% for(i=0; i < profile.likes.length; i++) { %>
+                <li><a href="../issue/<%=profile.likes[i].id%>"><%=profile.likes[i].name%></a></li>
+                <% } if(profile.likes.length === 0) {%>
+                    <p>This user hasn't liked anything yet!</p>
+                <%}%>
+            </ul>
+        </div>
 
         <div class = "item1style bubble">
             <h1> Followed Editors</h1>
@@ -78,6 +118,7 @@
             </ul>
         </div>
 
+        <%if(user && (user.username === profile.username)) {%>
         <div class = "item1style bubble">
             <h1> Bookmarked Articles</h1>
             <ul style="text-align: left;">
@@ -88,24 +129,27 @@
                 <%}%>
             </ul>
         </div>
+        <%}%>
 
-        <!-- TODO: How many Opportunities has a user created -->
+        <!-- Opportunities made by this user -->
         <div class = "item1style bubble">
             <h1> Created Opportunities</h1>
             <ul style="text-align: left;">
-                <% for(i=0; i < profile.posts.length; i++) { %>
-                <li>On <a href="../issue/<%=profile.posts[i][0]%>"><%=profile.posts[i][1]%></a> - <i><%=profile.posts[i][2]%></i></li>
-                <% } if(profile.posts.length === 0) {%>
-                <p>This user hasn't created an opportunities yet!</p>
+                <% for(i=0; i < profile.opportunities.length; i++) { %>
+                <li><a href="../opportunity/<%=profile.opportunities[i].link%>"><%=profile.opportunities[i].name%></a></li>
+                <% } if(profile.opportunities.length === 0) {%>
+                <p>This user hasn't made any events yet!</p>
                 <%}%>
             </ul>
         </div>
 
+        <!-- Comments by this user -->
         <div class = "item1style bubble">
             <h1> Past Comments</h1>
             <ul style="text-align: left;">
                 <% for(i=0; i < profile.posts.length; i++) { %>
-                <li>On <a href="../issue/<%=profile.posts[i][0]%>"><%=profile.posts[i][1]%></a> - <i><%=profile.posts[i][2]%></i></li>
+                <li>On <a href="../issue/<%=profile.posts[i].link%>"><%=profile.posts[i].article%></a>
+                    - <i><%=profile.posts[i].comment%></i></li>
                 <% } if(profile.posts.length === 0) {%>
                 <p>This user hasn't made any comments yet!</p>
                 <%}%>

@@ -432,11 +432,9 @@ module.exports.newContribution = function (req, res) {
         date: Date.now(),
         updateType: "comment",
         updateContent: req.body.comment,
-        updateLink: req.body.article_url,
     };
     let post = {
-        updateContent: req.body.comment,
-        updateLink: req.body.article_url,
+        comment: req.body.comment,
     }; // The permanent version
     let updateIssue = {
         date: Date.now(),
@@ -453,20 +451,24 @@ module.exports.newContribution = function (req, res) {
 
         // Add the issue name to the user activity update
         updateUser.articleName = issue.name;
+        post.article = issue.name;
+        updateUser.updateLink = issue._id;
+        post.link = issue._id;
 
         // Update the user's activity
         User.findOneAndUpdate({username: req.user.username},
             {$push: {posts: post}, $set: {recent_update: updateUser}}, function(err) {
+            console.log("Post: " + JSON.stringify(post));
 
             if (err) {
-                res.sendStatus(409);
+                res.send(err);
                 return;
             }
-            console.log("User activity updated.");
-        });
 
-        //  Redirect the user back to the issue page at the comments section
-        res.redirect('../issue/' + issue._id + '/#contributions_grid');
+            console.log("User activity updated.");
+            //  Redirect the user back to the issue page at the comments section
+            res.redirect('../issue/' + issue._id + '/#contributions_grid');
+        });
     });
 
 };
@@ -481,13 +483,13 @@ module.exports.createOpportunity = function (req, res) {
 module.exports.newOpportunity = function (req, res) {
     // Get the entered details for the new opportunity from the URL
     let newOpportunity = new Opportunity({
-        "name": req.query.name[0].toUpperCase() + req.query.name.substr(1),
-        "organiser": req.query.organiser,
-        "description": req.query.description,
-        "image": req.query.image,
-        "date_event": req.query.date,
-        "location": req.query.location,
-        "further_info": req.query.further_info
+        "name": req.body.name[0].toUpperCase() + req.body.name.substr(1),
+        "organiser": req.body.organiser,
+        "description": req.body.description,
+        "image": req.body.image,
+        "date_event": req.body.date,
+        "location": req.body.location,
+        "further_info": req.body.further_info
     });
 
     // Get the details for the user activity update
@@ -498,8 +500,7 @@ module.exports.newOpportunity = function (req, res) {
         articleName: newOpportunity.name
     };
     let opportunity = {
-        articleName: newOpportunity.name,
-        description: newOpportunity.description
+        name: newOpportunity.name
     };
 
     // Add the new opportunity to the DB
@@ -508,7 +509,7 @@ module.exports.newOpportunity = function (req, res) {
 
             // Add the issue id to the user activity update
             updateUser.updateLink = newOpportunity._id;
-            opportunity.id = newOpportunity._id;
+            opportunity.link = newOpportunity._id;
 
             // Update the user's activity
             User.findOneAndUpdate({username: req.user.username},
@@ -675,10 +676,14 @@ module.exports.userProfile = function (req, res) {
 
     // Profile is the current user's: Get the details for their wall
     if(req.user && (req.params.name === req.user.username)) {
-        let likeUpdates = [];
+        let bookmarkUpdates = [];
         let followUpdates = [];
 
-        console.log("Following: " + req.user.followedUsers);
+        // Get the list of issue IDs for the user's likes
+        let ids = [];
+        for(i=0; i < req.user.bookmarks.length; i++) {
+            ids.push(req.user.bookmarks[i].id);
+        }
 
         // Get update objects from all the user's liked issues
         User.find({username: {$in: req.user.followedUsers}}, 'username recent_update', function(err, users) {
@@ -687,46 +692,27 @@ module.exports.userProfile = function (req, res) {
                 return;
             }
 
-            console.log("Oi! Results: " + users);
-
             followUpdates = users;
 
+            // Get update objects from all the user's liked issues
+             Issue.find({_id: {$in: ids}}, '_id name recent_update', function(err, issues) {
+                 if(err) {
+                     res.sendStatus(409);
+                     return;
+                 }
+
+                 bookmarkUpdates = issues;
+
+                 updates = getRecent(bookmarkUpdates, followUpdates);
+
+                 loadProfile(req, res, updates);
+             });
         });
-
-        console.log("Oi! Updates in function: " + followUpdates);
-
-        // Get the list of issue IDs for the user's likes
-        let ids;
-        for(i=0; i < req.user.likes.length; i++) {
-            ids.push(req.user.likes[i].id);
-        }
-
-        // Get update objects from all the user's liked issues
-        Issue.find({_id: {$in: ids}}, '_id name recent_update', function(err, issues) {
-            if(err) {
-                res.sendStatus(409);
-                return;
-            }
-
-            likeUpdates = issues;
-
-        });
-
-        console.log(followUpdates);
-/*        console.log()*/
-
-        updates = getRecent(likeUpdates, followUpdates);
-/*        console.log(updates);*/
-        res.send(updates);
-
-        return;
+    } else {
+        loadProfile(req, res, []);
     }
-
-    // (Check the likes have been set with a wait function, if not just FUCK THE HELL OFF)
-
-    return;
-
-    // Profile is not the user's
+};
+function loadProfile(req, res, updates) {
     User.findOne({username: req.params.name}, function(err, user) {
         if(err) {
             res.sendStatus(409);
@@ -747,14 +733,17 @@ module.exports.userProfile = function (req, res) {
             likes: user.likes,
             followedUsers: user.followedUsers,
             bookmarks: user.bookmarks,
-            posts: user.posts
+            posts: user.posts,
+            opportunities: user.opportunities,
+            articles: user.articles,
+            updates: updates
         };
 
         res.render('user_profile', {profile: userDetails, user: req.user});
 
     });
-};
-function getRecent(editorChanges, recentComments) {
+}
+function getRecent(recentComments, editorChanges) {
     let results = editorChanges.concat(recentComments);
 
     // Sort the results

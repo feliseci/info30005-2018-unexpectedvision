@@ -14,7 +14,7 @@ const userSchema = mongoose.Schema(
         "likes": {type: Array, default: []},
         "followedUsers": {type: [String], default: []},
         "bookmarks": {type: Array, default: []},
-        "posts": {type: Array, default: []},
+        "posts": {type: Array, default: []}, // Posts the user created: {link: Number, content: String, article: String}
         "followingUsers": {type: [String], default: []},
         "articles": {type: Array, default: []}, // Articles the user created
         "opportunities": {type: Array, default: []}, // Opportunities the user created

@@ -10,8 +10,6 @@
     <!-- Used to make Navigation Bar Sticky -->
     <script src = "../javascript/sticky_nav.js"></script>
 
-    <!-- Javascript files -->
-    <script src = "/javascript/changeColor.js"></script>
 </head>
 
 <body>
@@ -27,10 +25,6 @@
     <div>
         <h1><%= opportunity.name %></h1>
         <h2>By <a href="../profile/<%=opportunity.organiser%>"><%= opportunity.organiser %></a></h2>
-        <div id = "event_buttons" class = "bubble">
-            <button id = "likeButton" class = "likeOff" onclick= "interactButtons(this.id)">  </button>
-            <button id = "bookmarkButton" class = "bookmarkOff"  onclick = "interactButtons(this.id)"></button>
-        </div>
     </div>
 
 </header>

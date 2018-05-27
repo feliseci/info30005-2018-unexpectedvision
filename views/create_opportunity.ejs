@@ -34,11 +34,11 @@
         day = '0' + (date.getDate());
     }
 
+    (HTML:     Date of the Event: <input type="date" name="date" min="  dateString ">)
     let dateString = date.getFullYear() + "-" + month + '-' + day;
 /!*    let dateString = date.getFullYear() + "-" + month + '-' + date.getDate();*!/
     console.log(dateString);*/%>
     Date of the Event: <input type="date" name="date">
-<!--    Date of the Event: <input type="date" name="date" min="<%=dateString%>">-->
     Location: <input type="text" name="location">
     Link for further info: <input type="text" name="further_info">
     <!--TODO categories-->

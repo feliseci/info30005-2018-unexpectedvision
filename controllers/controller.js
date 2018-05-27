@@ -330,16 +330,52 @@ module.exports.createArticle = function (req, res) {
     res.render('create_article', {user: req.user});
 };
 module.exports.newIssue = function (req, res) {
+    let hlSource = [];
+    let rSource = [];
+    let oSource = [];
+
+    // Construct the source objects
+    for(i = 0; i < req.body.source_type.length; i++) {
+        console.log(req.body.source_type);
+
+        let type = req.body.source_type[i];
+
+        console.log("Type "  + type);
+
+        let link = req.body.link[i];
+        let description = req.body.article_description[i];
+        if(type === "hl") {
+            hlSource.push({
+                description: description,
+                link: link
+            });
+        } else if(type === "r") {
+            rSource.push({
+                description: description,
+                link: link
+            });
+        } else if(type === "o") {
+            oSource.push({
+                description: description,
+                link: link
+            });
+        } else {
+            // Error
+            res.sendStatus(400);
+        }
+
+    }
+
     // Get the entered details for the new issue from the URL
     let newIssue = new Issue({
-        "name": req.query.name,
-        "author": req.query.author,
-        "description": req.query.description,
-        "image": req.query.image,
-        "hl_source": req.query.hl_source,
-        "r_source": req.query.r_source,
-        "o_source": req.query.o_source,
-        "categories": req.query.c_source
+        "name": req.body.name,
+        "author": req.body.author,
+        "description": req.body.description,
+        "image": req.body.image,
+        "hl_source": hlSource,
+        "r_source": rSource,
+        "o_source": oSource,
+        "categories": req.body.c_source
     });
 
     // Add the new issue to the DB

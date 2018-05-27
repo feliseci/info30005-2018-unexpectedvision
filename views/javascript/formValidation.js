@@ -37,7 +37,7 @@ function validateUser() {
 
     // Check email is valid (for Safari etc. without <type="email"> compatibility)
     // Uses regular expression from W3C: https://www.w3.org/TR/html5/forms.html#valid-e-mail-address
-    let email = document.querySelectorAll("input[type=email]")[0].value;
+    let email = document.querySelector("input[type=email]").value;
     let re = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
     if(!re.test(email.toLowerCase())) {
         document.getElementById("error").innerHTML = "Invalid email.";
@@ -49,6 +49,7 @@ function validateUser() {
 }
 
 function validateArticle() {
+
     let form = document.getElementsByClassName("account");
     // Check all fields have been completed
     for(i = 0; i < form.length; i++) {
@@ -80,7 +81,7 @@ function validateArticle() {
     } // The description (the editor's essay) is allowed to be long; it is manually shortened in search results etc.
 
     // Check image is a link to Unsplash TODO other sites
-    let image = document.querySelector("textarea[name=image]").value;
+    let image = document.querySelector("input[name=image]").value;
     let regexpImage = /https:\/\/source.unsplash.com\/[^\s]+/;
     if(!regexpImage.test(image)) {
         document.getElementById("error").innerHTML = "Invalid image url: must be an Unsplash source URL.";
@@ -104,7 +105,7 @@ function validateArticle() {
 
     for(i = 0; i < links.length; i++) {
         if(!regexpURL.test(links[i].value)) {
-            document.getElementById("error").innerHTML = "Invalid url: Report link number" + (i+1);
+            document.getElementById("error").innerHTML = "Invalid url: Article number " + (i+1);
             return false;
         }
     }
@@ -113,8 +114,8 @@ function validateArticle() {
     let articleDescription = document.getElementsByName("article_description");
 
     for(i = 0; i < articleDescription.length; i++) {
-        if(articleDescription[i].length < 5 || articleDescription[i].length > 100) {
-            document.getElementById("error").innerHTML = "Description must be between 10 and 100 characters.";
+        if(articleDescription[i].length < 10 || articleDescription[i].length > 800) {
+            document.getElementById("error").innerHTML = "Description must be between 10 and 800 characters.";
             return false;
         }
     }
@@ -137,10 +138,13 @@ function addSource(type) {
     let newSource;
 
     if(type==="source") {
-        console.log("fromage");
         let source = container.childNodes[1];
-        console.log(source);
         newSource = source.cloneNode(true);
+
+        // Reset the values of all the inputs
+        newSource.querySelector("select[name=source_type]").value = "hl";
+        newSource.querySelector("input[name=link]").value = "";
+        newSource.querySelector("input[name=article_description]").value = "";
     }
     else {
         newSource = document.createElement("input");
@@ -161,7 +165,7 @@ function validateComment() {
     // if length > ... <p id="warning"></p> .innerHTML = "Comment too short by xChars!"
 
     // Check length of comment
-    let comment = document.querySelectorAll("input[name=comment]")[0].value;
+    let comment = document.querySelector("input[name=comment]").value;
     if(comment.length < 6) {
         document.getElementById("error").innerHTML = "Comment must be at least 6 characters.";
         return false;
@@ -173,7 +177,7 @@ function validateComment() {
     }
 
     // Check article link is valid URL
-    let article = document.querySelectorAll("input[name=article_url]")[0].value;
+    let article = document.querySelector("input[name=article_url]").value;
     let regexpURL = /http[s]*:\/\/[^\s]+/;
     if(!regexpURL.test(article)) {
         document.getElementById("error").innerHTML = "Invalid URL.";
@@ -194,7 +198,7 @@ function validateOpportunity() {
     }
 
     // Check name meets the minimum length
-    let name = document.querySelectorAll("input[name=name]")[0].value;
+    let name = document.querySelector("input[name=name]").value;
     if(name.length < 6) {
         document.getElementById("error").innerHTML = "Name must be at least 6 characters.";
         return false;
@@ -208,14 +212,14 @@ function validateOpportunity() {
     }
 
     // Check description length
-    let description = document.querySelectorAll("textarea[name=description]")[0].value;
+    let description = document.querySelector("textarea[name=description]").value;
     if(description.length < 50 || description.length > 1000) {
         document.getElementById("error").innerHTML = "Description must be between 50 and 1000 characters.";
         return false;
     }
 
     // Check image is a link to Unsplash TODO other sites
-    let image = document.querySelectorAll("textarea[name=image]")[0].value;
+    let image = document.querySelector("textarea[name=image]").value;
     let regexpImage = /https:\/\/source.unsplash.com\/[^\s]+/;
     if(!regexpImage.test(image)) {
         document.getElementById("error").innerHTML = "Invalid image url: must be an Unsplash source URL.";

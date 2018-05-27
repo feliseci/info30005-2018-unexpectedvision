@@ -12,7 +12,7 @@ const opportunitySchema = new mongoose.Schema(
         "date_event": Date,
         "location": String, // GPS? Address? GoogleMaps?
         "further_info": String, // URL
-        "popularity": {type: Number, default: 0} // Up-votes + comments
+        "popularity": {type: Number, default: 0} // Up-votes
         /*"url": Number*/
     }
 );

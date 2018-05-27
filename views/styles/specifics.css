@@ -250,8 +250,8 @@
     border: groove;
     border-width: 3px;
     background: white;
-    max-width: 700px;
     min-height: 600px;
+    min-width:300px;
 }
 
 #suggested_issues figcaption {
@@ -267,6 +267,7 @@
     width: 425px;
     height: 275px;
     margin-bottom: 5px;
+    max-width:100%;
 }
 
 .recent_issue{
@@ -334,6 +335,7 @@
     text-align: start;
     padding-left: 10%;
     width: 100%;
+    min-width: 120px;
 }
 
 #search_options h4 {
@@ -411,6 +413,7 @@
     margin-bottom: 5px;
     margin-top: 5px;
     max-height: 200px;
+    min-width:600px;
 }
 
 #search_results article h4 {
@@ -682,6 +685,7 @@
     background-repeat: no-repeat;
     background-size: 18px 18px;
     background-position: 95% center;
+    min-width:274px;
 }
 
 #opportunity_results {

@@ -37,9 +37,6 @@ router.get('/profile/:name', controller.userProfile);
 router.get('/create-article', controller.createArticle);
 router.get('/create-opportunity', controller.createOpportunity);
 
-// For use in database setup only
-router.get('/reset', controller.resetDB);
-
 // Passport-related
 router.post('/login', passport.authenticate('local', {
     successRedirect: '/home',

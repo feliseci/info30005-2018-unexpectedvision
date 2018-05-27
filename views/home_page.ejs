@@ -66,15 +66,13 @@
                 <figcaption><h3>POPULAR</h3></figcaption>
                     <section>
                         <a href="<%="../issue/" + popular_issue.url%>">
-                        <img src = "<%= popular_issue.image%>" alt = "Popular issue - <%= popular_issue.name%>">
-                        <h4><%= popular_issue.name%></h4>
+                            <img src = "<%= popular_issue.image%>" alt = "Popular issue - <%= popular_issue.name%>">
+                            <h4><%= popular_issue.name%></h4>
                         </a>
                         <section><p><%= popular_issue.description.substring(0,300)%>
                             <%if(popular_issue.description.length > 300) {%>...
                             <%}%></p></section>
-                        </p>
                     </section>
-
             </figure>
         </article>
 

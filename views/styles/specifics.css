@@ -499,22 +499,27 @@
 
 #enter_comment textarea {
     width: 98%; /* +2% padding*/
-    height: 70%; /* 70+1+1 = 72 (28) -1 -> 27*/
+    height: 65%; /* 70+1+1 = 72 (28) -1 -> 27*/
     background-color: #edf9f3;
 }
 
 #enter_comment input {
     padding-left: 3%;
-    height: 27%;
+    height: 23%;
     width: 70%;
     border: none;
     background-color: #edf9f3;
 }
 #enter_comment button {
-    height: 27%;
+    height: 23%;
     color: white;
     width: 25%;
     background-color: #07f2ab;
+}
+
+#enter_comment p{
+    font-size:11px;
+    text-align: center;
 }
 
 #contributions_grid {

@@ -50,7 +50,7 @@ function validateUser() {
 
 function validateArticle() {
 
-    let form = document.getElementsByClassName("account");
+    let form = document.getElementsByClassName("form-input");
     // Check all fields have been completed
     for(i = 0; i < form.length; i++) {
         if(form[i].value.length === 0) {
@@ -161,16 +161,28 @@ function validateComment() {
     // (constant check function) once length > ...  <submit> valid
     // if length > ... <p id="warning"></p> .innerHTML = "Comment too long by xChars!"
     // if length > ... <p id="warning"></p> .innerHTML = "Comment too short by xChars!"
+    alert("testing comment");
+    let form = document.getElementsByClassName("comment-field");
+    // Check all fields have been completed
+    for(i = 0; i < form.length; i++) {
+        if(form[i].value.length === 0) {
+            document.getElementById("error").innerHTML = "*Please complete all fields.";
+            return false;
+        }
+    }
 
+     // TODO: CODE IS NOT TESTING THIS BIT. not sure why - the alert isn't made
     // Check length of comment
     let comment = document.querySelector("input[name=comment]").value;
+    alert("hey");
     if(comment.length < 6) {
-        document.getElementById("error").innerHTML = "Comment must be at least 6 characters.";
+        alert("less than 6 characters")
+        document.getElementById("error").innerHTML = "*Comment must be at least 6 characters.";
         return false;
     }
     else if(comment.length > 480) {
         // 480 is a tested value from use of lorem ipsum.
-        document.getElementById("error").innerHTML = "Comment must be <480 characters.";
+        document.getElementById("error").innerHTML = "*Comment must be <480 characters.";
         return false;
     }
 
@@ -178,7 +190,7 @@ function validateComment() {
     let article = document.querySelector("input[name=article_url]").value;
     let regexpURL = /http[s]*:\/\/[^\s]+/;
     if(!regexpURL.test(article)) {
-        document.getElementById("error").innerHTML = "Invalid URL.";
+        document.getElementById("error").innerHTML = "*Invalid URL.";
         return false;
     }
 } // TODO integrate with current comment form

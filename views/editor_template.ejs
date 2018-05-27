@@ -20,6 +20,9 @@
     <!-- Used to enable comment pop up -->
     <script src = "../javascript/commentPopUp.js"></script>
 
+    <!-- Used to Validate the Form fields -->
+    <script src = "../javascript/formValidation.js"></script>
+
     <!-- Used to render interactions buttons in relation to past user action -->
     <script>
         <% // Get the initial state of every button
@@ -80,7 +83,6 @@
             <p><a href="../login">Click here to login.</a></p>
         </section>
     </section>
-
 
     <div class = "grid-container-editor">
         <!-- Article Banner -->
@@ -240,12 +242,13 @@
     <!--Enter comment form-->
     <section id="enter_comment_bg">
         <% if(user) {%>
-        <form id="enter_comment" action = "../new-contribution/" method = "post">
+        <form id="enter_comment" action = "../new-contribution/" method = "post" onsubmit = "return validateComment()">
             <input type="hidden" name="name" value="<%=editor.name%>"> <!-- TODO Use ID?-->
             <input type="hidden" name="author" value = "<%=user.username%>">
-            <textarea name="comment" placeholder="Your comment here..."></textarea><br>
-            <input type="text" name="article_url" placeholder="URL to an article">
+            <textarea class = "comment-field" name="comment" placeholder="Your comment here..."></textarea><br>
+            <input class = "comment-field" type="text" name="article_url" placeholder="URL to an article">
             <button type="submit">Submit</button>
+            <p id = "error"> </p>
         </form>
         <%}
         <!-- If user is not logged in error is thrown -->

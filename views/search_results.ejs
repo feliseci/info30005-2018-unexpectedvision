@@ -15,74 +15,87 @@
     <link href="/styles/style.css" type="text/css" rel="stylesheet">
     <link href="/styles/specifics.css" type="text/css" rel="stylesheet">
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
+
     <!-- Used to make Navigation Bar Sticky -->
-    <script src = "./javascript/sticky_nav.js"></script>
+    <script src = "../javascript/sticky_nav.js"></script>
 </head>
 
 <body>
 
-<!--Site title-->
+<!-- Site Navigation Bar -->
 <% include ./partial/navbar.ejs%>
 
 <div class = "content"> <!-- Used to make footers sticky -->
 
-<br>
-<div id="search_title"><h1><%= title %></h1></div>
-<br>
+    <br>
+    <div id="search_title"><h1><%= title %></h1></div>
+    <br>
+    <section id = "sidebar_page">
 
-<section id = "sidebar_page">
-<!-- Advanced search options -->
-<nav id = "search_options">
-    <% let sort_url = "../search/?query=" + query + "&sort="%>
-    <h4>Sort By:</h4>
-    <ul>
-        <li>Alphabetical
-            <a href="<%=sort_url +"name&asc=true"%>">ASC</a> |
-            <a href="<%=sort_url + "name&asc=false"%>">DSC</a></li>
-        <li>Most recent
-            <a href="<%=sort_url +"date_update&asc=true"%>">ASC</a> |
-            <a href="<%=sort_url + "date_update&asc=false"%>">DSC</a></li>
-        <li>Most popular
-            <a href="<%=sort_url +"popularity&asc=true"%>">ASC</a> |
-            <a href="<%=sort_url + "popularity&asc=false"%>">DSC</a></li>
-    </ul>
-</nav>
+        <!-- Advanced search options -->
+        <nav id = "search_options">
+            <% let sort_url = "../search/?query=" + query + "&sort="%>
+            <h4>Sort By:</h4>
+            <ul>
+                <!-- Sorts Alphabetically -->
+                <li>Alphabetical
+                    <a href="<%=sort_url +"name&asc=true"%>">ASC</a> |
+                    <a href="<%=sort_url + "name&asc=false"%>">DSC</a></li>
 
-<!--Search results-->
-<section id = "search_results">
+                <!-- Sorts from by how recently the Article was updated -->
+                <li>Most recent
+                    <a href="<%=sort_url +"date_update&asc=true"%>">ASC</a> |
+                    <a href="<%=sort_url + "date_update&asc=false"%>">DSC</a></li>
 
-    <section id = "search_bar_small">
-        <form action = "" method = "get">
-            <input type="text" placeholder="Search..." name="query" />
-            <button type="submit">Enter</button>
-        </form>
-    </section>
+                <!-- Sorts by number of likes on Article -->
+                <li>Most popular
+                    <a href="<%=sort_url +"popularity&asc=true"%>">ASC</a> |
+                    <a href="<%=sort_url + "popularity&asc=false"%>">DSC</a></li>
+            </ul>
+        </nav>
 
-    <% for(i = 0; i < results.length; i++) { %>
-        <article class = "editor" id="search_box"> <!--TODO: remove difference -->
-            <a href="<%="../issue/" + results[i].url%>">
-                <h3 class = "inline-block"><%=results[i].name%></h3>
-            </a>
-            <p class = "inline-block">- <a href="../profile/<%=results[i].author%>"><%= results[i].author%></a></p>
-                <p><img src = "<%= results[i].image%>" class = "article-image">
-                    <%=results[i].description.substring(0,300)%>
-                    <%if(results[i].description.length > 300) {%>...
-                    <%}%>
-                </p>
-            <h4>Categories:</h4>
-            <% var categories = results[i].categories;
-            for(j = 0; j < categories.length; j++) { %>
-                <p class = "issue_category">
-                    <a href=<%="../search?query=&category=" + categories[j]%>>#<%=categories[j]%></a>
-                </p>
+        <!--Search results-->
+        <section id = "search_results">
+
+            <section id = "search_bar_small">
+                <form action = "" method = "get">
+                    <input type="text" placeholder="Search..." name="query" />
+                    <button type="submit">Enter</button>
+                </form>
+            </section>
+
+            <!-- Render each article -->
+            <% for(i = 0; i < results.length; i++) { %>
+                <article class = "editor" id="search_box">
+                    <a href="<%="../issue/" + results[i].url%>">
+                        <!-- Article Title -->
+                        <h3 class = "inline-block"><%=results[i].name%></h3>
+                    </a>
+                    <!-- Link to Editor's Public Profile -->
+                    <p class = "inline-block">- <a href="../profile/<%=results[i].author%>"><%= results[i].author%></a></p>
+
+                    <!-- Preview 300 characters of description for a taster of the article -->
+                    <p><img src = "<%= results[i].image%>" class = "article-image">
+                            <%=results[i].description.substring(0,300)%>
+                            <%if(results[i].description.length > 300) {%>...
+                            <%}%>
+                        </p>
+
+                    <!-- Categories the Article is stored under -->
+                    <h4>Categories:</h4>
+                    <% var categories = results[i].categories;
+                    for(j = 0; j < categories.length; j++) { %>
+
+                        <!-- Links to List of Articles that share the category -->
+                        <p class = "issue_category">
+                            <a href=<%="../search?query=&category=" + categories[j]%>>#<%=categories[j]%></a>
+                        </p>
+                    <% } %>
+                </article>
             <% } %>
-
-        </article>
-    <% } %>
-
-</section>
-</section>
-</div>
+        </section>
+    </section>
+    </div>
 <footer>
     <% include ./partial/footer.ejs%>
 </footer>

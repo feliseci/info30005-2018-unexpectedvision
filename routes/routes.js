@@ -43,7 +43,7 @@ router.get('/reset', controller.resetDB);
 // Passport-related
 router.post('/login', passport.authenticate('local', {
     successRedirect: '/home',
-    failureRedirect: '/login?failure=true'
+    failureRedirect: '/?failure=true'
 }));
 router.post('/create-account', controller.newUser);
 router.get('/logout', controller.logout);

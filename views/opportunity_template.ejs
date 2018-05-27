@@ -10,8 +10,6 @@
     <!-- Used to make Navigation Bar Sticky -->
     <script src = "../javascript/sticky_nav.js"></script>
 
-    <!-- Javascript files -->
-    <script src = "../javascript/interactButtons.js"></script>
 </head>
 
 <body>
@@ -28,8 +26,15 @@
             <!-- Opportunity Title -->
             <h1><%= opportunity.name %></h1>
 
-            <!-- Link to organisers public profile -->
-            <h2>By <a href="../profile/<%=opportunity.organiser%>"><%= opportunity.organiser %></a></h2>
+<br>
+<header id="event_header">
+    <img src = "<%= opportunity.image %>" alt = "event banner">
+    <div>
+        <h1><%= opportunity.name %></h1>
+        <h2>By <a href="../profile/<%=opportunity.organiser%>"><%= opportunity.organiser %></a></h2>
+    </div>
+
+</header>
 
             <!-- Interaction Buttons -->
             <div id = "event_buttons" class = "bubble">

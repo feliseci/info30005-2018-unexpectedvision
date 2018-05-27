@@ -11,7 +11,22 @@
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
 
     <!-- Form Validation for log in -->
-    <script src = "../javascript/formValidation.js"></script>
+
+    <script src = "./javascript/formValidation.js"></script>
+
+    <script>
+        function accountCommentForm() {
+            let form = document.getElementById("account-popup-bg");
+            form.style.display="block";
+        }
+
+        window.onclick = function(event) {
+            let form = document.getElementById("account-popup-bg");
+            if (event.target === form) {
+                form.style.display = "none";
+            }
+        }
+    </script>
 
     <!-- Enables pop-up functionality of Create Account Pop Up -->
     <script src = "../javascript/createAccountPopUp.js"></script>
@@ -46,8 +61,9 @@
     </section>
 
     <!-- Pop-up to create an account -->
-    <section id = "account-popup-bg">
+    <section id = "account-popup-bg" <%if(failure) {%>style="display:block"<%}%>>
         <form id = "create_account" action = "../create-account" method="post" onsubmit="return validateUser()">
+            <%if(! failure){%>
             <h1> Create Account </h1>
             <hr>
             <h3>Username</h3>
@@ -60,6 +76,12 @@
             <input type="email" class="account" placeholder="Enter your email address" name="email"/>
             <p id="error"></p> <!--Used for validation error messages -->
             <button type="submit" class="submit">Submit</button>
+            <%} else { %>
+            <h1> Error! </h1>
+            <p>It looks like your attempt to login or create account failed.</p>
+            <p>Login: The credentials you entered were incorrect.</p>
+            <p>Create Account: Your username was taken.</p>
+            <%}%>
         </form>
     </section>
 

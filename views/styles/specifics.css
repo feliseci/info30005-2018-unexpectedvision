@@ -889,7 +889,7 @@ div.title-articlerepos{
     text-align: left;
 }
 
-.grid-container-about header.header{
+.grid-container-thirds header.header{
     grid-column-start:1;
     grid-column-end: 5;
 }
@@ -982,5 +982,12 @@ div.title-articlerepos{
 
 .categories-input{
     width: 330px;
+}
+
+.form-icons{
+    height:32px;
+    filter: invert(0.3);
+    padding-right:5px;
+
 }
 

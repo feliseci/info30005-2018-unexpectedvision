@@ -43,8 +43,7 @@
 
     <!--Issue suggestions-->
     <section id="suggested_issues">
-
-        <!-- Recent Posted Issue -->
+        <!-- Most Recent Issue -->
         <article class = "recent_issue">
             <figure>
                 <figcaption><h3>RECENT</h3></figcaption>
@@ -61,11 +60,10 @@
             </figure>
         </article>
 
-        <!-- Popular Posted Issue -->
+        <!-- Most Popular Issue -->
         <article class = "popular_issue">
             <figure>
                 <figcaption><h3>POPULAR</h3></figcaption>
-
                     <section>
                         <a href="<%="../issue/" + popular_issue.url%>">
                         <img src = "<%= popular_issue.image%>" alt = "Popular issue - <%= popular_issue.name%>">
@@ -80,7 +78,7 @@
             </figure>
         </article>
 
-        <!-- section id="more_issues">-->
+        <!-- Additional Articles to Explore on the Home Page -->
         <% for(i=0; i<more_issues.length; i++) { %>
         <article style = "grid-area: <%=String.fromCharCode('c'.charCodeAt(0) + i)%>;" id="more_issues">
             <figure>
@@ -94,8 +92,6 @@
             </figure>
         </article>
         <%}%>
-    <!--    </section>-->
-
     </section>
 </div>
 <footer>

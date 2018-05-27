@@ -18,6 +18,8 @@ router.get('/opportunities', controller.loadOpportunities);
 router.get('/about', controller.loadAbout);
 router.get('/random', controller.random);
 router.get('/editor-application', controller.editorApplication);
+router.get('/confirm-application', controller.confirmEditor);
+
 
 router.post('/new-issue', controller.newIssue);
 router.post('/new-contribution', controller.newContribution);

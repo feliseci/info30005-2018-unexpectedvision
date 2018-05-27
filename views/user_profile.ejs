@@ -7,7 +7,9 @@
     <link href="/styles/style.css" type="text/css" rel="stylesheet">
     <link href="/styles/specifics.css" type="text/css" rel="stylesheet">
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
+
     <!-- Used to make Navigation Bar Sticky -->
+    <script src = "../javascript/sticky_nav.js"></script>
 
     <% // Constructs the <li> tag contents based on the details of the past update object
     function processUpdate(update) {
@@ -46,7 +48,7 @@
 
 <body>
 
-<!--Site title-->
+<!--Site navigation Bar-->
 <% include ./partial/navbar.ejs%>
 
 <div class = "content"> <!-- Used to make footers sticky -->

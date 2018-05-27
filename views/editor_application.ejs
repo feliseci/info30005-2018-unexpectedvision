@@ -1,17 +1,20 @@
-
-<!-- Application for becoming an editor -->
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Application for becoming an editor -->
     <title> Editor Application </title>
+
     <link href="/styles/style.css" type="text/css" rel="stylesheet">
     <link href="/styles/specifics.css" type="text/css" rel="stylesheet">
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
 
     <!-- Used to make Navigation Bar Sticky -->
     <script src = "./javascript/sticky_nav.js"></script>
+
+    <!-- Form Validation-->
+    <script src = "./javascript/formValidation.js"></script>
 </head>
 
 <body>
@@ -22,29 +25,37 @@
 <div class = "content"> <!-- Used to make footers sticky -->
     <div class = "grid-container-thirds">
         <br>
+
+        <!-- Form to become an Editor -->
         <div class = "item1style formstyle">
             <h1> <img src = "../images/bullseye.png" class = "form-icons"> Editor Application </h1>
             <hr>
+
+            <!-- Information about Editor Role -->
             <h2> <i> Are you Editor Material?</i></h2>
             <div class = "bubble">
                 <h3> We are always looking for thoughtful, highly knowledgeable, critically minded individuals
                     to join MultiView as Editors. <br> In order to be considered, we request the following information:</h3>
              </div>
 
-        <!-- Early Stages of a form for applying to be an editor -->
+        <!-- Fields for User to demonstrate experience, etc.  -->
         <section id = "application">
-            <form action = "../home">
+            <form action = "../confirm-application">
                 <h3> List your Experience </h3>
-                <textarea type = "text" class = "form-input descriptor-input" placeholder = "Include professional and academic experiences, and links to published work"></textarea>
+
+                <textarea type = "text" class = "form-input descriptor-input" placeholder = "Include professional
+                    and academic experiences, and links to published work"></textarea>
+
                 <h3> Why do you want to be an editor? </h3>
-                <textarea type = "text" class = "form-input descriptor-input" placeholder = "What you would bring to the role?"></textarea>
+                <textarea type = "text" class = "form-input descriptor-input" placeholder = "What you would
+                    bring to the role?"></textarea>
+
                 <button type = "submit" id = "submit" class = "submit"> Submit </button>
             </form>
         </section>
-
         </div>
         <br>
-</div>
+    </div>
 </div>
 <footer>
     <% include ./partial/footer.ejs%>

@@ -50,7 +50,7 @@ function validateUser() {
 
 function validateArticle() {
 
-    let form = document.getElementsByClassName("account");
+    let form = document.getElementsByClassName("form-input");
     // Check all fields have been completed
     for(i = 0; i < form.length; i++) {
         if(form[i].value.length === 0) {
@@ -136,13 +136,15 @@ function validateComment() {
 
     // Check length of comment
     let comment = document.querySelector("input[name=comment]").value;
+
     if(comment.length < 6) {
-        document.getElementById("error").innerHTML = "Comment must be at least 6 characters.";
+        alert("less than 6 characters");
+        document.getElementById("error").innerHTML = "*Comment must be at least 6 characters.";
         return false;
     }
     else if(comment.length > 480) {
         // 480 is a tested value from use of lorem ipsum.
-        document.getElementById("error").innerHTML = "Comment must be <480 characters.";
+        document.getElementById("error").innerHTML = "*Comment must be <480 characters.";
         return false;
     }
 
@@ -150,7 +152,7 @@ function validateComment() {
     let article = document.querySelector("input[name=article_url]").value;
     let regexpURL = /http[s]*:\/\/[^\s]+/;
     if(!regexpURL.test(article)) {
-        document.getElementById("error").innerHTML = "Invalid URL.";
+        document.getElementById("error").innerHTML = "*Invalid URL.";
         return false;
     }
 }
@@ -188,11 +190,9 @@ function validateOpportunity() {
         return false;
     }
 
-    // Check image is a link to Unsplash
-    let image = document.querySelector("textarea[name=image]").value;
-    let regexpImage = /http[s]:\/\/source.unsplash.com\/[^\s]+/;
-    if(!regexpImage.test(image)) {
-        document.getElementById("error").innerHTML = "Invalid image url: must be an Unsplash source URL.";
+    // Check image is a link is an image format
+    let image = document.querySelector("input[name=image]").value;
+    if(!checkURL(image)){
         return false;
     }
 
@@ -226,10 +226,15 @@ function addSource(type) {
         let source = container.childNodes[1];
         newSource = source.cloneNode(true);
     }
-
+  
     container.appendChild(document.createElement("br"));
     container.appendChild(newSource);
-    // Could check for max. number of sources here by checking no. of child nodes
+}
+
+/*Sourced from: https://stackoverflow.com/questions/9714525/javascript-image-url-verify
+* Credit to: jfriend00*/
+function checkURL(url) {
+    return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
 }
 
 

@@ -3,66 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Application to Create an Event -->
     <title>Create an Event! </title>
+
     <link href="/styles/style.css" type="text/css" rel="stylesheet">
     <link href="/styles/specifics.css" type="text/css" rel="stylesheet">
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
+
+    <!-- Form Validation -->
     <script src = "./javascript/formValidation.js"></script>
     <!-- Used to make Navigation Bar Sticky -->
     <script src = "./javascript/sticky_nav.js"></script>
 </head>
 <body>
 
-<!--Site title-->
+<!--Navigation Bar-->
 <% include ./partial/navbar.ejs%>
+
 <div class = "content" > <!-- Used to make footers sticky -->
     <div class = "grid-container-thirds">
         <br>
+
+        <!-- Form to create an Opportunity -->
         <div class = "item1style formstyle">
             <h1> <img src = "../images/group.png" class = "form-icons"> Create an opportunity </h1>
             <hr>
 
-    <form id="opportunity_form" action = "../new-opportunity/" method = "post" onsubmit="return validateOpportunity()">
-        <input type="hidden" name="organiser" value = "<%=user.username%>">
+            <form id="opportunity_form" action = "../new-opportunity/" method = "post" onsubmit="validateOpportunity()">
+                <input type="hidden" name="organiser" value = "<%=user.username%>">
 
-        <h3>Opportunity Name:</h3>
-        <input type="text" class = "form-input" name="name" placeholder = "i.e. 'Clean Up Australia Day - Chadstone'">
+                <h3>Opportunity Name:</h3>
+                <input type="text" class = "form-input" name="name" placeholder = "i.e. 'Clean Up Australia
+                    Day - Chadstone'">
 
-        <h3>Description:</h3>
-        <textarea type="text" class = "form-input descriptor-input" name="description"
-                  placeholder = "Give some detail of what the opportunity is about!"></textarea>
+                <h3>Description:</h3>
+                <textarea type="text" class = "form-input descriptor-input" name="description"
+                          placeholder = "Give some detail of what the opportunity is about!"></textarea>
 
-        <h3>Opportunity Banner</h3>
-        <input type="text" class = "form-input" name="image" placeholder = "Image URL">
-        <% /*
-        // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date
-        let date = new Date(2018,0,9);
-        let month;
-        let day;
-        if(date.getMonth() < 9) {
-            month = '0' + (date.getMonth()+1);
-        }
-        if(date.getDate() < 10) {
-            day = '0' + (date.getDate());
-        }
+                <h3>Opportunity Banner</h3>
+                <input type="text" class = "form-input" name="image" placeholder = "Image URL">
 
-        (HTML:     Date of the Event: <input type="date" name="date" min="  dateString ">)
-        let dateString = date.getFullYear() + "-" + month + '-' + day;
-    /!*    let dateString = date.getFullYear() + "-" + month + '-' + date.getDate();*!/
-        console.log(dateString);*/%>
-        <h3>Date of the Event:</h3>
-        <input type="date" class = "form-input" name="date">
+                <h3>Date of the Event:</h3>
+                <input type="date" class = "form-input" name="date">
 
-        <h3>Location:</h3>
-        <input type="text" class = "form-input" name="location" placeholder = "i.e. 'Batesford Reserve, Chadstone'">
+                <h3>Location:</h3>
+                <input type="text" class = "form-input" name="location" placeholder = "i.e. 'Batesford Reserve, Chadstone'">
 
-        <h3>Link for further info: </h3>
-        <input type="text" class = "form-input" name="further_info"
-               placeholder = "i.e. 'https://www.cleanupaustraliaday.org.au/about/about-the-event'">
+                <h3>Link for further info: </h3>
+                <input type="text" class = "form-input" name="further_info"
+                       placeholder = "i.e. 'https://www.cleanupaustraliaday.org.au/about/about-the-event'">
 
-        <!--TODO categories-->
-        <button type="submit" class = "submit">Submit</button>
-    </form>
+                <button type="submit" class = "submit">Submit</button>
+            </form>
         </div>
     </div>
 </div>

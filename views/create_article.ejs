@@ -3,17 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Application to create an article -->
     <title> Create an article </title>
+
     <link href="/styles/style.css" type="text/css" rel="stylesheet">
     <link href="/styles/specifics.css" type="text/css" rel="stylesheet">
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
 
-    <!-- Form Validation18-unexpectedv -->
+    <!-- Form Validation -->
     <script src = "./javascript/formValidation.js"></script>
 
     <!-- Used to make Navigation Bar Sticky -->
     <script src = "./javascript/sticky_nav.js"></script>
 </head>
+
 <body>
 <!-- Site Navigation Bar -->
 <% include ./partial/navbar.ejs%>
@@ -22,6 +26,8 @@
 
     <div class = "grid-container-thirds">
         <br>
+
+        <!-- Form to Create an Article - only available to Editors -->
         <div class = "item1style formstyle">
             <h1> <img src = "../images/eye-open.png" class = "form-icons"> Create your article </h1>
             <hr>
@@ -47,11 +53,15 @@
 
                 <h3> Resource Repository:</h3>
                 <div id = "container_source">
+
+                    <!-- Embedded CSS grid to format the Repository Form Section -->
                     <div class = "source grid-container-repos">
                         <div id = "res-link">
                             <input type="text" name="link" class="form-input link-input"
                                    placeholder="Suggested Article Link">
                         </div>
+
+                        <!-- Select what type of Suggested Link it is, so database knows how to store information -->
                         <div id = "res-selector" >
                             <select name="source_type" class="form-input res-input">
                                 <option value="hl">High level</option>
@@ -66,13 +76,17 @@
                     </div>
                 </div>
                 <br>
+                <!-- Clones fields to add as many links as desired -->
                 <button type="button" class="plus_button add" onclick="addSource('source')">+</button>
                 <hr>
+
+                <!-- Editor can add categories which are used to return 'topic-specific' search results -->
                 <h3>Categories:</h3>
                 <div id="container_c">
                     <input type="text" name="c_source" class="form-input categories-input"
                            placeholder = "i.e. 'australia'">
                 </div>
+                <!-- Clones fields to add more categories -->
                 <button type="button" class="plus_button add" onclick="addSource('c')">+</button>
                 <p id="error"></p> <!--Error messages in form validation will show here. -->
                 <button type="submit" class="submit">Submit</button>

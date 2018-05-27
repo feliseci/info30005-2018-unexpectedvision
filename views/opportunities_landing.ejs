@@ -12,47 +12,42 @@
 </head>
 
 <body>
-
-<!--Site title-->
+<!--Site Navigation Bar -->
 <% include ./partial/navbar.ejs%>
 
 <div class = "content"> <!-- Used to make footers sticky -->
+        <!-- Opportunity Search Results -->
+        <section id = "opportunity_results">
+            <!-- Returns each opportunity page -->
+            <% for(i = 0; i < results.length; i++) { %>
+            <article>
+                <!-- Opportunity Banner Image -->
+                <img src="<%=results[i].image%>">
 
-<header>
-    <br>
-    <h1>Opportunities</h1>
-</header>
+                <!-- Opportunity Title  -->
+                <a href="<%="../opportunity/" + results[i].url%>">
+                <h3><%=results[i].name%></h3>
+                </a>
+                <!-- Preview up to 40 characters of the Opportunity description -->
+                <p><%=results[i].description.substring(0,40)%>
+                    <%if(results[i].description.length > 40) {%>...
+                    <%}%>
+                </p>
+                <!-- Related Categories -->
+                <h4>Categories:</h4>
+                <p>
+                <% var categories = results[i].categories;
+                for(j = 0; j < categories.length; j++) { %>
+                    <a href="">#<%=categories[j]%></a>
+                <% } %></p>
+            </article>
 
-    <br>
-
-    <!--Search results-->
-    <section id = "opportunity_results">
-
-        <% for(i = 0; i < results.length; i++) { %>
-        <article>
-            <img src="<%=results[i].image%>">
-            <a href="<%="../opportunity/" + results[i].url%>">
-            <h3><%=results[i].name%></h3>
-            </a>
-            <p><%=results[i].description.substring(0,40)%>
-                <%if(results[i].description.length > 40) {%>...
-                <%}%>
-            </p>
-            <h4>Categories:</h4>
-            <p>
-            <% var categories = results[i].categories;
-            for(j = 0; j < categories.length; j++) { %>
-                <a href="">#<%=categories[j]%></a>
-            <% } %></p>
-        </article>
-
-        <!--Add "invisible" articles which take up the required empty spaces in the grid row -->
-        <%} for(i=0; i < results.length%3+1; i++) {%>
-            <article id = "invisible"></article>
-        <%} %>
-
-    </section>
-</div>
+            <!--Add "invisible" articles which take up the required empty spaces in the grid row -->
+            <%} for(i=0; i < results.length%3+1; i++) {%>
+                <article id = "invisible"></article>
+            <%} %>
+        </section>
+    </div>
 
 <footer>
     <% include ./partial/footer.ejs%>

@@ -14,10 +14,17 @@
 
 <body>
 
-<!--Site title-->
+<!--Site Navigation Bar -->
 <% include ./partial/navbar.ejs%>
 
 <div class = "content"> <!-- Used to make footers sticky -->
+    <br>
+    <!-- Event Banner and Basic Details Section  -->
+    <header id="event_header">
+        <img src = "<%= opportunity.image %>" alt = "event banner">
+        <div>
+            <!-- Opportunity Title -->
+            <h1><%= opportunity.name %></h1>
 
 <br>
 <header id="event_header">
@@ -29,30 +36,40 @@
 
 </header>
 
+            <!-- Interaction Buttons -->
+            <div id = "event_buttons" class = "bubble">
+                <button id = "likeButton" class = "likeOff" onclick= "interactButtons(this.id)">  </button>
+                <button id = "bookmarkButton" class = "bookmarkOff"  onclick = "interactButtons(this.id)"></button>
+            </div>
+        </div>
+    </header>
 
-<section id="event_information">
+    <!-- Event Information Section -->
+    <section id="event_information">
+        <div>
+            <!-- Description of Opportunity -->
+            <h2 class = "capitalise">Description</h2>
+            <p><%= opportunity.description %></p>
+            <p><b>Link to more information:</b> <a href = "<%= opportunity.further_info%>">
+                    <%= opportunity.further_info%></a></p>
+        </div>
+        <div>
+            <!-- Date and Time Information -->
+            <h2 class = "capitalise">Date and Time</h2>
+            <p><%= opportunity.date_event %></p>
+        </div>
 
-    <div>
-        <h2>DESCRIPTION</h2>
-        <p><%= opportunity.description %></p>
+        <div>
+            <!-- Location -->
+            <h2 class = "capitalise">Location</h2>
+            <p><%= opportunity.location %></p>
+        </div>
+
+        <!-- Empty Div to pad out CSS Grid -->
+        <div></div>
+
+    </section>
     </div>
-    <div>
-        <h2>DATE AND TIME</h2>
-        <p><%= opportunity.date_event %></p>
-    </div>
-
-    <div>
-        <h2></h2>
-    </div>
-
-    <div>
-        <h2>LOCATION</h2>
-        <p><%= opportunity.location %></p>
-    </div>
-
-</section>
-</div>
-
 
 <footer>
     <% include ./partial/footer.ejs %>

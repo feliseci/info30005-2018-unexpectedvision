@@ -1,4 +1,8 @@
 // Clean dummy data to repopulate the DB with after testing.
+// NOTE: Dummy data is not necessarily reflective of the database.
+// NOTE: None of these dummy users will have the details here changed.
+// As editor application isn't functional, feel free to use any of these editors for testing.
+
 const dummyUsers = [
     {
         username: "Brockhampton",

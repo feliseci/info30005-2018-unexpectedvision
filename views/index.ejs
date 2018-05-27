@@ -1,5 +1,3 @@
-<!-- Formally known as 'landing_page' - now the index -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +11,7 @@
     <link href="/styles/default.css" type = "text/css" rel="stylesheet">
 
     <!-- Form Validation for log in -->
+
     <script src = "./javascript/formValidation.js"></script>
 
     <script>
@@ -29,79 +28,78 @@
         }
     </script>
 
+    <!-- Enables pop-up functionality of Create Account Pop Up -->
+    <script src = "../javascript/createAccountPopUp.js"></script>
 </head>
 
 <body class="background" id="landing">
 
-<div id="signUp">
-    <a href="#"><button type="button" class="button" onclick="accountCommentForm()">
-            Sign Up </button></a>
-</div>
-
-
-<section id = "landing_graphic">
-    <div id = "landing_div"><img src="./images/triangle.png" alt="triangle" id = "landing_image"></div>
-    <div class = "name"><h1>MultiView</h1><h2>Broaden your perspective</h2></div>
-</section>
-<section id = "login">
-    <form id = "login_fields" action = "../login" method ="post" onsubmit="return validateLogin()" class = "account">
-        <input type="text" class="account" name="username" placeholder="Username"/>
-        <input type="password" class="account" name="password" placeholder="Password"/>
-        <p id="error"></p> <!--Used for validation error messages -->
-        <button id = "login_button" type="submit" class="submit">log in</button>
-    </form>
-
-    <div>
-        <a href="./home" class = "white_text">Continue as a Guest</a>
+    <!-- Sign Up Button triggers Create Account Pop Up -->
+    <div id="signUp">
+        <a href="#"><button type="button" class="button" onclick="accountCommentForm()"> Sign Up </button></a>
     </div>
-</section>
 
-<!-- Pop-up to create an account -->
-<section id = "account-popup-bg" <%if(failure) {%>style="display:block"<%}%>>
-    <form id = "create_account" action = "../create-account" method="post" onsubmit="return validateUser()">
-    <%if(! failure){%>
-        <h1> Create Account </h1>
-        <hr>
-        <h3>Username</h3>
-        <input type="text" class="account" placeholder="Enter username" name="username"/>
-        <h3>Password</h3>
-        <input type="password" class="account" placeholder="Enter password" name="password"/>
-        <h3>Confirm Password</h3>
-        <input type="password" class="account" placeholder="Re-enter password"/> <!--TODO: Check == above. -->
-        <h3>Email</h3>
-        <input type="email" class="account" placeholder="Enter your email address" name="email"/>
-        <p id="error"></p> <!--Used for validation error messages -->
-        <button type="submit" class="submit">Submit</button>
-    <%} else { %>
-        <h1> Error! </h1>
-        <p>It looks like your attempt to login or create account failed.</p>
-        <p>Login: The credentials you entered were incorrect.</p>
-        <p>Create Account: Your username was taken.</p>
-    <%}%>
-    </form>
-</section>
+    <!-- Logo -->
+    <section id = "landing_graphic">
+        <div id = "landing_div"><img src="./images/triangle.png" alt="triangle" id = "landing_image"></div>
+        <div class = "name"><h1>MultiView</h1><h2>Broaden your perspective</h2></div>
+    </section>
 
-<!-- Arrow to lead viewer down to the about -->
-<a href="#about_box">
-    <img id="anchor_arrow" src="../images/downwards-arrow-key.png">
-</a>
+    <!-- Log In Section -->
+    <section id = "login">
+        <form id = "login_fields" action = "../login" method ="post" onsubmit="return validateLogin()" class = "account">
+            <input type="text" class="account" name="username" placeholder="Username"/>
+            <input type="password" class="account" name="password" placeholder="Password"/>
+            <p id="error"></p> <!--Used for validation error messages -->
+            <button id = "login_button" type="submit" class="submit">log in</button>
+        </form>
 
-<div id="about_box">
-    <div>
-        <p>MultiView is a social platform for sharing knowledge, perspectives, and insight that seeks to address the
-            question of 'how might we address global urgent challenges at the intersection of peace, prosperity and
-            planet in radically new ways?'.</p>
+        <!-- Option to continue as a guest with reduced functionality -->
+        <div>
+            <a href="./home" class = "white_text">Continue as a Guest</a>
+        </div>
+    </section>
+
+    <!-- Pop-up to create an account -->
+    <section id = "account-popup-bg" <%if(failure) {%>style="display:block"<%}%>>
+        <form id = "create_account" action = "../create-account" method="post" onsubmit="return validateUser()">
+            <%if(! failure){%>
+            <h1> Create Account </h1>
+            <hr>
+            <h3>Username</h3>
+            <input type="text" class="account" placeholder="Enter username" name="username"/>
+            <h3>Password</h3>
+            <input type="password" class="account" placeholder="Enter password" name="password"/>
+            <h3>Confirm Password</h3>
+            <input type="password" class="account" placeholder="Re-enter password"/>
+            <h3>Email</h3>
+            <input type="email" class="account" placeholder="Enter your email address" name="email"/>
+            <p id="error"></p> <!--Used for validation error messages -->
+            <button type="submit" class="submit">Submit</button>
+            <%} else { %>
+            <h1> Error! </h1>
+            <p>It looks like your attempt to login or create account failed.</p>
+            <p>Login: The credentials you entered were incorrect.</p>
+            <p>Create Account: Your username was taken.</p>
+            <%}%>
+        </form>
+    </section>
+
+    <!-- Arrow to lead viewer down to the About Section -->
+    <a href="#about_box">
+        <img id="anchor_arrow" src="../images/downwards-arrow-key.png">
+    </a>
+
+    <!-- About Section -->
+    <div id="about_box">
+        <div>
+            <p>MultiView is a social platform for sharing knowledge, perspectives, and insight that seeks to address the
+                question of 'how might we address global urgent challenges at the intersection of peace, prosperity and
+                planet in radically new ways?'.</p>
+        </div>
+        <img src="https://images.unsplash.com/photo-1491314316372-b3ae7000c9ee?ixlib=rb-0.3.5&ixid=eyJhcHB
+            faWQiOjEyMDd9&s=baed6d9027238ef6dbbf221f97e5f7da&auto=format&fit=crop&w=1083&q=80">
     </div>
-    <img src="https://images.unsplash.com/photo-1491314316372-b3ae7000c9ee?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=
-    baed6d9027238ef6dbbf221f97e5f7da&auto=format&fit=crop&w=1083&q=80">
-</div>
-
-
-
-<!--
-<div class="about"><h1>About</h1></div>
-<div class="about"><p>MultiView aims to...</p></div>
--->
-&nbsp;
+    &nbsp;
 </body>
 </html>

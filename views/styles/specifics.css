@@ -1,7 +1,9 @@
+/*** Specifics - CSS related to specific features of each page ***/
+
 @import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
 @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans');
 
-/* Index Page */
+/*** Index Page ***/
 #landing {
     height: 100%;
     background: url('../images/landing.jpg');
@@ -83,7 +85,8 @@
     width: 100%;
 }
 
-/*Account Pop Ups on Index Page*/
+/*Account Pop-Up on Index Page*/
+/* Darkens background of screen to show emphasise account pop-up*/
 #account-popup-bg {
     height: 100%;
     width: 100%;
@@ -95,6 +98,7 @@
     left: 0;
 }
 
+/* Create Account Pop-up*/
 #create_account {
     box-sizing: border-box;
     border-radius: 25px;
@@ -109,8 +113,8 @@
 }
 
 #create_account textarea {
-    width: 98%; /* +2% padding*/
-    height: 70%; /* 70+1+1 = 72 (28) -1 -> 27*/
+    width: 98%;
+    height: 70%;
     background-color: #edf9f3;
 }
 
@@ -136,6 +140,7 @@
     color: #696969;
 }
 
+/* Input Fields on Forms for Account*/
 .account {
     display: block;
     border-radius: 2px;
@@ -147,6 +152,7 @@
     font-size: large;
 }
 
+/* Log In Section*/
 #login {
     position: absolute;
     top: 70%;
@@ -165,7 +171,7 @@
     margin-left: 27px;
 }
 
-/* Homepage */
+/*** Homepage ***/
 .hero_image {
     background-image: url("../images/telescope-landscape.jpeg");
     height: 400px;
@@ -189,6 +195,7 @@
     text-shadow: 3px 3px white;
 }
 
+/* Search Tool*/
 #search {
     margin-bottom: 40px;
 }
@@ -222,7 +229,7 @@
     font-size: medium;
     text-transform: uppercase;
 }
-
+/* Suggested Issues on Homepage*/
 #suggested_issues {
     width: 80%;
     box-sizing: border-box;
@@ -239,22 +246,12 @@
     align-items: center;
 }
 
-/*
-
-#more_issues {
-    display: inline-grid;
-    grid-template-areas: "article article article";
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-column-gap: 10px;
-}
-*/
-
 #suggested_issues article {
     border: groove;
     border-width: 3px;
     background: white;
-    max-width: 700px;
     min-height: 600px;
+    min-width:300px;
 }
 
 #suggested_issues figcaption {
@@ -270,6 +267,15 @@
     width: 425px;
     height: 275px;
     margin-bottom: 5px;
+    max-width:100%;
+}
+
+.recent_issue{
+    grid-area: a;
+}
+
+.popular_issue{
+    grid-area: b;
 }
 	
 #more_issues img {
@@ -286,7 +292,7 @@
     text-align: center;
 }
 
-/* Search Results */
+/*** Search Results Page ***/
 #search_title h1 {
     overflow: hidden;
     text-align: center;
@@ -312,6 +318,7 @@
     margin-right: -50%;
 }
 
+/* Side bar options for Search Results Page*/
 #sidebar_page {
     display: grid;
     grid-gap: 0;
@@ -328,6 +335,7 @@
     text-align: start;
     padding-left: 10%;
     width: 100%;
+    min-width: 120px;
 }
 
 #search_options h4 {
@@ -385,7 +393,7 @@
     margin: 0;
     font-size: 13px;
 }
-#search_bar_small button {   /*TODO: Clean*/
+#search_bar_small button {
     display: inline-block;
     margin: 0;
     border: none;
@@ -405,6 +413,7 @@
     margin-bottom: 5px;
     margin-top: 5px;
     max-height: 200px;
+    min-width:600px;
 }
 
 #search_results article h4 {
@@ -421,7 +430,7 @@
     display: inline-block;
 }
 
-/*Contributions section*/
+/*** Contributions section of Article Page ***/
 #comment_button {
     position: fixed;
     min-width: 5%;
@@ -490,22 +499,27 @@
 
 #enter_comment textarea {
     width: 98%; /* +2% padding*/
-    height: 70%; /* 70+1+1 = 72 (28) -1 -> 27*/
+    height: 65%; /* 70+1+1 = 72 (28) -1 -> 27*/
     background-color: #edf9f3;
 }
 
 #enter_comment input {
     padding-left: 3%;
-    height: 27%;
+    height: 23%;
     width: 70%;
     border: none;
     background-color: #edf9f3;
 }
 #enter_comment button {
-    height: 27%;
+    height: 23%;
     color: white;
     width: 25%;
     background-color: #07f2ab;
+}
+
+#enter_comment p{
+    font-size:11px;
+    text-align: center;
 }
 
 #contributions_grid {
@@ -524,18 +538,18 @@
 #contributions_grid article {
     background-color: #e6f7e8; /*3e5b4a for dark bg*/
     padding: 20px;
-} /*TODO original*/
+}
 
-#testaroonie {
+#single_comment {
     background-color: #e6f7e8; /*3e5b4a for dark bg*/
     padding: 20px 20px 12% 20px;
     position: relative;
     min-height: 200px;
-} /*TODO temp fix for comments on issue page*/
+}
 
-#testaroonie .comment_description {
+#single_comment .comment_description {
     margin-bottom: 10%;
-} /*TODO temp fix for comments on issue page*/
+}
 
 .comment_username {
     text-align: start;
@@ -550,7 +564,7 @@
     height: 10%;
 /*    top: 80%;*/
 /*    position: absolute;*/
-} /*TODO original*/
+}
 
 .preview_test {
     background-color: #ace5b3;
@@ -560,7 +574,7 @@
     bottom: 0;
     left: 10%;
     position: absolute;
-} /*TODO temp fix for comments on issue page*/
+}
 
 .comment_description {
     text-align: start;
@@ -569,12 +583,13 @@
     background-color: white;
     color: grey;
     border-radius: 10px;
-} /*TODO original */
+}
 
 #invisible {
     visibility: hidden;
 }
 
+/* General Button */
 .button {
     border: white;
     color: black;
@@ -586,6 +601,7 @@
     font-size: 16px;
 }
 
+/* Submit Button */
 .submit {
     margin-top: 30px;
     display: block;
@@ -614,6 +630,7 @@
     padding: 2px 8px;
 }
 
+/* Toggles between on and off to change colour of image when clicked*/
 .likeOn{
     background:url("../images/thumbsupTick.png");
     background-size: 30px auto;
@@ -654,12 +671,9 @@
     background-color : #08BF7E;
 }
 
+
 /* Opportunities Landing Page*/
 #opportunity_results {
-/*    width: 90%;*/
-/*    box-sizing: border-box;*/
-/*    margin-left: 5%;
-    margin-right: 5%;*/
     display: inline-grid;
     grid-template-areas: "article article article";
     grid-column-gap: 30px;
@@ -680,7 +694,7 @@
     height: 270px;
 }
 
-/* Opportunities Template */
+/*** Opportunity Page ***/
 #event_header {
     display: inline-grid;
     grid-template-areas: "img div";
@@ -710,8 +724,6 @@
 #event_buttons {
     display: inline-block; /*To center*/
     max-width: max-content;
-/*    float:right;*/
-/*    margin-top: 50%;*/
 }
 
 #event_information {
@@ -732,7 +744,7 @@
 
 }
 
-/* Editor Template styling  */
+/*** Article Page  ***/
 .grid-container-editor{
     display: grid;
     grid-template-columns: 1fr 1fr 0 1fr 1fr;
@@ -746,6 +758,7 @@
     font-size: 15px;
 }
 
+/* Creates bubble-style visual around div*/
 div.bubble{
     vertical-align: middle;
     padding: 20px 47px;
@@ -753,7 +766,7 @@ div.bubble{
     background-color: #eaedec;
 }
 
-/* Darken and greyscale the image so we can overlay white text */
+/* Darken and greyscale the image so we can overlay white text for Article banner */
 .banner-image{
     filter: grayscale(80%);
     opacity: 2;
@@ -765,6 +778,8 @@ div.banner{
     height: 30em;
     width: 100%;
     overflow: hidden;
+    grid-column-start:1;
+    grid-column-end: 5;
 }
 
 #interaction_buttons{
@@ -832,7 +847,7 @@ div.title-articlerepos{
     grid-column-end: 6;
 }
 
-/*About*/
+/*** About Page ***/
 .grid-container-thirds{
      display: grid;
      grid-template-columns: auto auto auto;
@@ -852,6 +867,22 @@ div.title-articlerepos{
     border: 4px dotted #696969;
 }
 
+.grid-container-about p {
+    font-size: 20px;
+}
+
+.grid-container-about ul li {
+    font-size: 20px;
+}
+
+.about-icons {
+    height:32px;
+    float:left;
+    filter: brightness(0%);
+}
+
+
+/*** Forms and Applications ***/
 .titlestyle{
     grid-column-start:2;
     grid-column-end: 3;
@@ -868,27 +899,7 @@ div.title-articlerepos{
     text-align: left;
 }
 
-.grid-container-thirds header.header{
-    grid-column-start:1;
-    grid-column-end: 5;
-}
-
-.grid-container-about p {
-    font-size: 20px;
-}
-
-.grid-container-about ul li {
-    font-size: 20px;
-}
-
-.about-icons {
-    height:32px;
-    float:left;
-    filter: brightness(0%);
-}
-
-
-/* Forms and Applications */
+/* Input Fields for Forms */
 .form-input{
     border-radius: 2px;
     padding: 12px 20px;
@@ -899,10 +910,13 @@ div.title-articlerepos{
     font-family: "IBM Plex Sans", sans-serif;
     font-size: large;
 }
+
+/* Description Textarea for Forms*/
 #description-input{
     height:450px;
 }
 
+/* Article Type Selector in Create Article Page */
 #selector-input {
     width:132px;
     background-color: #E59A3F;
@@ -910,6 +924,7 @@ div.title-articlerepos{
     font-size:15px;
 }
 
+/* CSS Grid for Article Repository in Create Article Page  */
 .grid-container-repos{
     box-sizing: border-box;
     display: inline-grid;
@@ -929,6 +944,8 @@ div.title-articlerepos{
     grid-column-start: 2;
     grid-column-end: 3;
 }
+
+/* Button add another Category or Article Link in Create Article Page*/
 .add{
     padding: 15px 18px;
     background-color: #00CC8C;

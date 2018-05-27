@@ -504,6 +504,9 @@ module.exports.newOpportunity = function (req, res) {
     });
 };
 
+module.exports.confirmEditor = function (req, res) {
+    res.render('confirm_editor_app', {user: req.user});
+};
 
 /* User profile */
 module.exports.userProfile = function (req, res) {

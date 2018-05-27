@@ -1,3 +1,4 @@
+/*** Style - basic overall style items ***/
 
 /* Imported fonts from Google */
 @import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
@@ -104,18 +105,17 @@ textarea {
     resize: none;
 }
 
-/* High-use general styling*/
+div{
+    position: relative;
+}
+
+/*** High-use general styling ***/
 .text_shadow {
     text-shadow: 2px 2px grey;
 }
 
-/* Makes text white */
 .white_text{
     color:#ffffff;
-}
-
-.gray_text{
-    color: #D3D3D3;
 }
 
 .darkgray_text{

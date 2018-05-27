@@ -1,0 +1,35 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Thank you for Applying! </title>
+    <link href="/styles/style.css" type="text/css" rel="stylesheet">
+    <link href="/styles/specifics.css" type="text/css" rel="stylesheet">
+    <link href="/styles/default.css" type = "text/css" rel="stylesheet">
+
+    <!-- Used to make Navigation Bar Sticky -->
+    <script src = "./javascript/sticky_nav.js"></script>
+</head>
+
+<body>
+
+<!-- Site Navigation Bar -->
+<% include ./partial/navbar.ejs%>
+
+<div class = "content"> <!-- Used to make footers sticky -->
+    <header class = "header">
+        <div class = "banner" >
+            <img src = "./images/telescope-landscape.jpeg" class = "banner-image">
+            <div class = 'centered'><h1> Thank you for Applying to be an
+                    Editor</h1>
+                <h2 class = "darkgray_text"><em> if successful you will be contacted by email </em></h2>
+            </div>
+        </div>
+    </header>
+</div>
+<footer>
+    <% include ./partial/footer.ejs%>
+</footer>
+
+</body>
+</html>

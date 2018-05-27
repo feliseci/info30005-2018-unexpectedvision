@@ -463,6 +463,10 @@ module.exports.loadAbout = function (req, res) {
     res.render('about_page', {user: req.user});
 };
 
+module.exports.confirmEditor = function (req, res) {
+    res.render('confirm_editor_app', {user: req.user});
+};
+
 /* Test functions used to populate DB in case of reset.
  * Note: chosen collections should be cleared manually in mLab first. */
 module.exports.resetDB = function (req, res) {

@@ -133,11 +133,20 @@ function findValue(array, value) {
 
 function validateComment() {
 
+    let form = document.getElementById("enter_comment");
+    // Check all fields have been completed
+
+    for(i = 0; i < form.length; i++) {
+        if(form[i].tagName !== "BUTTON" && form[i].tagName !== "P" && form[i].value.length === 0) {
+             document.getElementById("error").innerHTML = "Please complete all fields.";
+             return false;
+        }
+    }
+
     // Check length of comment
-    let comment = document.querySelector("input[name=comment]").value;
+    let comment = document.querySelector("textarea[name=comment]").value;
 
     if(comment.length < 6) {
-        alert("less than 6 characters");
         document.getElementById("error").innerHTML = "*Comment must be at least 6 characters.";
         return false;
     }
@@ -154,6 +163,7 @@ function validateComment() {
         document.getElementById("error").innerHTML = "*Invalid URL.";
         return false;
     }
+
 }
 
 function validateOpportunity() {

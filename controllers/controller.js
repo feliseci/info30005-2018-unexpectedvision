@@ -27,7 +27,7 @@ module.exports.home = function (req, res) {
             // Find the most recently updated issue
             // 6 issues are fetched: the 1st and 2nd most recent (in case the any
             // are the same as the most popular), and 3 extra for populating the home page.
-            Issue.find({}).limit(6).sort({"date_update": -1}).exec(function(err, recent_issue) {
+            Issue.find({}).limit(6).sort({"date_post": -1}).exec(function(err, recent_issue) {
                 if(err) {
                     res.sendStatus(409);
                     return;

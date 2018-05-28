@@ -1,12 +1,3 @@
-/*let $ = require('jquery');*/
-/*let jsdom = require("jsdom").jsdom;
-jsdom.env("", function(err, window) {
-    if (err) {
-        console.error(err);
-        return;
-    }
-    global.$ = require("jquery")(window);
-});*/
 
 /* Update the DB, and change the colour of the button to reflect this.
  * (changeColour is used on its own on page load to reflect initial DB state.)*/

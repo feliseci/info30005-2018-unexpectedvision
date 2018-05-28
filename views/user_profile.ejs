@@ -88,8 +88,8 @@
             <h1> Followers </h1>
             <ul style="text-align: left;">
                 <% for(i=0; i < profile.followingUsers.length; i++) { %>
-                <li><a href="../profile/<%=profile.followingUsers[i]%>"><%=profile.followedUsers[i]%></a></li>
-                <% } if(profile.followedUsers.length === 0) {%>
+                <li><a href="../profile/<%=profile.followingUsers[i]%>"><%=profile.followingUsers[i]%></a></li>
+                <% } if(profile.followingUsers.length === 0) {%>
                 <p>This user isn't followed by anyone yet!</p>
                 <%}%>
             </ul>

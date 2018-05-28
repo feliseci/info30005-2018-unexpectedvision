@@ -6,7 +6,6 @@ const dummyIssues = [
         name: "The lawsuit of O'Connor v. Uber Technologies Inc.",
         author: "jcroft1",
         date_post: new Date(2018,5,16,12,3,6),
-        date_update: new Date(2018,5,16,12,3,6),
         popularity: 0,
         categories: ["uber", "sharingeconomy"],
         hl_source: [
@@ -19,7 +18,7 @@ const dummyIssues = [
             {link: "https://digitalcommons.law.seattleu.edu/sulr/vol41/iss1/8/", description: ""}],
         o_source: [
             {link: "https://www.thesimpledollar.com/how-to-make-money-driving-for-uber/", description: ""}],
-        image: "https://fortunedotcom.files.wordpress.com/2015/06/rtr3vkj9.jpg", // Was this the right one
+        image: "https://fortunedotcom.files.wordpress.com/2015/06/rtr3vkj9.jpg",
         description: "The lawsuit of O’Connor v. Uber Technologies Inc. has been filed by four drivers who have used the Uber App, and are suing Uber on behalf of a Class of drivers of similar circumstances in California. The key allegation against Uber is that drivers of Uber should legally be classified as employees, rather than independent contractors. The former classification dictates that Uber has violated the California Labor Code by not reimbursing its drivers for certain expenses, and not passing onto drivers the portion of the fare representative of their tip. This change in classification would also mean that Uber is legally obligated to provide employee benefits, and this would have significant economic impact on the future growth of the company. As it stands, Uber has disputed claims of an employee-employer relationship between itself and its drivers. Given that Uber does not own the means of transport, the company contends it is not an employer, but a “technological intermediary” as it only sells software in the form of the Uber App. However, this “held little significance for the court”, and the court “forcefully discounted Uber’s attempt to limit itself as being a purely technology company, finding its characterization “fatally flawed”.",
         contributions: []
     },
@@ -27,7 +26,6 @@ const dummyIssues = [
         name: "Facebook data leak",
         author: "Brockhampton",
         date_post: new Date(2018,5,3,13),
-        date_update: new Date(2018,5,3,13),
         popularity: 6,
         categories: ["privacy", "internet"],
         hl_source: [
@@ -51,7 +49,6 @@ const dummyIssues = [
         name: "Horse racing",
         author: "orangecaramel",
         date_post: new Date(2018,5,2,13),
-        date_update: new Date(2018,5,2,13),
         popularity: 15,
         categories: ["animal welfare"],
         hl_source: [
@@ -65,13 +62,6 @@ const dummyIssues = [
         description: "Them horses.",
         contributions: [
             {
-                // Posts the user created: {link: Number, content: String, article: String}
-                /* posts: [{
-                    article: "Horse racing",
-                    content: "This is why this article is good....",
-                    link: 2
-                }]
-                */
                 author: "Brockhampton",
                 comment: "I like this article. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
                 article_url: "",
@@ -86,7 +76,6 @@ const dummyIssues = [
         name: "Global warming",
         author: "Brockhampton",
         date_post: Date.now(),
-        date_update: Date.now(),
         popularity: 0,
         categories: ["environment"],
         hl_source: [
@@ -113,7 +102,6 @@ const dummyIssues = [
         r_source: [{link: "http://www.google.com", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."}],
         o_source: [{link: "http://www.facebook.com", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."}],
         date_post: Date.now(),
-        date_update: Date.now(),
         contributions: [],
         image: "https://source.unsplash.com/SHKOxGviXvM/800x600"
     },
@@ -128,7 +116,6 @@ const dummyIssues = [
         r_source: [{link: "http://www.amazon.com", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}],
         o_source: [{link: "http://www.youtube.com", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}],
         date_post: Date.now(),
-        date_update: Date.now(),
         contributions: [],
         image: "https://source.unsplash.com/H6mCeW7B9KY/800x600"
     },
@@ -143,7 +130,6 @@ const dummyIssues = [
         r_source: [{link: "http://www.amazon.com", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}],
         o_source: [{link: "http://www.youtube.com", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}],
         date_post: Date.now(),
-        date_update: Date.now(),
         contributions: [],
         image: "https://source.unsplash.com/LNwn_A9RGHo/800x600"
     }

@@ -13,7 +13,7 @@ const userSchema = mongoose.Schema(
         "likes": {type: Array, default: []}, // {id: Number, name: String i.e. liked issue name}
         "followedUsers": {type: [String], default: []}, // list of usernames of followed users
         "bookmarks": {type: Array, default: []},
-        "posts": {type: Array, default: []}, // Posts the user created: {link: Number, content: String, article: String}
+        "posts": {type: Array, default: []}, // Comments the user created: {link: Number, content: String, article: String}
         "followingUsers": {type: [String], default: []}, // list of usernames of users following this user
         "articles": {type: Array, default: []}, // Articles the user created,
             // articleName: String, description: String, id: Number

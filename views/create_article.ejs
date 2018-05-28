@@ -53,11 +53,10 @@
 
                 <h3> Resource Repository:</h3>
                 <div id = "container_source">
-
                     <!-- Embedded CSS grid to format the Repository Form Section -->
                     <div class = "source grid-container-repos">
                         <div id = "res-link">
-                            <input type="text" name="link" class="form-input link-input"
+                            <input type="text" name="link" class="a-field form-input link-input"
                                    placeholder="Suggested Article Link">
                         </div>
 
@@ -70,12 +69,63 @@
                             </select>
                         </div>
                         <div id = "res-descriptor">
-                            <textarea type="text" name="article_description" class="form-input descriptor-input"
+                            <textarea type="text" name="article_description" class="a-field form-input descriptor-input"
                                       placeholder="Your description of why you are suggesting this article"></textarea>
                         </div>
                     </div>
                 </div>
                 <br>
+
+                <div id = "container_source2">
+
+                    <!-- Embedded CSS grid to format the Repository Form Section -->
+                    <div class = "source grid-container-repos">
+                        <div id = "res-link">
+                            <input type="text" name="link" class="a-field form-input link-input"
+                                   placeholder="Suggested Article Link">
+                        </div>
+
+                        <!-- Select what type of Suggested Link it is, so database knows how to store information -->
+                        <div id = "res-selector" >
+                            <select name="source_type" class="form-input res-input">
+                                <option value="hl">High level</option>
+                                <option value="r">Report</option>
+                                <option value="o">Opinion</option>
+                            </select>
+                        </div>
+                        <div id = "res-descriptor">
+                            <textarea type="text" name="article_description" class="a-field form-input descriptor-input"
+                                      placeholder="Your description of why you are suggesting this article"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+                <div id = "container_source3">
+
+                    <!-- Embedded CSS grid to format the Repository Form Section -->
+                    <div class = "source grid-container-repos">
+                        <div id = "res-link">
+                            <input type="text" name="link" class="a-field form-input link-input"
+                                   placeholder="Suggested Article Link">
+                        </div>
+
+                        <!-- Select what type of Suggested Link it is, so database knows how to store information -->
+                        <div id = "res-selector" >
+                            <select name="source_type" class="form-input res-input">
+                                <option value="hl">High level</option>
+                                <option value="r">Report</option>
+                                <option value="o">Opinion</option>
+                            </select>
+                        </div>
+                        <div id = "res-descriptor">
+                            <textarea type="text" name="article_description" class="a-field form-input descriptor-input"
+                                      placeholder="Your description of why you are suggesting this article"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
                 <!-- Clones fields to add as many links as desired -->
                 <button type="button" class="plus_button add" onclick="addSource('source')">+</button>
                 <hr>

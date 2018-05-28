@@ -50,7 +50,7 @@ function validateUser() {
 
 function validateArticle() {
 
-    let form = document.getElementsByClassName("form-input");
+    let form = document.getElementsByClassName("a-field");
     // Check all fields have been completed
     for(i = 0; i < form.length; i++) {
         if(form[i].value.length === 0) {
@@ -80,11 +80,10 @@ function validateArticle() {
         return false;
     } // The description (the editor's essay) is allowed to be long; it is manually shortened in search results etc.
 
-    // Check image is a link to Unsplash
+    // Check link is an image
     let image = document.querySelector("input[name=image]").value;
-    let regexpImage = /https:\/\/source.unsplash.com\/[^\s]+/;
-    if(!regexpImage.test(image)) {
-        document.getElementById("error").innerHTML = "Invalid image url: must be an Unsplash source URL.";
+    if(!(image.match(/\.(jpeg|jpg|gif|png)$/) != null)) {
+        document.getElementById("error").innerHTML = "Invalid image url: must be a jpeg, gif, jpeg or gif URL";
         return false;
     }
 
@@ -176,6 +175,13 @@ function validateOpportunity() {
         return false;
     }
 
+    // Check link is an image
+    let image = document.querySelector("input[name=image]").value;
+    if(!(image.match(/\.(jpeg|jpg|gif|png)$/) != null)) {
+        document.getElementById("error").innerHTML = "Invalid image url: must be a jpeg, gif, jpeg or gif URL";
+        return false;
+    }
+
     // Check name contains no special characters
     let regexp = /[a-zA-Z ]*/;
     if(!regexp.test(name)) {
@@ -189,6 +195,8 @@ function validateOpportunity() {
         document.getElementById("error").innerHTML = "Description must be between 50 and 1000 characters.";
         return false;
     }
+
+
 
     // Check link to further info is a link
     let regexpURL = /http[s]*:\/\/[^\s]+/;

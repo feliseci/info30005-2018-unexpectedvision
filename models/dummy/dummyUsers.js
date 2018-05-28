@@ -12,10 +12,20 @@ const dummyUsers = [
         profile_description: "Brockhampton going platinum",
         email: "",
         password: "???",
-        is_editor: true
-        article: [{articleName: "Facebook data leak", description: "Facebook records users' metadata and sells it to other companies. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        is_editor: true,
+        articles: [{articleName: "Facebook data leak", description: "Facebook records users' metadata and sells it to other companies. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
             id: 0}, {articleName: "Global warming", description: "Global warming! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            id: 0}]
+            id: 0}],
+        followingUsers: ["Maui"],
+        opportunities: [{
+            name: "Newton's Paddock bird survey",
+            link: 3
+        }],
+        posts: [{
+            article: "Horse racing",
+            content: "I like this article. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            link: 2
+        }]
     },
     {
         username: "orangecaramel",
@@ -23,8 +33,18 @@ const dummyUsers = [
         profile_description: "",
         email: "",
         password: "???",
-        is_editor: true
-        article: [{articleName: "Horse racing", description: "Them horses.", id: 0}]
+        is_editor: true,
+        opportunities: [
+            {
+                name: "Lore ipsum, again?",
+                link: 1
+            },
+            {
+                name: "Lore ipsum",
+                link: 4
+            }
+        ],
+        articles: [{articleName: "Horse racing", description: "Them horses.", id: 0}]
     },
     {
         username: "LadyBird",
@@ -35,7 +55,11 @@ const dummyUsers = [
         is_editor: true
         article: [{articleName: "Intervention in the Middle East", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
             id: 0}, {articleName: "Trump in power", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-            id: 0}]
+            id: 0}],
+        opportunities: [{
+            name: "Volunteer with LandCare Australia",
+            link: 0
+        }]
     },
     {
         username: "MontyPython",
@@ -55,8 +79,18 @@ const dummyUsers = [
         password: "???",
         is_editor: false,
         followedUsers: ["Brockhampton"],
-        bookmarks: [[9, "Horse racing"]]
+        opportunities: [{
+            name: "International Women's Day Fun Run",
+            link: 2
+        }]
     }
+
+    //
+    /* another_user -  opportunities: [{
+        name: "Volunteer at Australian Red Cross Warehouse - Sunshine West",
+        link: 5
+    }]
+    */
 ];
 
 module.exports = dummyUsers;

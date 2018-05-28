@@ -65,31 +65,20 @@ const dummyIssues = [
         description: "Them horses.",
         contributions: [
             {
+                // Posts the user created: {link: Number, content: String, article: String}
+                /* posts: [{
+                    article: "Horse racing",
+                    content: "This is why this article is good....",
+                    link: 2
+                }]
+                */
                 author: "Brockhampton",
-/*                date: "12/2",
-                popularity: 2,*/
                 comment: "I like this article. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
                 article_url: "",
             },
             {
-                author: "ramenlover",
-/*                date: "12/3",
-                popularity: 2,*/
+                author: "Maui",
                 comment: "This is why this article is good....",
-                article_url: "",
-            },
-            {
-                author: "jason32123",
-/*                date: "12/2",
-                popularity: 1,*/
-                comment: "Extremely long dummy text for testing. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                article_url: "",
-            },
-            {
-                author: "blackberry",
-/*                date: "12/5",
-                popularity: 5,*/
-                comment: "I like this article.",
                 article_url: "",
             }]
     },

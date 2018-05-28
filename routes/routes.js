@@ -6,6 +6,7 @@ const router = express.Router();
 const controller = require('../controllers/controller');
 
 router.get('/', controller.landing);
+router.get('/?failure=true', controller.landing);
 router.get('/home', controller.home);
 router.get('/login', controller.login);
 router.get('/create-account', controller.createAccount);

@@ -3,6 +3,8 @@
 // NOTE: None of these dummy users will have the details here changed.
 // As editor application isn't functional, feel free to use any of these editors for testing.
 
+//TODO: jcroft needs to be made a user for Uber article
+
 const dummyUsers = [
     {
         username: "Brockhampton",
@@ -11,6 +13,9 @@ const dummyUsers = [
         email: "",
         password: "???",
         is_editor: true,
+        articles: [{articleName: "Facebook data leak", description: "Facebook records users' metadata and sells it to other companies. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+            id: 0}, {articleName: "Global warming", description: "Global warming! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            id: 0}],
         followingUsers: ["Maui"],
         opportunities: [{
             name: "Newton's Paddock bird survey",
@@ -38,7 +43,8 @@ const dummyUsers = [
                 name: "Lore ipsum",
                 link: 4
             }
-        ]
+        ],
+        articles: [{articleName: "Horse racing", description: "Them horses.", id: 0}]
     },
     {
         username: "LadyBird",
@@ -46,7 +52,10 @@ const dummyUsers = [
         profile_description: "It's me, Saoirse Ronan",
         email: "",
         password: "???",
-        is_editor: true,
+        is_editor: true
+        article: [{articleName: "Intervention in the Middle East", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+            id: 0}, {articleName: "Trump in power", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+            id: 0}],
         opportunities: [{
             name: "Volunteer with LandCare Australia",
             link: 0
@@ -59,6 +68,8 @@ const dummyUsers = [
         email: "",
         password: "???",
         is_editor: true
+        article: [{articleName: "School uniform and transgender students", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+            id: 0}]
     },
     {
         username: "Maui",

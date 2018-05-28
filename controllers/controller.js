@@ -448,7 +448,7 @@ module.exports.newContribution = function (req, res) {
 
             console.log("User activity updated.");
             //  Redirect the user back to the issue page at the comments section
-            res.redirect('../issue/' + issue._id + '/#contributions_grid');
+            res.redirect('../issue/' + issue._id);
         });
     });
 

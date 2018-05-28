@@ -165,7 +165,7 @@
             <h1> High Level Perspectives</h1>
             <ul>
                 <% for(i = 0; i < editor.hl_source.length; i++) { %>
-                <li> <a href = "<%=editor.hl_source[i]%>" target="_blank"> <%=editor.hl_source[i]%>  </a> </li>
+                <li> <a href = "<%=editor.hl_source[i]%>" target="_blank"> <%=editor.hl_source[i].description%>  </a> </li>
                 <% } %>
             </ul>
         </div>
@@ -175,7 +175,7 @@
             <h1> Reports</h1>
             <ul>
                 <% for(i = 0; i < editor.r_source.length; i++) { %>
-                <li> <a href = "<%=editor.r_source[i]%>" target="_blank"> <%=editor.r_source[i]%> </a> </li>
+                <li> <a href = "<%=editor.r_source[i]%>" target="_blank"> <%=editor.r_source[i].description%> </a> </li>
                 <% } %>
             </ul>
         </div>
@@ -185,7 +185,7 @@
             <h1> Opinion Pieces </h1>
             <ul>
                 <% for(i = 0; i < editor.o_source.length; i++) { %>
-                <li> <a href = "<%=editor.o_source[i]%>" target="_blank"> <%=editor.o_source[i]%> </a> </li>
+                <li> <a href = "<%=editor.o_source[i]%>" target="_blank"> <%=editor.o_source[i].description%> </a> </li>
                 <% } %>
             </ul>
         </div>

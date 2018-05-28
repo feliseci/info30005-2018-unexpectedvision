@@ -190,12 +190,6 @@ function validateOpportunity() {
         return false;
     }
 
-    // Check image is a link is an image format
-    let image = document.querySelector("input[name=image]").value;
-    if(!checkURL(image)){
-        return false;
-    }
-
     // Check link to further info is a link
     let regexpURL = /http[s]*:\/\/[^\s]+/;
     let furtherInfo = document.getElementsByName("further_info");
@@ -220,7 +214,7 @@ function addSource(type) {
         // Reset the values of all the inputs
         newSource.querySelector("select[name=source_type]").value = "hl";
         newSource.querySelector("input[name=link]").value = "";
-        newSource.querySelector("input[name=article_description]").value = "";
+        newSource.querySelector("textarea[name=article_description]").value = "";
     }
     else {
         let source = container.childNodes[1];
@@ -229,12 +223,6 @@ function addSource(type) {
   
     container.appendChild(document.createElement("br"));
     container.appendChild(newSource);
-}
-
-/*Sourced from: https://stackoverflow.com/questions/9714525/javascript-image-url-verify
-* Credit to: jfriend00*/
-function checkURL(url) {
-    return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
 }
 
 
